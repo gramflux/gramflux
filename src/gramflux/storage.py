@@ -7,9 +7,9 @@ import stat
 from contextlib import closing
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import BinaryIO, Protocol
+from typing import BinaryIO, Literal, Protocol
 
-from .errors import SessionError
+from .errors import ConfigurationError, SessionAlreadyExists, SessionError, SessionNotFound
 
 APP_ID = 0x47524A54
 
@@ -63,8 +63,17 @@ class SQLiteStorage:
     compatible with other libraries' session formats. Parent must already exist.
     """
 
-    def __init__(self, path: str | Path) -> None:
+    def __init__(
+        self,
+        path: str | Path,
+        *,
+        mode: Literal["open", "create", "open_or_create"] = "open_or_create",
+    ) -> None:
+        if mode not in {"open", "create", "open_or_create"}:
+            raise ConfigurationError("unknown session file mode")
         self.path = Path(path).absolute()
+        self.mode = mode
+        self._created = False
         self._handle: BinaryIO | None = None
         self._guard = asyncio.Lock()
 
@@ -83,7 +92,12 @@ class SQLiteStorage:
     def _sync(self, operation: str, data: SessionData | None) -> SessionData | None:
         try:
             if operation == "open":
-                flags = os.O_RDWR | os.O_CREAT | getattr(os, "O_NOFOLLOW", 0)
+                flags = os.O_RDWR | getattr(os, "O_NOFOLLOW", 0)
+                creating = self.mode == "create" and not self._created
+                if self.mode == "open_or_create" or creating:
+                    flags |= os.O_CREAT
+                if creating:
+                    flags |= os.O_EXCL
                 fd = os.open(self.path, flags, 0o600)
                 handle = os.fdopen(fd, "r+b")
                 try:
@@ -107,11 +121,27 @@ class SQLiteStorage:
                 return None
             if self._handle is None:
                 raise SessionError("session storage is not open")
-            with closing(sqlite3.connect(self.path, timeout=5)) as db, db:
+            # File creation belongs exclusively to the os.open policy above.
+            # SQLite's default connection would recreate a file removed between
+            # acquiring our handle and opening the database.
+            with (
+                closing(
+                    sqlite3.connect(self.path.as_uri() + "?mode=rw", uri=True, timeout=5)
+                ) as db,
+                db,
+            ):
                 app_id = db.execute("PRAGMA application_id").fetchone()[0]
                 version = db.execute("PRAGMA user_version").fetchone()[0]
                 tables = db.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
-                if operation == "open" and app_id == 0 and version == 0 and not tables:
+                if (
+                    operation == "open"
+                    and (
+                        self.mode == "open_or_create" or not self._created and self.mode == "create"
+                    )
+                    and app_id == 0
+                    and version == 0
+                    and not tables
+                ):
                     db.execute("BEGIN IMMEDIATE")
                     db.execute(f"PRAGMA application_id={APP_ID}")
                     db.execute("PRAGMA user_version=1")
@@ -136,7 +166,19 @@ class SQLiteStorage:
                         "ON CONFLICT(id) DO UPDATE SET payload=excluded.payload",
                         (data.payload,),
                     )
+            if operation == "open" and self.mode == "create":
+                self._created = True
             return None
+        except FileExistsError:
+            raise SessionAlreadyExists(
+                "Session already exists; use Session.open(name) to reuse it, or "
+                "Session.open(name, require_authorized=False) to resume an unfinished login"
+            ) from None
+        except FileNotFoundError:
+            raise SessionNotFound(
+                "Session file or parent directory does not exist; "
+                "use Session.create(name) for a new session in an existing directory"
+            ) from None
         except (OSError, sqlite3.Error) as exc:
             raise SessionError("session I/O failed, is corrupt, or is already in use") from exc
 

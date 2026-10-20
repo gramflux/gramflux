@@ -4,7 +4,13 @@ import asyncio
 import logging
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
-from typing import Any
+from typing import TYPE_CHECKING, Any, Literal
+
+from .errors import ConfigurationError, LifecycleError, StopPropagation
+from .raw import types
+
+if TYPE_CHECKING:
+    from .client import Client
 
 from .filters import Filter, all_messages
 
@@ -15,6 +21,30 @@ logger = logging.getLogger("gramflux.events")
 class MessageEvent:
     message: Any = field(repr=False)
     edited: bool = False
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+    chat_type: Literal["private", "group", "channel"] | None = None
+
+    async def reply(self, text: str, *, silent: bool = False) -> types.Message:
+        if self.client is None or self.chat_id is None:
+            raise LifecycleError("event has no client/chat context")
+        return await self.client.send_message(
+            self.chat_id, text, reply_to=self.message.id, silent=silent
+        )
+
+    async def edit(self, text: str) -> Any:
+        if self.client is None or self.chat_id is None:
+            raise LifecycleError("event has no client/chat context")
+        return await self.client.edit_message(self.chat_id, self.message.id, text)
+
+    async def delete(self, *, revoke: bool = False) -> Any:
+        if self.client is None or self.chat_id is None:
+            raise LifecycleError("event has no client/chat context")
+        return await self.client.delete_messages(self.chat_id, self.message.id, revoke=revoke)
+
+    async def download(self, destination: str) -> Any:
+        if self.client is None:
+            raise LifecycleError("event has no client context")
+        return await self.client.download_media(self.message, destination)
 
     @property
     def text(self) -> str:
@@ -38,7 +68,7 @@ ErrorHandler = Callable[[MessageEvent, Exception], Awaitable[None]]
 
 
 class Dispatcher:
-    """One worker; events and handlers execute in registration/arrival order.
+    """One worker; events arrive in order, handlers use stable priority order.
 
     Full queues block the producer. A cancelled or failing callback is reported
     and does not discard the event for subsequent handlers. Stop cancels the
@@ -47,14 +77,27 @@ class Dispatcher:
 
     def __init__(self, size: int, on_error: ErrorHandler | None = None) -> None:
         self._queue: asyncio.Queue[MessageEvent] = asyncio.Queue(size)
-        self._handlers: list[tuple[Handler, Filter, bool]] = []
+        self._handlers: list[tuple[int, Handler, Filter, bool]] = []
         self._task: asyncio.Task[None] | None = None
         self._on_error = on_error
 
     def add(
-        self, callback: Handler, predicate: Filter = all_messages, *, edited: bool = False
+        self,
+        callback: Handler,
+        predicate: Filter = all_messages,
+        *,
+        edited: bool = False,
+        priority: int = 0,
     ) -> None:
-        self._handlers.append((callback, predicate, edited))
+        if isinstance(priority, bool) or not isinstance(priority, int):
+            raise ConfigurationError("handler priority must be an integer")
+        self._handlers.append((priority, callback, predicate, edited))
+        self._handlers.sort(key=lambda item: item[0])
+
+    def remove(self, callback: Handler) -> int:
+        before = len(self._handlers)
+        self._handlers[:] = [item for item in self._handlers if item[1] != callback]
+        return before - len(self._handlers)
 
     def start(self) -> None:
         if self._task is not None:
@@ -93,10 +136,12 @@ class Dispatcher:
         while True:
             event = await self._queue.get()
             try:
-                for callback, predicate, edited in tuple(self._handlers):
+                for _, callback, predicate, edited in tuple(self._handlers):
                     try:
                         if event.edited == edited and predicate(event):
                             await callback(event)
+                    except StopPropagation:
+                        break
                     except asyncio.CancelledError:
                         task = asyncio.current_task()
                         if task is not None and task.cancelling():

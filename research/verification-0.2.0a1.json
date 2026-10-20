@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0a1",
+  "platform": "Linux x86_64 glibc2.39",
+  "account_tests": "not run; credentials absent",
+  "tests": [
+    {
+      "python": "3.11.17",
+      "installation": "wheel",
+      "summary": "200 passed, 1 skipped in 17.21s"
+    },
+    {
+      "python": "3.12.3",
+      "installation": "editable",
+      "summary": "200 passed, 1 skipped in 6.48s"
+    },
+    {
+      "python": "3.13.16",
+      "installation": "editable",
+      "summary": "200 passed, 1 skipped in 5.99s"
+    },
+    {
+      "python": "3.13.16",
+      "installation": "wheel",
+      "summary": "200 passed, 1 skipped in 10.52s"
+    },
+    {
+      "python": "3.14.8",
+      "installation": "wheel",
+      "summary": "200 passed, 1 skipped in 16.32s"
+    }
+  ],
+  "quality": {
+    "ruff": "passed",
+    "format": "passed",
+    "mypy": "passed (31 files)",
+    "schema": "2356 official JSON matches",
+    "build": "wheel and sdist succeeded",
+    "twine": "both passed; 7.0.0"
+  },
+  "limitations_report": "docs/releases/0.2.0a1.md"
+}

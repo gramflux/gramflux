@@ -22,8 +22,8 @@ GramFlux's current differentiators are auditable official TL-vs-JSON verificatio
 fail-closed schema changes, explicit admission deadlines, value-free error diagnostics,
 and a small streaming/persistence API. Their developer and performance benefits have
 not been established in user studies or server workloads. The native codec is currently
-slower on the recorded benchmark. Core networking is borrowed as a dependency, so it
-cannot support a claim of a faster independent MTProto engine.
+slower on the recorded benchmark. In the initial 0.2 baseline core networking was dependency-backed. Since 0.3.0a1
+the engine is independent; that change does not establish a performance advantage.
 
 Official protocol research: [API](https://core.telegram.org/api),
 [schema](https://core.telegram.org/schema), [MTProto schema](https://core.telegram.org/schema/mtproto),

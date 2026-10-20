@@ -24,10 +24,11 @@ jobs:
       - run: python -m compileall -q examples
       - run: |
           python -m venv /tmp/gramflux-wheel
-          /tmp/gramflux-wheel/bin/pip install dist/*.whl
+          /tmp/gramflux-wheel/bin/pip install dist/*.whl pytest==9.1.1 pytest-asyncio==1.4.0 hypothesis==6.170.5
           cd /tmp
-          /tmp/gramflux-wheel/bin/python -c "import gramflux; from gramflux.tl import Codec; print(gramflux.__version__)"
-          /tmp/gramflux-wheel/bin/python -m gramflux.tools.schema verify
+          /tmp/gramflux-wheel/bin/python -c "import gramflux, importlib.util; assert importlib.util.find_spec('telethon') is None; from gramflux.tl import Codec; print(gramflux.__version__)"
+          /tmp/gramflux-wheel/bin/python -I -m gramflux.tools.schema verify
+          /tmp/gramflux-wheel/bin/python -I -m pytest "$GITHUB_WORKSPACE/tests"
   dependency-audit:
     runs-on: ubuntu-latest
     steps:

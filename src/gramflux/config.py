@@ -13,6 +13,7 @@ class Config:
     max_concurrent_requests: int = 32
     event_queue_size: int = 256
     reconnect_attempts: int = 3
+    peer_cache_size: int = 2048
     transport: Literal["full", "intermediate", "abridged"] = "intermediate"
 
     def __post_init__(self) -> None:
@@ -33,5 +34,11 @@ class Config:
             or self.reconnect_attempts < 0
         ):
             raise ConfigurationError("reconnect_attempts must be nonnegative")
+        if (
+            isinstance(self.peer_cache_size, bool)
+            or not isinstance(self.peer_cache_size, int)
+            or not 1 <= self.peer_cache_size <= 4096
+        ):
+            raise ConfigurationError("peer_cache_size must be between 1 and 4096")
         if self.transport not in {"full", "intermediate", "abridged"}:
             raise ConfigurationError("unknown TCP transport")

@@ -1,4 +1,4 @@
-"""Independent TCP framing reference implementation (not the live backend).
+"""Native TCP framing used by the live connection and protocol tests.
 
 Length bounds are checked before reading payload bytes. State belongs to one
 connection. The full-transport checksum covers length, sequence and payload.

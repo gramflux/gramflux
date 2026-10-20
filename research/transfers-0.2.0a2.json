@@ -1,0 +1,43 @@
+{
+  "kind": "controlled local upload pipeline; synthetic RPC latency; NOT Telegram throughput",
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "versions": {
+    "gramflux": "0.2.0a2",
+    "Telethon": "1.45.0"
+  },
+  "size_bytes": 4194304,
+  "simulated_latency_ms_per_rpc": 2.0,
+  "rounds": 3,
+  "memory_method": "separate tracemalloc sample; not RSS, not backend/network buffering",
+  "results": [
+    {
+      "concurrency": 1,
+      "part_size": 65536,
+      "round_seconds": [
+        0.35652814398054034,
+        0.30361400797846727,
+        0.3141799269942567
+      ],
+      "median_seconds": 0.3141799269942567,
+      "median_mib_per_second": 12.73155811788422,
+      "observed_maximum_in_flight": 1,
+      "tracemalloc_peak_bytes": 272456,
+      "parts": 64
+    },
+    {
+      "concurrency": 4,
+      "part_size": 65536,
+      "round_seconds": [
+        0.07303118600975722,
+        0.07778073599911295,
+        0.09238190500764176
+      ],
+      "median_seconds": 0.07778073599911295,
+      "median_mib_per_second": 51.42661545457243,
+      "observed_maximum_in_flight": 4,
+      "tracemalloc_peak_bytes": 347722,
+      "parts": 64
+    }
+  ]
+}

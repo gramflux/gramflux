@@ -1,57 +1,44 @@
-# Architecture and implementation boundary
+# Native runtime architecture (0.3)
 
-GramFlux is currently a dependency-backed alpha. It is not an independent MTProto engine
-and is not a superficial renamed fork: no competitor implementation is vendored, and
-the schema pipeline, codec, session persistence, dispatch, request admission, file I/O
-and public lifecycle are original modules with separate tests. Independence and measurable
-advantages remain roadmap goals, not shipped claims.
+The production path is Client → own generated raw method → Codec → Sender →
+MTProto 2.0 encryption → Connection/Framing → asyncio TCP. No external Telegram client,
+session implementation, update engine or error reader is imported or used as fallback.
+cryptography supplies OpenSSL AES and finite-field DH primitives, not Telegram logic.
 
-| Component | Responsibility |
+| Component | Implemented responsibility |
 | --- | --- |
-| `client.py`, `config.py` | Explicit connect/auth/shutdown; typed convenience methods, deadlines, concurrency admission |
-| `backend.py`, `raw.py` | Pinned Telethon integration; sanitized RPC errors/logs, snapshot adapter, wire bindings |
-| `storage.py` | Async storage protocol, memory store, off-loop transactional SQLite, ownership lock |
-| `events.py`, `filters.py` | Bounded ordered callback queue, async handlers, composable synchronous filters |
-| `files.py` | Seekable uploads, official small/big parts, streaming downloads, progress, atomic no-overwrite paths |
-| `tl/parser.py`, `model.py`, `generator.py` | Source diagnostics, validation, deterministic typed definitions |
-| `tl/codec.py`, `generated/` | Independent bounded TL binary codec and constructor registry |
-| `mtproto/framing.py`, `probe.py` | Independently checked transport reference and native unencrypted handshake probe |
-| `tools/schema.py`, `benchmark.py` | Explicit refresh, offline verify, diff, reproducible local measurements |
+| client/auth/sessions/config | Explicit lifecycle, login retries, high-level facade, deadlines and configuration |
+| raw/tl/generated | Deterministic aliases and dataclasses for the pinned official layer 225; same objects used on wire |
+| tl/codec/parser/generator/namespaces | Bounded schema-verified encoding/decoding and auditable generation |
+| mtproto/connection/framing | Async sockets, serialized framed writes, full/intermediate/abridged TCP |
+| mtproto/crypto/auth_key/srp | RSA_PAD, pinned trust/prime, nonce checks, OpenSSL DH, AES-IGE glue, MTProto 2 KDF/MAC, password SRP |
+| mtproto/sender | Bounded correlation/admission, sequence/IDs, containers/gzip, ack batching, replay window, salt/clock correction, terminal disconnect semantics |
+| backend | Own native runtime orchestration, layer/init wrapper, auth RPCs, send-response normalization, heartbeat, safe snapshot mapping |
+| mtproto/updates | pts/seq checks, global/channel differences, duplicate checks, short updates, session-reset recovery |
+| peers/peer_utils | Own identity conversion, bounded access-hash/entity caches and username expiry |
+| messages/dialogs/chats/pagination | Existing demand-driven high-level services, now native requests/results |
+| events/filters | Bounded ordered dispatcher, priorities/removal, errors and handler completion boundary |
+| files/storage | Bounded chunk pipeline, joined file I/O, atomic destinations, protected own SQLite/memory sessions |
 
-The live backend owns RSA/DH authorization-key creation, MTProto 2.0 encryption,
-message IDs/seqnos/session salts, containers, acknowledgments, response correlation,
-protocol resends, reconnects, migration and update pts/qts/seq recovery. GramFlux does
-not claim to independently audit these merely by depending on them. SRP computation
-uses backend primitives in a worker thread. Other backend CPU-heavy operations may
-still block the event loop; benchmark/audit work is outstanding.
+Request admission includes its timeout; one request cancellation does not cancel
+other correlations. Completed/late responses are acknowledged. New requests have
+monotonic fractional message IDs and content sequence numbers. A committed write is
+joined on cancellation; cancelling cannot retract bytes already sent. Broken streams
+fail pending requests with an ambiguous-outcome TransportError. There is no arbitrary
+replay after reconnect; initial TCP establishment has bounded retries. Only explicit
+correlated bad-salt/time rejection permits a bounded protocol resend. Other sequence
+repair is unsupported, with explicit failure. Heartbeats use two reserved bounded
+control slots so a full application-RPC window cannot prevent liveness checks.
 
-The client creates one child task per admitted operation. Timeout includes semaphore
-admission, cancellation propagates to that operation, and disconnect cancels admitted
-operations before closing the backend and persisting state. Waiting callers recheck
-lifecycle state after admission. No broad application RPC retry is configured. At most
-two additional attempts are allowed for explicit preauthorization code/bot/password
-operations rejected with a migration response after the pinned backend switches DC.
-Network ambiguity does not authorize creating another send-message request.
+Both update queues are count-bounded. Native receive overflow disconnects explicitly
+rather than dropping an update or blocking the reader needed by handler RPCs. The
+producer awaits dispatcher completion before committing counters. Shutdown stops that
+producer before cancelling callbacks. Difference slices commit only after their handler
+boundary. Snapshot persistence is not a transactional event journal: partial batches,
+crashes and failed callbacks can still require idempotent application processing.
+Too-long differences, missing channel hashes and secret-chat updates fail explicitly.
 
-Dispatcher callbacks run one at a time in registration order. A failure is reported
-without exception contents and later handlers still receive that event. Full queues
-block producers. This does **not** bound Telethon's internal update queue; a slow
-consumer can still accumulate upstream updates. End-to-end bounded update buffering,
-durable event delivery and application-level deduplication are release blockers.
-
-SQLite saves auth/DC and backend update-state snapshots. Entity/access-hash caches
-are in-memory only. State is synchronized to disk on auth changes and clean disconnect;
-there is no crash-consistent update cursor/durable callback transaction. SQLite methods
-run off-loop; cancelled workers are joined before releasing their lifetime lock.
-
-Independent generated declarations use the source page advertised as layer 225.
-The backend's runtime uses layer 229. `Client.invoke` only accepts backend TLRequest
-instances. Joining those two schema universes without negotiated-layer validation
-would be unsafe. The native probe checks nonce and envelope structure but does not
-authenticate Telegram; no keys or credentials are involved.
-
-Dependencies were selected for a functional and reviewable vertical slice rather than
-a new cryptographic implementation. There is no plugin framework, compiled extension,
-or Pydantic dependency. Storage and the backend are injectable test boundaries; the
-private `_backend` constructor argument is not a promised extension API. Native framing
-and codec are currently independent test/tool subsystems, not the live wire stack.
+TCP/key setup and ping/pong have real Telegram evidence. Account APIs, channel recovery,
+reconnect/fault behavior and file transfer remain controlled-test verified only. A native
+engine is not a performance-superiority or cryptographic-audit result. Remaining
+boundaries and verification are in the current release report.

@@ -1,0 +1,68 @@
+{
+  "version": "0.3.0a1",
+  "schema": {
+    "advertised_layer": 225,
+    "sha256": "13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046",
+    "constructors": 1573,
+    "methods": 783,
+    "generated": 2356,
+    "official_json_ids_matched": 2356,
+    "protocol_declarations_parsed": 46,
+    "runtime": "GramFlux native MTProto runtime; same pinned API layer"
+  },
+  "source_tests": {
+    "passed": 358,
+    "skipped": 4,
+    "warnings": 4
+  },
+  "installed_wheel_tests": [
+    {
+      "python": "3.11.17",
+      "result": "358 passed, 4 skipped, 4 warnings in 12.88s",
+      "telethon_installed": false
+    },
+    {
+      "python": "3.12.3",
+      "result": "358 passed, 4 skipped, 4 warnings in 13.56s",
+      "telethon_installed": false
+    },
+    {
+      "python": "3.13.16",
+      "result": "358 passed, 4 skipped, 4 warnings in 12.78s",
+      "telethon_installed": false
+    },
+    {
+      "python": "3.14.8",
+      "result": "358 passed, 4 skipped, 4 warnings in 13.04s",
+      "telethon_installed": false
+    }
+  ],
+  "native_network_tests": {
+    "passed": 3,
+    "modes": [
+      "full",
+      "intermediate",
+      "abridged"
+    ],
+    "authenticated_account": false,
+    "result": "3 passed, 6 warnings in 10.75s"
+  },
+  "quality": {
+    "ruff": "passed",
+    "format_files": 105,
+    "mypy_files": 45,
+    "build": "passed",
+    "runtime_audit": "No known vulnerabilities found"
+  },
+  "platform": "Linux x86-64",
+  "release_status": "alpha; not production ready",
+  "followup": {
+    "regressions_added": 14,
+    "connection_sequence_reset": true,
+    "setup_deadline_and_cleanup": true,
+    "initialization_invalidation_without_replay": true,
+    "relevant_event_metadata": true,
+    "benchmark": "research/native-updates-benchmark-0.3.0a1.json",
+    "source_distribution_clean_install": "passed"
+  }
+}

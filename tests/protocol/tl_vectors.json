@@ -1,0 +1,9 @@
+{
+  "provenance": "Telethon 1.45.0 reference outputs, generated 2026-10-20; protocol data only",
+  "vectors": [
+    "c97ea07d",
+    "4ca5e8ddd204000000000000d7f6ffffffffffff",
+    "7ff22ff51700000000000000040000000a656d6f6a6920f09f8c9f0003616263",
+    "da75837d040000007ff22ff50100000000000000020000000178000001610000"
+  ]
+}

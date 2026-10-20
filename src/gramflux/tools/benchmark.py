@@ -11,9 +11,6 @@ import tracemalloc
 from collections.abc import Callable
 from typing import Any
 
-from telethon.extensions import BinaryReader
-from telethon.tl.types import InputFile
-
 from gramflux.tl import Codec
 from gramflux.tl.generated.objects import InputFile as GeneratedInputFile
 
@@ -49,20 +46,13 @@ def main() -> None:
         parser.error("iterations and rounds must be positive")
     codec = Codec()
     own = GeneratedInputFile(id=123456, parts=10, name="example.bin", md5_checksum="0" * 32)
-    reference = InputFile(123456, 10, "example.bin", "0" * 32)
     data = codec.encode(own)
-    if data != bytes(reference) or codec.decode(data) != own:
-        raise RuntimeError("benchmark inputs failed correctness check")
-
-    def reference_decode() -> Any:
-        with BinaryReader(data) as reader:
-            return reader.tgread_object()
+    if codec.decode(data) != own:
+        raise RuntimeError("benchmark input failed round-trip check")
 
     operations = {
         "gramflux_encode": lambda: codec.encode(own),
         "gramflux_decode": lambda: codec.decode(data),
-        "telethon_encode": lambda: bytes(reference),
-        "telethon_decode": reference_decode,
     }
     print(
         json.dumps(
@@ -72,7 +62,7 @@ def main() -> None:
                 "platform": platform.platform(),
                 "processor": platform.processor(),
                 "versions": {
-                    name: importlib.metadata.version(name) for name in ["gramflux", "Telethon"]
+                    name: importlib.metadata.version(name) for name in ["gramflux", "cryptography"]
                 },
                 "input": {
                     "type": "inputFile",

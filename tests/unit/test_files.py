@@ -4,10 +4,10 @@ import io
 from types import SimpleNamespace
 
 import pytest
-from telethon.tl import functions, types
 
 from gramflux.errors import FileTransferError, UnsupportedFeature
 from gramflux.files import BIG_FILE, CHUNK, download, part_count, upload
+from gramflux.raw import functions, types
 
 
 @pytest.mark.parametrize("size,parts", [(1, 1), (CHUNK, 1), (CHUNK + 1, 2), (CHUNK * 4000, 4000)])
@@ -24,7 +24,7 @@ def test_invalid_size(size):
 @pytest.mark.parametrize("length", [1, CHUNK, CHUNK + 1, BIG_FILE + 1])
 async def test_upload_small_and_big(length):
     source = io.BytesIO(b"x" * length)
-    requests, events = [], []
+    requests, events = ([], [])
 
     async def invoke(req):
         requests.append(req)
@@ -82,6 +82,7 @@ async def test_download_atomic_no_overwrite(tmp_path, length):
 
 
 async def test_partial_write_and_short_read():
+
     class Partial(io.BytesIO):
         def write(self, b):
             return super().write(b[:2])
@@ -98,6 +99,7 @@ async def test_partial_write_and_short_read():
 
 
 async def test_download_interruption_cleans_temp(tmp_path):
+
     async def cancel(req):
         raise asyncio.CancelledError
 
@@ -107,6 +109,7 @@ async def test_download_interruption_cleans_temp(tmp_path):
 
 
 async def test_async_progress_can_cancel(tmp_path):
+
     async def invoke(req):
         return True
 
@@ -117,5 +120,4 @@ async def test_async_progress_can_cancel(tmp_path):
     p.write_bytes(b"hello")
     with pytest.raises(asyncio.CancelledError):
         await upload(invoke, p, on_progress=progress)
-    # Caller file can immediately be replaced; owned handle was closed.
     p.unlink()

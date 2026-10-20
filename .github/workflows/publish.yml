@@ -67,10 +67,11 @@ jobs:
       - name: Verify installed wheel in a clean environment
         run: |
           python -m venv /tmp/gramflux-release
-          /tmp/gramflux-release/bin/python -m pip install dist/*.whl
+          /tmp/gramflux-release/bin/python -m pip install dist/*.whl pytest==9.1.1 pytest-asyncio==1.4.0 hypothesis==6.170.5
           cd /tmp
-          /tmp/gramflux-release/bin/python -I -c 'import gramflux; print(gramflux.__version__)'
+          /tmp/gramflux-release/bin/python -I -c 'import gramflux, importlib.util; assert importlib.util.find_spec("telethon") is None; print(gramflux.__version__)'
           /tmp/gramflux-release/bin/python -I -m gramflux.tools.schema verify
+          /tmp/gramflux-release/bin/python -I -m pytest "$GITHUB_WORKSPACE/tests"
 
       - name: Store validated distributions
         uses: actions/upload-artifact@v4

@@ -1,0 +1,12 @@
+{
+  "host": "149.154.167.51",
+  "mode": "intermediate",
+  "rsa_dh_confirmation": true,
+  "encrypted_ping_pong": true,
+  "account_login_attempted": false,
+  "key_saved": false,
+  "api_probe_rpc_error": "CONNECTION_NOT_INITED",
+  "anonymous_key_destroyed": null,
+  "key_cleanup_status": "unconfirmed_connection_closed_or_timed_out",
+  "elapsed_seconds": 2.8546407160174567
+}

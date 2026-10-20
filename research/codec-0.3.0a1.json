@@ -1,0 +1,41 @@
+{
+  "kind": "local microbenchmark; no network or file transfer measured",
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "versions": {
+    "gramflux": "0.3.0a1",
+    "cryptography": "50.0.2"
+  },
+  "input": {
+    "type": "inputFile",
+    "serialized_bytes": 64,
+    "fields": "fixed synthetic values"
+  },
+  "iterations": 5000,
+  "rounds": 5,
+  "results": {
+    "gramflux_encode": {
+      "median_ns_per_operation": 9827.2208,
+      "round_ns_per_operation": [
+        9827.2208,
+        9561.4274,
+        9105.213,
+        12444.4278,
+        10034.3284
+      ],
+      "tracemalloc_peak_bytes": 355
+    },
+    "gramflux_decode": {
+      "median_ns_per_operation": 13679.2294,
+      "round_ns_per_operation": [
+        12940.5812,
+        13679.2294,
+        22228.0574,
+        14495.2052,
+        12514.6336
+      ],
+      "tracemalloc_peak_bytes": 1053
+    }
+  }
+}

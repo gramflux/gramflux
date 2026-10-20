@@ -72,3 +72,70 @@ async def test_edited_routing():
     await dispatcher.join()
     await dispatcher.stop()
     assert seen == [True]
+
+
+def test_command_address_case_and_prefix_filters():
+    import pytest
+
+    from gramflux.errors import ConfigurationError
+
+    matches = filters.command("start", "help", username="MyBot")
+    assert matches(event("/START@mybot argument"))
+    assert matches(event("/help"))
+    assert not matches(event("/start@AnotherBot"))
+    assert not matches(event("/startMore"))
+    assert not matches(event("prefix /start"))
+    assert not matches(event("/start@"))
+    assert not matches(event("/start@mybot@another"))
+    assert not filters.command("Start", case_sensitive=True)(event("/start"))
+    assert filters.command("go", prefix="!")(event("!go now"))
+    with pytest.raises(ConfigurationError):
+        filters.command("/start")
+
+
+async def test_handler_priority_stop_propagation_and_removal(caplog):
+    from gramflux.errors import StopPropagation
+
+    called = []
+    dispatcher = Dispatcher(2)
+
+    async def low(e):
+        called.append("low")
+
+    async def high(e):
+        called.append("high")
+        raise StopPropagation
+
+    dispatcher.add(low, priority=10)
+    dispatcher.add(high, priority=-1)
+    dispatcher.start()
+    await dispatcher.put(event("one"))
+    await dispatcher.join()
+    assert called == ["high"]
+    assert dispatcher.remove(high) == 1
+    await dispatcher.put(event("two"))
+    await dispatcher.join()
+    await dispatcher.stop()
+    assert called == ["high", "low"]
+    assert not caplog.text
+
+
+def test_chat_type_filters_are_explicit():
+    value = event()
+    from dataclasses import replace
+
+    assert filters.private(replace(value, chat_type="private"))
+    assert filters.group(replace(value, chat_type="group"))
+    assert filters.channel(replace(value, chat_type="channel"))
+    assert not filters.group(value)
+
+
+def test_bound_method_can_be_removed_by_a_new_method_reference():
+    class Receiver:
+        async def handle(self, event):
+            raise AssertionError("should be removed")
+
+    receiver = Receiver()
+    dispatcher = Dispatcher(1)
+    dispatcher.add(receiver.handle)
+    assert dispatcher.remove(receiver.handle) == 1

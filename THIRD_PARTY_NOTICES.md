@@ -1,16 +1,23 @@
 # Third-party notices
 
-GramFlux's original implementation is MIT licensed. No competitor implementation
-source is vendored. Telethon is a pinned runtime dependency, distributed separately
-under MIT; its distribution retains its copyright/license notices. Its dependencies
-are pyaes (MIT), rsa (Apache-2.0) and pyasn1 (BSD-2-Clause); retain their notices when
-redistributing their distributions. This project does not relicense dependencies.
+GramFlux's original implementation is MIT licensed. No competitor Telegram-client
+implementation is vendored or required at runtime. The former Telethon dependency
+was removed in 0.3.0a1; historical reports describe earlier versions only.
 
-Official Telegram schema definitions are preserved with provenance in
-`src/gramflux/tl/data/metadata.json`; upstream material and Telegram service use remain
-subject to their respective upstream terms. GramFlux's MIT notice is not a claim to
-exclusive rights over Telegram API definitions. Confirm redistribution obligations
-and project branding before a public stable release.
+The direct runtime dependency is cryptography (Apache-2.0 OR BSD-3-Clause), distributed
+separately with its upstream notices and OpenSSL-backed primitives. Transitive CFFI
+(MIT) and pycparser (BSD-3-Clause) retain their own notices. GramFlux does not relicense
+these distributions. Consult exact dependency metadata when redistributing binaries.
 
-Pyrogram/Hydrogram are LGPL-3.0 projects inspected for research only. Their source is
-not copied into this distribution. gotd/td is MIT licensed and is not a dependency.
+Official Telegram schema definitions are retained with provenance in
+src/gramflux/tl/data/metadata.json. Public protocol constants (RSA public keys, safe DH
+prime, DC addresses) have official-source URL/commit/hash provenance in trust.json.
+These are protocol data; no Telegram Desktop GPL implementation source was copied.
+Telegram API/service use remains subject to upstream terms. MIT is not a claim to
+exclusive rights in Telegram API definitions or public cryptographic constants.
+
+Test vector JSON includes reference outputs produced using Telethon 1.45.0 (MIT) and
+system OpenSSL; only serialized protocol data is retained. Tests and runtime do not
+import those reference Telegram libraries. Prior Pyrogram/Hydrogram/gotd research
+remains documentary; no implementation from them is shipped. Review branding and
+redistribution obligations before a public stable release.

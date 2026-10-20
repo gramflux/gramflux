@@ -1,0 +1,32 @@
+{
+  "kind": "local AES-IGE: bytewise vs integer XOR; synthetic input, NOT Telegram throughput",
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "versions": {
+    "gramflux": "0.3.0a1",
+    "cryptography": "50.0.2"
+  },
+  "openssl": "OpenSSL 4.0.3 29 Sep 2026",
+  "bytes": 524288,
+  "rounds": 5,
+  "original": {
+    "seconds": [
+      0.25778253699536435,
+      0.24637089899624698,
+      0.23117306499625556,
+      0.1980803280021064,
+      0.21519142200122587
+    ],
+    "median_seconds": 0.23117306499625556
+  },
+  "optimized": {
+    "seconds": [
+      0.08135952800512314,
+      0.08970093500101939,
+      0.08289448099094443,
+      0.07275456501520239,
+      0.07111608100240119
+    ],
+    "median_seconds": 0.08135952800512314
+  }
+}

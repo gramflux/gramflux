@@ -1,31 +1,36 @@
-# Security model
+# Native security model
 
-Assets: authorization keys, API hash, bot tokens, passwords/codes, session files,
-private messages and user-provided file destinations. Boundaries: local filesystem,
-Telegram MTProto backend, schema downloads, untrusted incoming binary objects, callbacks
-and dependencies. MTProto cloud chats are not end-to-end encrypted secret chats.
+Assets include auth keys, API hashes, bot tokens, codes/passwords, private content and
+session files. Boundaries include network inputs, local storage, schemas, callbacks
+and the cryptographic provider. Cloud MTProto is not an end-to-end secret chat.
 
-| Threat | Protection | Residual risk |
+| Threat | Implemented protection | Residual limitation |
 | --- | --- | --- |
-| Credential leakage | No credential repr in LoginChallenge/SessionData/native objects; sanitized RPC identifiers, backend log redaction, handler exceptions logged by type only | Python does not guarantee secret zeroization; callbacks and debuggers can expose objects; raw/backend objects may have value-bearing reprs |
-| Local session theft | POSIX mode 0600, no-follow open, regular-file validation, exclusive ownership lock, transactional SQLite snapshot | Keys are plaintext at rest; machine compromise, backups, malicious parent directory or privilege escalation compromise accounts |
-| Corrupt/foreign database | application_id and schema version checks; unrelated databases refused; version upgrades fail explicitly | No automatic repair or migration; untrusted SQLite input itself is not a sandbox |
-| Malformed TL | Bounded lengths, vector counts, depth, ID registry; unknown flags and trailing input rejected | These bounds govern independent codec only; live decoding is backend policy |
-| Resource exhaustion | Bounded admitted public RPCs and event dispatcher queue, chunked files | Backend update queues and some caches can grow; end-to-end memory bounds not established |
-| Unsafe transfer paths | Only caller-supplied destination; secure temp in destination directory; atomic no-overwrite hard-link publication; cleanup on failure | Trusted local directory required; POSIX hard-link semantics; not durable resume; no CDN support; file references may expire |
-| Event-loop blocking | SQLite/file I/O and SRP moved to threads; cancellation joins active workers | Backend key generation/other CPU code needs profiling; arbitrary user callbacks may block indefinitely |
-| Schema supply chain | Explicit HTTPS fetch with normal certificate verification, exact source/hash/date, deterministic regeneration and JSON cross-check | Hash proves snapshot identity, not upstream authenticity; no signed schema publication verified |
-| Network tampering | Established backend's MTProto implementation; native probe never accepts credentials or establishes trust | No new independent crypto audit; pinning a library is not proof of cryptographic correctness |
-| Ambiguous request outcome | No broad application retry; bounded auth-only migration retries; explicit waits/errors | Backend retransmits protocol messages during reconnect; a timeout/cancellation cannot retract a server action |
-| Interrupted shutdown | Shielded cleanup and worker joining; atomic session transaction, temporary download cleanup | SIGKILL/power loss can lose recent auth/update snapshots; callback delivery is not transactional |
+| Fake server/key exchange | Pinned production RSA public key, RSA_PAD, nonce/hash checks, strict official 2048-bit prime/generator/public bounds, OpenSSL DH | Trust constants require reviewed updates; no independent crypto audit |
+| Altered/replayed messages | MTProto 2 SHA256 message-key check with constant-time comparison, session/key/length/padding checks, time/ID window and replay floor | Full adversarial protocol review and stress tests outstanding |
+| Salt/clock spoofing | Corrections require authenticated matching request/service references; replayed envelopes cannot roll metadata back | Only selected rejection recovery is implemented; no blind reconnect/resend |
+| Malformed input/exhaustion | Bounded framing/codec/depth/vectors, bounded request/update counts, bounded gzip, ack/resend tracking limits | Count/wire bounds are not a complete RSS or multi-client/application-memory guarantee |
+| Secrets in diagnostics | Native TL repr omits values; RPC identifiers sanitized; no keys/payloads/user tracebacks in routine logs | Python heap/debugger/application callbacks can expose data; no guaranteed zeroization |
+| Local session theft | 0600 POSIX files, no-follow regular-file checks, ownership lock, transactional SQLite | Keys are plaintext at rest; trusted directories, machines and backups required |
+| Corrupt/foreign state | Application/schema IDs, atomic snapshot validation before mutation, bounded typed counter metadata | No foreign conversion or automatic repair; untrusted SQLite is not a sandbox |
+| File paths/interruption | Caller-selected paths, private temporary files, no-overwrite atomic link, joined worker cleanup | No power-loss/resume guarantee; non-cooperative OS/custom streams can block cleanup |
+| Callback loss/gaps | Own pts/seq/differences, bounded queues with explicit overflow failure, handler completion before cursor commit, producer stopped before callback shutdown | No transactional journal/exactly-once claim; crash/partial batches can replay; live recovery unverified |
+| Supply chain | Explicit HTTPS schema refresh, retained sources/hashes, deterministic namespaces, locked provider deps | Hashes are provenance, not signatures; provider/upstream authenticity still needs review |
 
-No encryption-at-rest feature or secrets vault is invented. Use encrypted storage provided
-by the OS and protect backups; adding application encryption requires external key
-management and another dependency/security review. Session files must not be uploaded as
-bug reports. No cross-library conversion or silent authenticated-session replacement.
+Only public RSA/DH/DC protocol constants were extracted from official references,
+with source URL/commit/hash in tl/data/trust.json. No competitor protocol code is shipped.
+AES/DH primitives use cryptography/OpenSSL; Python IGE glue and SRP bigint operations
+have not been audited for constant-time behavior. Telegram requires finite-field DH;
+cryptography 50 warns about future FFDH API deprecation. Provider maintenance is a known
+release blocker, not a reason to substitute an incompatible key exchange.
 
-Runtime dependency audit is recorded in `research/dependency-audit.txt`; results apply
-only at scan time. The release still requires independent cryptographic review, live
-fault injection, memory/soak testing, verified dependency artifacts, a private security
-reporting channel, and a supported response policy. See SECURITY.md. No anti-abuse
-bypass, spam tooling, flood evasion or unauthorized login functionality is implemented.
+Session peer metadata is minimal/bounded; min entities cannot overwrite full hashes,
+usernames expire and are re-resolved after restart. Sensitive identity decisions should
+verify stable numeric IDs freshly. Scoped deletion prevents wrong-chat global-ID deletes.
+Neither logout nor deleting a snapshot securely erases historic DB pages/backups.
+
+A real anonymous key/ping probe does not prove account auth, complete protocol security
+or remote deletion of its key. Cleanup is reported as uncertain if the server closes
+without a parsed confirmation. No user credentials are used by that probe. No secrets
+vault/encryption-at-rest feature, spam tooling, evasion or unauthorized access is added.
+See SECURITY.md for reporting and the release report for outstanding security work.

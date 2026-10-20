@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0a2",
+  "platform": "Linux x86_64 glibc2.39",
+  "tests": [
+    {
+      "python": "3.12.3",
+      "installation": "editable",
+      "result": "253 passed, 1 skipped in 7.30s"
+    },
+    {
+      "python": "3.11.17",
+      "installation": "wheel",
+      "result": "253 passed, 1 skipped in 9.06s"
+    },
+    {
+      "python": "3.13.16",
+      "installation": "wheel",
+      "result": "253 passed, 1 skipped in 8.86s"
+    },
+    {
+      "python": "3.14.8",
+      "installation": "wheel",
+      "result": "253 passed, 1 skipped in 9.05s"
+    }
+  ],
+  "real_account": "not run; one credential-dependent test skipped",
+  "quality": {
+    "ruff": "passed",
+    "format": "passed",
+    "mypy": "passed (32 files)",
+    "schema": "2356 official JSON matches; unchanged snapshot",
+    "build": "wheel and sdist passed",
+    "twine": "both artifacts passed"
+  },
+  "benchmark": "research/transfers-0.2.0a2.json",
+  "limitations_report": "docs/releases/0.2.0a2.md"
+}

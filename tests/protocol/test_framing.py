@@ -1,10 +1,9 @@
 import asyncio
+import json
 import struct
+from pathlib import Path
 
 import pytest
-from telethon.network.connection.tcpabridged import AbridgedPacketCodec
-from telethon.network.connection.tcpfull import FullPacketCodec
-from telethon.network.connection.tcpintermediate import IntermediatePacketCodec
 
 from gramflux.errors import TransportError
 from gramflux.mtproto.framing import Framing
@@ -13,9 +12,9 @@ from gramflux.mtproto.framing import Framing
 @pytest.mark.parametrize(
     "mode,reference",
     [
-        ("full", FullPacketCodec),
-        ("intermediate", IntermediatePacketCodec),
-        ("abridged", AbridgedPacketCodec),
+        ("full", "full"),
+        ("intermediate", "intermediate"),
+        ("abridged", "abridged"),
     ],
 )
 @pytest.mark.parametrize("length", [4, 504, 508, 512, 1024])
@@ -23,7 +22,11 @@ async def test_reference_and_fragmented_read(mode, reference, length):
     framing = Framing(mode)
     reader = asyncio.StreamReader()
     packet = framing.encode(b"x" * length)
-    assert packet == reference(None).encode_packet(b"x" * length)
+    assert packet == bytes.fromhex(
+        json.loads(Path(__file__).with_name("framing_vectors.json").read_text())["frames"][
+            f"{reference}:{length}"
+        ]
+    )
 
     async def feed():
         for start in range(0, len(packet), 13):

@@ -16,6 +16,7 @@ from typing import Any
 
 from gramflux.errors import SchemaError
 from gramflux.tl.generator import generate
+from gramflux.tl.namespaces import generate_namespaces
 from gramflux.tl.parser import parse
 
 DATA = Path(__file__).resolve().parents[1] / "tl" / "data"
@@ -119,7 +120,7 @@ def report(data: Path = DATA) -> tuple[str, dict[str, Any]]:
         "generated": len(definitions),
         "official_json_ids_matched": len(expected & actual),
         "protocol_declarations_parsed": len(protocol),
-        "runtime": "Telethon bindings (separate layer); independent declarations are offline only",
+        "runtime": "GramFlux native MTProto runtime; same pinned API layer",
     }
 
 
@@ -152,10 +153,17 @@ def main() -> None:
             )
         else:
             rendered, coverage = report()
+            namespace = generate_namespaces(
+                parse((DATA / "api.tl").read_text()), coverage["advertised_layer"]
+            )
+            namespace_path = DATA.parents[1] / "raw.py"
             if args.command == "generate":
                 OUTPUT.write_text(rendered)
+                namespace_path.write_text(namespace)
             elif not OUTPUT.exists() or OUTPUT.read_text() != rendered:
                 raise SchemaError("generated output differs; run generate and review the diff")
+            if namespace_path.read_text() != namespace:
+                raise SchemaError("native namespaces differ; run generate")
             print(json.dumps(coverage, indent=2))
     except (SchemaError, ValueError, OSError) as e:
         parser.exit(1, f"schema: {e}\n")

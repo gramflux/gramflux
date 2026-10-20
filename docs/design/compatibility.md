@@ -1,39 +1,34 @@
-# Compatibility and coverage
+# Native compatibility and coverage
 
-Actual local verification: CPython 3.12.3, Linux x86_64 (glibc 2.39). Python >=3.11
-is the declared minimum. CI is configured for Ubuntu Python 3.11–3.14; configuration
-is not evidence that these jobs have run. Persistent storage currently requires POSIX
-flock; Windows persistent sessions and full cross-platform transfers are unsupported.
-Memory-store use on Windows/macOS has not been verified here.
+0.3.0a1 uses Python >=3.11. Local Python/platform results are recorded in the
+[current report](../releases/0.3.0a1.md); CI targets Python 3.11–3.14 on Ubuntu.
+Configured jobs are not evidence of hosted CI execution. Persistent storage requires
+POSIX flock; Windows/macOS storage/transfer behavior remains unverified.
 
-Pinned official source: `tl/data/api.tl`, official JSON, `mtproto.tl` and `metadata.json`.
-Retrieved 2026-10-20. Advertised page layer: **225**. API TL SHA256:
-`13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046`.
-Generated independent declarations: **1,573 constructors, 783 methods**, all IDs and
-fields cross-checked against retained official JSON. The polymorphic vector constructor
-has specialized codec semantics; 1,572 other constructor minimal shapes round-trip.
-That is not exhaustive flag combinations, all possible objects or live method coverage.
-Protocol parser verifies 46 explicit-ID declarations; primitive/vector preludes and
-bare message records are special cases. Independent protocol object generation and
-bare-type serialization are not advertised as supported runtime features.
+Official sources: tl/data/api.tl, api.json, mtproto.tl and metadata.json, retrieved
+2026-10-20. Advertised and native negotiated layer: **225**. API TL SHA256:
+13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046.
+Generated declarations: 1573 constructors, 783 methods; all IDs/fields matched against
+retained official JSON. 1572 non-vector constructor minimal shapes round-trip. Protocol
+parser recognizes 46 explicit-ID declarations, with specialized service/container logic.
+Generation coverage is not end-to-end method or exhaustive flag coverage.
 
-Runtime: Telethon **1.45.0**, generated layer **229**, imported via `gramflux.raw`.
-Different source provenance/layer from independent output is intentional and visible.
-Neither runtime binding count nor generator count proves Telegram accepts every method.
-Independent declarations cannot be passed to Client.invoke. No live account test has
-run; the credential-free native initial handshake probe is the only Telegram wire
-exchange verified in this environment.
+The former layer-229 dependency bindings are gone. gramflux.raw and independent
+objects now reference the same generated classes used by Sender. Constructors are
+keyword-only; raw dates are Unix seconds. Foreign library TL objects are not accepted.
+This is an intentional 0.3 alpha compatibility break. No drop-in API/session promise.
 
-| Area | Coverage boundary |
+| Feature | Verification/status |
 | --- | --- |
-| High-level client | get_me, literal send_message, explicit code/password/bot auth, raw invoke, upload/send_file, document/photo download |
-| Events | New/edited messages; text/direction/chat/sender/regex filters; serialized callbacks |
-| State recovery | Backend pts/qts/seq handling; own snapshot persists clean-shutdown state, no durable event journal |
-| Transports | Backend full/intermediate/abridged TCP; independent framing checked separately |
-| Media | Seekable binary uploads up to 4000 512-KiB parts, empty upload rejected; explicit-size downloads; no CDN/parallel/resume/cross-DC file retry |
-| Errors | GramFlux sanitized RPC/auth/wait/migration/transport/session/serialization errors; timeout and cancellation remain asyncio/Python exceptions |
-| Session formats | GramFlux version-1 SQLite or MemoryStorage; no Telethon/Pyrogram/Hydrogram/Pyrofork file compatibility |
-| Unsupported auth | Signup, QR, passkey, email verification, special official-app SMS/payment flows |
+| Native RSA_PAD/DH and encrypted ping | Real Telegram DC 2 on full/intermediate/abridged TCP |
+| Native RPC/auth/user/bot/SRP | Serialization and controlled response tests; SRP proof checked against server algebra; real account authorization unverified |
+| Peers/messages/dialogs/members/media | Native objects and RPC path, existing deterministic suites; real account/media exchange unverified |
+| Update differences/counters | Controlled global/channel gap, cancellation/commit, duplicate and short-update tests; live recovery unverified |
+| Session format | Own version-1 snapshots with additive salt/time metadata; deterministic old-own-format restore tests, not foreign conversion/live migration |
+| Failure policy | Bounded in-flight work, explicit overflow/disconnect, no ambiguous write replay; automatic in-flight reconnect recovery unsupported |
+| Unsupported | Secret chats/PFS, signup/QR/passkeys, CDN, cross-DC media recovery/resume, proxies, durable callback journal |
 
-Migration guides map supported operations only. There is no drop-in compatibility
-promise. Read `docs/guides/migration.md` for behavioral differences.
+The anonymous API probe returned CONNECTION_NOT_INITED without application credentials;
+it is recorded as a rejection, not successful account API coverage. Key-destruction
+confirmation after the probe is uncertain when the server closes the socket; it is
+never inferred from EOF. The old req_pq-only probe remains a separate tool.

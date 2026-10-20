@@ -5,7 +5,7 @@ import os
 import sys
 from pathlib import Path
 
-from gramflux import Client
+from gramflux import Client, Session
 
 
 async def progress(done: int, total: int) -> None:
@@ -15,7 +15,7 @@ async def progress(done: int, total: int) -> None:
 async def main() -> None:
     source, destination = Path(sys.argv[1]), Path(sys.argv[2])
     async with Client(
-        "example",
+        Session.open("example"),
         api_id=int(os.environ["TELEGRAM_API_ID"]),
         api_hash=os.environ["TELEGRAM_API_HASH"],
     ) as client:

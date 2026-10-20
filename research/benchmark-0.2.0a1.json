@@ -1,0 +1,63 @@
+{
+  "kind": "local microbenchmark; no network or file transfer measured",
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "versions": {
+    "gramflux": "0.2.0a1",
+    "Telethon": "1.45.0"
+  },
+  "input": {
+    "type": "inputFile",
+    "serialized_bytes": 64,
+    "fields": "fixed synthetic values"
+  },
+  "iterations": 5000,
+  "rounds": 5,
+  "results": {
+    "gramflux_encode": {
+      "median_ns_per_operation": 10247.0054,
+      "round_ns_per_operation": [
+        10555.4318,
+        11508.3738,
+        10014.125,
+        9930.713,
+        10247.0054
+      ],
+      "tracemalloc_peak_bytes": 355
+    },
+    "gramflux_decode": {
+      "median_ns_per_operation": 12789.7968,
+      "round_ns_per_operation": [
+        12204.5468,
+        12789.7968,
+        13809.5006,
+        12051.7586,
+        13908.7414
+      ],
+      "tracemalloc_peak_bytes": 1053
+    },
+    "telethon_encode": {
+      "median_ns_per_operation": 3580.1896,
+      "round_ns_per_operation": [
+        3660.3778,
+        3443.504,
+        3705.501,
+        3580.1896,
+        3552.911
+      ],
+      "tracemalloc_peak_bytes": 517
+    },
+    "telethon_decode": {
+      "median_ns_per_operation": 6921.3648,
+      "round_ns_per_operation": [
+        5849.7674,
+        5884.9404,
+        7224.681,
+        7019.4614,
+        6921.3648
+      ],
+      "tracemalloc_peak_bytes": 649
+    }
+  }
+}

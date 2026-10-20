@@ -1,35 +1,30 @@
-# Roadmap and phase assessment
+# Roadmap after the native engine transition
 
-The initial vertical slice is working and testable, but the master product definition
-is not complete. Directories/classes do not count as completion evidence.
+0.3.0a1 removes the competing-client runtime. Native key creation, encryption, framing,
+request correlation, auth RPCs, SRP and update synchronization are implemented with
+focused tests. Real Telegram evidence covers key exchange and encrypted ping/pong over
+three TCP modes. This is an engineering alpha; the original production definition is
+not complete, and file/class counts are not completion evidence.
 
-| Phase | Assessment |
-| --- | --- |
-| Research/foundation | Primary-source snapshots, installable package and CI configured; CI matrix not run locally |
-| Schema generation | Deterministic official snapshot generation/verification implemented; strict type unions, other grammar/layers and wire integration remain |
-| Core protocol | Independent codec/framing and first native exchange verified; encrypted engine delegated, not independently implemented |
-| Auth/persistence | Real backend flows, own async stores, deterministic tests; account interoperability unverified |
-| Core operations | Backend get_me/send_message/raw implemented; live account work pending |
-| Events/files | Local pipelines tested, backend reconciliation inherited; durability, full memory bounds, CDN/cross-DC and live transfers incomplete |
-| Performance/reliability | One local codec baseline; no superiority, soak, server fault-injection recovery or transfer performance evidence |
-| Developer experience | Guides/examples/release procedure in place; examples compile and controlled flows tested, credentials needed for live execution |
-| Release readiness | Alpha artifacts built/tested; production release blocked below |
+Priorities based on current evidence:
 
-Priority order:
-
-1. Dedicated-account interoperability tests: code, SRP, bot, session reuse, send/receive,
-   photo/document transfer, real migration/flood/disconnection cases; never use customer
-   credentials in CI. Strengthen malformed server-data and secret-log regression tests.
-2. End-to-end update backpressure, persistent entity/access hashes and durable cursor
-   advancement tied to dispatch; prove gaps/differences/dedup/channel state recovery.
-3. Audit backend cryptography, reconnect cancellation and protocol resending; replace
-   private adapter hooks with a supported integration boundary. Decide whether a native
-   engine provides enough value to justify the protocol maintenance/security burden.
-4. Resolve official page/backend schema divergence and add verified native wire adapters,
-   generic result readers and precise generated type unions; add schema-change CI review.
-5. Cross-DC export/import authorization for media, CDN decryption, expiring references,
-   bounded concurrent parts, conservative retry policy and partial-transfer recovery.
-6. Profile realistic codec/event/file/session workloads and optimize measured bottlenecks.
-   Run multi-session RSS, controlled reconnect, cancellation storms and soak benchmarks.
-7. Verify Python/OS matrix, implement non-POSIX storage if desired, configure hosted
-   security/maintainer contacts, audit licensing/branding and sign release artifacts.
+1. Dedicated account/bot integration: login codes, password, reuse, messages, media,
+   channel/global differences, reconnects, salt/clock errors and real DC migrations.
+   The anonymous API probe did not pass application initialization; do not treat it
+   as account/API coverage. Never embed credentials in tests or CI.
+2. Independent cryptographic/protocol audit, service-message/resend/state coverage,
+   native fault-injection and soak tests. Resolve uncertain destroy_auth_key EOF
+   confirmation and plan cryptography's FFDH deprecation migration.
+3. Profile the native hot paths. Python IGE remains costly despite a measured XOR
+   improvement. Measure real RPC/transfer/RSS before selecting optional acceleration;
+   no Rust/C rewrite merely for marketing, no competitor performance claim yet.
+4. Durable application acknowledgment/cursor journal, byte-budgeted queues and
+   controlled reconnect recovery with explicit write-outcome rules. Current queues
+   fail closed on overflow and do not replay ambiguous application writes.
+5. Media DC authorization, authenticated CDN/file-hash verification, reference refresh
+   and safe resumability. Current native file pipeline supports bounded concurrent
+   upload parts and lazy byte ranges, not automatic interruption recovery.
+6. Precise generated sum/result types, schema-change review and broader administrative/
+   bot convenience APIs. Raw declarations are not proof every method works end to end.
+7. Verify OS/provider/Python matrix and configure hosted security/maintainer channels
+   before any production release or stable-API promise.

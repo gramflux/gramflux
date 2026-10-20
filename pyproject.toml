@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gramflux"
-version = "0.1.0a1"
-description = "Async Telegram client with independently verifiable TL schema tooling"
+version = "0.3.0a1"
+description = "Independent asyncio MTProto client and verifiable Telegram TL bindings"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
 authors = [{name = "GramFlux contributors"}]
-dependencies = ["Telethon==1.45.0"]
+dependencies = ["cryptography==50.0.2"]
 classifiers = ["Development Status :: 3 - Alpha", "Framework :: AsyncIO", "Programming Language :: Python :: 3", "Typing :: Typed"]
 
 [project.optional-dependencies]
@@ -31,7 +31,7 @@ markers = ["live: opt-in Telegram network test"]
 [tool.ruff]
 target-version = "py311"
 line-length = 100
-extend-exclude = ["src/gramflux/tl/generated/objects.py", "research"]
+extend-exclude = ["src/gramflux/tl/generated/objects.py", "src/gramflux/raw.py", "research"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "ASYNC"]
@@ -40,7 +40,3 @@ select = ["E", "F", "I", "UP", "B", "ASYNC"]
 python_version = "3.11"
 strict = true
 files = ["src/gramflux"]
-
-[[tool.mypy.overrides]]
-module = ["telethon.*"]
-ignore_missing_imports = true

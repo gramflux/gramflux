@@ -1,0 +1,84 @@
+{
+  "kind": "local event emission; no network or competitor comparison",
+  "python": "3.12.3",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "events_per_round": 10000,
+  "rounds": 5,
+  "results": [
+    {
+      "cached_entities": 64,
+      "previous_full_snapshot": {
+        "seconds": [
+          0.05927875000634231,
+          0.05840863598859869,
+          0.061050508986227214,
+          0.07612485901336186,
+          0.04997194101451896
+        ],
+        "median_seconds": 0.05927875000634231,
+        "peak_bytes": 10776
+      },
+      "native_relevant_snapshot": {
+        "seconds": [
+          0.10640763098490424,
+          0.10342073900392279,
+          0.09584326701587997,
+          0.10662232799222693,
+          0.12759480098611675
+        ],
+        "median_seconds": 0.10640763098490424,
+        "peak_bytes": 2248
+      }
+    },
+    {
+      "cached_entities": 1024,
+      "previous_full_snapshot": {
+        "seconds": [
+          0.1494838799990248,
+          0.14587359997676685,
+          0.20534457499161363,
+          0.15539624498342164,
+          0.14545022801030427
+        ],
+        "median_seconds": 0.1494838799990248,
+        "peak_bytes": 80152
+      },
+      "native_relevant_snapshot": {
+        "seconds": [
+          0.09608388401102275,
+          0.0964918159879744,
+          0.1883463020203635,
+          0.25639988598413765,
+          0.09314286199514754
+        ],
+        "median_seconds": 0.0964918159879744,
+        "peak_bytes": 2248
+      }
+    },
+    {
+      "cached_entities": 4096,
+      "previous_full_snapshot": {
+        "seconds": [
+          0.4758608929987531,
+          0.5216515570064075,
+          0.6099676649901085,
+          0.5168663439981174,
+          0.5149842509999871
+        ],
+        "median_seconds": 0.5168663439981174,
+        "peak_bytes": 301336
+      },
+      "native_relevant_snapshot": {
+        "seconds": [
+          0.11645559998578392,
+          0.08919496199814603,
+          0.08318105401122011,
+          0.1347557400004007,
+          0.11498501000460237
+        ],
+        "median_seconds": 0.11498501000460237,
+        "peak_bytes": 2248
+      }
+    }
+  ]
+}

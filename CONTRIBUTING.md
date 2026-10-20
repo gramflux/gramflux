@@ -49,3 +49,31 @@ with `v` (for example, `v0.1.0a1`). No long-lived PyPI API token is required.
 Alpha interfaces may change. After 1.0 use semantic versioning, document deprecations
 and keep deprecated public APIs for at least one minor release unless security requires
 faster removal. Report private security issues using SECURITY.md.
+
+
+To exercise transfer scheduling without Telegram credentials:
+
+```bash
+python -m gramflux.tools.transfer_benchmark --size-mib 4 --part-size 65536 --concurrency 1 4 --latency-ms 2 --rounds 3
+```
+
+This uses synthetic per-RPC latency and temporary disk input, not a Telegram service.
+Record the complete JSON and environment; do not advertise it as live throughput.
+
+
+The production runtime and test suite must not import a competing Telegram client.
+Native raw namespaces are generated alongside objects by the schema CLI; both are
+verified deterministically. Protocol-vector JSON includes recorded external reference
+outputs as data, not a runtime/test dependency. Do not edit generated files by hand.
+
+Native protocol verification without personal credentials is explicit:
+
+```bash
+GRAMFLUX_NATIVE_NETWORK=1 pytest tests/integration/test_native_live.py
+python -m gramflux.tools.native_probe --mode intermediate
+python -m gramflux.tools.native_benchmark --size 524288 --rounds 5
+```
+
+The first two commands contact Telegram and create anonymous auth keys. The probe
+reports remote key cleanup as uncertain if no confirmation is parsed. These are not
+account login/media/update-recovery tests. Do not set their opt-in flag in default CI.

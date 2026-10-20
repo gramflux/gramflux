@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-from gramflux import Client
+from gramflux import Client, Session
 
 
 @pytest.mark.live
@@ -14,7 +14,7 @@ from gramflux import Client
 )
 async def test_live_identity():
     async with Client(
-        os.environ["GRAMFLUX_SESSION"],
+        Session.open(os.environ["GRAMFLUX_SESSION"]),
         api_id=int(os.environ["GRAMFLUX_API_ID"]),
         api_hash=os.environ["GRAMFLUX_API_HASH"],
     ) as client:

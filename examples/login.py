@@ -1,41 +1,66 @@
-"""Explicit interactive authorization. Never prints credentials or account objects."""
+"""Explicit saved/new/temporary login: python examples/login.py --help."""
 
+import argparse
 import asyncio
-import getpass
 import os
 
-from gramflux import Client
-from gramflux.errors import AuthenticationError, PasswordRequired
+from gramflux import Client, Session
+from gramflux.errors import (
+    AuthenticationError,
+    FloodWait,
+    LoginAttemptsExceeded,
+    SessionError,
+    TransportError,
+)
 
 
-async def main() -> None:
-    async with Client(
-        "example",
-        api_id=int(os.environ["TELEGRAM_API_ID"]),
-        api_hash=os.environ["TELEGRAM_API_HASH"],
-    ) as client:
-        if not await client.is_authorized():
-            bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
-            try:
-                if bot_token:
-                    await client.sign_in_bot(bot_token)
-                else:
-                    phone = await asyncio.to_thread(input, "Phone number: ")
-                    challenge = await client.request_login_code(phone)
-                    code = await asyncio.to_thread(getpass.getpass, "Login code: ")
-                    try:
-                        await client.sign_in(challenge, code)
-                    except PasswordRequired:
-                        password = await asyncio.to_thread(getpass.getpass, "Two-step password: ")
-                        await client.check_password(password)
-                        del password
-                    del code, challenge
-            except AuthenticationError as error:
-                print(f"Authorization failed: {error.name}")
-                return
-        me = await client.get_me()
-        print(f"Authorized account ID: {me.id}")
+def arguments() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(
+        "--create", metavar="NAME", help="create a new named session; never overwrite"
+    )
+    mode.add_argument("--open", metavar="NAME", help="open an existing authorized GramFlux session")
+    mode.add_argument("--resume", metavar="NAME", help="continue an unfinished saved login")
+    mode.add_argument("--temporary", action="store_true", help="memory only; no saved session file")
+    parser.add_argument(
+        "--attempts", type=int, default=3, help="input attempts per stage (default: 3)"
+    )
+    return parser.parse_args()
+
+
+async def main(args: argparse.Namespace) -> None:
+    if args.create is not None:
+        session = Session.create(args.create)
+    elif args.open is not None:
+        session = Session.open(args.open)
+    elif args.resume is not None:
+        session = Session.open(args.resume, require_authorized=False)
+    else:
+        session = Session.temporary()
+    try:
+        async with Client(
+            session,
+            api_id=int(os.environ["TELEGRAM_API_ID"]),
+            api_hash=os.environ["TELEGRAM_API_HASH"],
+        ) as client:
+            me = await client.login(
+                bot_token=os.environ.get("TELEGRAM_BOT_TOKEN"),
+                max_attempts=args.attempts,
+            )
+            print(f"Authorized account ID: {me.id}")
+            if args.temporary:
+                print("Temporary session: no file saved; this process will now exit.")
+    except FloodWait as error:
+        raise SystemExit(
+            f"Telegram requires waiting {error.seconds} seconds before retrying."
+        ) from None
+    except (AuthenticationError, LoginAttemptsExceeded, SessionError, TransportError) as error:
+        raise SystemExit(str(error)) from None
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main(arguments()))
+    except (EOFError, KeyboardInterrupt):
+        raise SystemExit("Login cancelled.") from None

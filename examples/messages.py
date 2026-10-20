@@ -3,12 +3,12 @@
 import asyncio
 import os
 
-from gramflux import Client, MessageEvent, filters
+from gramflux import Client, MessageEvent, Session, filters
 
 
 async def main() -> None:
     client = Client(
-        "example",
+        Session.open("example"),
         api_id=int(os.environ["TELEGRAM_API_ID"]),
         api_hash=os.environ["TELEGRAM_API_HASH"],
     )

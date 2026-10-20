@@ -32,7 +32,8 @@ async def probe_datacenter(
 
     This proves framing and the initial handshake exchange only. Nonce agreement
     does not authenticate the server; RSA fingerprint validation and DH remain
-    the live backend's responsibility. The connection always closes afterwards.
+    the native auth_key.create_key implementation's responsibility.
+    The connection always closes afterwards.
     """
     definitions = {d.name: d for d in parse((DATA / "mtproto.tl").read_text())}
     nonce = secrets.token_bytes(16)
