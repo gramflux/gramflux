@@ -1,0 +1,15 @@
+{
+  "full_name": "gotd/td",
+  "archived": false,
+  "pushed_at": "2026-10-19T14:58:16Z",
+  "updated_at": "2026-10-20T14:21:22Z",
+  "default_branch": "main",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "html_url": "https://github.com/gotd/td"
+}

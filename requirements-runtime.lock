@@ -1,0 +1,5 @@
+# Exact runtime dependency set verified on CPython 3.12/Linux.
+Telethon==1.45.0
+pyaes==1.6.1
+rsa==4.9.1
+pyasn1==0.6.4

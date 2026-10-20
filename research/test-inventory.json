@@ -1,0 +1,85 @@
+{
+  "LonamiWebs/Telethon": {
+    "branch": "v1",
+    "test_file_count": 20,
+    "sample_test_paths": [
+      "tests/__init__.py",
+      "tests/readthedocs/__init__.py",
+      "tests/readthedocs/conftest.py",
+      "tests/readthedocs/quick_references/__init__.py",
+      "tests/readthedocs/quick_references/test_client_reference.py",
+      "tests/telethon/__init__.py",
+      "tests/telethon/client/__init__.py",
+      "tests/telethon/client/test_messages.py",
+      "tests/telethon/crypto/__init__.py",
+      "tests/telethon/crypto/test_rsa.py",
+      "tests/telethon/events/__init__.py",
+      "tests/telethon/events/test_chataction.py"
+    ],
+    "workflows": [],
+    "truncated": false
+  },
+  "pyrogram/pyrogram": {
+    "branch": "master",
+    "test_file_count": 6,
+    "sample_test_paths": [
+      "tests/__init__.py",
+      "tests/filters/__init__.py",
+      "tests/filters/test_command.py",
+      "tests/parser/__init__.py",
+      "tests/parser/test_html.py",
+      "tests/test_file_id.py"
+    ],
+    "workflows": [
+      ".github/workflows/python.yml"
+    ],
+    "truncated": false
+  },
+  "hydrogram/hydrogram": {
+    "branch": "dev",
+    "test_file_count": 6,
+    "sample_test_paths": [
+      "tests/__init__.py",
+      "tests/filters/__init__.py",
+      "tests/filters/test_command.py",
+      "tests/parser/__init__.py",
+      "tests/parser/test_html.py",
+      "tests/test_file_id.py"
+    ],
+    "workflows": [
+      ".github/workflows/check_api_updates.yml",
+      ".github/workflows/code-style.yml",
+      ".github/workflows/python.yml"
+    ],
+    "truncated": false
+  },
+  "gotd/td": {
+    "branch": "main",
+    "test_file_count": 370,
+    "sample_test_paths": [
+      "ascii/ascii_test.go",
+      "bin/buffer_test.go",
+      "bin/bytes_test.go",
+      "bin/decode_test.go",
+      "bin/encode_bench_test.go",
+      "bin/encode_test.go",
+      "bin/encoder_test.go",
+      "bin/fields_test.go",
+      "bin/int128_test.go",
+      "bin/int256_test.go",
+      "bin/pool_test.go",
+      "bin/string_test.go"
+    ],
+    "workflows": [
+      ".github/workflows/bench.yml",
+      ".github/workflows/ci.yml",
+      ".github/workflows/commitlint.yml",
+      ".github/workflows/coverage.yml",
+      ".github/workflows/e2e.yml",
+      ".github/workflows/lint.yml",
+      ".github/workflows/nightly.yml",
+      ".github/workflows/update-schema.yml"
+    ],
+    "truncated": false
+  }
+}

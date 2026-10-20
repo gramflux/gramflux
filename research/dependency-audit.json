@@ -1,0 +1,1 @@
+{"dependencies": [{"name": "telethon", "version": "1.45.0", "vulns": []}, {"name": "pyaes", "version": "1.6.1", "vulns": []}, {"name": "rsa", "version": "4.9.1", "vulns": []}, {"name": "pyasn1", "version": "0.6.4", "vulns": []}], "fixes": []}

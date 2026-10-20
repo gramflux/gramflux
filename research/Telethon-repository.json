@@ -1,0 +1,15 @@
+{
+  "full_name": "LonamiWebs/Telethon",
+  "archived": true,
+  "pushed_at": "2026-02-21T21:11:58Z",
+  "updated_at": "2026-10-19T15:44:52Z",
+  "default_branch": "v1",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "html_url": "https://github.com/LonamiWebs/Telethon"
+}

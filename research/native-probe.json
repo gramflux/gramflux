@@ -1,0 +1,19 @@
+{
+  "host": "149.154.167.51",
+  "port": 443,
+  "scope": "unencrypted req_pq_multi only; no server authentication",
+  "results": {
+    "full": {
+      "fingerprint_count": 3,
+      "pq_bits": 61
+    },
+    "intermediate": {
+      "fingerprint_count": 3,
+      "pq_bits": 61
+    },
+    "abridged": {
+      "fingerprint_count": 3,
+      "pq_bits": 62
+    }
+  }
+}

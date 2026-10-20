@@ -1,0 +1,15 @@
+{
+  "retrieved_at": "2026-10-20T16:38:25.346624+00:00",
+  "advertised_layer": 225,
+  "sources": {
+    "api": "https://core.telegram.org/schema",
+    "api_json": "https://core.telegram.org/schema/json",
+    "mtproto": "https://core.telegram.org/schema/mtproto"
+  },
+  "sha256": {
+    "api.json": "41184a3013dc6494beced0b5e033fa5bf43a149047dca362b9af51606254f46e",
+    "api.tl": "13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046",
+    "mtproto.tl": "b3ef6a9533b772fdcf2a6d8dd236092f799ad8907ab4ca2615e42bded246da4c"
+  },
+  "note": "TL extracted from official HTML pre blocks; JSON verbatim. Advertised layer recorded independently of backend layer."
+}

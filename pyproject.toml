@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gramflux"
+version = "0.1.0a1"
+description = "Async Telegram client with independently verifiable TL schema tooling"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+authors = [{name = "GramFlux contributors"}]
+dependencies = ["Telethon==1.45.0"]
+classifiers = ["Development Status :: 3 - Alpha", "Framework :: AsyncIO", "Programming Language :: Python :: 3", "Typing :: Typed"]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "pytest-asyncio==1.4.0", "hypothesis==6.170.5", "ruff==0.17.1", "mypy==2.4.0", "build==1.6.1", "pip-audit==2.10.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+gramflux = ["py.typed", "tl/data/*.json", "tl/data/*.tl"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["live: opt-in Telegram network test"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = ["src/gramflux/tl/generated/objects.py", "research"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/gramflux"]
+
+[[tool.mypy.overrides]]
+module = ["telethon.*"]
+ignore_missing_imports = true

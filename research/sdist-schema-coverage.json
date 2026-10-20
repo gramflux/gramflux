@@ -1,0 +1,10 @@
+{
+  "advertised_layer": 225,
+  "sha256": "13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046",
+  "constructors": 1573,
+  "methods": 783,
+  "generated": 2356,
+  "official_json_ids_matched": 2356,
+  "protocol_declarations_parsed": 46,
+  "runtime": "Telethon bindings (separate layer); independent declarations are offline only"
+}
