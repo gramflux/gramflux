@@ -39,8 +39,12 @@ its own schema/protocol/session interoperability review and differential regress
 For release: update version and changelog, run CI and clean wheel/sdist installs,
 review third-party notices and security scan, execute opt-in account tests using a
 dedicated authorized test account, and update `docs/release-report.md` with actual
-results. Reproduce benchmark inputs before discussing performance. Publishing is a
-separate maintainer action; this repository's automation does not upload distributions.
+results. Reproduce benchmark inputs before discussing performance. Publishing a GitHub
+Release triggers `.github/workflows/publish.yml`, which validates the matching version
+tag, runs quality checks, builds distributions, and publishes them to PyPI. Configure
+a PyPI Trusted Publisher for this repository, workflow `publish.yml`, and GitHub
+environment `pypi` first. The tag must be the package version, optionally prefixed
+with `v` (for example, `v0.1.0a1`). No long-lived PyPI API token is required.
 
 Alpha interfaces may change. After 1.0 use semantic versioning, document deprecations
 and keep deprecated public APIs for at least one minor release unless security requires

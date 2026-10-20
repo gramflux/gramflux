@@ -1,0 +1,102 @@
+name: Publish GramFlux
+
+# Configure a PyPI Trusted Publisher for this repository, publish.yml, and
+# the GitHub environment named pypi before publishing a GitHub Release.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Validate and build distributions
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install development and packaging tools
+        run: python -m pip install -e '.[dev]' twine
+
+      - name: Verify release tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          python - <<'PY'
+          import os
+          import tomllib
+          from pathlib import Path
+          import gramflux
+
+          project = tomllib.loads(Path("pyproject.toml").read_text())["project"]
+          version = project["version"]
+          if project["name"] != "gramflux":
+              raise SystemExit("Distribution name must be gramflux")
+          if gramflux.__version__ != version:
+              raise SystemExit("Package and pyproject.toml versions differ")
+          if os.environ["RELEASE_TAG"] not in {version, f"v{version}"}:
+              raise SystemExit(f"Release tag must be {version} or v{version}")
+          PY
+
+      - name: Run quality checks
+        run: |
+          ruff check .
+          ruff format --check .
+          mypy src
+          pytest
+          python -m gramflux.tools.schema verify
+
+      - name: Build and validate wheel and source distribution
+        run: |
+          python -m build
+          python -m twine check --strict dist/*
+
+      - name: Verify installed wheel in a clean environment
+        run: |
+          python -m venv /tmp/gramflux-release
+          /tmp/gramflux-release/bin/python -m pip install dist/*.whl
+          cd /tmp
+          /tmp/gramflux-release/bin/python -I -c 'import gramflux; print(gramflux.__version__)'
+          /tmp/gramflux-release/bin/python -I -m gramflux.tools.schema verify
+
+      - name: Store validated distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: gramflux-distributions
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/p/gramflux
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Download validated distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: gramflux-distributions
+          path: dist/
+
+      - name: Publish with PyPI Trusted Publishing
+        uses: pypa/gh-action-pypi-publish@release/v1
