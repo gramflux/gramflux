@@ -16,6 +16,7 @@ from typing import Any
 
 from gramflux.errors import SchemaError
 from gramflux.tl.generator import generate
+from gramflux.tl.methods import generate_methods
 from gramflux.tl.namespaces import generate_namespaces
 from gramflux.tl.parser import parse
 
@@ -117,6 +118,7 @@ def report(data: Path = DATA) -> tuple[str, dict[str, Any]]:
         "sha256": metadata["sha256"]["api.tl"],
         "constructors": sum(not d.method for d in definitions),
         "methods": sum(d.method for d in definitions),
+        "async_facade_methods": sum(d.method for d in definitions),
         "generated": len(definitions),
         "official_json_ids_matched": len(expected & actual),
         "protocol_declarations_parsed": len(protocol),
@@ -156,12 +158,21 @@ def main() -> None:
             namespace = generate_namespaces(
                 parse((DATA / "api.tl").read_text()), coverage["advertised_layer"]
             )
+            methods = generate_methods(
+                parse((DATA / "api.tl").read_text()),
+                coverage["sha256"],
+                coverage["advertised_layer"],
+            )
+            methods_path = OUTPUT.parent / "methods.py"
             namespace_path = DATA.parents[1] / "raw.py"
             if args.command == "generate":
                 OUTPUT.write_text(rendered)
+                methods_path.write_text(methods)
                 namespace_path.write_text(namespace)
             elif not OUTPUT.exists() or OUTPUT.read_text() != rendered:
                 raise SchemaError("generated output differs; run generate and review the diff")
+            if not methods_path.exists() or methods_path.read_text() != methods:
+                raise SchemaError("async method facade differs; run generate")
             if namespace_path.read_text() != namespace:
                 raise SchemaError("native namespaces differ; run generate")
             print(json.dumps(coverage, indent=2))

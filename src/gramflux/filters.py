@@ -5,6 +5,8 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
 
+from .tl.model import TLObject
+
 
 @dataclass(frozen=True, slots=True)
 class Filter:
@@ -23,37 +25,37 @@ class Filter:
         return Filter(lambda e: not self(e))
 
 
-text = Filter(lambda e: bool(e.text))
-incoming = Filter(lambda e: not e.outgoing)
-outgoing = Filter(lambda e: e.outgoing)
+text = Filter(lambda e: bool(getattr(e, "text", "")))
+incoming = Filter(lambda e: hasattr(e, "outgoing") and not e.outgoing)
+outgoing = Filter(lambda e: bool(getattr(e, "outgoing", False)))
 all_messages = Filter(lambda e: True)
 
 
 def chat(*ids: int) -> Filter:
     selected = frozenset(ids)
-    return Filter(lambda e: e.chat_id in selected)
+    return Filter(lambda e: getattr(e, "chat_id", None) in selected)
 
 
 def sender(*ids: int) -> Filter:
     selected = frozenset(ids)
-    return Filter(lambda e: e.sender_id in selected)
+    return Filter(lambda e: getattr(e, "sender_id", None) in selected)
 
 
 def regex(pattern: str, flags: int = 0) -> Filter:
     compiled = re.compile(pattern, flags)
-    return Filter(lambda e: bool(compiled.search(e.text or "")))
+    return Filter(lambda e: bool(compiled.search(getattr(e, "text", "") or "")))
 
 
-private = Filter(lambda e: e.chat_type == "private")
-group = Filter(lambda e: e.chat_type == "group")
-channel = Filter(lambda e: e.chat_type == "channel")
-media = Filter(lambda e: getattr(e.message, "media", None) is not None)
-photo = Filter(lambda e: getattr(e.message, "photo", None) is not None)
-document = Filter(lambda e: getattr(e.message, "document", None) is not None)
-video = Filter(lambda e: getattr(e.message, "video", None) is not None)
-audio = Filter(lambda e: getattr(e.message, "audio", None) is not None)
-voice = Filter(lambda e: getattr(e.message, "voice", None) is not None)
-sticker = Filter(lambda e: getattr(e.message, "sticker", None) is not None)
+private = Filter(lambda e: getattr(e, "chat_type", None) == "private")
+group = Filter(lambda e: getattr(e, "chat_type", None) == "group")
+channel = Filter(lambda e: getattr(e, "chat_type", None) == "channel")
+media = Filter(lambda e: getattr(getattr(e, "message", None), "media", None) is not None)
+photo = Filter(lambda e: getattr(getattr(e, "message", None), "photo", None) is not None)
+document = Filter(lambda e: getattr(getattr(e, "message", None), "document", None) is not None)
+video = Filter(lambda e: getattr(getattr(e, "message", None), "video", None) is not None)
+audio = Filter(lambda e: getattr(getattr(e, "message", None), "audio", None) is not None)
+voice = Filter(lambda e: getattr(getattr(e, "message", None), "voice", None) is not None)
+sticker = Filter(lambda e: getattr(getattr(e, "message", None), "sticker", None) is not None)
 
 
 def command(
@@ -84,7 +86,7 @@ def command(
     selected = frozenset(normalize(name) for name in names)
 
     def matches(event: Any) -> bool:
-        token = (event.text or "").split(maxsplit=1)
+        token = (getattr(event, "text", "") or "").split(maxsplit=1)
         if not token or not token[0].startswith(prefix):
             return False
         body = token[0][len(prefix) :]
@@ -96,3 +98,35 @@ def command(
         return normalize(name) in selected
 
     return Filter(matches)
+
+
+def data(value: bytes | str) -> Filter:
+    """Match callback data exactly, using UTF-8 for a text value."""
+    from .errors import ConfigurationError
+
+    if not isinstance(value, (bytes, str)):
+        raise ConfigurationError("callback data filter requires bytes or text")
+    expected = value.encode("utf-8") if isinstance(value, str) else value
+    return Filter(lambda event: getattr(event, "data", None) == expected)
+
+
+def update_type(*constructors: type[TLObject]) -> Filter:
+    """Select official Update constructors on ``on_raw_update`` events.
+
+    This selects accepted native updates; it does not bypass update recovery or
+    enable unsupported qts/secret-chat processing. Multiple constructors mean OR.
+    """
+    from .errors import ConfigurationError
+    from .tl.generated.objects import REGISTRY
+
+    if not constructors or any(
+        not isinstance(cls, type)
+        or not issubclass(cls, TLObject)
+        or getattr(cls, "definition", None) is None
+        or cls.definition.result != "Update"
+        or REGISTRY.get(cls.definition.id) is not cls
+        for cls in constructors
+    ):
+        raise ConfigurationError("update_type requires official native Update constructor classes")
+    selected = tuple(constructors)
+    return Filter(lambda event: isinstance(getattr(event, "update", None), selected))

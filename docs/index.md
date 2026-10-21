@@ -30,3 +30,13 @@ codec, but complex sum/result types are not yet fully narrowed by the generator.
 - [0.2.0a2 transfer pipeline report](releases/0.2.0a2.md)
 
 - [0.3.0a1 independent runtime report](releases/0.3.0a1.md)
+
+- [Native update ordering and recovery](design/update-state.md)
+
+- [0.3.0a2 production assessment](releases/0.3.0a2.md)
+- [Dedicated live validation](guides/live-validation.md)
+
+- [Bot operations and typed events](guides/bots-and-events.md)
+- [Public API inventory](api-surface.json)
+
+- [0.4.0a1 operations and events](releases/0.4.0a1.md)

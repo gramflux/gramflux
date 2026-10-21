@@ -63,3 +63,7 @@ These call the GramFlux client, preserving its deadlines and scoped deletion che
 A reply uses the original message ID; channel deletion always needs explicit
 `revoke=True`. Telegram permissions still apply. Detached events raise LifecycleError
 when asked to execute actions. Raw event.message is a native dataclass; actions belong to event helpers or Client.
+
+Message-box counters are processed independently of envelope sequence deduplication. Combined envelopes use seq_start for ordered updates. Invalid/regressive difference state, non-progressing intermediate pages and recursive channel recovery fail explicitly. See [update ordering and recovery](../design/update-state.md) for counter rules and cancellation boundaries.
+
+Typed non-message subscriptions and bot response helpers are covered in [bot operations and events](bots-and-events.md). Error callbacks now accept the Event union. Use message-specific attributes after narrowing event type.

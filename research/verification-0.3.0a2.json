@@ -1,0 +1,97 @@
+{
+  "version": "0.3.0a2",
+  "date": "2026-10-21",
+  "production_ready": false,
+  "release_status": "engineering alpha; approval withheld pending evidence",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "source_tests": "398 passed, 6 skipped, 4 warnings in 33.34s",
+  "installed_wheel_tests": [
+    {
+      "python": "3.11.17",
+      "result": "398 passed, 6 skipped, 4 warnings in 40.61s",
+      "competing_client_installed": false,
+      "distribution": "gramflux-0.3.0a2-py3-none-any.whl",
+      "install_mode": "offline --no-deps; pre-existing unchanged locked runtime dependencies verified"
+    },
+    {
+      "python": "3.12.3",
+      "result": "398 passed, 6 skipped, 4 warnings in 45.04s",
+      "competing_client_installed": false,
+      "distribution": "gramflux-0.3.0a2-py3-none-any.whl",
+      "install_mode": "offline --no-deps; pre-existing unchanged locked runtime dependencies verified"
+    },
+    {
+      "python": "3.13.16",
+      "result": "398 passed, 6 skipped, 4 warnings in 48.70s",
+      "competing_client_installed": false,
+      "distribution": "gramflux-0.3.0a2-py3-none-any.whl",
+      "install_mode": "offline --no-deps; pre-existing unchanged locked runtime dependencies verified"
+    },
+    {
+      "python": "3.14.8",
+      "result": "398 passed, 6 skipped, 4 warnings in 49.99s",
+      "competing_client_installed": false,
+      "distribution": "gramflux-0.3.0a2-py3-none-any.whl",
+      "install_mode": "offline --no-deps; pre-existing unchanged locked runtime dependencies verified"
+    }
+  ],
+  "quality": {
+    "ruff": "passed",
+    "format": "passed",
+    "mypy_source_files": 46,
+    "schema": "passed",
+    "example_compilation": "passed",
+    "workflow_yaml_and_embedded_python": "passed",
+    "wheel_and_sdist_build": "passed",
+    "twine_strict": "passed",
+    "sdist_clean_install_and_schema_verify": "passed"
+  },
+  "schema": {
+    "advertised_layer": 225,
+    "sha256": "13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046",
+    "constructors": 1573,
+    "methods": 783,
+    "generated": 2356,
+    "official_json_ids_matched": 2356,
+    "protocol_declarations_parsed": 46,
+    "runtime": "GramFlux native MTProto runtime; same pinned API layer"
+  },
+  "runtime_dependencies": {
+    "cryptography": "50.0.2",
+    "cffi": "2.1.1",
+    "pycparser": "3.11"
+  },
+  "dependency_audit": "No known vulnerabilities found",
+  "native_telegram_network_tests": "3 passed, 6 warnings in 8.78s",
+  "real_account_tests": "not run; credentials absent",
+  "remote_github_workflow": "not run; manually dispatched workflow added",
+  "load_test": {
+    "transport_modes": [
+      "full",
+      "intermediate",
+      "abridged"
+    ],
+    "cases": 6,
+    "submitted_rpcs_per_case": 1000,
+    "pending_window": 5,
+    "abrupt_peer_close_after_requests": 11,
+    "peer": "controlled actual loopback TCP; shared native crypto primitives",
+    "long_duration_soak": false
+  },
+  "protections_added": [
+    "uncompressed TL byte/count update queue budgets",
+    "explicit ambiguous request outcome exception",
+    "heartbeat deadline-aware server timer",
+    "short sent-message TTL fidelity",
+    "locked CI install and explicit scoped live tests"
+  ],
+  "production_blockers": [
+    "real user/bot authentication, 2FA, messages, media, migration and live update recovery evidence",
+    "independent cryptographic/protocol audit and FFDH provider maintenance",
+    "sustained real-network soak and interruption recovery",
+    "unsupported too-long difference resync, secret/qts, media cross-DC/CDN and resumability",
+    "no transactional event journal; plaintext session keys at rest",
+    "unconfirmed anonymous authorization-key destruction"
+  ],
+  "publication": "not performed"
+}

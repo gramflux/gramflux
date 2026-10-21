@@ -25,6 +25,10 @@ class TransportError(GramFluxError):
     """Connection failed; the remote outcome may be unknown."""
 
 
+class RequestOutcomeUnknown(TransportError):
+    """A request may have reached Telegram; do not blindly repeat a mutation."""
+
+
 class SessionError(GramFluxError):
     """Session cannot be safely opened or saved."""
 

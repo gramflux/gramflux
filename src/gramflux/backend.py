@@ -123,6 +123,7 @@ class NativeBackend:
         self._initialized = False
         self._initialize_lock = asyncio.Lock()
         self._handlers: list[Any] = []
+        self._raw_handlers: list[Any] = []
         self.update_task: asyncio.Task[None] | None = None
         self.heartbeat_task: asyncio.Task[None] | None = None
         self._user: Any = None
@@ -152,6 +153,10 @@ class NativeBackend:
 
     def ready(self) -> None:
         self._ready.set()
+
+    def add_raw_handler(self, callback: Any) -> None:
+        if callback not in self._raw_handlers:
+            self._raw_handlers.append(callback)
 
     async def connect(self) -> None:
         if self.is_connected():
@@ -186,6 +191,7 @@ class NativeBackend:
                 time_offset=self.session.time_offset,
                 queue_size=self.config.event_queue_size,
                 max_pending=self.config.max_concurrent_requests,
+                queue_bytes=self.config.update_queue_bytes,
             )
             self.sender.start()
             self._initialized = False
@@ -242,7 +248,7 @@ class NativeBackend:
                             api_id=self.api_id,
                             device_model="GramFlux",
                             system_version="Python",
-                            app_version="0.3.0a1",
+                            app_version="0.4.0a1",
                             system_lang_code="en",
                             lang_pack="",
                             lang_code="en",
@@ -306,7 +312,10 @@ class NativeBackend:
                 )
             assert self.sender is not None
             try:
-                self.sender._offer(update)
+                from .mtproto.workers import compute
+
+                encoded = await compute(self.sender.codec.encode, update)
+                self.sender._offer(update, wire_size=len(encoded))
             except TransportError as error:
                 self.connection_error = error
                 await self.sender.close()
@@ -392,6 +401,7 @@ class NativeBackend:
                 out=bool(result.out),
                 media=result.media,
                 entities=result.entities,
+                ttl_period=result.ttl_period,
             )
         updates = (
             [result.update]
@@ -425,6 +435,8 @@ class NativeBackend:
         reply_to: int | None = None,
         silent: bool = False,
         link_preview: bool = True,
+        reply_markup: Any = None,
+        entities: Any = None,
     ) -> Any:
         if isinstance(peer, types.InputPeerSelf) and self._user is None:
             await self.get_me()
@@ -436,6 +448,8 @@ class NativeBackend:
                 random_id=random_id,
                 silent=silent,
                 no_webpage=not link_preview,
+                reply_markup=reply_markup,
+                entities=entities,
                 reply_to=types.InputReplyToMessage(reply_to_msg_id=reply_to)
                 if reply_to is not None
                 else None,
@@ -490,9 +504,14 @@ class NativeBackend:
             while self.sender is not None:
                 await asyncio.sleep(30)
                 ping_id = secrets.randbits(63)
+                timeout = max(15, self.config.request_timeout)
                 result = await self.sender.invoke(
-                    protocol.object("ping_delay_disconnect", ping_id=ping_id, disconnect_delay=60),
-                    deadline_seconds=max(15, self.config.request_timeout),
+                    protocol.object(
+                        "ping_delay_disconnect",
+                        ping_id=ping_id,
+                        disconnect_delay=min(2**31 - 1, max(60, math.ceil(timeout) + 45)),
+                    ),
+                    deadline_seconds=timeout,
                     _control=True,
                 )
                 if result.ping_id != ping_id:

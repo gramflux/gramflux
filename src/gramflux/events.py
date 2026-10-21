@@ -4,10 +4,11 @@ import asyncio
 import logging
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Any, Literal
+from typing import TYPE_CHECKING, Any, Literal, TypeAlias, TypeVar
 
 from .errors import ConfigurationError, LifecycleError, StopPropagation
 from .raw import types
+from .tl.model import TLObject
 
 if TYPE_CHECKING:
     from .client import Client
@@ -63,8 +64,174 @@ class MessageEvent:
         return self.message.sender_id  # type: ignore[no-any-return]
 
 
+@dataclass(frozen=True, slots=True)
+class RawUpdateEvent:
+    update: TLObject = field(repr=False)
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+
+@dataclass(frozen=True, slots=True)
+class DeletedMessagesEvent:
+    message_ids: tuple[int, ...]
+    chat_id: int | None = None
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+
+@dataclass(frozen=True, slots=True)
+class ReadHistoryEvent:
+    chat_id: int
+    max_id: int
+    outbox: bool
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+
+@dataclass(frozen=True, slots=True)
+class UserStatusEvent:
+    sender_id: int
+    status: types.TypeUserStatus = field(repr=False)
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+    @property
+    def online(self) -> bool:
+        return isinstance(self.status, types.UserStatusOnline)
+
+
+@dataclass(frozen=True, slots=True)
+class ChatActionEvent:
+    message: types.MessageService = field(repr=False)
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+    @property
+    def action(self) -> TLObject:
+        return self.message.action
+
+    @property
+    def chat_id(self) -> int:
+        from .peer_utils import get_peer_id
+
+        return get_peer_id(self.message.peer_id)
+
+    @property
+    def sender_id(self) -> int | None:
+        return self.message.sender_id  # type: ignore[no-any-return]
+
+    @property
+    def user_ids(self) -> tuple[int, ...]:
+        action = self.action
+        if isinstance(action, types.MessageActionChatAddUser):
+            return tuple(action.users)
+        if isinstance(action, types.MessageActionChatDeleteUser):
+            return (action.user_id,)
+        return ()
+
+
+@dataclass(frozen=True, slots=True)
+class CallbackQueryEvent:
+    query_id: int
+    sender_id: int
+    data: bytes | None = field(default=None, repr=False)
+    chat_id: int | None = None
+    message_id: int | None = None
+    inline_message_id: types.TypeInputBotInlineMessageID | None = field(default=None, repr=False)
+    game_short_name: str | None = field(default=None, repr=False)
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+    async def answer(self, text: str = "", *, alert: bool = False, cache_time: int = 0) -> bool:
+        if self.client is None:
+            raise LifecycleError("event has no client context")
+        return await self.client.answer_callback_query(
+            self.query_id, text=text, alert=alert, cache_time=cache_time
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class InlineQueryEvent:
+    query_id: int
+    sender_id: int
+    query: str = field(repr=False)
+    offset: str = field(repr=False)
+    client: "Client | None" = field(default=None, repr=False, compare=False)
+
+    async def answer(
+        self,
+        results: list[types.TypeInputBotInlineResult],
+        *,
+        cache_time: int = 300,
+        next_offset: str = "",
+        private: bool = False,
+    ) -> bool:
+        if self.client is None:
+            raise LifecycleError("event has no client context")
+        return await self.client.answer_inline_query(
+            self.query_id, results, cache_time=cache_time, next_offset=next_offset, private=private
+        )
+
+
+Event: TypeAlias = (
+    MessageEvent
+    | RawUpdateEvent
+    | DeletedMessagesEvent
+    | ReadHistoryEvent
+    | UserStatusEvent
+    | ChatActionEvent
+    | CallbackQueryEvent
+    | InlineQueryEvent
+)
+E = TypeVar("E")
+
+
+def from_update(update: TLObject, client: "Client") -> list[Event]:
+    """Build events from an accepted native Update; never infer unknown chat IDs."""
+    from .peer_utils import get_peer_id
+
+    result: list[Event] = [RawUpdateEvent(update, client)]
+    if isinstance(update, (types.UpdateDeleteMessages, types.UpdateDeleteChannelMessages)):
+        channel = getattr(update, "channel_id", None)
+        result.append(
+            DeletedMessagesEvent(
+                tuple(update.messages),
+                -1000000000000 - channel if channel is not None else None,
+                client,
+            )
+        )
+    elif isinstance(
+        update,
+        (
+            types.UpdateReadHistoryInbox,
+            types.UpdateReadHistoryOutbox,
+            types.UpdateReadChannelInbox,
+            types.UpdateReadChannelOutbox,
+        ),
+    ):
+        channel = getattr(update, "channel_id", None)
+        peer = -1000000000000 - channel if channel is not None else get_peer_id(update.peer)
+        outbox = isinstance(update, (types.UpdateReadHistoryOutbox, types.UpdateReadChannelOutbox))
+        result.append(ReadHistoryEvent(peer, update.max_id, outbox, client))
+    elif isinstance(update, types.UpdateUserStatus):
+        result.append(UserStatusEvent(update.user_id, update.status, client))
+    elif isinstance(update, (types.UpdateBotCallbackQuery, types.UpdateInlineBotCallbackQuery)):
+        inline = isinstance(update, types.UpdateInlineBotCallbackQuery)
+        result.append(
+            CallbackQueryEvent(
+                update.query_id,
+                update.user_id,
+                update.data,
+                None if inline else get_peer_id(update.peer),
+                update.msg_id if isinstance(update, types.UpdateBotCallbackQuery) else None,
+                update.msg_id if inline else None,
+                update.game_short_name,
+                client,
+            )
+        )
+    elif isinstance(update, types.UpdateBotInlineQuery):
+        result.append(
+            InlineQueryEvent(update.query_id, update.user_id, update.query, update.offset, client)
+        )
+    return result
+
+
 Handler = Callable[[MessageEvent], Awaitable[None]]
-ErrorHandler = Callable[[MessageEvent, Exception], Awaitable[None]]
+ErrorHandler = Callable[[Event, Exception], Awaitable[None]]
 
 
 class Dispatcher:
@@ -76,8 +243,10 @@ class Dispatcher:
     """
 
     def __init__(self, size: int, on_error: ErrorHandler | None = None) -> None:
-        self._queue: asyncio.Queue[MessageEvent] = asyncio.Queue(size)
-        self._handlers: list[tuple[int, Handler, Filter, bool]] = []
+        self._queue: asyncio.Queue[Event] = asyncio.Queue(size)
+        self._handlers: list[
+            tuple[int, Callable[[Any], Awaitable[None]], Filter, type[Any], bool | None]
+        ] = []
         self._task: asyncio.Task[None] | None = None
         self._on_error = on_error
 
@@ -89,22 +258,37 @@ class Dispatcher:
         edited: bool = False,
         priority: int = 0,
     ) -> None:
+        self.add_event(callback, MessageEvent, predicate, edited=edited, priority=priority)
+
+    def add_event(
+        self,
+        callback: Callable[[E], Awaitable[None]],
+        event_type: type[E],
+        predicate: Filter = all_messages,
+        *,
+        edited: bool | None = None,
+        priority: int = 0,
+    ) -> None:
         if isinstance(priority, bool) or not isinstance(priority, int):
             raise ConfigurationError("handler priority must be an integer")
-        self._handlers.append((priority, callback, predicate, edited))
+        self._handlers.append((priority, callback, predicate, event_type, edited))
         self._handlers.sort(key=lambda item: item[0])
 
-    def remove(self, callback: Handler) -> int:
+    def remove(self, callback: Callable[..., Awaitable[None]]) -> int:
         before = len(self._handlers)
         self._handlers[:] = [item for item in self._handlers if item[1] != callback]
         return before - len(self._handlers)
+
+    def interested(self, event: Event) -> bool:
+        """Check routing only; user predicates run once, inside dispatch."""
+        return any(isinstance(event, item[3]) for item in self._handlers)
 
     def start(self) -> None:
         if self._task is not None:
             raise RuntimeError("dispatcher already running")
         self._task = asyncio.create_task(self._run(), name="gramflux-dispatch")
 
-    async def put(self, event: MessageEvent) -> None:
+    async def put(self, event: Event) -> None:
         await self._queue.put(event)
 
     async def join(self) -> None:
@@ -123,7 +307,7 @@ class Dispatcher:
             self._queue.get_nowait()
             self._queue.task_done()
 
-    async def _report(self, event: MessageEvent, exc: Exception) -> None:
+    async def _report(self, event: Event, exc: Exception) -> None:
         # No traceback or exception text: a user exception can contain secrets.
         logger.error("event handler failed (%s)", type(exc).__name__)
         if self._on_error is not None:
@@ -136,9 +320,13 @@ class Dispatcher:
         while True:
             event = await self._queue.get()
             try:
-                for _, callback, predicate, edited in tuple(self._handlers):
+                for _, callback, predicate, event_type, edited in tuple(self._handlers):
                     try:
-                        if event.edited == edited and predicate(event):
+                        if (
+                            isinstance(event, event_type)
+                            and (edited is None or getattr(event, "edited", False) == edited)
+                            and predicate(event)
+                        ):
                             await callback(event)
                     except StopPropagation:
                         break

@@ -2,7 +2,16 @@
 
 An asyncio Telegram client and independently verifiable TL schema toolkit for Python 3.11+.
 
-**0.3.0a1 is a native MTProto engineering alpha, not production ready.** GramFlux
+**783 typed asynchronous raw API methods** are available under `client.api`, generated
+from the pinned official schema and routed through the independent native engine.
+See [typed API and update selectors](docs/guides/async-api.md). Raw coverage is separate
+from high-level convenience methods and authenticated interoperability.
+
+High-level messaging, history, contacts and chat operations now include typed bot callbacks,
+inline queries, read/deletion/status events, reactions, drafts and native keyboards.
+See [bot operations and events](docs/guides/bots-and-events.md) for a working API example.
+
+**0.5.0a1 is a native MTProto engineering alpha, not production ready.** GramFlux
 now owns TCP framing, RSA_PAD/DH key creation, MTProto 2.0 envelopes, request correlation,
 service messages, SRP, update counters and difference recovery. **No Telethon,
 Pyrogram or other Telegram client is a runtime dependency or fallback.** The sole
@@ -12,7 +21,7 @@ Real Telegram RSA/DH and encrypted ping/pong have been verified over full,
 intermediate and abridged TCP. Account login, messaging, media and live gap recovery
 remain unverified with personal/bot credentials. Deterministic tests exercise those
 native API boundaries. Independent cryptographic review and fault/soak testing remain
-release blockers. See the [native runtime report](docs/releases/0.3.0a1.md).
+release blockers. See the [hardening and production assessment](docs/releases/0.5.0a1.md).
 
 The design principle is: Simple by default. Powerful when needed. Correct by design.
 Fast when measured. Maintainable by architecture.
@@ -164,3 +173,5 @@ python -m gramflux.tools.benchmark
 · [Security](SECURITY.md) · [Codec benchmark](research/benchmark-0.2.0a1.json) · [Controlled transfer benchmark](research/transfers-0.2.0a2.json).
 The older comparative codec file is historical. Current runtime independence and
 a measured local IGE optimization do not establish end-to-end performance superiority.
+
+Typed callback/inline queries, deletion/read/status/chat-action events and bot UI builders are documented in [bot operations and events](docs/guides/bots-and-events.md). The [checked API inventory](docs/api-surface.json) separates actual Client methods from generated TL declarations.

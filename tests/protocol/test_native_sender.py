@@ -423,3 +423,34 @@ async def test_cancelled_codec_work_holds_admission_until_worker_is_joined(monke
         with pytest.raises(asyncio.CancelledError):
             await operation
         assert not sender.pending and sender.content_count == 0
+
+
+async def test_update_byte_overflow_closes_before_count_limit_and_clears_on_shutdown():
+    body = Codec().encode(
+        types.UpdateShort(
+            update=types.UpdateUserStatus(user_id=12, status=types.UserStatusEmpty()),
+            date=100,
+        )
+    )
+    async with pair(queue_size=256, queue_bytes=len(body)) as (sender, peer):
+        await peer.push(body)
+        await peer.push(body)
+        await sender.disconnected
+        assert sender.updates.qsize() == 1
+        assert sender.updates.queued_bytes == len(body)
+        assert isinstance(sender.error, TransportError)
+    assert sender.updates.empty() and sender.updates.queued_bytes == 0
+
+
+async def test_lost_response_is_explicitly_ambiguous_but_closed_admission_is_not():
+    from gramflux.errors import RequestOutcomeUnknown
+
+    async with pair() as (sender, peer):
+        task = asyncio.create_task(sender.invoke(request()))
+        await peer.request()
+        sender.reader_task.cancel()
+        with pytest.raises(RequestOutcomeUnknown):
+            await task
+        with pytest.raises(TransportError) as caught:
+            await sender.invoke(request())
+        assert not isinstance(caught.value, RequestOutcomeUnknown)

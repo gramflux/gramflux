@@ -292,3 +292,284 @@ async def test_update_batch_preserves_unrelated_full_entities_in_public_peer_cac
     await engine.process(value)
     assert backend.peer_cache.get(77).access_hash == 99
     assert set(backend.events[0]._entities) == {12}
+
+
+async def test_duplicate_envelope_sequence_does_not_drop_fresh_message_counter():
+    backend = Backend()
+    engine = UpdateEngine(backend)
+    await engine.process(envelope(update(), seq=1))
+    assert [event.message.id for event in backend.events] == [1]
+    assert backend.session.states[0].pts == 11
+    assert backend.session.states[0].seq == 1
+    await engine.process(envelope(update(), seq=1))
+    assert len(backend.events) == 1
+
+
+async def test_overlapping_pts_range_is_ignored_without_advancing_state():
+    backend = Backend()
+    value = update(pts=11)
+    value.pts_count = 2  # local 10 + count 2 > remote 11: already applied
+    await UpdateEngine(backend).process(envelope(value))
+    assert not backend.events and not backend.requests
+    assert backend.session.states[0].pts == 10
+
+
+@pytest.mark.parametrize("private", [True, False])
+async def test_short_message_preserves_forwarding_flags_and_lifetime(private):
+    backend = Backend()
+    shared = {
+        "id": 1,
+        "message": "fixture",
+        "pts": 11,
+        "pts_count": 1,
+        "date": 101,
+        "out": True,
+        "mentioned": True,
+        "media_unread": True,
+        "silent": True,
+        "via_bot_id": 5,
+        "ttl_period": 60,
+        "fwd_from": types.MessageFwdHeader(date=99, from_id=types.PeerUser(user_id=4)),
+        "entities": [types.MessageEntityBold(offset=0, length=3)],
+        "reply_to": types.MessageReplyHeader(reply_to_msg_id=10),
+    }
+    value = (
+        types.UpdateShortMessage(user_id=12, **shared)
+        if private
+        else types.UpdateShortChatMessage(from_id=99, chat_id=7, **shared)
+    )
+    await UpdateEngine(backend).process(value)
+    result = backend.events[0].message
+    for key in (
+        "out",
+        "mentioned",
+        "media_unread",
+        "silent",
+        "via_bot_id",
+        "ttl_period",
+        "fwd_from",
+        "entities",
+        "reply_to",
+    ):
+        assert getattr(result, key) == shared[key]
+    assert result.sender_id == 99
+
+
+@pytest.mark.parametrize("field", ["pts", "qts", "seq", "date"])
+async def test_invalid_difference_state_is_rejected_before_delivering_messages(field):
+    from gramflux.errors import SerializationError
+
+    next_state = state(11, 2)
+    setattr(next_state, field, -1)
+
+    async def respond(request):
+        return types.updates.Difference(
+            new_messages=[message()],
+            new_encrypted_messages=[],
+            other_updates=[],
+            chats=[],
+            users=[],
+            state=next_state,
+        )
+
+    backend = Backend(respond)
+    with pytest.raises(SerializationError):
+        await UpdateEngine(backend).recover()
+    assert not backend.events
+    assert backend.session.states[0].pts == 10
+
+
+@pytest.mark.parametrize("field", ["pts", "qts", "seq"])
+async def test_regressive_difference_state_is_rejected_before_delivery(field):
+    from gramflux.errors import SerializationError
+
+    previous = state()
+    previous.qts = 5
+    next_state = state(11, 2)
+    next_state.qts = 5
+    setattr(next_state, field, getattr(previous, field) - 1)
+
+    async def respond(request):
+        return types.updates.Difference(
+            new_messages=[message()],
+            new_encrypted_messages=[],
+            other_updates=[],
+            chats=[],
+            users=[],
+            state=next_state,
+        )
+
+    backend = Backend(respond)
+    backend.session.states[0] = previous
+    with pytest.raises(SerializationError, match="regressed"):
+        await UpdateEngine(backend).recover()
+    assert not backend.events and backend.session.states[0] is previous
+
+
+async def test_nonprogressing_difference_slice_fails_before_repeat_delivery():
+    async def respond(request):
+        return types.updates.DifferenceSlice(
+            new_messages=[message()],
+            new_encrypted_messages=[],
+            other_updates=[],
+            chats=[],
+            users=[],
+            intermediate_state=state(),
+        )
+
+    backend = Backend(respond)
+    with pytest.raises(TransportError, match="no progress"):
+        await UpdateEngine(backend).recover()
+    assert len(backend.requests) == 1 and not backend.events
+
+
+@pytest.mark.parametrize("pts", [9, 10])
+async def test_channel_difference_rejects_regression_or_nonprogress(pts):
+    async def respond(request):
+        return types.updates.ChannelDifference(
+            pts=pts,
+            new_messages=[message()],
+            other_updates=[],
+            chats=[],
+            users=[],
+            final=False,
+        )
+
+    backend = Backend(respond)
+    backend.session.states[7] = state()
+    backend.entities = {
+        -1000000000007: types.ChannelForbidden(id=7, access_hash=42, title="fixture")
+    }
+    with pytest.raises((TransportError, ValueError)):
+        await UpdateEngine(backend).channel(7)
+    assert len(backend.requests) == 1 and not backend.events
+    assert backend.session.states[7].pts == 10
+
+
+async def test_message_box_applies_before_envelope_sequence_gap_recovery():
+    async def respond(request):
+        assert request.pts == 11
+        assert len(backend.events) == 1
+        return types.updates.DifferenceEmpty(date=102, seq=3)
+
+    backend = Backend(respond)
+    await UpdateEngine(backend).process(envelope(update(), seq=4))
+    assert len(backend.requests) == 1 and len(backend.events) == 1
+    assert backend.session.states[0].seq == 4
+
+
+@pytest.mark.parametrize("seq_start,seq,applied", [(1, 4, False), (0, 0, True), (2, 4, True)])
+async def test_combined_sequence_uses_start_for_non_message_updates(seq_start, seq, applied):
+    backend = Backend()
+    engine = UpdateEngine(backend)
+    seen = []
+    original = engine.apply
+
+    async def apply(value, **kwargs):
+        seen.append(value.definition.name)
+        await original(value, **kwargs)
+
+    engine.apply = apply
+    value = types.UpdatesCombined(
+        updates=[
+            types.UpdateUserStatus(user_id=12, status=types.UserStatusOffline(was_online=100))
+        ],
+        users=[],
+        chats=[],
+        seq_start=seq_start,
+        seq=seq,
+        date=101,
+    )
+    await engine.process(value)
+    assert bool(seen) is applied
+    assert backend.session.states[0].seq == (seq if applied and seq else 1)
+
+
+@pytest.mark.parametrize("seq_start,seq", [(-1, 2), (2, -1), (3, 2)])
+async def test_malformed_sequence_range_does_not_deliver_message_box(seq_start, seq):
+    from gramflux.errors import SerializationError
+
+    backend = Backend()
+    value = types.UpdatesCombined(
+        updates=[update()],
+        users=[],
+        chats=[],
+        seq_start=seq_start,
+        seq=seq,
+        date=101,
+    )
+    with pytest.raises(SerializationError):
+        await UpdateEngine(backend).process(value)
+    assert not backend.events and backend.session.states[0].pts == 10
+
+
+async def test_recursive_channel_difference_fails_and_releases_recovery_guard():
+    nested = True
+
+    async def respond(request):
+        return types.updates.ChannelDifference(
+            pts=11,
+            new_messages=[],
+            other_updates=[types.UpdateChannelTooLong(channel_id=7)] if nested else [],
+            chats=[],
+            users=[],
+            final=True,
+        )
+
+    backend = Backend(respond)
+    backend.session.states[7] = state()
+    backend.entities = {
+        -1000000000007: types.ChannelForbidden(id=7, access_hash=42, title="fixture")
+    }
+    engine = UpdateEngine(backend)
+    with pytest.raises(TransportError, match="nested channel"):
+        await engine.channel(7)
+    assert not engine.recovering_channels and len(backend.requests) == 1
+    assert backend.session.states[7].pts == 10
+    nested = False
+    await engine.channel(7)
+    assert not engine.recovering_channels and backend.session.states[7].pts == 11
+
+
+async def test_cancelled_channel_page_keeps_only_completed_page_and_clears_guard():
+    replies = [
+        types.updates.ChannelDifference(
+            pts=11,
+            new_messages=[message(1)],
+            other_updates=[],
+            chats=[],
+            users=[],
+            final=False,
+        ),
+        types.updates.ChannelDifference(
+            pts=12,
+            new_messages=[message(2)],
+            other_updates=[],
+            chats=[],
+            users=[],
+            final=True,
+        ),
+    ]
+
+    async def respond(request):
+        return replies.pop(0)
+
+    backend = Backend(respond)
+    backend.session.states[7] = state()
+    backend.entities = {
+        -1000000000007: types.ChannelForbidden(id=7, access_hash=42, title="fixture")
+    }
+
+    async def receive(event):
+        if event.message.id == 2:
+            raise asyncio.CancelledError
+        await backend.receive(event)
+
+    backend._handlers = [receive]
+    engine = UpdateEngine(backend)
+    with pytest.raises(asyncio.CancelledError):
+        await engine.channel(7)
+    assert [request.pts for request in backend.requests] == [10, 11]
+    assert [event.message.id for event in backend.events] == [1]
+    assert backend.session.states[7].pts == 11
+    assert not engine.recovering_channels

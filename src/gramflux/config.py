@@ -15,6 +15,7 @@ class Config:
     reconnect_attempts: int = 3
     peer_cache_size: int = 2048
     transport: Literal["full", "intermediate", "abridged"] = "intermediate"
+    update_queue_bytes: int = 16 * 1024 * 1024
 
     def __post_init__(self) -> None:
         if (
@@ -24,7 +25,7 @@ class Config:
             or self.request_timeout <= 0
         ):
             raise ConfigurationError("request_timeout must be finite and positive")
-        for name in ("max_concurrent_requests", "event_queue_size"):
+        for name in ("max_concurrent_requests", "event_queue_size", "update_queue_bytes"):
             value = getattr(self, name)
             if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
                 raise ConfigurationError(f"{name} must be a positive integer")

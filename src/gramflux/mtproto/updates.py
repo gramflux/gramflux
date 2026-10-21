@@ -22,12 +22,24 @@ class NativeEvent:
     is_channel: bool = False
 
 
+def validate_state(state: Any, previous: Any) -> None:
+    """Validate authoritative counters before delivering or committing a page."""
+    if not isinstance(state, types.updates.State) or any(
+        isinstance(value, bool) or not isinstance(value, int) or value < 0
+        for value in (state.pts, state.qts, state.seq, state.date)
+    ):
+        raise SerializationError("invalid difference state")
+    if state.pts < previous.pts or state.qts < previous.qts or state.seq < previous.seq:
+        raise SerializationError("difference state regressed")
+
+
 class UpdateEngine:
     def __init__(self, backend: Any) -> None:
         self.backend = backend
         self.states = backend.session.states
         self.entities: dict[int, Any] = getattr(backend, "entities", {})
         self.recovering = False
+        self.recovering_channels: set[int] = set()
 
     def ingest(self, value: Any) -> None:
         ingest_entities(self.entities, value)
@@ -88,6 +100,8 @@ class UpdateEngine:
                         "difference too long requires explicit history resynchronization"
                     )
                 if isinstance(result, types.updates.DifferenceEmpty):
+                    if result.date < 0 or result.seq < state.seq:
+                        raise SerializationError("invalid empty difference state")
                     state.date, state.seq = result.date, result.seq
                     return
                 if not isinstance(
@@ -96,15 +110,22 @@ class UpdateEngine:
                     raise SerializationError("unexpected updates.getDifference response")
                 if result.new_encrypted_messages:
                     raise UnsupportedFeature("secret-chat updates are unsupported")
-                for message in result.new_messages:
-                    await self.emit(message)
-                for update in result.other_updates:
-                    await self.apply(update, authoritative=True)
-                state = (
+                next_state = (
                     result.intermediate_state
                     if isinstance(result, types.updates.DifferenceSlice)
                     else result.state
                 )
+                validate_state(next_state, state)
+                if isinstance(result, types.updates.DifferenceSlice) and all(
+                    getattr(next_state, name) == getattr(state, name)
+                    for name in ("pts", "qts", "seq", "date")
+                ):
+                    raise TransportError("difference recovery made no progress")
+                for message in result.new_messages:
+                    await self.emit(message)
+                for update in result.other_updates:
+                    await self.apply(update, authoritative=True)
+                state = next_state
                 self.states[0] = state
                 if isinstance(result, types.updates.Difference):
                     return
@@ -113,6 +134,15 @@ class UpdateEngine:
             self.recovering = False
 
     async def channel(self, ident: int) -> None:
+        if ident in self.recovering_channels or len(self.recovering_channels) >= 8:
+            raise TransportError("nested channel difference recovery exceeds bounds")
+        self.recovering_channels.add(ident)
+        try:
+            await self._channel(ident)
+        finally:
+            self.recovering_channels.remove(ident)
+
+    async def _channel(self, ident: int) -> None:
         entity = self.entities.get(-1000000000000 - ident)
         if entity is None:
             peers = getattr(self.backend, "peer_cache", None)
@@ -136,13 +166,19 @@ class UpdateEngine:
                 raise UnsupportedFeature(
                     "channel difference too long requires explicit history resynchronization"
                 )
+            if not isinstance(
+                result, (types.updates.ChannelDifference, types.updates.ChannelDifferenceEmpty)
+            ):
+                raise SerializationError("unexpected channel difference response")
+            if result.pts < pts:
+                raise SerializationError("channel difference state regressed")
+            if result.pts == pts and not result.final:
+                raise TransportError("channel difference recovery made no progress")
             if isinstance(result, types.updates.ChannelDifference):
                 for message in result.new_messages:
                     await self.emit(message)
                 for update in result.other_updates:
                     await self.apply(update, authoritative=True)
-            elif not isinstance(result, types.updates.ChannelDifferenceEmpty):
-                raise SerializationError("unexpected channel difference response")
             pts = result.pts
             self.states[ident] = types.updates.State(pts=pts, qts=0, date=0, seq=0, unread_count=0)
             if result.final:
@@ -173,7 +209,7 @@ class UpdateEngine:
                 state = self.states.get(state_id)
             if state is None:
                 raise TransportError("update recovery did not establish a baseline")
-            if pts < state.pts or count and pts == state.pts:
+            if state.pts + count > pts:
                 return
             if state.pts + count < pts:
                 if channel_id:
@@ -181,10 +217,14 @@ class UpdateEngine:
                 else:
                     await self.recover()
                 state = self.states[state_id]
-                if pts <= state.pts:
+                if state.pts + count > pts:
                     return
                 if state.pts + count != pts:
                     raise TransportError("update gap remains after difference")
+        if getattr(update, "qts", None) is not None:
+            raise UnsupportedFeature("encrypted update synchronization is unsupported")
+        for callback in getattr(self.backend, "_raw_handlers", ()):
+            await callback(update)
         if kind in (
             "updateNewMessage",
             "updateNewChannelMessage",
@@ -208,16 +248,31 @@ class UpdateEngine:
             raise TransportError("authorized update baseline has not been initialized")
         if kind in ("updates", "updatesCombined"):
             seq_start = getattr(value, "seq_start", value.seq)
-            if value.seq and value.seq <= state.seq:
+            if value.seq < 0 or seq_start < 0 or seq_start > value.seq:
+                raise SerializationError("invalid update sequence range")
+            # Message-box counters are independent of the envelope's seq. A
+            # duplicate seq can still carry unseen global/channel pts updates.
+            unordered = []
+            for update in value.updates:
+                if (
+                    getattr(update, "pts", None) is not None
+                    or getattr(update, "qts", None) is not None
+                    or update.definition.name == "updateChannelTooLong"
+                ):
+                    await self.apply(update)
+                else:
+                    unordered.append(update)
+            state = self.states[0]
+            if seq_start and state.seq + 1 > seq_start:
                 return
             if seq_start > state.seq + 1:
                 await self.recover()
                 state = self.states[0]
-                if value.seq <= state.seq:
+                if state.seq + 1 > seq_start:
                     return
                 if seq_start > state.seq + 1:
                     raise TransportError("sequence gap remains after recovery")
-            for update in value.updates:
+            for update in unordered:
                 await self.apply(update)
             state = self.states[0]
             if value.seq:
@@ -242,9 +297,15 @@ class UpdateEngine:
                 message=value.message,
                 date=value.date,
                 out=value.out,
+                mentioned=value.mentioned,
+                media_unread=value.media_unread,
+                silent=value.silent,
                 from_id=types.PeerUser(user_id=sender) if sender else None,
+                fwd_from=value.fwd_from,
+                via_bot_id=value.via_bot_id,
                 entities=value.entities,
                 reply_to=value.reply_to,
+                ttl_period=value.ttl_period,
             )
             update = types.UpdateNewMessage(
                 message=message, pts=value.pts, pts_count=value.pts_count

@@ -34,3 +34,5 @@ or remote deletion of its key. Cleanup is reported as uncertain if the server cl
 without a parsed confirmation. No user credentials are used by that probe. No secrets
 vault/encryption-at-rest feature, spam tooling, evasion or unauthorized access is added.
 See SECURITY.md for reporting and the release report for outstanding security work.
+
+The native waiting-update queue is bounded by both envelope count and decoded-wire byte charges. Byte charges are released at dequeue; active objects and Python allocation amplification remain outside this wire budget. Lost-reply/committed-write errors use RequestOutcomeUnknown. Dedicated live validation must not expose sessions as CI artifacts; the manual workflow uses owner-only temporary files and explicitly selected mutation scope.

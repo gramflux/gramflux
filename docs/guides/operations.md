@@ -76,3 +76,5 @@ advance raise PaginationError. Non-channel deletion preflights the chat for ever
 before sending any delete batch. Multi-batch writes can partially succeed.
 
 Connection setup bounds TCP establishment and preamble draining by the transport I/O deadline. The public Client applies its request timeout to the complete authorization-key/API setup. Cancelling or rejecting setup closes the socket and any started native sender. Reopening a full TCP transport starts new framing sequence counters. Initialization rejections and uncertain server errors are not cached as successful initialization; requests are never automatically replayed by this mechanism.
+
+`Config(update_queue_bytes=16 * 1024 * 1024)` bounds waiting native updates by uncompressed TL body size as well as count. It is not a Python heap/RSS limit. Overflow terminates the connection for explicit resynchronization. `RequestOutcomeUnknown` distinguishes lost replies or potentially committed writes; do not automatically repeat mutations. Its absence does not make arbitrary TransportError failures safe to retry.

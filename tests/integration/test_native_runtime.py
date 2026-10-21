@@ -25,7 +25,10 @@ def message(ident, peer=12):
 class SenderDouble:
     def __init__(self, respond):
         self.calls = []
-        self.codec = Codec()
+        from gramflux.mtproto import protocol
+        from gramflux.tl.generated.objects import REGISTRY
+
+        self.codec = Codec(REGISTRY | protocol.CODEC.registry)
         self.respond = respond
         self.disconnected = asyncio.get_running_loop().create_future()
         self.error = None
@@ -39,7 +42,8 @@ class SenderDouble:
             request = request.query
         return await self.respond(request)
 
-    def _offer(self, value):
+    def _offer(self, value, *, wire_size):
+        assert wire_size >= 4
         self.offered.append(value)
 
     async def close(self):
@@ -130,11 +134,14 @@ async def test_send_correlates_random_id_and_chat_instead_of_first_update():
 
 async def test_short_sent_response_normalizes_actual_server_fields_and_reaches_update_pipeline():
     async def respond(request):
-        return types.UpdateShortSentMessage(id=10, pts=11, pts_count=1, date=101, out=True)
+        return types.UpdateShortSentMessage(
+            id=10, pts=11, pts_count=1, date=101, out=True, ttl_period=60
+        )
 
     backend = runtime(respond)
     result = await backend.send_message(types.InputPeerUser(user_id=12, access_hash=8), "text")
     assert result.id == 10 and result.message == "text" and result.chat_id == 12
+    assert result.ttl_period == 60
     offered = backend.sender.offered[0]
     assert isinstance(offered, types.UpdateShort)
     assert offered.update.pts == 11 and offered.update.message.id == 10
@@ -295,3 +302,30 @@ async def test_lost_api_initialization_rewraps_next_request_without_replaying_fa
     assert isinstance(first, functions.InvokeWithLayerRequest)
     assert isinstance(rejected, functions.users.GetUsersRequest)
     assert isinstance(next_request, functions.InvokeWithLayerRequest)
+
+
+@pytest.mark.parametrize("request_deadline,delay", [(5, 60), (30, 75), (90, 135)])
+async def test_heartbeat_server_timer_covers_wait_and_next_heartbeat(
+    monkeypatch, request_deadline, delay
+):
+    from gramflux.mtproto import protocol
+
+    async def respond(request):
+        assert request.disconnect_delay == delay
+        return protocol.object("pong", msg_id=4, ping_id=request.ping_id)
+
+    backend = runtime(respond)
+    backend.config = Config(request_timeout=request_deadline)
+    sleeps = 0
+
+    async def sleep(seconds):
+        nonlocal sleeps
+        assert seconds == 30
+        sleeps += 1
+        if sleeps == 2:
+            raise asyncio.CancelledError
+
+    monkeypatch.setattr(asyncio, "sleep", sleep)
+    with pytest.raises(asyncio.CancelledError):
+        await backend._heartbeat()
+    assert len(backend.sender.calls) == 1

@@ -95,3 +95,7 @@ convenience methods. Use Client and MessageEvent operations. Raw constructor arg
 are keyword-only; dates are Unix seconds. Primitive fields are typed, but generated
 sum/generic types and many raw returns still use TLObject/Any rather than precise
 result unions. This typing limitation is separate from verified constructor coverage.
+
+See [the actual Client inventory](api-surface.json) and [bot/event methods](guides/bots-and-events.md) for the expanded typed surface. Raw TL request counts are separate from high-level operation coverage.
+
+See [all typed asynchronous raw functions](guides/async-api.md) through `client.api`.

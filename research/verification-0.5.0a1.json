@@ -1,0 +1,109 @@
+{
+  "version": "0.5.0a1",
+  "date": "2026-10-21",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "production_ready": false,
+  "schema_layer": 225,
+  "schema_sha256": "13d9c9f4a4ecc7282725b5a558f719cea5af0c3bafcf62531cac3a18bfaca046",
+  "async_raw_methods": 783,
+  "constructors": 1573,
+  "update_constructor_selectors": 156,
+  "high_level_event_classes": 8,
+  "source_tests": {
+    "passed": 1402,
+    "skipped": 6,
+    "warnings": 4,
+    "log": "/tmp/gramflux-050-final-tests.txt"
+  },
+  "installed_wheel_tests": [
+    {
+      "python": "3.11.17",
+      "passed": 1402,
+      "skipped": 6,
+      "warnings": 4,
+      "log": "/tmp/gramflux-050-311-tests.txt"
+    },
+    {
+      "python": "3.12.3",
+      "passed": 1402,
+      "skipped": 6,
+      "warnings": 4,
+      "log": "/tmp/gramflux-050-312-tests.txt"
+    },
+    {
+      "python": "3.13.16",
+      "passed": 1402,
+      "skipped": 6,
+      "warnings": 4,
+      "log": "/tmp/gramflux-050-313-tests.txt"
+    },
+    {
+      "python": "3.14.8",
+      "passed": 1402,
+      "skipped": 6,
+      "warnings": 4,
+      "log": "/tmp/gramflux-050-314-tests.txt"
+    }
+  ],
+  "commands": [
+    {
+      "command": "ruff check .",
+      "result": "passed"
+    },
+    {
+      "command": "ruff format --check .",
+      "result": "passed"
+    },
+    {
+      "command": "mypy src",
+      "result": "passed; 51 source files"
+    },
+    {
+      "command": "python -m gramflux.tools.schema generate",
+      "result": "passed"
+    },
+    {
+      "command": "python -m gramflux.tools.schema verify",
+      "result": "passed; deterministic generated facade verified"
+    },
+    {
+      "command": "python -m gramflux.tools.api_inventory --check",
+      "result": "passed"
+    },
+    {
+      "command": "pytest -q",
+      "result": "1402 passed, 6 skipped, 4 FFDH deprecation warnings"
+    },
+    {
+      "command": "python -m build",
+      "result": "wheel and sdist built"
+    },
+    {
+      "command": "python -m twine check --strict dist/gramflux-0.5.0a1*",
+      "result": "passed"
+    },
+    {
+      "command": "python -m compileall -q examples",
+      "result": "passed"
+    },
+    {
+      "command": "python -I -m pytest /root/gramjet/tests -q",
+      "result": "passed on installed wheels in four isolated environments"
+    }
+  ],
+  "typing_consumer_checks": {
+    "valid_InputUser_list": "mypy passed",
+    "invalid_InputPeer_in_InputUser_list": "mypy rejected as expected"
+  },
+  "runtime_competitor_dependencies": [],
+  "verification_scope": "All facade functions serialized and forwarded with synthetic arguments/results; Client-boundary concurrency, flags, cancellation and lifecycle tested. Not authenticated live Telegram coverage.",
+  "live_tests_this_release": "Not run; credentials unavailable. Six opt-in tests skipped.",
+  "security": "Existing owner-only persistent sessions, bounded protocol input/queues and secret-redacted reprs retained. No independent crypto audit; plaintext session files remain sensitive.",
+  "production_blockers": [
+    "Real authenticated user/bot/media/update interoperability",
+    "Independent cryptographic review",
+    "Complete qts synchronization and secret chats",
+    "Automatic DC migration and media CDN workflows",
+    "Long-running fault and soak validation"
+  ]
+}

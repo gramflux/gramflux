@@ -10,13 +10,14 @@ from collections.abc import Iterator
 from dataclasses import dataclass, field
 from typing import Any
 
-from gramflux.errors import RPCError, SerializationError, TransportError
+from gramflux.errors import RequestOutcomeUnknown, RPCError, SerializationError, TransportError
 from gramflux.tl import Codec
 from gramflux.tl.codec import Reader
 from gramflux.tl.model import TLObject
 
 from . import crypto, protocol
 from .connection import Connection
+from .queue import UpdateQueue
 from .workers import compute
 
 
@@ -49,6 +50,7 @@ class Sender:
         time_offset: float = 0,
         queue_size: int = 256,
         max_pending: int = 32,
+        queue_bytes: int = 16 * 1024 * 1024,
     ) -> None:
         self.connection = connection
         self.auth = auth
@@ -58,7 +60,7 @@ class Sender:
         self.last_id = 0
         self.content_count = 0
         self.pending: dict[int, Pending] = {}
-        self.updates: asyncio.Queue[TLObject] = asyncio.Queue(queue_size)
+        self.updates = UpdateQueue(queue_size, queue_bytes)
         self.admission = asyncio.Semaphore(max_pending)
         self.control_admission = asyncio.Semaphore(2)
         self.send_lock = asyncio.Lock()
@@ -188,7 +190,11 @@ class Sender:
                 task.exception()
             raise
         except Exception:
-            self.error = TransportError("native write failed; remote outcome may be unknown")
+            self.error = (
+                RequestOutcomeUnknown("native write failed; remote outcome may be unknown")
+                if committed
+                else TransportError("native request was not committed to the connection")
+            )
             if self.reader_task is not asyncio.current_task():
                 await self.close()
             raise self.error from None
@@ -234,9 +240,9 @@ class Sender:
             self.replay_floor = max(self.replay_floor, expired)
         return True
 
-    def _offer(self, update: TLObject) -> None:
+    def _offer(self, update: TLObject, *, wire_size: int) -> None:
         try:
-            self.updates.put_nowait(update)
+            self.updates.put_nowait(update, size=wire_size)
         except asyncio.QueueFull:
             raise TransportError(
                 "native update queue overflow; reconnect and resynchronize"
@@ -311,7 +317,7 @@ class Sender:
                 raise SerializationError("invalid new-session reference")
             self.salt = value.server_salt
             if self.last_new_session is not None and self.last_new_session != value.unique_id:
-                self._offer(value)
+                self._offer(value, wire_size=len(body))
             self.last_new_session = value.unique_id
         elif constructor == 0xA7EFF811:
             value = protocol.CODEC.decode(body)
@@ -368,7 +374,7 @@ class Sender:
                     item.future.set_result(pong)
         else:
             value = await compute(self.codec.decode, body)
-            self._offer(value)
+            self._offer(value, wire_size=len(body))
 
     async def _read_loop(self) -> None:
         try:
@@ -393,7 +399,9 @@ class Sender:
             for item in self.pending.values():
                 if not item.future.done():
                     item.future.set_exception(
-                        TransportError("native connection closed; remote outcome may be unknown")
+                        RequestOutcomeUnknown(
+                            "native connection closed; remote outcome may be unknown"
+                        )
                     )
             if not self.disconnected.done():
                 self.disconnected.set_result(None)

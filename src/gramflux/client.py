@@ -4,9 +4,10 @@ import asyncio
 import re
 from collections.abc import AsyncIterator, Awaitable, Callable
 from dataclasses import dataclass, field
+from functools import cached_property
 from pathlib import Path
 from types import TracebackType
-from typing import Any, BinaryIO, Literal, TypeVar
+from typing import TYPE_CHECKING, Any, BinaryIO, Literal, TypeVar
 
 from . import backend as adapter
 from . import chats, dialogs, messages
@@ -21,17 +22,34 @@ from .errors import (
     TransportError,
     UnsupportedFeature,
 )
-from .events import Dispatcher, ErrorHandler, Handler, MessageEvent
+from .events import (
+    CallbackQueryEvent,
+    ChatActionEvent,
+    DeletedMessagesEvent,
+    Dispatcher,
+    ErrorHandler,
+    Handler,
+    InlineQueryEvent,
+    MessageEvent,
+    RawUpdateEvent,
+    ReadHistoryEvent,
+    UserStatusEvent,
+    from_update,
+)
 from .files import CHUNK, Progress, disk, download, media_location, upload
 from .files import iter_download as stream_download
 from .filters import Filter, all_messages
 from .mtproto.srp import compute_check
+from .operations import TelegramMethods
 from .pagination import MessageIDs, count, message_ids
 from .peers import Entity, InputPeer, PeerLike, PeerResolver, as_channel, as_user
 from .raw import functions, types
 from .sessions import Session, session_path
 from .storage import MemoryStorage, SQLiteStorage, Storage
 from .tl.model import TLObject
+
+if TYPE_CHECKING:
+    from .tl.generated.methods import API
 
 T = TypeVar("T")
 
@@ -42,7 +60,7 @@ class LoginChallenge:
     code_hash: str = field(repr=False)
 
 
-class Client:
+class Client(TelegramMethods):
     """Connect without prompting or implicitly logging in.
 
     Prefer ``Session.open(name)``, ``Session.create(name)`` or ``Session.temporary()``.
@@ -94,6 +112,9 @@ class Client:
         self._closing = False
         self._logged_out = False
         adapter.bind_updates(self._backend, self._receive)
+        bind_raw = getattr(self._backend, "add_raw_handler", None)
+        if bind_raw is not None:
+            bind_raw(self._receive_raw)
 
     @property
     def connected(self) -> bool:
@@ -406,12 +427,19 @@ class Client:
         reply_to: int | None = None,
         silent: bool = False,
         link_preview: bool = True,
+        reply_markup: types.TypeReplyMarkup | None = None,
+        entities: list[types.TypeMessageEntity] | None = None,
     ) -> types.Message:
         """Send literal text; no new request is created to retry ambiguous failures."""
         if not isinstance(text, str) or not text:
             raise ConfigurationError("message text must not be empty")
         if reply_to is not None:
             message_ids(reply_to)
+        extra: dict[str, Any] = {}
+        if reply_markup is not None:
+            extra["reply_markup"] = reply_markup
+        if entities is not None:
+            extra["entities"] = entities
         target = await self.resolve_peer(peer)
         message: types.Message = await self._run(
             lambda: self._backend.send_message(
@@ -421,6 +449,7 @@ class Client:
                 reply_to=reply_to,
                 silent=silent,
                 link_preview=link_preview,
+                **extra,
             )
         )
         return message
@@ -576,6 +605,17 @@ class Client:
             raise ConfigurationError("provide the invite hash, not a URL")
         return await self.invoke(functions.messages.ImportChatInviteRequest(hash=invite_hash))
 
+    @cached_property
+    def api(self) -> "API":
+        """Typed asynchronous access to every pinned official Telegram function.
+
+        Arguments use native TL objects; this interface performs no peer resolution
+        or automatic retry. It shares this client's lifecycle and request engine.
+        """
+        from .tl.generated.methods import API
+
+        return API(self)
+
     async def invoke(self, request: Any) -> Any:
         """Invoke an independently generated official API method on the native runtime."""
         if not isinstance(request, TLObject) or not request.definition.method:
@@ -595,6 +635,127 @@ class Client:
         """Remove registrations for this callback; affects subsequent events."""
         return self._dispatcher.remove(callback)
 
+    def on(
+        self,
+        event_type: type[T],
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[[Callable[[T], Awaitable[None]]], Callable[[T], Awaitable[None]]]:
+        """Subscribe to a typed event with bounded, ordered callback execution."""
+        allowed = (
+            MessageEvent,
+            RawUpdateEvent,
+            DeletedMessagesEvent,
+            ReadHistoryEvent,
+            UserStatusEvent,
+            ChatActionEvent,
+            CallbackQueryEvent,
+            InlineQueryEvent,
+        )
+        if event_type not in allowed:
+            raise ConfigurationError("provide a supported GramFlux event class")
+
+        def register(callback: Callable[[T], Awaitable[None]]) -> Callable[[T], Awaitable[None]]:
+            self._dispatcher.add_event(callback, event_type, predicate, priority=priority)
+            return callback
+
+        return register
+
+    def on_edited_message(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[[Handler], Handler]:
+        return self.on_message(predicate, edited=True, priority=priority)
+
+    def on_raw_update(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[RawUpdateEvent], Awaitable[None]]], Callable[[RawUpdateEvent], Awaitable[None]]
+    ]:
+        return self.on(RawUpdateEvent, predicate, priority=priority)
+
+    def on_deleted_messages(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[DeletedMessagesEvent], Awaitable[None]]],
+        Callable[[DeletedMessagesEvent], Awaitable[None]],
+    ]:
+        return self.on(DeletedMessagesEvent, predicate, priority=priority)
+
+    def on_read_history(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[ReadHistoryEvent], Awaitable[None]]],
+        Callable[[ReadHistoryEvent], Awaitable[None]],
+    ]:
+        return self.on(ReadHistoryEvent, predicate, priority=priority)
+
+    def on_user_status(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[UserStatusEvent], Awaitable[None]]], Callable[[UserStatusEvent], Awaitable[None]]
+    ]:
+        return self.on(UserStatusEvent, predicate, priority=priority)
+
+    def on_chat_action(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[ChatActionEvent], Awaitable[None]]], Callable[[ChatActionEvent], Awaitable[None]]
+    ]:
+        return self.on(ChatActionEvent, predicate, priority=priority)
+
+    def on_callback_query(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[CallbackQueryEvent], Awaitable[None]]],
+        Callable[[CallbackQueryEvent], Awaitable[None]],
+    ]:
+        return self.on(CallbackQueryEvent, predicate, priority=priority)
+
+    def on_inline_query(
+        self,
+        predicate: Filter = all_messages,
+        *,
+        priority: int = 0,
+    ) -> Callable[
+        [Callable[[InlineQueryEvent], Awaitable[None]]],
+        Callable[[InlineQueryEvent], Awaitable[None]],
+    ]:
+        return self.on(InlineQueryEvent, predicate, priority=priority)
+
+    def off_event(self, callback: Callable[..., Awaitable[None]]) -> int:
+        return self._dispatcher.remove(callback)
+
+    async def _receive_raw(self, update: TLObject) -> None:
+        offered = False
+        for event in from_update(update, self):
+            if self._dispatcher.interested(event):
+                await self._dispatcher.put(event)
+                offered = True
+        if offered and self._connected:
+            await self._dispatcher.join()
+
     async def _receive(self, event: Any) -> None:
         entities = getattr(event, "_entities", {})
         if isinstance(entities, dict):
@@ -608,6 +769,8 @@ class Client:
             if getattr(event, "is_channel", False)
             else None
         )
+        if isinstance(event.message, types.MessageService):
+            await self._dispatcher.put(ChatActionEvent(event.message, self))
         await self._dispatcher.put(
             MessageEvent(
                 event.message,

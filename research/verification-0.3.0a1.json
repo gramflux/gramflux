@@ -11,29 +11,29 @@
     "runtime": "GramFlux native MTProto runtime; same pinned API layer"
   },
   "source_tests": {
-    "passed": 358,
+    "passed": 381,
     "skipped": 4,
     "warnings": 4
   },
   "installed_wheel_tests": [
     {
       "python": "3.11.17",
-      "result": "358 passed, 4 skipped, 4 warnings in 12.88s",
+      "result": "381 passed, 4 skipped, 4 warnings in 16.19s",
       "telethon_installed": false
     },
     {
       "python": "3.12.3",
-      "result": "358 passed, 4 skipped, 4 warnings in 13.56s",
+      "result": "381 passed, 4 skipped, 4 warnings in 15.98s",
       "telethon_installed": false
     },
     {
       "python": "3.13.16",
-      "result": "358 passed, 4 skipped, 4 warnings in 12.78s",
+      "result": "381 passed, 4 skipped, 4 warnings in 13.98s",
       "telethon_installed": false
     },
     {
       "python": "3.14.8",
-      "result": "358 passed, 4 skipped, 4 warnings in 13.04s",
+      "result": "381 passed, 4 skipped, 4 warnings in 14.69s",
       "telethon_installed": false
     }
   ],
@@ -49,7 +49,7 @@
   },
   "quality": {
     "ruff": "passed",
-    "format_files": 105,
+    "format_files": 106,
     "mypy_files": 45,
     "build": "passed",
     "runtime_audit": "No known vulnerabilities found"
@@ -64,5 +64,18 @@
     "relevant_event_metadata": true,
     "benchmark": "research/native-updates-benchmark-0.3.0a1.json",
     "source_distribution_clean_install": "passed"
+  },
+  "update_state_followup": {
+    "date": "2026-10-21",
+    "regressions_added": 23,
+    "pts_before_seq": true,
+    "overlapping_pts_ignored": true,
+    "short_message_metadata_preserved": true,
+    "difference_counter_validation": true,
+    "nonprogress_and_recursion_bounds": true,
+    "channel_cancellation_page_boundary": true,
+    "real_account_update_recovery_verified": false,
+    "sdist_install_and_schema_verify": "passed",
+    "python313_reinstall": "offline --no-deps with existing unchanged locked runtime dependencies"
   }
 }

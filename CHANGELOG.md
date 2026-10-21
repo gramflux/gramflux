@@ -1,6 +1,37 @@
 # Changelog
 
+## 0.5.0a1
+
+- Generate all 783 typed asynchronous raw function methods under Client.api.
+- Add native update constructor selection across 156 official Update types.
+- Verify generated facade deterministically and inventory every callable path.
+- Add exhaustive serialization/selector and concurrent Client-boundary tests.
+- Retain alpha status and explicit unsupported runtime workflows.
+
+
+## 0.4.0a1 — unreleased
+
+- Add 23 high-level bot, callback/inline, chat, contact/profile/session and media operations on native requests.
+- Add typed deletion, read-history, user-status, chat-action, callback-query, inline-query and accepted raw-update events.
+- Preserve bounded ordered dispatch and counter commit/cancellation semantics; isolate event families and redact payload reprs.
+- Add native inline keyboard/article builders, callback data filters and message markup/entities.
+- Add an actual public Client surface inventory, separate from generated raw declarations, enforced in CI.
+- Add a complete bot example and domain documentation. Live-account validation remains outstanding.
+
+## 0.3.0a2 — unreleased
+
+- Bound native update buffering by uncompressed TL bytes and count; validate cancellation and overflow accounting.
+- Add RequestOutcomeUnknown for lost responses/committed writes, without automatic mutation retries.
+- Cover heartbeat server timers with the request budget and preserve short sent-message TTL.
+- Add six encrypted loopback load/failure cases with 1,000 submitted RPCs each.
+- Add manually selected dedicated-account live validation, owner-only session preparation, scoped test cleanup and locked CI installs.
+- Keep Alpha status: real account interoperability, independent security review and long-duration recovery validation remain unverified.
+
 ## 0.3.0a1 — unreleased
+
+- Process message-box counters independently of repeated envelope sequences; apply combined sequence ranges using seq_start.
+- Ignore overlapping pts ranges; validate difference counters before delivery and reject stalled/recursive recovery.
+- Preserve forwarding, bot, reply, formatting, notification and TTL fields in normalized short messages.
 
 - Reset full-TCP framing counters on reopen, bound connection/preamble waits and close started senders on setup failure.
 - Keep rejected/uncertain API initialization uncached without replaying the failed request.
