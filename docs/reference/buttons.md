@@ -38,3 +38,11 @@ def url(text: str, url: str) -> KeyboardButtonUrl
 ```
 
 
+
+[buttons.callback: complete parameter guide](helpers/buttons-callback.md)
+
+[buttons.url: complete parameter guide](helpers/buttons-url.md)
+
+[buttons.inline: complete parameter guide](helpers/buttons-inline.md)
+
+[buttons.article: complete parameter guide](helpers/buttons-article.md)

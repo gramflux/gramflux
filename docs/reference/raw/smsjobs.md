@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## finish_job
 
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/finish_job.md)
+
 **Call:** `client.api.smsjobs.finish_job(...)`
 
 **Official method:** `smsjobs.finishJob` · **ID:** `0x4f1ebf24`
@@ -31,6 +33,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_sms_job
 
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/get_sms_job.md)
+
 **Call:** `client.api.smsjobs.get_sms_job(...)`
 
 **Official method:** `smsjobs.getSmsJob` · **ID:** `0x778d902f`
@@ -47,6 +51,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_status
 
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/get_status.md)
+
 **Call:** `client.api.smsjobs.get_status(...)`
 
 **Official method:** `smsjobs.getStatus` · **ID:** `0x10a698e8`
@@ -60,6 +66,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/smsjobs.getStatus)
 
 ## is_eligible_to_join
+
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/is_eligible_to_join.md)
 
 **Call:** `client.api.smsjobs.is_eligible_to_join(...)`
 
@@ -75,6 +83,8 @@ No parameters.
 
 ## join
 
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/join.md)
+
 **Call:** `client.api.smsjobs.join(...)`
 
 **Official method:** `smsjobs.join` · **ID:** `0xa74ece2d`
@@ -89,6 +99,8 @@ No parameters.
 
 ## leave
 
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/leave.md)
+
 **Call:** `client.api.smsjobs.leave(...)`
 
 **Official method:** `smsjobs.leave` · **ID:** `0x9898ad73`
@@ -102,6 +114,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/smsjobs.leave)
 
 ## update_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](smsjobs/update_settings.md)
 
 **Call:** `client.api.smsjobs.update_settings(...)`
 

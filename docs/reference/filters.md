@@ -11,13 +11,19 @@ description: "Public filters exported by GramFlux."
 
 `filters.all_messages` is a composable synchronous predicate.
 
+Always accepts the supplied event. The subscription chooses the event class; this predicate itself does not restrict delivery to messages.
+
 ## audio
 
 `filters.audio` is a composable synchronous predicate.
 
+Matches the message's audio classification derived from native document attributes. Use voice for voice-note classification.
+
 ## channel
 
 `filters.channel` is a composable synchronous predicate.
+
+Matches chat_type equal to channel. This does not test the sender's identity or administrator permissions.
 
 ## chat
 
@@ -50,29 +56,43 @@ Match callback data exactly, using UTF-8 for a text value.
 
 `filters.document` is a composable synchronous predicate.
 
+Matches the message's document classification. Specific document attributes can also match video, audio, voice or sticker filters.
+
 ## group
 
 `filters.group` is a composable synchronous predicate.
+
+Matches chat_type equal to group using existing event classification, without fetching participants.
 
 ## incoming
 
 `filters.incoming` is a composable synchronous predicate.
 
+Matches events exposing outgoing=False. Events without this attribute do not match.
+
 ## media
 
 `filters.media` is a composable synchronous predicate.
+
+Matches the message's media classification without downloading or inspecting file contents.
 
 ## outgoing
 
 `filters.outgoing` is a composable synchronous predicate.
 
+Matches events whose outgoing attribute is truthy. Events without it do not match.
+
 ## photo
 
 `filters.photo` is a composable synchronous predicate.
 
+Matches the message's photo classification. An image filename on a document does not itself make this match.
+
 ## private
 
 `filters.private` is a composable synchronous predicate.
+
+Matches chat_type equal to private using existing event data, without a network request.
 
 ## regex
 
@@ -94,9 +114,13 @@ def sender(*ids: int) -> Filter
 
 `filters.sticker` is a composable synchronous predicate.
 
+Matches the message's sticker classification derived from native document attributes, without fetching the sticker set.
+
 ## text
 
 `filters.text` is a composable synchronous predicate.
+
+Matches a nonempty text attribute. Whitespace counts as text. No entity parsing or event-class restriction is implied.
 
 ## update_type
 
@@ -113,6 +137,32 @@ enable unsupported qts/secret-chat processing. Multiple constructors mean OR.
 
 `filters.video` is a composable synchronous predicate.
 
+Matches the message's video classification derived from native document attributes, without downloading the file.
+
 ## voice
 
 `filters.voice` is a composable synchronous predicate.
+
+Matches the message's voice-note classification derived from native audio attributes, without decoding audio.
+
+[filters.chat: complete parameter guide](helpers/filters-chat.md)
+
+[filters.sender: complete parameter guide](helpers/filters-sender.md)
+
+[filters.regex: complete parameter guide](helpers/filters-regex.md)
+
+[filters.command: complete parameter guide](helpers/filters-command.md)
+
+[filters.data: complete parameter guide](helpers/filters-data.md)
+
+[filters.update_type: complete parameter guide](helpers/filters-update_type.md)
+
+## Composition and evaluation
+
+Use `&` for AND, `|` for OR and `~` for NOT; parenthesize mixed operators. Predicates are synchronous and use existing event data without network I/O.
+
+```python
+selector = filters.incoming & filters.text & ~filters.command('start')
+```
+
+Subscriptions choose the event class. Filtering does not alter handler ordering or enable unsupported update processing.

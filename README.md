@@ -183,7 +183,9 @@ Typed callback/inline queries, deletion/read/status/chat-action events and bot U
 ## Documentation website
 
 The English Docusaurus site includes tutorials, guides, generated API reference and
-search across the pinned raw API. See [documentation development](docs/documentation.md)
+search across the pinned raw API. Individual method pages describe parameters,
+defaults, native input variants, results and errors. Start with the
+[parameter guide](docs/guides/parameters.md). See [documentation development](docs/documentation.md)
 for setup, production builds and browser checks.
 
 ```bash

@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## create_tone
 
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/create_tone.md)
+
 **Call:** `client.api.aicompose.create_tone(...)`
 
 **Official method:** `aicompose.createTone` · **ID:** `0x4aa83913`
@@ -33,6 +35,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_tone
 
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/delete_tone.md)
+
 **Call:** `client.api.aicompose.delete_tone(...)`
 
 **Official method:** `aicompose.deleteTone` · **ID:** `0xdd39316a`
@@ -49,6 +53,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_tone
 
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/get_tone.md)
+
 **Call:** `client.api.aicompose.get_tone(...)`
 
 **Official method:** `aicompose.getTone` · **ID:** `0xb2e8ba03`
@@ -64,6 +70,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/aicompose.getTone)
 
 ## get_tone_example
+
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/get_tone_example.md)
 
 **Call:** `client.api.aicompose.get_tone_example(...)`
 
@@ -82,6 +90,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_tones
 
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/get_tones.md)
+
 **Call:** `client.api.aicompose.get_tones(...)`
 
 **Official method:** `aicompose.getTones` · **ID:** `0xabd59201`
@@ -97,6 +107,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/aicompose.getTones)
 
 ## save_tone
+
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/save_tone.md)
 
 **Call:** `client.api.aicompose.save_tone(...)`
 
@@ -114,6 +126,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/aicompose.saveTone)
 
 ## update_tone
+
+[Detailed method page: every parameter, native variants, flags and errors](aicompose/update_tone.md)
 
 **Call:** `client.api.aicompose.update_tone(...)`
 

@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## accept_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/accept_call.md)
+
 **Call:** `client.api.phone.accept_call(...)`
 
 **Official method:** `phone.acceptCall` · **ID:** `0x3bd2b4a0`
@@ -32,6 +34,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_group_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/check_group_call.md)
+
 **Call:** `client.api.phone.check_group_call(...)`
 
 **Official method:** `phone.checkGroupCall` · **ID:** `0xb59cf977`
@@ -48,6 +52,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.checkGroupCall)
 
 ## confirm_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/confirm_call.md)
 
 **Call:** `client.api.phone.confirm_call(...)`
 
@@ -67,6 +73,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.confirmCall)
 
 ## create_conference_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/create_conference_call.md)
 
 **Call:** `client.api.phone.create_conference_call(...)`
 
@@ -90,6 +98,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## create_group_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/create_group_call.md)
+
 **Call:** `client.api.phone.create_group_call(...)`
 
 **Official method:** `phone.createGroupCall` · **ID:** `0x48cdc6d8`
@@ -110,6 +120,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## decline_conference_call_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/decline_conference_call_invite.md)
+
 **Call:** `client.api.phone.decline_conference_call_invite(...)`
 
 **Official method:** `phone.declineConferenceCallInvite` · **ID:** `0x3c479971`
@@ -125,6 +137,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.declineConferenceCallInvite)
 
 ## delete_conference_call_participants
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/delete_conference_call_participants.md)
 
 **Call:** `client.api.phone.delete_conference_call_participants(...)`
 
@@ -146,6 +160,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_group_call_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/delete_group_call_messages.md)
+
 **Call:** `client.api.phone.delete_group_call_messages(...)`
 
 **Official method:** `phone.deleteGroupCallMessages` · **ID:** `0xf64f54f7`
@@ -164,6 +180,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_group_call_participant_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/delete_group_call_participant_messages.md)
+
 **Call:** `client.api.phone.delete_group_call_participant_messages(...)`
 
 **Official method:** `phone.deleteGroupCallParticipantMessages` · **ID:** `0x1dbfeca0`
@@ -181,6 +199,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.deleteGroupCallParticipantMessages)
 
 ## discard_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/discard_call.md)
 
 **Call:** `client.api.phone.discard_call(...)`
 
@@ -202,6 +222,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## discard_group_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/discard_group_call.md)
+
 **Call:** `client.api.phone.discard_group_call(...)`
 
 **Official method:** `phone.discardGroupCall` · **ID:** `0x7a777135`
@@ -217,6 +239,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.discardGroupCall)
 
 ## edit_group_call_participant
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/edit_group_call_participant.md)
 
 **Call:** `client.api.phone.edit_group_call_participant(...)`
 
@@ -241,6 +265,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_group_call_title
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/edit_group_call_title.md)
+
 **Call:** `client.api.phone.edit_group_call_title(...)`
 
 **Official method:** `phone.editGroupCallTitle` · **ID:** `0x1ca6ac0a`
@@ -257,6 +283,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.editGroupCallTitle)
 
 ## export_group_call_invite
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/export_group_call_invite.md)
 
 **Call:** `client.api.phone.export_group_call_invite(...)`
 
@@ -275,6 +303,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_call_config
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_call_config.md)
+
 **Call:** `client.api.phone.get_call_config(...)`
 
 **Official method:** `phone.getCallConfig` · **ID:** `0x55451fa9`
@@ -288,6 +318,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.getCallConfig)
 
 ## get_group_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_call.md)
 
 **Call:** `client.api.phone.get_group_call(...)`
 
@@ -305,6 +337,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.getGroupCall)
 
 ## get_group_call_chain_blocks
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_call_chain_blocks.md)
 
 **Call:** `client.api.phone.get_group_call_chain_blocks(...)`
 
@@ -325,6 +359,8 @@ No parameters.
 
 ## get_group_call_join_as
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_call_join_as.md)
+
 **Call:** `client.api.phone.get_group_call_join_as(...)`
 
 **Official method:** `phone.getGroupCallJoinAs` · **ID:** `0xef7c213a`
@@ -340,6 +376,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.getGroupCallJoinAs)
 
 ## get_group_call_stars
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_call_stars.md)
 
 **Call:** `client.api.phone.get_group_call_stars(...)`
 
@@ -357,6 +395,8 @@ No parameters.
 
 ## get_group_call_stream_channels
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_call_stream_channels.md)
+
 **Call:** `client.api.phone.get_group_call_stream_channels(...)`
 
 **Official method:** `phone.getGroupCallStreamChannels` · **ID:** `0x1ab21940`
@@ -372,6 +412,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.getGroupCallStreamChannels)
 
 ## get_group_call_stream_rtmp_url
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_call_stream_rtmp_url.md)
 
 **Call:** `client.api.phone.get_group_call_stream_rtmp_url(...)`
 
@@ -390,6 +432,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.getGroupCallStreamRtmpUrl)
 
 ## get_group_participants
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/get_group_participants.md)
 
 **Call:** `client.api.phone.get_group_participants(...)`
 
@@ -411,6 +455,8 @@ No parameters.
 
 ## invite_conference_call_participant
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/invite_conference_call_participant.md)
+
 **Call:** `client.api.phone.invite_conference_call_participant(...)`
 
 **Official method:** `phone.inviteConferenceCallParticipant` · **ID:** `0xbcf22685`
@@ -429,6 +475,8 @@ No parameters.
 
 ## invite_to_group_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/invite_to_group_call.md)
+
 **Call:** `client.api.phone.invite_to_group_call(...)`
 
 **Official method:** `phone.inviteToGroupCall` · **ID:** `0x7b393160`
@@ -445,6 +493,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.inviteToGroupCall)
 
 ## join_group_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/join_group_call.md)
 
 **Call:** `client.api.phone.join_group_call(...)`
 
@@ -469,6 +519,8 @@ No parameters.
 
 ## join_group_call_presentation
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/join_group_call_presentation.md)
+
 **Call:** `client.api.phone.join_group_call_presentation(...)`
 
 **Official method:** `phone.joinGroupCallPresentation` · **ID:** `0xcbea6bc4`
@@ -485,6 +537,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.joinGroupCallPresentation)
 
 ## leave_group_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/leave_group_call.md)
 
 **Call:** `client.api.phone.leave_group_call(...)`
 
@@ -503,6 +557,8 @@ No parameters.
 
 ## leave_group_call_presentation
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/leave_group_call_presentation.md)
+
 **Call:** `client.api.phone.leave_group_call_presentation(...)`
 
 **Official method:** `phone.leaveGroupCallPresentation` · **ID:** `0x1c50d144`
@@ -519,6 +575,8 @@ No parameters.
 
 ## received_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/received_call.md)
+
 **Call:** `client.api.phone.received_call(...)`
 
 **Official method:** `phone.receivedCall` · **ID:** `0x17d54f61`
@@ -534,6 +592,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.receivedCall)
 
 ## request_call
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/request_call.md)
 
 **Call:** `client.api.phone.request_call(...)`
 
@@ -555,6 +615,8 @@ No parameters.
 
 ## save_call_debug
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/save_call_debug.md)
+
 **Call:** `client.api.phone.save_call_debug(...)`
 
 **Official method:** `phone.saveCallDebug` · **ID:** `0x277add7e`
@@ -571,6 +633,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.saveCallDebug)
 
 ## save_call_log
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/save_call_log.md)
 
 **Call:** `client.api.phone.save_call_log(...)`
 
@@ -589,6 +653,8 @@ No parameters.
 
 ## save_default_group_call_join_as
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/save_default_group_call_join_as.md)
+
 **Call:** `client.api.phone.save_default_group_call_join_as(...)`
 
 **Official method:** `phone.saveDefaultGroupCallJoinAs` · **ID:** `0x575e1f8c`
@@ -605,6 +671,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.saveDefaultGroupCallJoinAs)
 
 ## save_default_send_as
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/save_default_send_as.md)
 
 **Call:** `client.api.phone.save_default_send_as(...)`
 
@@ -623,6 +691,8 @@ No parameters.
 
 ## send_conference_call_broadcast
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/send_conference_call_broadcast.md)
+
 **Call:** `client.api.phone.send_conference_call_broadcast(...)`
 
 **Official method:** `phone.sendConferenceCallBroadcast` · **ID:** `0xc6701900`
@@ -640,6 +710,8 @@ No parameters.
 
 ## send_group_call_encrypted_message
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/send_group_call_encrypted_message.md)
+
 **Call:** `client.api.phone.send_group_call_encrypted_message(...)`
 
 **Official method:** `phone.sendGroupCallEncryptedMessage` · **ID:** `0xe5afa56d`
@@ -656,6 +728,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.sendGroupCallEncryptedMessage)
 
 ## send_group_call_message
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/send_group_call_message.md)
 
 **Call:** `client.api.phone.send_group_call_message(...)`
 
@@ -677,6 +751,8 @@ No parameters.
 
 ## send_signaling_data
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/send_signaling_data.md)
+
 **Call:** `client.api.phone.send_signaling_data(...)`
 
 **Official method:** `phone.sendSignalingData` · **ID:** `0xff7a9383`
@@ -693,6 +769,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.sendSignalingData)
 
 ## set_call_rating
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/set_call_rating.md)
 
 **Call:** `client.api.phone.set_call_rating(...)`
 
@@ -713,6 +791,8 @@ No parameters.
 
 ## start_scheduled_group_call
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/start_scheduled_group_call.md)
+
 **Call:** `client.api.phone.start_scheduled_group_call(...)`
 
 **Official method:** `phone.startScheduledGroupCall` · **ID:** `0x5680e342`
@@ -728,6 +808,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.startScheduledGroupCall)
 
 ## toggle_group_call_record
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/toggle_group_call_record.md)
 
 **Call:** `client.api.phone.toggle_group_call_record(...)`
 
@@ -749,6 +831,8 @@ No parameters.
 
 ## toggle_group_call_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](phone/toggle_group_call_settings.md)
+
 **Call:** `client.api.phone.toggle_group_call_settings(...)`
 
 **Official method:** `phone.toggleGroupCallSettings` · **ID:** `0x974392f2`
@@ -768,6 +852,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/phone.toggleGroupCallSettings)
 
 ## toggle_group_call_start_subscription
+
+[Detailed method page: every parameter, native variants, flags and errors](phone/toggle_group_call_start_subscription.md)
 
 **Call:** `client.api.phone.toggle_group_call_start_subscription(...)`
 

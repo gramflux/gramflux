@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## add_sticker_to_set
 
+[Detailed method page: every parameter, native variants, flags and errors](stickers/add_sticker_to_set.md)
+
 **Call:** `client.api.stickers.add_sticker_to_set(...)`
 
 **Official method:** `stickers.addStickerToSet` · **ID:** `0x8653febe`
@@ -30,6 +32,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stickers.addStickerToSet)
 
 ## change_sticker
+
+[Detailed method page: every parameter, native variants, flags and errors](stickers/change_sticker.md)
 
 **Call:** `client.api.stickers.change_sticker(...)`
 
@@ -50,6 +54,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## change_sticker_position
 
+[Detailed method page: every parameter, native variants, flags and errors](stickers/change_sticker_position.md)
+
 **Call:** `client.api.stickers.change_sticker_position(...)`
 
 **Official method:** `stickers.changeStickerPosition` · **ID:** `0xffb6d4ca`
@@ -67,6 +73,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_short_name
 
+[Detailed method page: every parameter, native variants, flags and errors](stickers/check_short_name.md)
+
 **Call:** `client.api.stickers.check_short_name(...)`
 
 **Official method:** `stickers.checkShortName` · **ID:** `0x284b3639`
@@ -82,6 +90,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stickers.checkShortName)
 
 ## create_sticker_set
+
+[Detailed method page: every parameter, native variants, flags and errors](stickers/create_sticker_set.md)
 
 **Call:** `client.api.stickers.create_sticker_set(...)`
 
@@ -107,6 +117,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_sticker_set
 
+[Detailed method page: every parameter, native variants, flags and errors](stickers/delete_sticker_set.md)
+
 **Call:** `client.api.stickers.delete_sticker_set(...)`
 
 **Official method:** `stickers.deleteStickerSet` · **ID:** `0x87704394`
@@ -123,6 +135,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## remove_sticker_from_set
 
+[Detailed method page: every parameter, native variants, flags and errors](stickers/remove_sticker_from_set.md)
+
 **Call:** `client.api.stickers.remove_sticker_from_set(...)`
 
 **Official method:** `stickers.removeStickerFromSet` · **ID:** `0xf7760f51`
@@ -138,6 +152,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stickers.removeStickerFromSet)
 
 ## rename_sticker_set
+
+[Detailed method page: every parameter, native variants, flags and errors](stickers/rename_sticker_set.md)
 
 **Call:** `client.api.stickers.rename_sticker_set(...)`
 
@@ -156,6 +172,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## replace_sticker
 
+[Detailed method page: every parameter, native variants, flags and errors](stickers/replace_sticker.md)
+
 **Call:** `client.api.stickers.replace_sticker(...)`
 
 **Official method:** `stickers.replaceSticker` · **ID:** `0x4696459a`
@@ -172,6 +190,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stickers.replaceSticker)
 
 ## set_sticker_set_thumb
+
+[Detailed method page: every parameter, native variants, flags and errors](stickers/set_sticker_set_thumb.md)
 
 **Call:** `client.api.stickers.set_sticker_set_thumb(...)`
 
@@ -190,6 +210,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stickers.setStickerSetThumb)
 
 ## suggest_short_name
+
+[Detailed method page: every parameter, native variants, flags and errors](stickers/suggest_short_name.md)
 
 **Call:** `client.api.stickers.suggest_short_name(...)`
 

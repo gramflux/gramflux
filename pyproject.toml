@@ -21,7 +21,7 @@ dev = ["pytest==9.1.1", "pytest-asyncio==1.4.0", "hypothesis==6.170.5", "ruff==0
 where = ["src"]
 
 [tool.setuptools.package-data]
-gramflux = ["py.typed", "tl/data/*.json", "tl/data/*.tl"]
+gramflux = ["py.typed", "tl/data/*.json", "tl/data/*.tl", "tools/data/*.json"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

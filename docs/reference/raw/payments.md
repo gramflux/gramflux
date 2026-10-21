@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## apply_gift_code
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/apply_gift_code.md)
+
 **Call:** `client.api.payments.apply_gift_code(...)`
 
 **Official method:** `payments.applyGiftCode` · **ID:** `0xf6e26854`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.applyGiftCode)
 
 ## assign_app_store_transaction
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/assign_app_store_transaction.md)
 
 **Call:** `client.api.payments.assign_app_store_transaction(...)`
 
@@ -47,6 +51,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## assign_play_market_transaction
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/assign_play_market_transaction.md)
+
 **Call:** `client.api.payments.assign_play_market_transaction(...)`
 
 **Official method:** `payments.assignPlayMarketTransaction` · **ID:** `0xdffd50d3`
@@ -63,6 +69,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.assignPlayMarketTransaction)
 
 ## bot_cancel_stars_subscription
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/bot_cancel_stars_subscription.md)
 
 **Call:** `client.api.payments.bot_cancel_stars_subscription(...)`
 
@@ -82,6 +90,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## can_purchase_store
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/can_purchase_store.md)
+
 **Call:** `client.api.payments.can_purchase_store(...)`
 
 **Official method:** `payments.canPurchaseStore` · **ID:** `0x4fdc5ea7`
@@ -97,6 +107,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.canPurchaseStore)
 
 ## change_stars_subscription
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/change_stars_subscription.md)
 
 **Call:** `client.api.payments.change_stars_subscription(...)`
 
@@ -116,6 +128,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_can_send_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/check_can_send_gift.md)
+
 **Call:** `client.api.payments.check_can_send_gift(...)`
 
 **Official method:** `payments.checkCanSendGift` · **ID:** `0xc0c4edc9`
@@ -132,6 +146,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_gift_code
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/check_gift_code.md)
+
 **Call:** `client.api.payments.check_gift_code(...)`
 
 **Official method:** `payments.checkGiftCode` · **ID:** `0x8e51b4c1`
@@ -147,6 +163,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.checkGiftCode)
 
 ## clear_saved_info
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/clear_saved_info.md)
 
 **Call:** `client.api.payments.clear_saved_info(...)`
 
@@ -165,6 +183,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## connect_star_ref_bot
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/connect_star_ref_bot.md)
+
 **Call:** `client.api.payments.connect_star_ref_bot(...)`
 
 **Official method:** `payments.connectStarRefBot` · **ID:** `0x7ed5348a`
@@ -182,6 +202,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## convert_star_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/convert_star_gift.md)
+
 **Call:** `client.api.payments.convert_star_gift(...)`
 
 **Official method:** `payments.convertStarGift` · **ID:** `0x74bf076b`
@@ -198,6 +220,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## craft_star_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/craft_star_gift.md)
+
 **Call:** `client.api.payments.craft_star_gift(...)`
 
 **Official method:** `payments.craftStarGift` · **ID:** `0xb0f9684f`
@@ -213,6 +237,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.craftStarGift)
 
 ## create_star_gift_collection
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/create_star_gift_collection.md)
 
 **Call:** `client.api.payments.create_star_gift_collection(...)`
 
@@ -232,6 +258,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_star_gift_collection
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/delete_star_gift_collection.md)
+
 **Call:** `client.api.payments.delete_star_gift_collection(...)`
 
 **Official method:** `payments.deleteStarGiftCollection` · **ID:** `0xad5648e8`
@@ -248,6 +276,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.deleteStarGiftCollection)
 
 ## edit_connected_star_ref_bot
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/edit_connected_star_ref_bot.md)
 
 **Call:** `client.api.payments.edit_connected_star_ref_bot(...)`
 
@@ -267,6 +297,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## export_invoice
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/export_invoice.md)
+
 **Call:** `client.api.payments.export_invoice(...)`
 
 **Official method:** `payments.exportInvoice` · **ID:** `0x0f91b065`
@@ -282,6 +314,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.exportInvoice)
 
 ## fulfill_stars_subscription
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/fulfill_stars_subscription.md)
 
 **Call:** `client.api.payments.fulfill_stars_subscription(...)`
 
@@ -300,6 +334,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_bank_card_data
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_bank_card_data.md)
+
 **Call:** `client.api.payments.get_bank_card_data(...)`
 
 **Official method:** `payments.getBankCardData` · **ID:** `0x2e79d779`
@@ -315,6 +351,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getBankCardData)
 
 ## get_connected_star_ref_bot
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_connected_star_ref_bot.md)
 
 **Call:** `client.api.payments.get_connected_star_ref_bot(...)`
 
@@ -332,6 +370,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getConnectedStarRefBot)
 
 ## get_connected_star_ref_bots
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_connected_star_ref_bots.md)
 
 **Call:** `client.api.payments.get_connected_star_ref_bots(...)`
 
@@ -352,6 +392,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_craft_star_gifts
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_craft_star_gifts.md)
+
 **Call:** `client.api.payments.get_craft_star_gifts(...)`
 
 **Official method:** `payments.getCraftStarGifts` · **ID:** `0xfd05dd00`
@@ -370,6 +412,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_giveaway_info
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_giveaway_info.md)
+
 **Call:** `client.api.payments.get_giveaway_info(...)`
 
 **Official method:** `payments.getGiveawayInfo` · **ID:** `0xf4239425`
@@ -386,6 +430,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getGiveawayInfo)
 
 ## get_payment_form
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_payment_form.md)
 
 **Call:** `client.api.payments.get_payment_form(...)`
 
@@ -404,6 +450,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_payment_receipt
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_payment_receipt.md)
+
 **Call:** `client.api.payments.get_payment_receipt(...)`
 
 **Official method:** `payments.getPaymentReceipt` · **ID:** `0x2478d1cc`
@@ -421,6 +469,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_premium_gift_code_options
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_premium_gift_code_options.md)
+
 **Call:** `client.api.payments.get_premium_gift_code_options(...)`
 
 **Official method:** `payments.getPremiumGiftCodeOptions` · **ID:** `0x2757ba54`
@@ -436,6 +486,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getPremiumGiftCodeOptions)
 
 ## get_resale_star_gifts
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_resale_star_gifts.md)
 
 **Call:** `client.api.payments.get_resale_star_gifts(...)`
 
@@ -461,6 +513,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_saved_info
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_saved_info.md)
+
 **Call:** `client.api.payments.get_saved_info(...)`
 
 **Official method:** `payments.getSavedInfo` · **ID:** `0x227d824b`
@@ -474,6 +528,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getSavedInfo)
 
 ## get_saved_star_gift
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_saved_star_gift.md)
 
 **Call:** `client.api.payments.get_saved_star_gift(...)`
 
@@ -490,6 +546,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getSavedStarGift)
 
 ## get_saved_star_gifts
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_saved_star_gifts.md)
 
 **Call:** `client.api.payments.get_saved_star_gifts(...)`
 
@@ -519,6 +577,8 @@ No parameters.
 
 ## get_star_gift_active_auctions
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_active_auctions.md)
+
 **Call:** `client.api.payments.get_star_gift_active_auctions(...)`
 
 **Official method:** `payments.getStarGiftActiveAuctions` · **ID:** `0xa5d0514d`
@@ -535,6 +595,8 @@ No parameters.
 
 ## get_star_gift_auction_acquired_gifts
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_auction_acquired_gifts.md)
+
 **Call:** `client.api.payments.get_star_gift_auction_acquired_gifts(...)`
 
 **Official method:** `payments.getStarGiftAuctionAcquiredGifts` · **ID:** `0x6ba2cbec`
@@ -550,6 +612,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarGiftAuctionAcquiredGifts)
 
 ## get_star_gift_auction_state
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_auction_state.md)
 
 **Call:** `client.api.payments.get_star_gift_auction_state(...)`
 
@@ -568,6 +632,8 @@ No parameters.
 
 ## get_star_gift_collections
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_collections.md)
+
 **Call:** `client.api.payments.get_star_gift_collections(...)`
 
 **Official method:** `payments.getStarGiftCollections` · **ID:** `0x981b91dd`
@@ -585,6 +651,8 @@ No parameters.
 
 ## get_star_gift_upgrade_attributes
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_upgrade_attributes.md)
+
 **Call:** `client.api.payments.get_star_gift_upgrade_attributes(...)`
 
 **Official method:** `payments.getStarGiftUpgradeAttributes` · **ID:** `0x6d038b58`
@@ -601,6 +669,8 @@ No parameters.
 
 ## get_star_gift_upgrade_preview
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_upgrade_preview.md)
+
 **Call:** `client.api.payments.get_star_gift_upgrade_preview(...)`
 
 **Official method:** `payments.getStarGiftUpgradePreview` · **ID:** `0x9c9abcb1`
@@ -616,6 +686,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarGiftUpgradePreview)
 
 ## get_star_gift_withdrawal_url
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gift_withdrawal_url.md)
 
 **Call:** `client.api.payments.get_star_gift_withdrawal_url(...)`
 
@@ -634,6 +706,8 @@ No parameters.
 
 ## get_star_gifts
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_star_gifts.md)
+
 **Call:** `client.api.payments.get_star_gifts(...)`
 
 **Official method:** `payments.getStarGifts` · **ID:** `0xc4563590`
@@ -649,6 +723,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarGifts)
 
 ## get_stars_gift_options
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_gift_options.md)
 
 **Call:** `client.api.payments.get_stars_gift_options(...)`
 
@@ -666,6 +742,8 @@ No parameters.
 
 ## get_stars_giveaway_options
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_giveaway_options.md)
+
 **Call:** `client.api.payments.get_stars_giveaway_options(...)`
 
 **Official method:** `payments.getStarsGiveawayOptions` · **ID:** `0xbd1efd3e`
@@ -679,6 +757,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarsGiveawayOptions)
 
 ## get_stars_revenue_ads_account_url
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_revenue_ads_account_url.md)
 
 **Call:** `client.api.payments.get_stars_revenue_ads_account_url(...)`
 
@@ -695,6 +775,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarsRevenueAdsAccountUrl)
 
 ## get_stars_revenue_stats
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_revenue_stats.md)
 
 **Call:** `client.api.payments.get_stars_revenue_stats(...)`
 
@@ -713,6 +795,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarsRevenueStats)
 
 ## get_stars_revenue_withdrawal_url
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_revenue_withdrawal_url.md)
 
 **Call:** `client.api.payments.get_stars_revenue_withdrawal_url(...)`
 
@@ -733,6 +817,8 @@ No parameters.
 
 ## get_stars_status
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_status.md)
+
 **Call:** `client.api.payments.get_stars_status(...)`
 
 **Official method:** `payments.getStarsStatus` · **ID:** `0x4ea9b3bf`
@@ -749,6 +835,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarsStatus)
 
 ## get_stars_subscriptions
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_subscriptions.md)
 
 **Call:** `client.api.payments.get_stars_subscriptions(...)`
 
@@ -768,6 +856,8 @@ No parameters.
 
 ## get_stars_topup_options
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_topup_options.md)
+
 **Call:** `client.api.payments.get_stars_topup_options(...)`
 
 **Official method:** `payments.getStarsTopupOptions` · **ID:** `0xc00ec7d3`
@@ -781,6 +871,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarsTopupOptions)
 
 ## get_stars_transactions
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_transactions.md)
 
 **Call:** `client.api.payments.get_stars_transactions(...)`
 
@@ -805,6 +897,8 @@ No parameters.
 
 ## get_stars_transactions_by_id
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_stars_transactions_by_id.md)
+
 **Call:** `client.api.payments.get_stars_transactions_by_id(...)`
 
 **Official method:** `payments.getStarsTransactionsByID` · **ID:** `0x2dca16b8`
@@ -822,6 +916,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getStarsTransactionsByID)
 
 ## get_suggested_star_ref_bots
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_suggested_star_ref_bots.md)
 
 **Call:** `client.api.payments.get_suggested_star_ref_bots(...)`
 
@@ -843,6 +939,8 @@ No parameters.
 
 ## get_unique_star_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_unique_star_gift.md)
+
 **Call:** `client.api.payments.get_unique_star_gift(...)`
 
 **Official method:** `payments.getUniqueStarGift` · **ID:** `0xa1974d72`
@@ -859,6 +957,8 @@ No parameters.
 
 ## get_unique_star_gift_value_info
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/get_unique_star_gift_value_info.md)
+
 **Call:** `client.api.payments.get_unique_star_gift_value_info(...)`
 
 **Official method:** `payments.getUniqueStarGiftValueInfo` · **ID:** `0x4365af6b`
@@ -874,6 +974,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.getUniqueStarGiftValueInfo)
 
 ## launch_prepaid_giveaway
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/launch_prepaid_giveaway.md)
 
 **Call:** `client.api.payments.launch_prepaid_giveaway(...)`
 
@@ -893,6 +995,8 @@ No parameters.
 
 ## refund_stars_charge
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/refund_stars_charge.md)
+
 **Call:** `client.api.payments.refund_stars_charge(...)`
 
 **Official method:** `payments.refundStarsCharge` · **ID:** `0x25ae8f4a`
@@ -909,6 +1013,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.refundStarsCharge)
 
 ## reorder_star_gift_collections
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/reorder_star_gift_collections.md)
 
 **Call:** `client.api.payments.reorder_star_gift_collections(...)`
 
@@ -927,6 +1033,8 @@ No parameters.
 
 ## resolve_star_gift_offer
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/resolve_star_gift_offer.md)
+
 **Call:** `client.api.payments.resolve_star_gift_offer(...)`
 
 **Official method:** `payments.resolveStarGiftOffer` · **ID:** `0xe9ce781c`
@@ -944,6 +1052,8 @@ No parameters.
 
 ## save_star_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/save_star_gift.md)
+
 **Call:** `client.api.payments.save_star_gift(...)`
 
 **Official method:** `payments.saveStarGift` · **ID:** `0x2a2a697c`
@@ -960,6 +1070,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.saveStarGift)
 
 ## send_payment_form
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/send_payment_form.md)
 
 **Call:** `client.api.payments.send_payment_form(...)`
 
@@ -982,6 +1094,8 @@ No parameters.
 
 ## send_star_gift_offer
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/send_star_gift_offer.md)
+
 **Call:** `client.api.payments.send_star_gift_offer(...)`
 
 **Official method:** `payments.sendStarGiftOffer` · **ID:** `0x8fb86b41`
@@ -1003,6 +1117,8 @@ No parameters.
 
 ## send_stars_form
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/send_stars_form.md)
+
 **Call:** `client.api.payments.send_stars_form(...)`
 
 **Official method:** `payments.sendStarsForm` · **ID:** `0x7998c914`
@@ -1019,6 +1135,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.sendStarsForm)
 
 ## toggle_chat_star_gift_notifications
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/toggle_chat_star_gift_notifications.md)
 
 **Call:** `client.api.payments.toggle_chat_star_gift_notifications(...)`
 
@@ -1037,6 +1155,8 @@ No parameters.
 
 ## toggle_star_gifts_pinned_to_top
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/toggle_star_gifts_pinned_to_top.md)
+
 **Call:** `client.api.payments.toggle_star_gifts_pinned_to_top(...)`
 
 **Official method:** `payments.toggleStarGiftsPinnedToTop` · **ID:** `0x1513e7b0`
@@ -1054,6 +1174,8 @@ No parameters.
 
 ## transfer_star_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/transfer_star_gift.md)
+
 **Call:** `client.api.payments.transfer_star_gift(...)`
 
 **Official method:** `payments.transferStarGift` · **ID:** `0x7f18176a`
@@ -1070,6 +1192,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.transferStarGift)
 
 ## update_star_gift_collection
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/update_star_gift_collection.md)
 
 **Call:** `client.api.payments.update_star_gift_collection(...)`
 
@@ -1092,6 +1216,8 @@ No parameters.
 
 ## update_star_gift_price
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/update_star_gift_price.md)
+
 **Call:** `client.api.payments.update_star_gift_price(...)`
 
 **Official method:** `payments.updateStarGiftPrice` · **ID:** `0xedbe6ccb`
@@ -1109,6 +1235,8 @@ No parameters.
 
 ## upgrade_star_gift
 
+[Detailed method page: every parameter, native variants, flags and errors](payments/upgrade_star_gift.md)
+
 **Call:** `client.api.payments.upgrade_star_gift(...)`
 
 **Official method:** `payments.upgradeStarGift` · **ID:** `0xaed6e4f5`
@@ -1125,6 +1253,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/payments.upgradeStarGift)
 
 ## validate_requested_info
+
+[Detailed method page: every parameter, native variants, flags and errors](payments/validate_requested_info.md)
 
 **Call:** `client.api.payments.validate_requested_info(...)`
 

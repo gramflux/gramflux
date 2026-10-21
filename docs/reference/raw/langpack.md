@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_difference
 
+[Detailed method page: every parameter, native variants, flags and errors](langpack/get_difference.md)
+
 **Call:** `client.api.langpack.get_difference(...)`
 
 **Official method:** `langpack.getDifference` · **ID:** `0xcd984aa5`
@@ -32,6 +34,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_lang_pack
 
+[Detailed method page: every parameter, native variants, flags and errors](langpack/get_lang_pack.md)
+
 **Call:** `client.api.langpack.get_lang_pack(...)`
 
 **Official method:** `langpack.getLangPack` · **ID:** `0xf2f2330a`
@@ -48,6 +52,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/langpack.getLangPack)
 
 ## get_language
+
+[Detailed method page: every parameter, native variants, flags and errors](langpack/get_language.md)
 
 **Call:** `client.api.langpack.get_language(...)`
 
@@ -66,6 +72,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_languages
 
+[Detailed method page: every parameter, native variants, flags and errors](langpack/get_languages.md)
+
 **Call:** `client.api.langpack.get_languages(...)`
 
 **Official method:** `langpack.getLanguages` · **ID:** `0x42c6978f`
@@ -81,6 +89,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/langpack.getLanguages)
 
 ## get_strings
+
+[Detailed method page: every parameter, native variants, flags and errors](langpack/get_strings.md)
 
 **Call:** `client.api.langpack.get_strings(...)`
 

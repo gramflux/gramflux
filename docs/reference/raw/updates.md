@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_channel_difference
 
+[Detailed method page: every parameter, native variants, flags and errors](updates/get_channel_difference.md)
+
 **Call:** `client.api.updates.get_channel_difference(...)`
 
 **Official method:** `updates.getChannelDifference` · **ID:** `0x03173d78`
@@ -33,6 +35,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/updates.getChannelDifference)
 
 ## get_difference
+
+[Detailed method page: every parameter, native variants, flags and errors](updates/get_difference.md)
 
 **Call:** `client.api.updates.get_difference(...)`
 
@@ -54,6 +58,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/updates.getDifference)
 
 ## get_state
+
+[Detailed method page: every parameter, native variants, flags and errors](updates/get_state.md)
 
 **Call:** `client.api.updates.get_state(...)`
 

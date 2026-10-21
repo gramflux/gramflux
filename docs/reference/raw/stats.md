@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_broadcast_stats
 
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_broadcast_stats.md)
+
 **Call:** `client.api.stats.get_broadcast_stats(...)`
 
 **Official method:** `stats.getBroadcastStats` · **ID:** `0xab42441a`
@@ -31,6 +33,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_megagroup_stats
 
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_megagroup_stats.md)
+
 **Call:** `client.api.stats.get_megagroup_stats(...)`
 
 **Official method:** `stats.getMegagroupStats` · **ID:** `0xdcdf8607`
@@ -47,6 +51,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stats.getMegagroupStats)
 
 ## get_message_public_forwards
+
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_message_public_forwards.md)
 
 **Call:** `client.api.stats.get_message_public_forwards(...)`
 
@@ -67,6 +73,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_message_stats
 
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_message_stats.md)
+
 **Call:** `client.api.stats.get_message_stats(...)`
 
 **Official method:** `stats.getMessageStats` · **ID:** `0xb6e0a3f5`
@@ -85,6 +93,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_poll_stats
 
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_poll_stats.md)
+
 **Call:** `client.api.stats.get_poll_stats(...)`
 
 **Official method:** `stats.getPollStats` · **ID:** `0xc27dfa68`
@@ -102,6 +112,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stats.getPollStats)
 
 ## get_story_public_forwards
+
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_story_public_forwards.md)
 
 **Call:** `client.api.stats.get_story_public_forwards(...)`
 
@@ -122,6 +134,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_story_stats
 
+[Detailed method page: every parameter, native variants, flags and errors](stats/get_story_stats.md)
+
 **Call:** `client.api.stats.get_story_stats(...)`
 
 **Official method:** `stats.getStoryStats` · **ID:** `0x374fef40`
@@ -139,6 +153,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stats.getStoryStats)
 
 ## load_async_graph
+
+[Detailed method page: every parameter, native variants, flags and errors](stats/load_async_graph.md)
 
 **Call:** `client.api.stats.load_async_graph(...)`
 

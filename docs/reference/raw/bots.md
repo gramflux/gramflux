@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## add_preview_media
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/add_preview_media.md)
+
 **Call:** `client.api.bots.add_preview_media(...)`
 
 **Official method:** `bots.addPreviewMedia` · **ID:** `0x17aeb75a`
@@ -32,6 +34,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## allow_send_message
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/allow_send_message.md)
+
 **Call:** `client.api.bots.allow_send_message(...)`
 
 **Official method:** `bots.allowSendMessage` · **ID:** `0xf132e3ef`
@@ -47,6 +51,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.allowSendMessage)
 
 ## answer_webhook_json_query
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/answer_webhook_json_query.md)
 
 **Call:** `client.api.bots.answer_webhook_json_query(...)`
 
@@ -65,6 +71,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## can_send_message
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/can_send_message.md)
+
 **Call:** `client.api.bots.can_send_message(...)`
 
 **Official method:** `bots.canSendMessage` · **ID:** `0x1359f4e6`
@@ -80,6 +88,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.canSendMessage)
 
 ## check_download_file_params
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/check_download_file_params.md)
 
 **Call:** `client.api.bots.check_download_file_params(...)`
 
@@ -99,6 +109,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_username
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/check_username.md)
+
 **Call:** `client.api.bots.check_username(...)`
 
 **Official method:** `bots.checkUsername` · **ID:** `0x87f2219b`
@@ -114,6 +126,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.checkUsername)
 
 ## create_bot
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/create_bot.md)
 
 **Call:** `client.api.bots.create_bot(...)`
 
@@ -134,6 +148,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_preview_media
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/delete_preview_media.md)
+
 **Call:** `client.api.bots.delete_preview_media(...)`
 
 **Official method:** `bots.deletePreviewMedia` · **ID:** `0x2d0135b3`
@@ -152,6 +168,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_access_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/edit_access_settings.md)
+
 **Call:** `client.api.bots.edit_access_settings(...)`
 
 **Official method:** `bots.editAccessSettings` · **ID:** `0x31813cd8`
@@ -169,6 +187,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.editAccessSettings)
 
 ## edit_preview_media
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/edit_preview_media.md)
 
 **Call:** `client.api.bots.edit_preview_media(...)`
 
@@ -189,6 +209,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## export_bot_token
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/export_bot_token.md)
+
 **Call:** `client.api.bots.export_bot_token(...)`
 
 **Official method:** `bots.exportBotToken` · **ID:** `0xbd0d99eb`
@@ -206,6 +228,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_access_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_access_settings.md)
+
 **Call:** `client.api.bots.get_access_settings(...)`
 
 **Official method:** `bots.getAccessSettings` · **ID:** `0x213853a3`
@@ -222,6 +246,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_admined_bots
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_admined_bots.md)
+
 **Call:** `client.api.bots.get_admined_bots(...)`
 
 **Official method:** `bots.getAdminedBots` · **ID:** `0xb0711d83`
@@ -235,6 +261,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.getAdminedBots)
 
 ## get_bot_commands
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_bot_commands.md)
 
 **Call:** `client.api.bots.get_bot_commands(...)`
 
@@ -253,6 +281,8 @@ No parameters.
 
 ## get_bot_info
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_bot_info.md)
+
 **Call:** `client.api.bots.get_bot_info(...)`
 
 **Official method:** `bots.getBotInfo` · **ID:** `0xdcd914fd`
@@ -270,6 +300,8 @@ No parameters.
 
 ## get_bot_menu_button
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_bot_menu_button.md)
+
 **Call:** `client.api.bots.get_bot_menu_button(...)`
 
 **Official method:** `bots.getBotMenuButton` · **ID:** `0x9c60eb28`
@@ -286,6 +318,8 @@ No parameters.
 
 ## get_bot_recommendations
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_bot_recommendations.md)
+
 **Call:** `client.api.bots.get_bot_recommendations(...)`
 
 **Official method:** `bots.getBotRecommendations` · **ID:** `0xa1b70815`
@@ -301,6 +335,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.getBotRecommendations)
 
 ## get_popular_app_bots
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_popular_app_bots.md)
 
 **Call:** `client.api.bots.get_popular_app_bots(...)`
 
@@ -319,6 +355,8 @@ No parameters.
 
 ## get_preview_info
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_preview_info.md)
+
 **Call:** `client.api.bots.get_preview_info(...)`
 
 **Official method:** `bots.getPreviewInfo` · **ID:** `0x423ab3ad`
@@ -336,6 +374,8 @@ No parameters.
 
 ## get_preview_medias
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_preview_medias.md)
+
 **Call:** `client.api.bots.get_preview_medias(...)`
 
 **Official method:** `bots.getPreviewMedias` · **ID:** `0xa2a5594d`
@@ -351,6 +391,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.getPreviewMedias)
 
 ## get_requested_web_view_button
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/get_requested_web_view_button.md)
 
 **Call:** `client.api.bots.get_requested_web_view_button(...)`
 
@@ -368,6 +410,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.getRequestedWebViewButton)
 
 ## invoke_web_view_custom_method
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/invoke_web_view_custom_method.md)
 
 **Call:** `client.api.bots.invoke_web_view_custom_method(...)`
 
@@ -387,6 +431,8 @@ No parameters.
 
 ## reorder_preview_medias
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/reorder_preview_medias.md)
+
 **Call:** `client.api.bots.reorder_preview_medias(...)`
 
 **Official method:** `bots.reorderPreviewMedias` · **ID:** `0xb627f3aa`
@@ -405,6 +451,8 @@ No parameters.
 
 ## reorder_usernames
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/reorder_usernames.md)
+
 **Call:** `client.api.bots.reorder_usernames(...)`
 
 **Official method:** `bots.reorderUsernames` · **ID:** `0x9709b1c2`
@@ -421,6 +469,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.reorderUsernames)
 
 ## request_web_view_button
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/request_web_view_button.md)
 
 **Call:** `client.api.bots.request_web_view_button(...)`
 
@@ -439,6 +489,8 @@ No parameters.
 
 ## reset_bot_commands
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/reset_bot_commands.md)
+
 **Call:** `client.api.bots.reset_bot_commands(...)`
 
 **Official method:** `bots.resetBotCommands` · **ID:** `0x3d8de0f9`
@@ -455,6 +507,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.resetBotCommands)
 
 ## send_custom_request
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/send_custom_request.md)
 
 **Call:** `client.api.bots.send_custom_request(...)`
 
@@ -473,6 +527,8 @@ No parameters.
 
 ## set_bot_broadcast_default_admin_rights
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/set_bot_broadcast_default_admin_rights.md)
+
 **Call:** `client.api.bots.set_bot_broadcast_default_admin_rights(...)`
 
 **Official method:** `bots.setBotBroadcastDefaultAdminRights` · **ID:** `0x788464e1`
@@ -488,6 +544,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.setBotBroadcastDefaultAdminRights)
 
 ## set_bot_commands
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/set_bot_commands.md)
 
 **Call:** `client.api.bots.set_bot_commands(...)`
 
@@ -507,6 +565,8 @@ No parameters.
 
 ## set_bot_group_default_admin_rights
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/set_bot_group_default_admin_rights.md)
+
 **Call:** `client.api.bots.set_bot_group_default_admin_rights(...)`
 
 **Official method:** `bots.setBotGroupDefaultAdminRights` · **ID:** `0x925ec9ea`
@@ -522,6 +582,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.setBotGroupDefaultAdminRights)
 
 ## set_bot_info
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/set_bot_info.md)
 
 **Call:** `client.api.bots.set_bot_info(...)`
 
@@ -543,6 +605,8 @@ No parameters.
 
 ## set_bot_menu_button
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/set_bot_menu_button.md)
+
 **Call:** `client.api.bots.set_bot_menu_button(...)`
 
 **Official method:** `bots.setBotMenuButton` · **ID:** `0x4504d54f`
@@ -559,6 +623,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.setBotMenuButton)
 
 ## set_custom_verification
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/set_custom_verification.md)
 
 **Call:** `client.api.bots.set_custom_verification(...)`
 
@@ -579,6 +645,8 @@ No parameters.
 
 ## toggle_user_emoji_status_permission
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/toggle_user_emoji_status_permission.md)
+
 **Call:** `client.api.bots.toggle_user_emoji_status_permission(...)`
 
 **Official method:** `bots.toggleUserEmojiStatusPermission` · **ID:** `0x06de6392`
@@ -595,6 +663,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.toggleUserEmojiStatusPermission)
 
 ## toggle_username
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/toggle_username.md)
 
 **Call:** `client.api.bots.toggle_username(...)`
 
@@ -614,6 +684,8 @@ No parameters.
 
 ## update_star_ref_program
 
+[Detailed method page: every parameter, native variants, flags and errors](bots/update_star_ref_program.md)
+
 **Call:** `client.api.bots.update_star_ref_program(...)`
 
 **Official method:** `bots.updateStarRefProgram` · **ID:** `0x778b5ab3`
@@ -631,6 +703,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/bots.updateStarRefProgram)
 
 ## update_user_emoji_status
+
+[Detailed method page: every parameter, native variants, flags and errors](bots/update_user_emoji_status.md)
 
 **Call:** `client.api.bots.update_user_emoji_status(...)`
 

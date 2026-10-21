@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_collectible_info
 
+[Detailed method page: every parameter, native variants, flags and errors](fragment/get_collectible_info.md)
+
 **Call:** `client.api.fragment.get_collectible_info(...)`
 
 **Official method:** `fragment.getCollectibleInfo` · **ID:** `0xbe1e85ba`

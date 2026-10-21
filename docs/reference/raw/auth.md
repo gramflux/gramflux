@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## accept_login_token
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/accept_login_token.md)
+
 **Call:** `client.api.auth.accept_login_token(...)`
 
 **Official method:** `auth.acceptLoginToken` · **ID:** `0xe894ad4d`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.acceptLoginToken)
 
 ## bind_temp_auth_key
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/bind_temp_auth_key.md)
 
 **Call:** `client.api.auth.bind_temp_auth_key(...)`
 
@@ -49,6 +53,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## cancel_code
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/cancel_code.md)
+
 **Call:** `client.api.auth.cancel_code(...)`
 
 **Official method:** `auth.cancelCode` · **ID:** `0x1f040578`
@@ -65,6 +71,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.cancelCode)
 
 ## check_paid_auth
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/check_paid_auth.md)
 
 **Call:** `client.api.auth.check_paid_auth(...)`
 
@@ -84,6 +92,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_password
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/check_password.md)
+
 **Call:** `client.api.auth.check_password(...)`
 
 **Official method:** `auth.checkPassword` · **ID:** `0xd18b4d16`
@@ -99,6 +109,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.checkPassword)
 
 ## check_recovery_password
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/check_recovery_password.md)
 
 **Call:** `client.api.auth.check_recovery_password(...)`
 
@@ -116,6 +128,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## drop_temp_auth_keys
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/drop_temp_auth_keys.md)
+
 **Call:** `client.api.auth.drop_temp_auth_keys(...)`
 
 **Official method:** `auth.dropTempAuthKeys` · **ID:** `0x8e48a188`
@@ -132,6 +146,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## export_authorization
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/export_authorization.md)
+
 **Call:** `client.api.auth.export_authorization(...)`
 
 **Official method:** `auth.exportAuthorization` · **ID:** `0xe5bfffcd`
@@ -147,6 +163,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.exportAuthorization)
 
 ## export_login_token
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/export_login_token.md)
 
 **Call:** `client.api.auth.export_login_token(...)`
 
@@ -166,6 +184,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## finish_passkey_login
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/finish_passkey_login.md)
+
 **Call:** `client.api.auth.finish_passkey_login(...)`
 
 **Official method:** `auth.finishPasskeyLogin` · **ID:** `0x9857ad07`
@@ -184,6 +204,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## import_authorization
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/import_authorization.md)
+
 **Call:** `client.api.auth.import_authorization(...)`
 
 **Official method:** `auth.importAuthorization` · **ID:** `0xa57a7dad`
@@ -200,6 +222,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.importAuthorization)
 
 ## import_bot_authorization
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/import_bot_authorization.md)
 
 **Call:** `client.api.auth.import_bot_authorization(...)`
 
@@ -220,6 +244,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## import_login_token
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/import_login_token.md)
+
 **Call:** `client.api.auth.import_login_token(...)`
 
 **Official method:** `auth.importLoginToken` · **ID:** `0x95ac5ce4`
@@ -235,6 +261,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.importLoginToken)
 
 ## import_web_token_authorization
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/import_web_token_authorization.md)
 
 **Call:** `client.api.auth.import_web_token_authorization(...)`
 
@@ -254,6 +282,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## init_passkey_login
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/init_passkey_login.md)
+
 **Call:** `client.api.auth.init_passkey_login(...)`
 
 **Official method:** `auth.initPasskeyLogin` · **ID:** `0x518ad0b7`
@@ -271,6 +301,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## log_out
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/log_out.md)
+
 **Call:** `client.api.auth.log_out(...)`
 
 **Official method:** `auth.logOut` · **ID:** `0x3e72ba19`
@@ -284,6 +316,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.logOut)
 
 ## recover_password
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/recover_password.md)
 
 **Call:** `client.api.auth.recover_password(...)`
 
@@ -302,6 +336,8 @@ No parameters.
 
 ## report_missing_code
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/report_missing_code.md)
+
 **Call:** `client.api.auth.report_missing_code(...)`
 
 **Official method:** `auth.reportMissingCode` · **ID:** `0xcb9deff6`
@@ -319,6 +355,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.reportMissingCode)
 
 ## request_firebase_sms
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/request_firebase_sms.md)
 
 **Call:** `client.api.auth.request_firebase_sms(...)`
 
@@ -340,6 +378,8 @@ No parameters.
 
 ## request_password_recovery
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/request_password_recovery.md)
+
 **Call:** `client.api.auth.request_password_recovery(...)`
 
 **Official method:** `auth.requestPasswordRecovery` · **ID:** `0xd897bc66`
@@ -353,6 +393,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.requestPasswordRecovery)
 
 ## resend_code
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/resend_code.md)
 
 **Call:** `client.api.auth.resend_code(...)`
 
@@ -372,6 +414,8 @@ No parameters.
 
 ## reset_authorizations
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/reset_authorizations.md)
+
 **Call:** `client.api.auth.reset_authorizations(...)`
 
 **Official method:** `auth.resetAuthorizations` · **ID:** `0x9fab0d1a`
@@ -385,6 +429,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.resetAuthorizations)
 
 ## reset_login_email
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/reset_login_email.md)
 
 **Call:** `client.api.auth.reset_login_email(...)`
 
@@ -402,6 +448,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.resetLoginEmail)
 
 ## send_code
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/send_code.md)
 
 **Call:** `client.api.auth.send_code(...)`
 
@@ -422,6 +470,8 @@ No parameters.
 
 ## sign_in
 
+[Detailed method page: every parameter, native variants, flags and errors](auth/sign_in.md)
+
 **Call:** `client.api.auth.sign_in(...)`
 
 **Official method:** `auth.signIn` · **ID:** `0x8d52a951`
@@ -440,6 +490,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/auth.signIn)
 
 ## sign_up
+
+[Detailed method page: every parameter, native variants, flags and errors](auth/sign_up.md)
 
 **Call:** `client.api.auth.sign_up(...)`
 

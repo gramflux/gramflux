@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_photos
 
+[Detailed method page: every parameter, native variants, flags and errors](photos/delete_photos.md)
+
 **Call:** `client.api.photos.delete_photos(...)`
 
 **Official method:** `photos.deletePhotos` · **ID:** `0x87cf7f2f`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/photos.deletePhotos)
 
 ## get_user_photos
+
+[Detailed method page: every parameter, native variants, flags and errors](photos/get_user_photos.md)
 
 **Call:** `client.api.photos.get_user_photos(...)`
 
@@ -49,6 +53,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## update_profile_photo
 
+[Detailed method page: every parameter, native variants, flags and errors](photos/update_profile_photo.md)
+
 **Call:** `client.api.photos.update_profile_photo(...)`
 
 **Official method:** `photos.updateProfilePhoto` · **ID:** `0x09e82039`
@@ -66,6 +72,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/photos.updateProfilePhoto)
 
 ## upload_contact_profile_photo
+
+[Detailed method page: every parameter, native variants, flags and errors](photos/upload_contact_profile_photo.md)
 
 **Call:** `client.api.photos.upload_contact_profile_photo(...)`
 
@@ -88,6 +96,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/photos.uploadContactProfilePhoto)
 
 ## upload_profile_photo
+
+[Detailed method page: every parameter, native variants, flags and errors](photos/upload_profile_photo.md)
 
 **Call:** `client.api.photos.upload_profile_photo(...)`
 

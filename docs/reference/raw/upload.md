@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_cdn_file
 
+[Detailed method page: every parameter, native variants, flags and errors](upload/get_cdn_file.md)
+
 **Call:** `client.api.upload.get_cdn_file(...)`
 
 **Official method:** `upload.getCdnFile` · **ID:** `0x395f69da`
@@ -32,6 +34,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_cdn_file_hashes
 
+[Detailed method page: every parameter, native variants, flags and errors](upload/get_cdn_file_hashes.md)
+
 **Call:** `client.api.upload.get_cdn_file_hashes(...)`
 
 **Official method:** `upload.getCdnFileHashes` · **ID:** `0x91dc3f31`
@@ -48,6 +52,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/upload.getCdnFileHashes)
 
 ## get_file
+
+[Detailed method page: every parameter, native variants, flags and errors](upload/get_file.md)
 
 **Call:** `client.api.upload.get_file(...)`
 
@@ -69,6 +75,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_file_hashes
 
+[Detailed method page: every parameter, native variants, flags and errors](upload/get_file_hashes.md)
+
 **Call:** `client.api.upload.get_file_hashes(...)`
 
 **Official method:** `upload.getFileHashes` · **ID:** `0x9156982a`
@@ -85,6 +93,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/upload.getFileHashes)
 
 ## get_web_file
+
+[Detailed method page: every parameter, native variants, flags and errors](upload/get_web_file.md)
 
 **Call:** `client.api.upload.get_web_file(...)`
 
@@ -104,6 +114,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## reupload_cdn_file
 
+[Detailed method page: every parameter, native variants, flags and errors](upload/reupload_cdn_file.md)
+
 **Call:** `client.api.upload.reupload_cdn_file(...)`
 
 **Official method:** `upload.reuploadCdnFile` · **ID:** `0x9b2754a8`
@@ -120,6 +132,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/upload.reuploadCdnFile)
 
 ## save_big_file_part
+
+[Detailed method page: every parameter, native variants, flags and errors](upload/save_big_file_part.md)
 
 **Call:** `client.api.upload.save_big_file_part(...)`
 
@@ -139,6 +153,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/upload.saveBigFilePart)
 
 ## save_file_part
+
+[Detailed method page: every parameter, native variants, flags and errors](upload/save_file_part.md)
 
 **Call:** `client.api.upload.save_file_part(...)`
 

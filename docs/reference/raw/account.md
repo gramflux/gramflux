@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## accept_authorization
 
+[Detailed method page: every parameter, native variants, flags and errors](account/accept_authorization.md)
+
 **Call:** `client.api.account.accept_authorization(...)`
 
 **Official method:** `account.acceptAuthorization` · **ID:** `0xf3ed4c73`
@@ -34,6 +36,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## cancel_password_email
 
+[Detailed method page: every parameter, native variants, flags and errors](account/cancel_password_email.md)
+
 **Call:** `client.api.account.cancel_password_email(...)`
 
 **Official method:** `account.cancelPasswordEmail` · **ID:** `0xc1cbd5b6`
@@ -47,6 +51,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.cancelPasswordEmail)
 
 ## change_authorization_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/change_authorization_settings.md)
 
 **Call:** `client.api.account.change_authorization_settings(...)`
 
@@ -67,6 +73,8 @@ No parameters.
 
 ## change_phone
 
+[Detailed method page: every parameter, native variants, flags and errors](account/change_phone.md)
+
 **Call:** `client.api.account.change_phone(...)`
 
 **Official method:** `account.changePhone` · **ID:** `0x70c32edb`
@@ -85,6 +93,8 @@ No parameters.
 
 ## check_username
 
+[Detailed method page: every parameter, native variants, flags and errors](account/check_username.md)
+
 **Call:** `client.api.account.check_username(...)`
 
 **Official method:** `account.checkUsername` · **ID:** `0x2714d86c`
@@ -101,6 +111,8 @@ No parameters.
 
 ## clear_recent_emoji_statuses
 
+[Detailed method page: every parameter, native variants, flags and errors](account/clear_recent_emoji_statuses.md)
+
 **Call:** `client.api.account.clear_recent_emoji_statuses(...)`
 
 **Official method:** `account.clearRecentEmojiStatuses` · **ID:** `0x18201aae`
@@ -114,6 +126,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.clearRecentEmojiStatuses)
 
 ## confirm_password_email
+
+[Detailed method page: every parameter, native variants, flags and errors](account/confirm_password_email.md)
 
 **Call:** `client.api.account.confirm_password_email(...)`
 
@@ -130,6 +144,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.confirmPasswordEmail)
 
 ## confirm_phone
+
+[Detailed method page: every parameter, native variants, flags and errors](account/confirm_phone.md)
 
 **Call:** `client.api.account.confirm_phone(...)`
 
@@ -148,6 +164,8 @@ No parameters.
 
 ## create_business_chat_link
 
+[Detailed method page: every parameter, native variants, flags and errors](account/create_business_chat_link.md)
+
 **Call:** `client.api.account.create_business_chat_link(...)`
 
 **Official method:** `account.createBusinessChatLink` · **ID:** `0x8851e68e`
@@ -163,6 +181,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.createBusinessChatLink)
 
 ## create_theme
+
+[Detailed method page: every parameter, native variants, flags and errors](account/create_theme.md)
 
 **Call:** `client.api.account.create_theme(...)`
 
@@ -183,6 +203,8 @@ No parameters.
 
 ## decline_password_reset
 
+[Detailed method page: every parameter, native variants, flags and errors](account/decline_password_reset.md)
+
 **Call:** `client.api.account.decline_password_reset(...)`
 
 **Official method:** `account.declinePasswordReset` · **ID:** `0x4c9409f6`
@@ -196,6 +218,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.declinePasswordReset)
 
 ## delete_account
+
+[Detailed method page: every parameter, native variants, flags and errors](account/delete_account.md)
 
 **Call:** `client.api.account.delete_account(...)`
 
@@ -214,6 +238,8 @@ No parameters.
 
 ## delete_auto_save_exceptions
 
+[Detailed method page: every parameter, native variants, flags and errors](account/delete_auto_save_exceptions.md)
+
 **Call:** `client.api.account.delete_auto_save_exceptions(...)`
 
 **Official method:** `account.deleteAutoSaveExceptions` · **ID:** `0x53bc0020`
@@ -227,6 +253,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.deleteAutoSaveExceptions)
 
 ## delete_business_chat_link
+
+[Detailed method page: every parameter, native variants, flags and errors](account/delete_business_chat_link.md)
 
 **Call:** `client.api.account.delete_business_chat_link(...)`
 
@@ -244,6 +272,8 @@ No parameters.
 
 ## delete_passkey
 
+[Detailed method page: every parameter, native variants, flags and errors](account/delete_passkey.md)
+
 **Call:** `client.api.account.delete_passkey(...)`
 
 **Official method:** `account.deletePasskey` · **ID:** `0xf5b5563f`
@@ -259,6 +289,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.deletePasskey)
 
 ## delete_secure_value
+
+[Detailed method page: every parameter, native variants, flags and errors](account/delete_secure_value.md)
 
 **Call:** `client.api.account.delete_secure_value(...)`
 
@@ -276,6 +308,8 @@ No parameters.
 
 ## disable_peer_connected_bot
 
+[Detailed method page: every parameter, native variants, flags and errors](account/disable_peer_connected_bot.md)
+
 **Call:** `client.api.account.disable_peer_connected_bot(...)`
 
 **Official method:** `account.disablePeerConnectedBot` · **ID:** `0x5e437ed9`
@@ -291,6 +325,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.disablePeerConnectedBot)
 
 ## edit_business_chat_link
+
+[Detailed method page: every parameter, native variants, flags and errors](account/edit_business_chat_link.md)
 
 **Call:** `client.api.account.edit_business_chat_link(...)`
 
@@ -309,6 +345,8 @@ No parameters.
 
 ## finish_takeout_session
 
+[Detailed method page: every parameter, native variants, flags and errors](account/finish_takeout_session.md)
+
 **Call:** `client.api.account.finish_takeout_session(...)`
 
 **Official method:** `account.finishTakeoutSession` · **ID:** `0x1d2652ee`
@@ -325,6 +363,8 @@ No parameters.
 
 ## get_account_ttl
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_account_ttl.md)
+
 **Call:** `client.api.account.get_account_ttl(...)`
 
 **Official method:** `account.getAccountTTL` · **ID:** `0x08fc711d`
@@ -339,6 +379,8 @@ No parameters.
 
 ## get_all_secure_values
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_all_secure_values.md)
+
 **Call:** `client.api.account.get_all_secure_values(...)`
 
 **Official method:** `account.getAllSecureValues` · **ID:** `0xb288bc7d`
@@ -352,6 +394,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getAllSecureValues)
 
 ## get_authorization_form
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_authorization_form.md)
 
 **Call:** `client.api.account.get_authorization_form(...)`
 
@@ -371,6 +415,8 @@ No parameters.
 
 ## get_authorizations
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_authorizations.md)
+
 **Call:** `client.api.account.get_authorizations(...)`
 
 **Official method:** `account.getAuthorizations` · **ID:** `0xe320c158`
@@ -384,6 +430,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getAuthorizations)
 
 ## get_auto_download_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_auto_download_settings.md)
 
 **Call:** `client.api.account.get_auto_download_settings(...)`
 
@@ -399,6 +447,8 @@ No parameters.
 
 ## get_auto_save_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_auto_save_settings.md)
+
 **Call:** `client.api.account.get_auto_save_settings(...)`
 
 **Official method:** `account.getAutoSaveSettings` · **ID:** `0xadcbbcda`
@@ -412,6 +462,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getAutoSaveSettings)
 
 ## get_bot_business_connection
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_bot_business_connection.md)
 
 **Call:** `client.api.account.get_bot_business_connection(...)`
 
@@ -429,6 +481,8 @@ No parameters.
 
 ## get_business_chat_links
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_business_chat_links.md)
+
 **Call:** `client.api.account.get_business_chat_links(...)`
 
 **Official method:** `account.getBusinessChatLinks` · **ID:** `0x6f70dde1`
@@ -442,6 +496,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getBusinessChatLinks)
 
 ## get_channel_default_emoji_statuses
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_channel_default_emoji_statuses.md)
 
 **Call:** `client.api.account.get_channel_default_emoji_statuses(...)`
 
@@ -459,6 +515,8 @@ No parameters.
 
 ## get_channel_restricted_status_emojis
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_channel_restricted_status_emojis.md)
+
 **Call:** `client.api.account.get_channel_restricted_status_emojis(...)`
 
 **Official method:** `account.getChannelRestrictedStatusEmojis` · **ID:** `0x35a9e0d5`
@@ -474,6 +532,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getChannelRestrictedStatusEmojis)
 
 ## get_chat_themes
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_chat_themes.md)
 
 **Call:** `client.api.account.get_chat_themes(...)`
 
@@ -491,6 +551,8 @@ No parameters.
 
 ## get_collectible_emoji_statuses
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_collectible_emoji_statuses.md)
+
 **Call:** `client.api.account.get_collectible_emoji_statuses(...)`
 
 **Official method:** `account.getCollectibleEmojiStatuses` · **ID:** `0x2e7b4543`
@@ -507,6 +569,8 @@ No parameters.
 
 ## get_connected_bots
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_connected_bots.md)
+
 **Call:** `client.api.account.get_connected_bots(...)`
 
 **Official method:** `account.getConnectedBots` · **ID:** `0x4ea4c80f`
@@ -520,6 +584,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getConnectedBots)
 
 ## get_contact_sign_up_notification
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_contact_sign_up_notification.md)
 
 **Call:** `client.api.account.get_contact_sign_up_notification(...)`
 
@@ -535,6 +601,8 @@ No parameters.
 
 ## get_content_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_content_settings.md)
+
 **Call:** `client.api.account.get_content_settings(...)`
 
 **Official method:** `account.getContentSettings` · **ID:** `0x8b9b4dae`
@@ -548,6 +616,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getContentSettings)
 
 ## get_default_background_emojis
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_default_background_emojis.md)
 
 **Call:** `client.api.account.get_default_background_emojis(...)`
 
@@ -565,6 +635,8 @@ No parameters.
 
 ## get_default_emoji_statuses
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_default_emoji_statuses.md)
+
 **Call:** `client.api.account.get_default_emoji_statuses(...)`
 
 **Official method:** `account.getDefaultEmojiStatuses` · **ID:** `0xd6753386`
@@ -580,6 +652,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getDefaultEmojiStatuses)
 
 ## get_default_group_photo_emojis
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_default_group_photo_emojis.md)
 
 **Call:** `client.api.account.get_default_group_photo_emojis(...)`
 
@@ -597,6 +671,8 @@ No parameters.
 
 ## get_default_profile_photo_emojis
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_default_profile_photo_emojis.md)
+
 **Call:** `client.api.account.get_default_profile_photo_emojis(...)`
 
 **Official method:** `account.getDefaultProfilePhotoEmojis` · **ID:** `0xe2750328`
@@ -613,6 +689,8 @@ No parameters.
 
 ## get_global_privacy_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_global_privacy_settings.md)
+
 **Call:** `client.api.account.get_global_privacy_settings(...)`
 
 **Official method:** `account.getGlobalPrivacySettings` · **ID:** `0xeb2b4cf6`
@@ -626,6 +704,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getGlobalPrivacySettings)
 
 ## get_multi_wall_papers
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_multi_wall_papers.md)
 
 **Call:** `client.api.account.get_multi_wall_papers(...)`
 
@@ -642,6 +722,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getMultiWallPapers)
 
 ## get_notify_exceptions
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_notify_exceptions.md)
 
 **Call:** `client.api.account.get_notify_exceptions(...)`
 
@@ -661,6 +743,8 @@ No parameters.
 
 ## get_notify_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_notify_settings.md)
+
 **Call:** `client.api.account.get_notify_settings(...)`
 
 **Official method:** `account.getNotifySettings` · **ID:** `0x12b3ad31`
@@ -676,6 +760,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getNotifySettings)
 
 ## get_paid_messages_revenue
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_paid_messages_revenue.md)
 
 **Call:** `client.api.account.get_paid_messages_revenue(...)`
 
@@ -694,6 +780,8 @@ No parameters.
 
 ## get_passkeys
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_passkeys.md)
+
 **Call:** `client.api.account.get_passkeys(...)`
 
 **Official method:** `account.getPasskeys` · **ID:** `0xea1f0c52`
@@ -708,6 +796,8 @@ No parameters.
 
 ## get_password
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_password.md)
+
 **Call:** `client.api.account.get_password(...)`
 
 **Official method:** `account.getPassword` · **ID:** `0x548a30f5`
@@ -721,6 +811,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getPassword)
 
 ## get_password_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_password_settings.md)
 
 **Call:** `client.api.account.get_password_settings(...)`
 
@@ -738,6 +830,8 @@ No parameters.
 
 ## get_privacy
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_privacy.md)
+
 **Call:** `client.api.account.get_privacy(...)`
 
 **Official method:** `account.getPrivacy` · **ID:** `0xdadbc950`
@@ -754,6 +848,8 @@ No parameters.
 
 ## get_reactions_notify_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_reactions_notify_settings.md)
+
 **Call:** `client.api.account.get_reactions_notify_settings(...)`
 
 **Official method:** `account.getReactionsNotifySettings` · **ID:** `0x06dd654c`
@@ -767,6 +863,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getReactionsNotifySettings)
 
 ## get_recent_emoji_statuses
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_recent_emoji_statuses.md)
 
 **Call:** `client.api.account.get_recent_emoji_statuses(...)`
 
@@ -784,6 +882,8 @@ No parameters.
 
 ## get_saved_music_ids
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_saved_music_ids.md)
+
 **Call:** `client.api.account.get_saved_music_ids(...)`
 
 **Official method:** `account.getSavedMusicIds` · **ID:** `0xe09d5faf`
@@ -799,6 +899,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getSavedMusicIds)
 
 ## get_saved_ringtones
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_saved_ringtones.md)
 
 **Call:** `client.api.account.get_saved_ringtones(...)`
 
@@ -816,6 +918,8 @@ No parameters.
 
 ## get_secure_value
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_secure_value.md)
+
 **Call:** `client.api.account.get_secure_value(...)`
 
 **Official method:** `account.getSecureValue` · **ID:** `0x73665bc2`
@@ -831,6 +935,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getSecureValue)
 
 ## get_theme
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_theme.md)
 
 **Call:** `client.api.account.get_theme(...)`
 
@@ -849,6 +955,8 @@ No parameters.
 
 ## get_themes
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_themes.md)
+
 **Call:** `client.api.account.get_themes(...)`
 
 **Official method:** `account.getThemes` · **ID:** `0x7206e458`
@@ -866,6 +974,8 @@ No parameters.
 
 ## get_tmp_password
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_tmp_password.md)
+
 **Call:** `client.api.account.get_tmp_password(...)`
 
 **Official method:** `account.getTmpPassword` · **ID:** `0x449e0b51`
@@ -882,6 +992,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getTmpPassword)
 
 ## get_unique_gift_chat_themes
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_unique_gift_chat_themes.md)
 
 **Call:** `client.api.account.get_unique_gift_chat_themes(...)`
 
@@ -901,6 +1013,8 @@ No parameters.
 
 ## get_wall_paper
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_wall_paper.md)
+
 **Call:** `client.api.account.get_wall_paper(...)`
 
 **Official method:** `account.getWallPaper` · **ID:** `0xfc8ddbea`
@@ -916,6 +1030,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.getWallPaper)
 
 ## get_wall_papers
+
+[Detailed method page: every parameter, native variants, flags and errors](account/get_wall_papers.md)
 
 **Call:** `client.api.account.get_wall_papers(...)`
 
@@ -933,6 +1049,8 @@ No parameters.
 
 ## get_web_authorizations
 
+[Detailed method page: every parameter, native variants, flags and errors](account/get_web_authorizations.md)
+
 **Call:** `client.api.account.get_web_authorizations(...)`
 
 **Official method:** `account.getWebAuthorizations` · **ID:** `0x182e6d6f`
@@ -947,6 +1065,8 @@ No parameters.
 
 ## init_passkey_registration
 
+[Detailed method page: every parameter, native variants, flags and errors](account/init_passkey_registration.md)
+
 **Call:** `client.api.account.init_passkey_registration(...)`
 
 **Official method:** `account.initPasskeyRegistration` · **ID:** `0x429547e8`
@@ -960,6 +1080,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.initPasskeyRegistration)
 
 ## init_takeout_session
+
+[Detailed method page: every parameter, native variants, flags and errors](account/init_takeout_session.md)
 
 **Call:** `client.api.account.init_takeout_session(...)`
 
@@ -983,6 +1105,8 @@ No parameters.
 
 ## install_theme
 
+[Detailed method page: every parameter, native variants, flags and errors](account/install_theme.md)
+
 **Call:** `client.api.account.install_theme(...)`
 
 **Official method:** `account.installTheme` · **ID:** `0xc727bb3b`
@@ -1002,6 +1126,8 @@ No parameters.
 
 ## install_wall_paper
 
+[Detailed method page: every parameter, native variants, flags and errors](account/install_wall_paper.md)
+
 **Call:** `client.api.account.install_wall_paper(...)`
 
 **Official method:** `account.installWallPaper` · **ID:** `0xfeed5769`
@@ -1019,6 +1145,8 @@ No parameters.
 
 ## invalidate_sign_in_codes
 
+[Detailed method page: every parameter, native variants, flags and errors](account/invalidate_sign_in_codes.md)
+
 **Call:** `client.api.account.invalidate_sign_in_codes(...)`
 
 **Official method:** `account.invalidateSignInCodes` · **ID:** `0xca8ae8ba`
@@ -1034,6 +1162,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.invalidateSignInCodes)
 
 ## register_device
+
+[Detailed method page: every parameter, native variants, flags and errors](account/register_device.md)
 
 **Call:** `client.api.account.register_device(...)`
 
@@ -1056,6 +1186,8 @@ No parameters.
 
 ## register_passkey
 
+[Detailed method page: every parameter, native variants, flags and errors](account/register_passkey.md)
+
 **Call:** `client.api.account.register_passkey(...)`
 
 **Official method:** `account.registerPasskey` · **ID:** `0x55b41fd6`
@@ -1072,6 +1204,8 @@ No parameters.
 
 ## reorder_usernames
 
+[Detailed method page: every parameter, native variants, flags and errors](account/reorder_usernames.md)
+
 **Call:** `client.api.account.reorder_usernames(...)`
 
 **Official method:** `account.reorderUsernames` · **ID:** `0xef500eab`
@@ -1087,6 +1221,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.reorderUsernames)
 
 ## report_peer
+
+[Detailed method page: every parameter, native variants, flags and errors](account/report_peer.md)
 
 **Call:** `client.api.account.report_peer(...)`
 
@@ -1105,6 +1241,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.reportPeer)
 
 ## report_profile_photo
+
+[Detailed method page: every parameter, native variants, flags and errors](account/report_profile_photo.md)
 
 **Call:** `client.api.account.report_profile_photo(...)`
 
@@ -1125,6 +1263,8 @@ No parameters.
 
 ## resend_password_email
 
+[Detailed method page: every parameter, native variants, flags and errors](account/resend_password_email.md)
+
 **Call:** `client.api.account.resend_password_email(...)`
 
 **Official method:** `account.resendPasswordEmail` · **ID:** `0x7a7f2a15`
@@ -1138,6 +1278,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.resendPasswordEmail)
 
 ## reset_authorization
+
+[Detailed method page: every parameter, native variants, flags and errors](account/reset_authorization.md)
 
 **Call:** `client.api.account.reset_authorization(...)`
 
@@ -1155,6 +1297,8 @@ No parameters.
 
 ## reset_notify_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/reset_notify_settings.md)
+
 **Call:** `client.api.account.reset_notify_settings(...)`
 
 **Official method:** `account.resetNotifySettings` · **ID:** `0xdb7e1747`
@@ -1168,6 +1312,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.resetNotifySettings)
 
 ## reset_password
+
+[Detailed method page: every parameter, native variants, flags and errors](account/reset_password.md)
 
 **Call:** `client.api.account.reset_password(...)`
 
@@ -1183,6 +1329,8 @@ No parameters.
 
 ## reset_wall_papers
 
+[Detailed method page: every parameter, native variants, flags and errors](account/reset_wall_papers.md)
+
 **Call:** `client.api.account.reset_wall_papers(...)`
 
 **Official method:** `account.resetWallPapers` · **ID:** `0xbb3b9804`
@@ -1196,6 +1344,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.resetWallPapers)
 
 ## reset_web_authorization
+
+[Detailed method page: every parameter, native variants, flags and errors](account/reset_web_authorization.md)
 
 **Call:** `client.api.account.reset_web_authorization(...)`
 
@@ -1213,6 +1363,8 @@ No parameters.
 
 ## reset_web_authorizations
 
+[Detailed method page: every parameter, native variants, flags and errors](account/reset_web_authorizations.md)
+
 **Call:** `client.api.account.reset_web_authorizations(...)`
 
 **Official method:** `account.resetWebAuthorizations` · **ID:** `0x682d2594`
@@ -1226,6 +1378,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.resetWebAuthorizations)
 
 ## resolve_business_chat_link
+
+[Detailed method page: every parameter, native variants, flags and errors](account/resolve_business_chat_link.md)
 
 **Call:** `client.api.account.resolve_business_chat_link(...)`
 
@@ -1242,6 +1396,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.resolveBusinessChatLink)
 
 ## save_auto_download_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/save_auto_download_settings.md)
 
 **Call:** `client.api.account.save_auto_download_settings(...)`
 
@@ -1260,6 +1416,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.saveAutoDownloadSettings)
 
 ## save_auto_save_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/save_auto_save_settings.md)
 
 **Call:** `client.api.account.save_auto_save_settings(...)`
 
@@ -1281,6 +1439,8 @@ No parameters.
 
 ## save_music
 
+[Detailed method page: every parameter, native variants, flags and errors](account/save_music.md)
+
 **Call:** `client.api.account.save_music(...)`
 
 **Official method:** `account.saveMusic` · **ID:** `0xb26732a9`
@@ -1299,6 +1459,8 @@ No parameters.
 
 ## save_ringtone
 
+[Detailed method page: every parameter, native variants, flags and errors](account/save_ringtone.md)
+
 **Call:** `client.api.account.save_ringtone(...)`
 
 **Official method:** `account.saveRingtone` · **ID:** `0x3dea5b03`
@@ -1315,6 +1477,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.saveRingtone)
 
 ## save_secure_value
+
+[Detailed method page: every parameter, native variants, flags and errors](account/save_secure_value.md)
 
 **Call:** `client.api.account.save_secure_value(...)`
 
@@ -1333,6 +1497,8 @@ No parameters.
 
 ## save_theme
 
+[Detailed method page: every parameter, native variants, flags and errors](account/save_theme.md)
+
 **Call:** `client.api.account.save_theme(...)`
 
 **Official method:** `account.saveTheme` · **ID:** `0xf257106c`
@@ -1349,6 +1515,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.saveTheme)
 
 ## save_wall_paper
+
+[Detailed method page: every parameter, native variants, flags and errors](account/save_wall_paper.md)
 
 **Call:** `client.api.account.save_wall_paper(...)`
 
@@ -1368,6 +1536,8 @@ No parameters.
 
 ## send_change_phone_code
 
+[Detailed method page: every parameter, native variants, flags and errors](account/send_change_phone_code.md)
+
 **Call:** `client.api.account.send_change_phone_code(...)`
 
 **Official method:** `account.sendChangePhoneCode` · **ID:** `0x82574ae5`
@@ -1384,6 +1554,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.sendChangePhoneCode)
 
 ## send_confirm_phone_code
+
+[Detailed method page: every parameter, native variants, flags and errors](account/send_confirm_phone_code.md)
 
 **Call:** `client.api.account.send_confirm_phone_code(...)`
 
@@ -1402,6 +1574,8 @@ No parameters.
 
 ## send_verify_email_code
 
+[Detailed method page: every parameter, native variants, flags and errors](account/send_verify_email_code.md)
+
 **Call:** `client.api.account.send_verify_email_code(...)`
 
 **Official method:** `account.sendVerifyEmailCode` · **ID:** `0x98e037bb`
@@ -1418,6 +1592,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.sendVerifyEmailCode)
 
 ## send_verify_phone_code
+
+[Detailed method page: every parameter, native variants, flags and errors](account/send_verify_phone_code.md)
 
 **Call:** `client.api.account.send_verify_phone_code(...)`
 
@@ -1436,6 +1612,8 @@ No parameters.
 
 ## set_account_ttl
 
+[Detailed method page: every parameter, native variants, flags and errors](account/set_account_ttl.md)
+
 **Call:** `client.api.account.set_account_ttl(...)`
 
 **Official method:** `account.setAccountTTL` · **ID:** `0x2442485e`
@@ -1451,6 +1629,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.setAccountTTL)
 
 ## set_authorization_ttl
+
+[Detailed method page: every parameter, native variants, flags and errors](account/set_authorization_ttl.md)
 
 **Call:** `client.api.account.set_authorization_ttl(...)`
 
@@ -1468,6 +1648,8 @@ No parameters.
 
 ## set_contact_sign_up_notification
 
+[Detailed method page: every parameter, native variants, flags and errors](account/set_contact_sign_up_notification.md)
+
 **Call:** `client.api.account.set_contact_sign_up_notification(...)`
 
 **Official method:** `account.setContactSignUpNotification` · **ID:** `0xcff43f61`
@@ -1483,6 +1665,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.setContactSignUpNotification)
 
 ## set_content_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/set_content_settings.md)
 
 **Call:** `client.api.account.set_content_settings(...)`
 
@@ -1500,6 +1684,8 @@ No parameters.
 
 ## set_global_privacy_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/set_global_privacy_settings.md)
+
 **Call:** `client.api.account.set_global_privacy_settings(...)`
 
 **Official method:** `account.setGlobalPrivacySettings` · **ID:** `0x1edaaac2`
@@ -1516,6 +1702,8 @@ No parameters.
 
 ## set_main_profile_tab
 
+[Detailed method page: every parameter, native variants, flags and errors](account/set_main_profile_tab.md)
+
 **Call:** `client.api.account.set_main_profile_tab(...)`
 
 **Official method:** `account.setMainProfileTab` · **ID:** `0x5dee78b0`
@@ -1531,6 +1719,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.setMainProfileTab)
 
 ## set_privacy
+
+[Detailed method page: every parameter, native variants, flags and errors](account/set_privacy.md)
 
 **Call:** `client.api.account.set_privacy(...)`
 
@@ -1549,6 +1739,8 @@ No parameters.
 
 ## set_reactions_notify_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/set_reactions_notify_settings.md)
+
 **Call:** `client.api.account.set_reactions_notify_settings(...)`
 
 **Official method:** `account.setReactionsNotifySettings` · **ID:** `0x316ce548`
@@ -1564,6 +1756,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.setReactionsNotifySettings)
 
 ## toggle_connected_bot_paused
+
+[Detailed method page: every parameter, native variants, flags and errors](account/toggle_connected_bot_paused.md)
 
 **Call:** `client.api.account.toggle_connected_bot_paused(...)`
 
@@ -1581,6 +1775,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.toggleConnectedBotPaused)
 
 ## toggle_no_paid_messages_exception
+
+[Detailed method page: every parameter, native variants, flags and errors](account/toggle_no_paid_messages_exception.md)
 
 **Call:** `client.api.account.toggle_no_paid_messages_exception(...)`
 
@@ -1601,6 +1797,8 @@ No parameters.
 
 ## toggle_sponsored_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](account/toggle_sponsored_messages.md)
+
 **Call:** `client.api.account.toggle_sponsored_messages(...)`
 
 **Official method:** `account.toggleSponsoredMessages` · **ID:** `0xb9d9a38d`
@@ -1616,6 +1814,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.toggleSponsoredMessages)
 
 ## toggle_username
+
+[Detailed method page: every parameter, native variants, flags and errors](account/toggle_username.md)
 
 **Call:** `client.api.account.toggle_username(...)`
 
@@ -1633,6 +1833,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.toggleUsername)
 
 ## unregister_device
+
+[Detailed method page: every parameter, native variants, flags and errors](account/unregister_device.md)
 
 **Call:** `client.api.account.unregister_device(...)`
 
@@ -1652,6 +1854,8 @@ No parameters.
 
 ## update_birthday
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_birthday.md)
+
 **Call:** `client.api.account.update_birthday(...)`
 
 **Official method:** `account.updateBirthday` · **ID:** `0xcc6e0c11`
@@ -1667,6 +1871,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateBirthday)
 
 ## update_business_away_message
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_business_away_message.md)
 
 **Call:** `client.api.account.update_business_away_message(...)`
 
@@ -1684,6 +1890,8 @@ No parameters.
 
 ## update_business_greeting_message
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_business_greeting_message.md)
+
 **Call:** `client.api.account.update_business_greeting_message(...)`
 
 **Official method:** `account.updateBusinessGreetingMessage` · **ID:** `0x66cdafc4`
@@ -1700,6 +1908,8 @@ No parameters.
 
 ## update_business_intro
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_business_intro.md)
+
 **Call:** `client.api.account.update_business_intro(...)`
 
 **Official method:** `account.updateBusinessIntro` · **ID:** `0xa614d034`
@@ -1715,6 +1925,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateBusinessIntro)
 
 ## update_business_location
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_business_location.md)
 
 **Call:** `client.api.account.update_business_location(...)`
 
@@ -1733,6 +1945,8 @@ No parameters.
 
 ## update_business_work_hours
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_business_work_hours.md)
+
 **Call:** `client.api.account.update_business_work_hours(...)`
 
 **Official method:** `account.updateBusinessWorkHours` · **ID:** `0x4b00e066`
@@ -1748,6 +1962,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateBusinessWorkHours)
 
 ## update_color
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_color.md)
 
 **Call:** `client.api.account.update_color(...)`
 
@@ -1765,6 +1981,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateColor)
 
 ## update_connected_bot
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_connected_bot.md)
 
 **Call:** `client.api.account.update_connected_bot(...)`
 
@@ -1785,6 +2003,8 @@ No parameters.
 
 ## update_device_locked
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_device_locked.md)
+
 **Call:** `client.api.account.update_device_locked(...)`
 
 **Official method:** `account.updateDeviceLocked` · **ID:** `0x38df3532`
@@ -1801,6 +2021,8 @@ No parameters.
 
 ## update_emoji_status
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_emoji_status.md)
+
 **Call:** `client.api.account.update_emoji_status(...)`
 
 **Official method:** `account.updateEmojiStatus` · **ID:** `0xfbd3de6b`
@@ -1816,6 +2038,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateEmojiStatus)
 
 ## update_notify_settings
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_notify_settings.md)
 
 **Call:** `client.api.account.update_notify_settings(...)`
 
@@ -1834,6 +2058,8 @@ No parameters.
 
 ## update_password_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_password_settings.md)
+
 **Call:** `client.api.account.update_password_settings(...)`
 
 **Official method:** `account.updatePasswordSettings` · **ID:** `0xa59b102f`
@@ -1851,6 +2077,8 @@ No parameters.
 
 ## update_personal_channel
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_personal_channel.md)
+
 **Call:** `client.api.account.update_personal_channel(...)`
 
 **Official method:** `account.updatePersonalChannel` · **ID:** `0xd94305e0`
@@ -1866,6 +2094,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updatePersonalChannel)
 
 ## update_profile
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_profile.md)
 
 **Call:** `client.api.account.update_profile(...)`
 
@@ -1885,6 +2115,8 @@ No parameters.
 
 ## update_status
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_status.md)
+
 **Call:** `client.api.account.update_status(...)`
 
 **Official method:** `account.updateStatus` · **ID:** `0x6628562c`
@@ -1900,6 +2132,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateStatus)
 
 ## update_theme
+
+[Detailed method page: every parameter, native variants, flags and errors](account/update_theme.md)
 
 **Call:** `client.api.account.update_theme(...)`
 
@@ -1922,6 +2156,8 @@ No parameters.
 
 ## update_username
 
+[Detailed method page: every parameter, native variants, flags and errors](account/update_username.md)
+
 **Call:** `client.api.account.update_username(...)`
 
 **Official method:** `account.updateUsername` · **ID:** `0x3e0bdd7c`
@@ -1937,6 +2173,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.updateUsername)
 
 ## upload_ringtone
+
+[Detailed method page: every parameter, native variants, flags and errors](account/upload_ringtone.md)
 
 **Call:** `client.api.account.upload_ringtone(...)`
 
@@ -1955,6 +2193,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.uploadRingtone)
 
 ## upload_theme
+
+[Detailed method page: every parameter, native variants, flags and errors](account/upload_theme.md)
 
 **Call:** `client.api.account.upload_theme(...)`
 
@@ -1975,6 +2215,8 @@ No parameters.
 
 ## upload_wall_paper
 
+[Detailed method page: every parameter, native variants, flags and errors](account/upload_wall_paper.md)
+
 **Call:** `client.api.account.upload_wall_paper(...)`
 
 **Official method:** `account.uploadWallPaper` · **ID:** `0xe39a8f03`
@@ -1994,6 +2236,8 @@ No parameters.
 
 ## verify_email
 
+[Detailed method page: every parameter, native variants, flags and errors](account/verify_email.md)
+
 **Call:** `client.api.account.verify_email(...)`
 
 **Official method:** `account.verifyEmail` · **ID:** `0x032da4cf`
@@ -2010,6 +2254,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/account.verifyEmail)
 
 ## verify_phone
+
+[Detailed method page: every parameter, native variants, flags and errors](account/verify_phone.md)
 
 **Call:** `client.api.account.verify_phone(...)`
 

@@ -49,3 +49,39 @@ Config(request_timeout: float = 30.0, max_concurrent_requests: int = 32, event_q
 
 See [configuration behavior](../guides/configuration.md)
 and [session security](../guides/sessions.md).
+
+[Session.open: complete parameter guide](helpers/session-open.md)
+
+[Session.create: complete parameter guide](helpers/session-create.md)
+
+[Session.temporary: complete parameter guide](helpers/session-temporary.md)
+
+## Field behavior and validation
+
+### request_timeout
+
+Finite positive request deadline in seconds, including time waiting for request admission. Also bounds complete initial connection/auth-key setup. It is not a limit on the lifetime of the Client or all pagination pages together.
+
+### max_concurrent_requests
+
+Positive integer application RPC admission bound. It does not spawn this many event workers. Native liveness traffic has reserved bounded capacity.
+
+### event_queue_size
+
+Positive integer count setting for event/native receive queues. Slow handlers can trigger bounded backpressure/overflow; the receiver does not silently discard updates.
+
+### reconnect_attempts
+
+Nonnegative integer bound for initial TCP establishment retries. It does not replay pending application writes or provide transparent in-flight reconnection.
+
+### peer_cache_size
+
+Integer from 1 through 4096. Bounds account-local entity/access-hash metadata; default 2048. A cache entry is not permanent proof of username ownership.
+
+### transport
+
+One of full, intermediate or abridged. All use the same native MTProto 2.0 encryption. Proxy/HTTP/WebSocket/obfuscated transports are not exposed by this setting.
+
+### update_queue_bytes
+
+Positive queued-update budget measured by uncompressed TL body byte sizes; default 16 MiB. It is not a cap on Python object heap size or total RSS.

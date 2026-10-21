@@ -1,0 +1,998 @@
+{
+  "parameters": {
+    "peer": "Target conversation or account. Accepts \"me\"/\"self\", a supported username, a marked numeric ID already present in the peer cache, a full native entity, or a native InputPeer. User/channel IDs require a known access hash; basic group IDs do not. No access hash is guessed.",
+    "from_peer": "Source conversation containing the original message IDs. Resolved independently from the destination peer. IDs are interpreted in this source chat.",
+    "peers": "Nonempty sequence of user peers to remove from contacts. A string is not treated as a sequence of usernames. Each peer must resolve to an input user.",
+    "sender": "Optional author filter for message search. None means do not restrict by author. When provided, the sender is resolved to an input user rather than a chat filter.",
+    "bot": "Bot account whose inline results or start command are requested. Must resolve to a user peer; bot eligibility is enforced by Telegram.",
+    "phone": "Phone number used by this operation. During login it identifies the account receiving a code; for contact operations it is contact data. Supply the international number explicitly; never log it.",
+    "code": "Login code supplied by the user. Must be a nonempty string; it is sent once and never persisted. An incorrect code can be retried using the same saved challenge until Telegram expires it.",
+    "challenge": "LoginChallenge returned by request_login_code or restored from client.login_challenge. None selects the checkpoint saved in this session. Do not mix challenges from different sessions or phones.",
+    "password": "Current two-step-verification password. Used to compute an SRP proof off the event loop; the plain password is not written into session storage.",
+    "bot_token": "Bot token to authorize instead of an interactive phone login. Mutually exclusive with phone. It is sensitive and must come from the application secrets mechanism.",
+    "max_attempts": "Positive integer input budget for each interactive stage independently. Wrong phone/code/password inputs consume that stage budget. Flood waits, network failures, EOF and cancellation propagate without being treated as bad input.",
+    "prompts": "LoginPrompts instance with async phone/code/password callbacks and a synchronous notify callback. None uses terminal input and hidden code/password prompts. Prompt exceptions propagate.",
+    "token": "Sensitive bot token. Authorization is attempted once; invalid tokens do not start phone login. An already authorized session cannot be silently switched to another account.",
+    "authorization_hash": "Signed integer hash from an Authorization returned by get_active_sessions. It identifies the remote authorization to terminate; it is not the auth-key bytes or the local session filename.",
+    "query_id": "Signed 64-bit identifier from the relevant callback/inline query event. Use the value from that event; do not substitute a message ID or a random number.",
+    "text": "Literal text for this operation. No implicit Markdown or HTML parser is applied. Pass explicit native entities where the signature supports them; unsupported parse_mode/formatting keywords are not accepted.",
+    "caption": "Literal media caption. It is sent without implicit Markdown/HTML parsing. Empty text is allowed. The high-level media methods do not expose an entities argument.",
+    "reply_to": "Optional positive message ID in the target conversation. None sends without a reply relationship. This is an integer high-level convenience, not a native InputReplyTo object. The valid high-level ID range is 1 through 2147483647; booleans are rejected.",
+    "silent": "When True, requests silent delivery or a silent pin notification. It does not make content invisible, bypass permissions or guarantee that no recipient UI changes occur.",
+    "link_preview": "Whether Telegram may generate a webpage preview. False becomes the native no_webpage flag. This does not parse formatting or upload a preview manually.",
+    "reply_markup": "Native ReplyMarkup object, usually buttons.inline([...]) for an inline keyboard. None omits markup in the request. Editing omission is not a guaranteed instruction to remove existing markup; use an explicit supported raw operation when removal semantics matter.",
+    "entities": "Explicit native MessageEntity objects. Entity offsets and lengths use Telegram UTF-16 code units, not Python string indices for non-BMP characters. None omits the optional field; an empty list explicitly supplies no entities.",
+    "limit": "Total number of items to return across pages, not one RPC page size. Iterator methods accept None for unbounded traversal; list helpers require a finite nonnegative integer. Zero performs no pagination or peer resolution.",
+    "page_size": "Per-request pagination batch size. Use 1–100 for dialogs/history/search and 1–200 for members. This does not change the total limit and does not enable background prefetch.",
+    "folder_id": "Dialog folder selection. 0 is the main folder and 1 is the archive. Pinned dialogs are fetched separately and emitted first within the selected folder.",
+    "offset_id": "Exclusive message-ID cursor for older history. 0 starts from the newest accessible messages. This is not a list index and is scoped to the target peer.",
+    "query": "Search or inline-query text. Its interpretation depends on the selected operation. History search delegates matching to Telegram; no local regular-expression search is performed.",
+    "ids": "A positive message ID or sequence of IDs. Up to 10,000 IDs are accepted and RPCs are chunked in batches of at most 100. Retrieval preserves order and duplicates; mutation batches can partially succeed.",
+    "message_id": "Positive message ID scoped to the relevant conversation. For inline edits, this is instead a native InputBotInlineMessageID variant supplied by the inline callback, not a normal chat message ID. Ordinary message IDs must fit a positive signed-32-bit integer (1 through 2147483647).",
+    "revoke": "Explicit request to remove messages for other participants where supported. Non-channel deletion validates all IDs against the target first. Channels always delete for everyone and therefore require revoke=True.",
+    "drop_author": "Whether forwarding should hide the original author attribution using Telegram's supported flag. This is still a forward request and does not bypass source content protection.",
+    "max_id": "Highest message ID to mark read. The high-level helper sends 0 unchanged when omitted; GramFlux does not invent a current maximum. Choose an explicit known ID when read scope matters.",
+    "callback": "Previously registered async callback object. Registrations are removed by callback identity. Passing another function with the same name does not remove the original registration.",
+    "predicate": "Synchronous composable Filter evaluated for the event type. Use &, | and ~ for composition. It must not block the event loop; it does not resolve usernames or fetch peers.",
+    "priority": "Integer execution order: lower values run first; equal priorities preserve registration order. Handlers are awaited sequentially, not spawned without bounds.",
+    "edited": "For on_message, False selects new messages and True selects edits. It does not subscribe to both variants; register both handlers or use on_edited_message explicitly.",
+    "event_type": "One of the supported GramFlux event classes from gramflux.events. This selects the high-level event route before the predicate is evaluated; it is not a raw TL constructor class.",
+    "request": "A GramFlux-generated native TL function object with definition.method=True. Constructor-only objects and foreign client objects are rejected. The raw result is returned without a high-level wrapper.",
+    "source": "Path or seekable binary stream to upload. A stream starts at its current position. Library-owned path handles are closed; caller-owned streams remain open. Empty and nonseekable uploads are rejected.",
+    "file": "Already uploaded InputFile/InputFileBig handle or supported native InputMedia object. This method does not accept a local path in place of a handle; use send_document/send_photo or upload_file first.",
+    "name": "Optional transmitted filename. For uploads it overrides the inferred source name. It changes metadata, not the source path. Use a safe basename rather than embedding directory components.",
+    "on_progress": "Optional callback called with (completed_bytes, total_bytes). It may be synchronous or return an awaitable. Upload progress counts completed part RPCs, not bytes merely read; callbacks can fail the operation and are not run as unbounded tasks.",
+    "part_size": "Upload chunk size in bytes: a power of two from 1024 through 524288. Defaults to 512 KiB. Files are limited conservatively to 4000 parts; reducing this value can therefore reduce the maximum supported file size.",
+    "concurrency": "Upload part-RPC window, integer 1–16. File reads stay sequential and at most this many parts are outstanding. This is not handler concurrency or download prefetch; higher values remain bounded by client request admission.",
+    "location": "Native supported InputFileLocation, including inputDocumentFileLocation or inputPhotoFileLocation. It must carry current access hashes and file_reference data. A URL, filesystem path or Message is not an interchangeable location.",
+    "size": "Known complete remote file size in bytes. Used to validate response lengths and byte ranges; it is not a maximum download budget. Supply current metadata rather than guessing.",
+    "offset": "For downloads, zero-based byte position at which to start. Arbitrary range edges are aligned for the protocol and trimmed locally. For inline queries, this is instead the opaque pagination offset from BotResults.next_offset.",
+    "length": "Optional number of bytes to return from offset. None requests the remaining file. Negative or out-of-bounds ranges are rejected instead of silently clamped; zero-length ranges make no file RPC.",
+    "request_size": "Download request chunk size, a power of two from 4096 through 524288 bytes. It controls aligned network reads, not the exact application range. There is no speculative prefetch.",
+    "destination": "New filesystem path or writable binary stream. Path targets never overwrite existing files and use a temporary sibling plus atomic finalization. Caller streams stay open and may retain partial bytes if the transfer fails.",
+    "message": "Native Message containing supported document/photo metadata. GramFlux derives the remote location and size; unsupported media or stale references fail explicitly.",
+    "as_document": "Whether an uploaded handle should be wrapped as a document rather than inferred photo media. This does not convert an arbitrary InputMedia object into another Telegram media kind.",
+    "mime_type": "Optional MIME metadata for document media. None allows inference or the backend fallback. It is not a local file conversion or a content-validation promise.",
+    "alert": "For callback answers, True requests an alert dialog instead of a brief notification. Only valid in the callback-answer flow; the server determines actual client behavior.",
+    "url": "Optional callback-answer URL or a URL button destination. Must be a string where present; the high-level API does not bypass Telegram restrictions on games, domains or bot eligibility.",
+    "cache_time": "Nonnegative signed-32-bit integer cache lifetime in seconds for the callback/inline response. 0 disables requested caching. This is unrelated to the local entity cache.",
+    "results": "Sequence of native InputBotInlineResult objects, at most 50. IDs must be unique and each contain 1–64 UTF-8 bytes. Use buttons.article for a text article or construct native variants explicitly.",
+    "next_offset": "Opaque pagination cursor returned to the caller of an inline query. An empty string indicates no next-page cursor; it is not an integer page number.",
+    "private": "Requests per-user caching for inline results. This is a protocol cache-selection flag, not an access-control mechanism or a private-chat filter.",
+    "gallery": "Requests gallery presentation for inline results. Actual rendering depends on result types and the Telegram client.",
+    "data": "Callback payload bytes. get_callback_answer expects bytes; it does not encode strings automatically. Button builders and filters.data additionally accept strings and encode UTF-8.",
+    "game": "Select the native game callback request behavior. It is a boolean flag and does not create or register a game.",
+    "commands": "Sequence of at most 100 native BotCommand objects. Command names must be unique. Telegram enforces command naming/description rules and whether the account may manage the bot.",
+    "lang_code": "Language selector for bot commands. Empty string requests the default language. This does not change the client's own interface language or translate descriptions.",
+    "scope": "Native BotCommandScope. None selects BotCommandScopeDefault. Use a specific supported scope object for per-chat or other command sets rather than a string scope name.",
+    "action": "Native SendMessageAction. None selects SendMessageTypingAction. Upload/recording actions may require fields such as progress; build the matching constructor explicitly.",
+    "top_message_id": "Optional positive topic/thread root message ID for typing notifications. It is passed as top_msg_id; use the real topic root rather than the current message ID.",
+    "reactions": "Emoji string, sequence of native Reaction objects, or None. A string becomes one ReactionEmoji. None or an empty sequence sends an empty reaction vector to remove the caller's reaction.",
+    "big": "Whether Telegram should display the larger reaction animation. It changes presentation, not the reaction identity or account eligibility.",
+    "add_to_recent": "Whether the reaction may be added to the account's recent reactions. It does not create a custom emoji or modify chat permissions.",
+    "expire_date": "Optional future Unix timestamp for an exported invite. The helper accepts positive signed-32-bit values; Telegram decides whether the selected time is valid.",
+    "usage_limit": "Optional positive signed-32-bit maximum number of joins for an invite. Cannot be combined with request_needed=True.",
+    "request_needed": "Whether joining through the invite requires an administrator to approve a request. Cannot be combined with usage_limit.",
+    "invite_hash": "Invite hash only, containing 1–256 ASCII letters, digits, underscore or hyphen. Do not pass an https://t.me/+ URL including its prefix.",
+    "title": "Operation-specific title. For a chat it is the new chat name; for an invite it is the optional administrative label. Telegram applies its own length and permission rules.",
+    "description": "Description text. For set_chat_description this is the chat's about field, and empty text clears it. For inline article results it is optional listing text, not the sent message body.",
+    "first_name": "Nonempty first/display name for the profile or shared contact. It is literal metadata and does not resolve a username.",
+    "last_name": "Last-name text. Empty string represents an empty value. In update_profile, None omits the field and keeps the existing value; empty string explicitly requests clearing it.",
+    "about": "Profile biography/about text. None leaves the field unchanged; empty string requests clearing it. Telegram enforces allowed lengths.",
+    "share_phone": "Explicit phone-privacy exception for the added contact. False does not opt the peer into seeing your number; True sets add_phone_privacy_exception. Treat this as a deliberate privacy choice.",
+    "start_param": "Bot start payload, without a /start command prefix. It is sent through messages.startBot and is not executed as code by GramFlux.",
+    "vcard": "Optional literal vCard metadata for a shared contact. Empty string omits useful vCard content; no address-book file is imported implicitly.",
+    "latitude": "Finite real latitude in degrees from -90 through 90. Booleans, NaN and infinities are rejected.",
+    "longitude": "Finite real longitude in degrees from -180 through 180. Booleans, NaN and infinities are rejected.",
+    "emoji": "Dice/game emoji string for Telegram's InputMediaDice. Defaults to the dice emoji. Telegram validates supported emoji and generates the outcome; the caller cannot choose the result.",
+    "refresh": "True forces fresh peer resolution and invalidates the old username binding. Cached names normally expire after 60 monotonic seconds and persisted names are not trusted after restart.",
+    "session": "Explicit Session factory result, custom async Storage, path, or None. None uses memory. A bare path opens an existing authorized GramFlux session; use Session.create for new files and Session.open(..., require_authorized=False) for pending login.",
+    "api_id": "Positive numeric Telegram application ID. Obtain it from your own application registration; it is not a bot ID or user ID.",
+    "api_hash": "Application API hash containing exactly 32 hexadecimal characters. Pass it through an application secret mechanism; never log it.",
+    "config": "Immutable Config instance. None constructs the documented defaults. Unknown Client keywords are not forwarded to a competitor library or socket implementation.",
+    "on_handler_error": "Optional async callback (event, exception). Called for handler failures; redact exception contents yourself. Other eligible handlers continue unless propagation is explicitly stopped.",
+    "pattern": "Regular-expression pattern compiled by Python re. It is matched against event text synchronously; use bounded/non-pathological patterns on untrusted input.",
+    "flags": "Python re compilation flags such as re.IGNORECASE. This is unrelated to Telegram flags words or a count of filter matches.",
+    "names": "One or more command names without a prefix, whitespace or @username suffix. The command filter inspects only the first token and does not parse or execute command arguments.",
+    "prefix": "Nonempty command prefix matched at the start of the first token. The default slash is literal; it is not a regular-expression pattern.",
+    "username": "Optional bot username without @. When supplied, addressed commands for another bot are rejected; without it an address for any username can match.",
+    "case_sensitive": "When False, command names use casefold comparison. This does not change regex flags or normalize message content globally.",
+    "constructors": "One or more native Update constructor classes, such as types.UpdateUserTyping. Pass classes, not instances or high-level event classes. They are validated against GramFlux's registry and combined as OR.",
+    "rows": "Nonempty sequence of nonempty keyboard rows. Each row contains supported native inline KeyboardButton variants; reply-only phone/contact request buttons are rejected.",
+    "id": "Inline result identifier string containing 1–64 UTF-8 bytes. Distinct results in one answer must have unique IDs. It is not a message ID.",
+    "value": "Exact callback-data value as bytes or str. A string is encoded as UTF-8; this filter does not perform prefix, regex or JSON matching.",
+    "require_authorized": "True requires the existing session to contain completed account authorization when connected. False allows an unfinished login file to be opened and resumed; it does not create a missing file."
+  },
+  "overrides": {
+    "iter_members.query": "Participant-name search passed to the channel participant search filter. Empty string lists accessible members. Basic-group participants are obtained from full-chat metadata, so the same server search semantics are not promised.",
+    "get_members.query": "Participant-name search where supported by the channel endpoint. Empty string requests accessible members; this is not an arbitrary message query.",
+    "get_callback_answer.message_id": "Positive integer ID of the message whose callback button is being invoked, scoped to peer.",
+    "edit_inline_message.message_id": "Native InputBotInlineMessageID or InputBotInlineMessageID64 from an inline callback. This is neither a regular integer message ID nor a string copied from another library.",
+    "get_inline_results.offset": "Opaque cursor from a previous BotResults.next_offset. Empty string starts the first page; do not parse or increment it as an integer.",
+    "add_contact.phone": "Optional contact phone metadata. Empty string is accepted. This is not a login request and does not request an authorization code.",
+    "save_draft.text": "Literal draft content; empty string is allowed to clear a draft. There is no automatic Markdown/HTML parsing.",
+    "answer_callback_query.text": "Notification/alert text. Empty string acknowledges without text; empty text is omitted from the optional native message field.",
+    "edit_inline_message.text": "Literal replacement inline-message text. This helper accepts empty text at local validation; Telegram determines whether the final edit is valid.",
+    "set_chat_title.title": "Nonempty replacement basic-group or channel/supergroup title. A user account peer is not a valid target.",
+    "export_invite_link.title": "Optional administrative title for the exported invite. None omits the field; it is not the destination chat title.",
+    "get_history.offset_id": "Exclusive message-ID cursor for fetching messages older than this ID. 0 starts from the newest accessible history; no time/date conversion is performed.",
+    "update_profile.first_name": "Optional new first name. None leaves it unchanged; an explicitly supplied value must be nonempty.",
+    "filters.chat.ids": "One or more marked numeric chat IDs matched against event.chat_id. User IDs are positive, basic groups negative, channels -(1000000000000 + channel_id). No network lookup is done.",
+    "filters.sender.ids": "One or more numeric sender IDs compared with event.sender_id. Events lacking sender information fail the predicate. Usernames are not resolved.",
+    "buttons.callback.text": "Nonempty visible button label. This is not callback payload and is not parsed as Markdown.",
+    "buttons.callback.data": "Payload bytes or UTF-8 text, exactly 1–64 encoded bytes. Keep it compact; do not put passwords or other secrets into a publicly reachable callback payload.",
+    "buttons.url.url": "Nonempty URL string used by the native URL button. The builder does not fetch or validate the remote resource; Telegram applies URL/domain restrictions.",
+    "buttons.article.title": "Visible article-result title. The sent text comes from the separate text argument.",
+    "buttons.article.text": "Literal text that will be sent when the article is chosen. It is not a description label; supply explicit native MessageEntity objects for formatting.",
+    "Session.open.name": "Existing GramFlux session name or path. A name without a suffix gets .session. The parent/file must exist; creation is not implied.",
+    "Session.create.name": "New GramFlux filename or name, with .session added when no suffix exists. The parent directory must exist. An existing path is never replaced."
+  },
+  "methods": {
+    "connect": {
+      "category": "Lifecycle",
+      "summary": "Open storage, restore native session metadata, establish the MTProto connection and start update dispatch. Does not prompt for account login.",
+      "returns": "None after successful setup.",
+      "example": "await client.connect()",
+      "notes": [
+        "A completed saved authorization is checked only when the session factory requires it. Calling connect on an already connected client is a no-op; a broken backend requires disconnect before reconnecting."
+      ]
+    },
+    "disconnect": {
+      "category": "Lifecycle",
+      "summary": "Cancel and join outstanding requests and callbacks, stop native update production, close the transport and save the session snapshot.",
+      "returns": "None after cleanup completes.",
+      "example": "await client.disconnect()",
+      "notes": [
+        "Use from the main task, not from an event handler. Cancelling disconnect does not abandon its cleanup worker. It is not remote logout."
+      ]
+    },
+    "is_authorized": {
+      "category": "Authentication",
+      "summary": "Ask Telegram whether this authorization key is attached to an authorized account.",
+      "returns": "bool; True also clears stale pending-login metadata.",
+      "example": "authorized = await client.is_authorized()",
+      "notes": [
+        "A socket being connected or a key being present is not sufficient evidence of account authorization."
+      ]
+    },
+    "login": {
+      "category": "Authentication",
+      "summary": "Explicitly run bounded interactive user login, authorize a bot token, or return the already authorized user.",
+      "returns": "Native User.",
+      "example": "user = await client.login(max_attempts=3)",
+      "notes": [
+        "Saved code/password checkpoints are resumed when appropriate. phone and bot_token are mutually exclusive. Repeated interactive login calls are serialized; do not run other authentication primitives concurrently."
+      ]
+    },
+    "request_login_code": {
+      "category": "Authentication",
+      "summary": "Request a Telegram login code and commit its phone/code-hash checkpoint before returning.",
+      "returns": "LoginChallenge; may raise PasswordRequired after saving the password stage.",
+      "example": "challenge = await client.request_login_code(phone)",
+      "notes": [
+        "Does not resubmit wrong inputs. Calling it again requests a new challenge. The existing session must not already be authorized."
+      ]
+    },
+    "sign_in": {
+      "category": "Authentication",
+      "summary": "Submit a login code using an explicit or saved challenge and persist completed authorization.",
+      "returns": "Native User.",
+      "example": "user = await client.sign_in(code=code)",
+      "notes": [
+        "PasswordRequired is saved before propagating, allowing another process to supply the password later. Wrong codes retain progress; expired or invalidated hashes clear it. No challenge raises LifecycleError."
+      ]
+    },
+    "check_password": {
+      "category": "Authentication",
+      "summary": "Fetch fresh SRP parameters, compute the proof off-loop and finish two-step account authorization.",
+      "returns": "Native User.",
+      "example": "user = await client.check_password(password)",
+      "notes": [
+        "A wrong password leaves the password checkpoint retryable. The plain password is not stored. Already authorized accounts are not replaced."
+      ]
+    },
+    "sign_in_bot": {
+      "category": "Authentication",
+      "summary": "Authorize a bot account once with its token and persist the resulting authorization.",
+      "returns": "Native User describing the bot.",
+      "example": "user = await client.sign_in_bot(token)",
+      "notes": [
+        "Use a separate session for another account. A wrong token propagates; it never falls back to asking for a phone number."
+      ]
+    },
+    "log_out": {
+      "category": "Authentication",
+      "summary": "Explicitly revoke the current remote authorization, clear local key/cache metadata and disconnect.",
+      "returns": "None only after a confirmed LoggedOut response.",
+      "example": "await client.log_out()",
+      "notes": [
+        "The Client cannot reconnect afterward. Local temporary-session cleanup does not call this automatically. A lost reply can leave the remote outcome uncertain."
+      ]
+    },
+    "get_me": {
+      "category": "Users and peers",
+      "summary": "Fetch the current authorized account identity.",
+      "returns": "Native User.",
+      "example": "me = await client.get_me()",
+      "notes": [
+        "An unauthorized account raises AuthenticationRequired. This method does not start login."
+      ]
+    },
+    "resolve_peer": {
+      "category": "Users and peers",
+      "summary": "Resolve a supported peer representation into a native input peer without inventing access hashes.",
+      "returns": "Native InputPeer variant.",
+      "example": "peer = await client.resolve_peer(\"public_username\", refresh=True)",
+      "notes": [
+        "Marked IDs use positive users, negative basic groups and -(1000000000000 + channel_id) channels. Unknown user/channel IDs need metadata from an accessible entity."
+      ]
+    },
+    "get_chat": {
+      "category": "Users and peers",
+      "summary": "Fetch the current basic entity for a supported peer and update peer metadata.",
+      "returns": "Native User, Chat or Channel.",
+      "example": "entity = await client.get_chat(\"me\")",
+      "notes": [
+        "This is basic entity data, not the full profile/participant response. Use get_chat_full or get_user_full for those endpoints."
+      ]
+    },
+    "get_user": {
+      "category": "Users and peers",
+      "summary": "Fetch a basic entity and require it to be a user.",
+      "returns": "Native User.",
+      "example": "user = await client.get_user(\"me\")",
+      "notes": [
+        "A group/channel peer raises ConfigurationError rather than returning another entity kind."
+      ]
+    },
+    "get_user_full": {
+      "category": "Users and peers",
+      "summary": "Request the full Telegram user profile for a user peer.",
+      "returns": "Native users.UserFull wrapper.",
+      "example": "profile = await client.get_user_full(\"me\")",
+      "notes": [
+        "Requires a user input peer. Availability of fields still depends on Telegram privacy rules."
+      ]
+    },
+    "get_chat_full": {
+      "category": "Users and peers",
+      "summary": "Request full basic-group or channel/supergroup metadata using the appropriate endpoint.",
+      "returns": "Native messages.ChatFull wrapper.",
+      "example": "details = await client.get_chat_full(group_peer)",
+      "notes": [
+        "User peers are not a substitute for group/channel peers. Hidden or forbidden metadata is not bypassed."
+      ]
+    },
+    "get_contacts": {
+      "category": "Contacts",
+      "summary": "Fetch the current complete contacts response with a zero cache hash.",
+      "returns": "list of native User objects.",
+      "example": "contacts = await client.get_contacts()",
+      "notes": [
+        "An unexpected not-modified response raises PaginationError rather than pretending an empty list is complete."
+      ]
+    },
+    "block_user": {
+      "category": "Contacts",
+      "summary": "Block a resolved user through the contacts API.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.block_user(user_peer)",
+      "notes": [
+        "Requires a user peer; it is not a channel moderation ban."
+      ]
+    },
+    "unblock_user": {
+      "category": "Contacts",
+      "summary": "Remove a block on a resolved user.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.unblock_user(user_peer)",
+      "notes": [
+        "This does not re-add a deleted contact or restore old messages."
+      ]
+    },
+    "add_contact": {
+      "category": "Contacts",
+      "summary": "Add a resolved user to contacts with explicit name and phone-sharing choices.",
+      "returns": "Native contacts RPC result.",
+      "example": "await client.add_contact(user_peer, \"Alex\", share_phone=False)",
+      "notes": [
+        "first_name cannot be empty. share_phone=True changes a privacy exception; it must be a real boolean."
+      ]
+    },
+    "delete_contacts": {
+      "category": "Contacts",
+      "summary": "Remove the selected user contacts from the account.",
+      "returns": "Native contacts RPC result.",
+      "example": "await client.delete_contacts([user_peer])",
+      "notes": [
+        "The sequence must not be empty. This does not delete message history or block those accounts."
+      ]
+    },
+    "update_profile": {
+      "category": "Account",
+      "summary": "Update only explicitly supplied name/biography fields for the current user.",
+      "returns": "Native User.",
+      "example": "user = await client.update_profile(about=\"My profile\")",
+      "notes": [
+        "At least one field must be supplied. None means unchanged; empty last_name/about clears that field. An explicitly empty first_name is rejected."
+      ]
+    },
+    "get_active_sessions": {
+      "category": "Account",
+      "summary": "List Telegram authorizations attached to the current account.",
+      "returns": "list of native Authorization objects.",
+      "example": "sessions = await client.get_active_sessions()",
+      "notes": [
+        "These remote account authorizations are different from local SQLite session filenames."
+      ]
+    },
+    "terminate_session": {
+      "category": "Account",
+      "summary": "Revoke the specific remote authorization identified by its hash.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.terminate_session(authorization_hash)",
+      "notes": [
+        "Inspect get_active_sessions first. The hash is not an auth-key ID, and Telegram can impose account-age/security restrictions."
+      ]
+    },
+    "send_message": {
+      "category": "Messages",
+      "summary": "Send nonempty literal text, optionally with a reply, explicit entities and native keyboard markup.",
+      "returns": "Native Message normalized from the server response.",
+      "example": "sent = await client.send_message(\"me\", \"Hello\", silent=True, link_preview=False)",
+      "notes": [
+        "No parse_mode or arbitrary **kwargs are accepted. Telegram limits and entity UTF-16 offsets apply. A lost response is not automatically resent with a new random ID."
+      ]
+    },
+    "edit_message": {
+      "category": "Messages",
+      "summary": "Edit nonempty literal message text in a known peer.",
+      "returns": "Native Updates result, not a replacement Message.",
+      "example": "await client.edit_message(\"me\", message_id, \"Updated\", link_preview=False)",
+      "notes": [
+        "This helper supplies an empty entities vector and exposes no entities/reply_markup parameter. Use edit_inline_message for inline IDs, or a raw request for additional supported TL options."
+      ]
+    },
+    "delete_messages": {
+      "category": "Messages",
+      "summary": "Delete validated IDs from an explicitly selected conversation.",
+      "returns": "list of messages.AffectedMessages results, one per batch.",
+      "example": "await client.delete_messages(\"me\", [message_id], revoke=False)",
+      "notes": [
+        "All non-channel IDs are preflight-checked for chat scope before any delete. Channel deletion always affects everyone and requires revoke=True. Multi-batch operations are not atomic."
+      ]
+    },
+    "forward_messages": {
+      "category": "Messages",
+      "summary": "Forward messages from an explicit source peer into a destination peer with independent secure random IDs.",
+      "returns": "list of native Updates, one per batch.",
+      "example": "await client.forward_messages(\"me\", source_peer, [message_id], drop_author=False)",
+      "notes": [
+        "IDs are scoped to from_peer. Telegram content-protection and permissions apply. A later batch failure does not roll back earlier forwards."
+      ]
+    },
+    "read_history": {
+      "category": "Messages",
+      "summary": "Mark history as read using the user/group or channel endpoint.",
+      "returns": "AffectedMessages for users/basic groups; bool for channels.",
+      "example": "await client.read_history(\"me\", max_id=message_id)",
+      "notes": [
+        "The helper sends max_id unchanged. It is not a durable acknowledgement of application callback processing."
+      ]
+    },
+    "pin_message": {
+      "category": "Messages",
+      "summary": "Pin a message in the selected conversation.",
+      "returns": "Native Updates.",
+      "example": "await client.pin_message(\"me\", message_id, silent=True)",
+      "notes": [
+        "The default requests a silent pin. Telegram decides whether this account may pin in the conversation."
+      ]
+    },
+    "unpin_message": {
+      "category": "Messages",
+      "summary": "Unpin the selected message in its conversation.",
+      "returns": "Native Updates.",
+      "example": "await client.unpin_message(\"me\", message_id)",
+      "notes": [
+        "This is a targeted unpin, not an unpin-all operation."
+      ]
+    },
+    "iter_dialogs": {
+      "category": "Pagination",
+      "summary": "Create a lazy iterator over pinned dialogs followed by regular dialogs in one folder.",
+      "returns": "AsyncIterator of Dialog records; do not await the iterator factory.",
+      "example": "async for dialog in client.iter_dialogs(limit=200, folder_id=0, page_size=50):\n    print(dialog.id)",
+      "notes": [
+        "Only the next page is requested on demand. Missing/stalled cursors raise PaginationError. No snapshot transaction or durable deduplication is promised."
+      ]
+    },
+    "get_dialogs": {
+      "category": "Pagination",
+      "summary": "Materialize a finite collection of dialogs using the lazy iterator.",
+      "returns": "list of Dialog records.",
+      "example": "dialogs = await client.get_dialogs(limit=50, folder_id=1)",
+      "notes": [
+        "limit=None is not accepted. For large traversals use iter_dialogs to avoid retaining the entire collection."
+      ]
+    },
+    "iter_history": {
+      "category": "Pagination",
+      "summary": "Lazily traverse accessible messages newest first, starting before offset_id when supplied.",
+      "returns": "AsyncIterator of Message or MessageService.",
+      "example": "async for message in client.iter_history(\"me\", limit=200, page_size=50):\n    print(message.id)",
+      "notes": [
+        "The factory is not awaitable. Short pages do not incorrectly end sliced history; cursors must advance."
+      ]
+    },
+    "get_history": {
+      "category": "Pagination",
+      "summary": "Collect a finite newest-first message history.",
+      "returns": "list of Message or MessageService.",
+      "example": "history = await client.get_history(\"me\", limit=20, offset_id=0)",
+      "notes": [
+        "The list is held in memory. limit is total output, not the server request size."
+      ]
+    },
+    "iter_search": {
+      "category": "Pagination",
+      "summary": "Lazily search one conversation through Telegram, optionally restricting the author.",
+      "returns": "AsyncIterator of Message or MessageService.",
+      "example": "async for message in client.iter_search(\"me\", \"meeting\", limit=100):\n    print(message.id)",
+      "notes": [
+        "The query is not a local regex. Sender filtering requires a user peer. Results can change while pagination is running."
+      ]
+    },
+    "search_messages": {
+      "category": "Pagination",
+      "summary": "Collect a finite set of server-side search results in one peer.",
+      "returns": "list of Message or MessageService.",
+      "example": "found = await client.search_messages(\"me\", \"meeting\", limit=30)",
+      "notes": [
+        "None is not a valid list limit. Use iter_search for lazy traversal or sender-specific searching without retaining all output."
+      ]
+    },
+    "get_messages": {
+      "category": "Messages",
+      "summary": "Retrieve explicit IDs while preserving requested order and duplicate IDs.",
+      "returns": "list of Message/MessageService or None per requested ID.",
+      "example": "messages = await client.get_messages(\"me\", [101, 102, 101])",
+      "notes": [
+        "Missing, deleted or other-chat results become None. A single ID still returns a list, not one Message."
+      ]
+    },
+    "iter_members": {
+      "category": "Pagination",
+      "summary": "Lazily enumerate accessible basic-group or channel/supergroup participants.",
+      "returns": "AsyncIterator of ChatMember records.",
+      "example": "async for member in client.iter_members(group_peer, limit=100, page_size=50):\n    print(member.id, member.role)",
+      "notes": [
+        "Bots/users see only what Telegram permits. Hidden/forbidden participant lists do not become fabricated empty complete lists."
+      ]
+    },
+    "get_members": {
+      "category": "Pagination",
+      "summary": "Materialize a finite list of accessible participant records.",
+      "returns": "list of ChatMember.",
+      "example": "members = await client.get_members(group_peer, limit=50)",
+      "notes": [
+        "Records can have user=None when the entity table lacks full user information. limit=None is not accepted."
+      ]
+    },
+    "join_chat": {
+      "category": "Membership",
+      "summary": "Join a resolved public channel/supergroup through its channel endpoint.",
+      "returns": "Native Updates.",
+      "example": "await client.join_chat(channel_peer)",
+      "notes": [
+        "This is an explicit membership change. Resolving a peer does not join it; use import_invite for a private invite hash."
+      ]
+    },
+    "leave_chat": {
+      "category": "Membership",
+      "summary": "Leave a basic group or a channel/supergroup using the corresponding endpoint.",
+      "returns": "Native Updates.",
+      "example": "await client.leave_chat(group_peer)",
+      "notes": [
+        "This does not delete a private user dialog. Telegram can prevent leaving under method-specific restrictions."
+      ]
+    },
+    "import_invite": {
+      "category": "Membership",
+      "summary": "Attempt to join through a private invite hash.",
+      "returns": "Native Updates.",
+      "example": "await client.import_invite(invite_hash)",
+      "notes": [
+        "Pass only the hash, not a URL. Joining can require approval or fail because the invite expired; check_invite is a separate inspection operation."
+      ]
+    },
+    "check_invite": {
+      "category": "Membership",
+      "summary": "Inspect an invite hash without calling the join endpoint.",
+      "returns": "Native ChatInvite variant.",
+      "example": "invite = await client.check_invite(invite_hash)",
+      "notes": [
+        "Inspect the returned constructor: it can represent different invite/account membership states. This method does not join automatically."
+      ]
+    },
+    "export_invite_link": {
+      "category": "Membership",
+      "summary": "Create/export a chat invite with explicit expiry, usage and approval choices.",
+      "returns": "Native ExportedChatInvite variant.",
+      "example": "invite = await client.export_invite_link(group_peer, title=\"Team\", request_needed=True)",
+      "notes": [
+        "expiry/usage values must be positive signed-32-bit integers. request_needed and usage_limit cannot be combined. Administrative permission is enforced by Telegram."
+      ]
+    },
+    "set_chat_title": {
+      "category": "Membership",
+      "summary": "Change a basic group or channel/supergroup title using the appropriate endpoint.",
+      "returns": "Native Updates.",
+      "example": "await client.set_chat_title(group_peer, \"Team chat\")",
+      "notes": [
+        "Requires a nonempty string and suitable account permissions. A user peer is not a valid target."
+      ]
+    },
+    "set_chat_description": {
+      "category": "Membership",
+      "summary": "Set or clear a chat about/description field.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.set_chat_description(group_peer, \"Project discussion\")",
+      "notes": [
+        "Empty description requests clearing. Chat permissions and server-side length limits remain authoritative."
+      ]
+    },
+    "invoke": {
+      "category": "Raw API",
+      "summary": "Execute a native GramFlux-generated TL function object through the shared request engine.",
+      "returns": "Actual decoded native result, list or primitive.",
+      "example": "result = await client.invoke(functions.users.GetUsersRequest(id=[types.InputUserSelf()]))",
+      "notes": [
+        "No implicit high-level peer resolution or arbitrary retry is added. A constructor that is not a method raises TypeError. Raw declaration availability does not implement unsupported workflows."
+      ]
+    },
+    "run_until_disconnected": {
+      "category": "Lifecycle",
+      "summary": "Wait for backend disconnection while allowing other asyncio tasks to run.",
+      "returns": "None for normal disconnection; backend failure is re-raised.",
+      "example": "await client.run_until_disconnected()",
+      "notes": [
+        "The client must already be connected. Cancelling this waiter does not cancel the backend disconnected future or silently disconnect unrelated work."
+      ]
+    },
+    "upload_file": {
+      "category": "Files",
+      "summary": "Read a local binary source in order and submit a bounded number of upload parts.",
+      "returns": "InputFile for files up to 10 MiB, otherwise InputFileBig.",
+      "example": "handle = await client.upload_file(\"report.pdf\", part_size=262144, concurrency=4)",
+      "notes": [
+        "At most 4000 parts are supported. Caller streams remain open. Empty uploads are rejected. The return value is a handle, not a sent message."
+      ]
+    },
+    "send_file": {
+      "category": "Files",
+      "summary": "Send an uploaded handle or native supported InputMedia using the selected peer and caption.",
+      "returns": "Native Message.",
+      "example": "handle = await client.upload_file(\"report.pdf\")\nmessage = await client.send_file(\"me\", handle, caption=\"Report\", as_document=True)",
+      "notes": [
+        "A local path is not accepted here. Uploaded handles are temporary server resources. Raw media kinds may require a workflow not implemented by the high-level helper."
+      ]
+    },
+    "send_document": {
+      "category": "Files",
+      "summary": "Upload a source, then send the uploaded result as a document.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_document(\"me\", \"report.pdf\", name=\"report.pdf\", concurrency=4)",
+      "notes": [
+        "Upload success alone does not prove the final message was sent. A later send failure can leave an uploaded handle on the server. Partial remote outcomes are not retried automatically."
+      ]
+    },
+    "send_photo": {
+      "category": "Files",
+      "summary": "Upload a source, explicitly wrap it as photo media, then send it.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_photo(\"me\", \"photo.jpg\", caption=\"Photo\")",
+      "notes": [
+        "This is not a document fallback or image-conversion service. Unsupported/corrupt image data is rejected by Telegram."
+      ]
+    },
+    "iter_download": {
+      "category": "Files",
+      "summary": "Create a lazy iterator yielding exactly the requested byte range from a native remote location.",
+      "returns": "AsyncIterator of bytes; the factory itself is not awaited.",
+      "example": "async for block in client.iter_download(location, size=size, offset=0, length=8192):\n    consume(block)",
+      "notes": [
+        "Requests are aligned and trimmed, limited to a protocol window, and response lengths are validated. There is no prefetch, CDN fallback, reference refresh or resumable-transfer state."
+      ]
+    },
+    "iter_download_media": {
+      "category": "Files",
+      "summary": "Resolve supported document/photo metadata from a message and yield its requested byte range.",
+      "returns": "AsyncIterator of bytes.",
+      "example": "async for block in client.iter_download_media(message, offset=0, length=8192):\n    consume(block)",
+      "notes": [
+        "Use async for directly. Native message metadata supplies full size; unsupported media raises explicitly rather than guessing a location."
+      ]
+    },
+    "download_file": {
+      "category": "Files",
+      "summary": "Stream an exact range to a new path or caller-owned binary output stream.",
+      "returns": "Path for a path destination; None for a caller stream.",
+      "example": "path = await client.download_file(location, \"copy.bin\", size=size, length=8192)",
+      "notes": [
+        "A path target never overwrites an existing file. Failed/cancelled path transfers remove their temporary file; caller streams can retain partial data."
+      ]
+    },
+    "download_media": {
+      "category": "Files",
+      "summary": "Resolve a supported message's media location and size, then stream an exact range.",
+      "returns": "Path for a path destination; None for a caller stream.",
+      "example": "path = await client.download_media(message, \"copy.pdf\")",
+      "notes": [
+        "Only supported document/photo metadata is resolved. Cross-DC media/CDN redirects and expired-reference recovery remain unsupported."
+      ]
+    },
+    "answer_callback_query": {
+      "category": "Bots",
+      "summary": "Answer an incoming bot callback query with notification text, an alert, or a permitted URL.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.answer_callback_query(event.query_id, text=\"Done\", cache_time=0)",
+      "notes": [
+        "Use the query ID from the event rather than its message ID. Telegram can reject expired queries or disallowed URL/game contexts."
+      ]
+    },
+    "answer_inline_query": {
+      "category": "Bots",
+      "summary": "Publish at most 50 native inline results with explicit caching and pagination choices.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.answer_inline_query(event.query_id, [buttons.article(\"one\", \"Title\", \"Body\")], private=True)",
+      "notes": [
+        "Result IDs must be unique and 1–64 UTF-8 bytes. This does not configure inline mode for the bot; Telegram configuration and account eligibility still apply."
+      ]
+    },
+    "edit_inline_message": {
+      "category": "Bots",
+      "summary": "Edit the text/markup of an inline bot message by its native inline identifier.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.edit_inline_message(event.inline_message_id, \"Updated\")",
+      "notes": [
+        "A normal integer message ID is not accepted by the protocol. None markup omits that optional field; use an explicit native markup when replacing it."
+      ]
+    },
+    "get_inline_results": {
+      "category": "Bots",
+      "summary": "Request inline results from a bot for a query and target peer context.",
+      "returns": "Native messages.BotResults, including next_offset.",
+      "example": "results = await client.get_inline_results(bot_peer, \"query\", peer=\"me\")",
+      "notes": [
+        "The bot input must be a user. This retrieves results; it does not choose and send one of them."
+      ]
+    },
+    "get_callback_answer": {
+      "category": "Bots",
+      "summary": "Invoke a message's supported callback payload and receive the bot answer.",
+      "returns": "Native messages.BotCallbackAnswer.",
+      "example": "answer = await client.get_callback_answer(chat_peer, message_id, data=b\"confirm\")",
+      "notes": [
+        "data must be bytes if supplied. This is the user-side callback invocation, unlike answer_callback_query which answers a bot event."
+      ]
+    },
+    "set_bot_commands": {
+      "category": "Bots",
+      "summary": "Replace a bot command list for a selected native scope and language.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.set_bot_commands([types.BotCommand(command=\"help\", description=\"Help\")])",
+      "notes": [
+        "The list may contain at most 100 unique command names. Empty commands can clear that command set. None scope maps to BotCommandScopeDefault."
+      ]
+    },
+    "get_bot_commands": {
+      "category": "Bots",
+      "summary": "Read the command list for a selected scope/language pair.",
+      "returns": "list of native BotCommand.",
+      "example": "commands = await client.get_bot_commands(lang_code=\"\")",
+      "notes": [
+        "The default language is empty string and the default scope is global. This does not merge all scopes into one list."
+      ]
+    },
+    "set_typing": {
+      "category": "Messages",
+      "summary": "Send a native typing or other SendMessageAction notification, optionally in a topic.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.set_typing(\"me\", action=types.SendMessageTypingAction())",
+      "notes": [
+        "A default None action becomes typing. This sends once; GramFlux does not start a repeating background typing task."
+      ]
+    },
+    "send_reaction": {
+      "category": "Messages",
+      "summary": "Set, replace or remove the current account's reaction on a message.",
+      "returns": "Native Updates.",
+      "example": "await client.send_reaction(\"me\", message_id, \"👍\", big=False)",
+      "notes": [
+        "None/[] removes the caller's reactions. Native Reaction objects permit variants beyond a simple emoji, subject to account and chat limits."
+      ]
+    },
+    "save_draft": {
+      "category": "Messages",
+      "summary": "Set or clear a literal draft in one conversation with optional reply context.",
+      "returns": "bool returned by Telegram.",
+      "example": "await client.save_draft(\"me\", \"Draft text\", link_preview=False)",
+      "notes": [
+        "Empty text is allowed for clearing. This stores a server-side draft; it does not send a message or expose every raw saveDraft option."
+      ]
+    },
+    "start_bot": {
+      "category": "Bots",
+      "summary": "Start a bot with an explicit target peer and start payload.",
+      "returns": "Native Updates.",
+      "example": "await client.start_bot(bot_peer, peer=\"me\", start_param=\"welcome\")",
+      "notes": [
+        "GramFlux assigns a secure random ID. This is a user-side bot-start operation, not authorization of the bot token."
+      ]
+    },
+    "send_contact": {
+      "category": "Media messages",
+      "summary": "Send a contact card built from literal phone/name/vCard fields.",
+      "returns": "Native Message.",
+      "example": "await client.send_contact(\"me\", \"+12025550123\", \"Alex\", last_name=\"Example\")",
+      "notes": [
+        "phone and first_name must be nonempty. This shares contact data; it does not add the recipient to your address book automatically."
+      ]
+    },
+    "send_location": {
+      "category": "Media messages",
+      "summary": "Send a static geographic point with validated finite coordinates.",
+      "returns": "Native Message.",
+      "example": "await client.send_location(\"me\", latitude=51.5072, longitude=-0.1276)",
+      "notes": [
+        "Only a static point is exposed here. Live-location period, accuracy, venue and heading parameters require an appropriate raw workflow."
+      ]
+    },
+    "send_dice": {
+      "category": "Media messages",
+      "summary": "Send a Telegram-generated dice/game media object.",
+      "returns": "Native Message.",
+      "example": "await client.send_dice(\"me\", emoji=\"🎲\")",
+      "notes": [
+        "The caller chooses an allowed emoji, not the random outcome. Unsupported emoji/account behavior is decided by Telegram."
+      ]
+    },
+    "on_message": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for new messages; edited=True selects edits.",
+      "returns": "Decorator returning the original callback; the callback receives MessageEvent.",
+      "example": "@client.on_message()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_edited_message": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for edited messages only.",
+      "returns": "Decorator returning the original callback; the callback receives MessageEvent.",
+      "example": "@client.on_edited_message()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_raw_update": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for accepted native Update objects, without fabricated wrappers for difference.new_messages.",
+      "returns": "Decorator returning the original callback; the callback receives RawUpdateEvent.",
+      "example": "@client.on_raw_update()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_deleted_messages": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for message deletions; global non-channel deletions may not identify a chat.",
+      "returns": "Decorator returning the original callback; the callback receives DeletedMessagesEvent.",
+      "example": "@client.on_deleted_messages()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_read_history": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for read-history changes with max_id and inbox/outbox direction.",
+      "returns": "Decorator returning the original callback; the callback receives ReadHistoryEvent.",
+      "example": "@client.on_read_history()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_user_status": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for user status changes, subject to Telegram privacy and visibility.",
+      "returns": "Decorator returning the original callback; the callback receives UserStatusEvent.",
+      "example": "@client.on_user_status()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_chat_action": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for native service messages describing supported chat actions.",
+      "returns": "Decorator returning the original callback; the callback receives ChatActionEvent.",
+      "example": "@client.on_chat_action()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_callback_query": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for bot callback queries; inline identifiers are distinct from ordinary message IDs.",
+      "returns": "Decorator returning the original callback; the callback receives CallbackQueryEvent.",
+      "example": "@client.on_callback_query()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on_inline_query": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for bot inline queries carrying query text and pagination offset.",
+      "returns": "Decorator returning the original callback; the callback receives InlineQueryEvent.",
+      "example": "@client.on_inline_query()\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "on": {
+      "category": "Event subscriptions",
+      "summary": "Register an async callback for instances of the selected supported high-level event type.",
+      "returns": "Decorator returning the original callback; the callback receives selected event class.",
+      "example": "@client.on(events.MessageEvent, filters.text)\nasync def handler(event):\n    print(type(event).__name__)",
+      "notes": [
+        "Register before connecting. Callbacks run sequentially with bounded queues; lower priority executes first. Handler failures are reported and isolated. Use a shutdown signal to the main task rather than disconnecting inside the handler."
+      ]
+    },
+    "off_event": {
+      "category": "Event subscriptions",
+      "summary": "Remove all registrations associated with the same callback object.",
+      "returns": "Integer number of registrations removed.",
+      "example": "removed = client.off_event(handler)",
+      "notes": [
+        "Removal affects subsequent dispatch snapshots. An already selected in-flight handler is not retroactively cancelled. Keep the original decorated callback object if you need to unsubscribe it."
+      ]
+    },
+    "off_message": {
+      "category": "Event subscriptions",
+      "summary": "Remove all registrations associated with the same callback object.",
+      "returns": "Integer number of registrations removed.",
+      "example": "removed = client.off_message(handler)",
+      "notes": [
+        "Removal affects subsequent dispatch snapshots. An already selected in-flight handler is not retroactively cancelled. Keep the original decorated callback object if you need to unsubscribe it."
+      ]
+    },
+    "__init__": {
+      "category": "Lifecycle",
+      "summary": "Construct an asyncio-first client with explicit session intent, application credentials, immutable settings and an optional handler-error reporter. Construction does not connect or prompt.",
+      "returns": "A Client instance; use it on one asyncio event loop.",
+      "example": "client = Client(Session.open(\"account\"), api_id=api_id, api_hash=api_hash, config=Config(request_timeout=30))",
+      "notes": [
+        "Use Session.create only once for a new filename. For an unfinished login use Session.open(..., require_authorized=False). A bare path means open an existing authorized session. Unknown constructor keywords are rejected."
+      ]
+    }
+  },
+  "helpers": {
+    "filters.chat": {
+      "summary": "Select events whose marked chat ID equals any supplied numeric ID.",
+      "returns": "Composable synchronous Filter.",
+      "example": "@client.on_message(filters.chat(-1001234567890) & filters.text)\nasync def handler(event):\n    print(event.chat_id)",
+      "notes": "No usernames, I/O or peer resolution occurs. Compose with sender/text predicates using &, | and ~."
+    },
+    "filters.sender": {
+      "summary": "Select events from one of the supplied sender IDs.",
+      "returns": "Composable synchronous Filter.",
+      "example": "@client.on_message(filters.sender(123456789) & filters.incoming)\nasync def handler(event):\n    print(event.sender_id)",
+      "notes": "Use actual known account IDs. A sender filter does not restrict the chat unless a chat predicate is also composed."
+    },
+    "filters.regex": {
+      "summary": "Compile a Python regular expression and search event text.",
+      "returns": "Composable synchronous Filter.",
+      "example": "@client.on_message(filters.regex(r\"^hello\", flags=0))\nasync def handler(event):\n    print(event.chat_id)",
+      "notes": "Compilation errors propagate from re. Regex evaluation is synchronous and should not be allowed to consume unbounded CPU."
+    },
+    "filters.command": {
+      "summary": "Match command names in the first token with explicit prefix and optional bot address.",
+      "returns": "Composable synchronous Filter.",
+      "example": "@client.on_message(filters.command(\"start\", \"help\", username=\"your_bot\"))\nasync def handler(event):\n    print(event.text)",
+      "notes": "This does not split arguments beyond the first token. Use the optional username to avoid responding to commands addressed to another bot."
+    },
+    "filters.data": {
+      "summary": "Compare callback payload bytes exactly with the provided value.",
+      "returns": "Composable synchronous Filter.",
+      "example": "@client.on_callback_query(filters.data(\"confirm\"))\nasync def handler(event):\n    await event.answer(\"Confirmed\")",
+      "notes": "String inputs are UTF-8 encoded once. Events without data do not match. No prefix/substring matching is implied."
+    },
+    "filters.update_type": {
+      "summary": "Select one or more exact native Update constructor classes through the raw event route.",
+      "returns": "Composable synchronous Filter.",
+      "example": "@client.on_raw_update(filters.update_type(types.UpdateUserTyping))\nasync def handler(event):\n    print(event.update.definition.name)",
+      "notes": "The selector cannot enable unsupported qts/secret-chat synchronization. Raw subscriptions observe accepted Update objects; difference recovery can deliver Message objects without a synthetic Update wrapper."
+    },
+    "buttons.callback": {
+      "summary": "Build a native callback button with a visible label and bounded payload.",
+      "returns": "types.KeyboardButtonCallback.",
+      "example": "button = buttons.callback(\"Confirm\", \"confirm\")",
+      "notes": "The UTF-8 byte count, not character count, must be 1–64. Place the button into buttons.inline before passing it as reply_markup."
+    },
+    "buttons.url": {
+      "summary": "Build a native button that opens a URL.",
+      "returns": "types.KeyboardButtonUrl.",
+      "example": "button = buttons.url(\"Project\", \"https://github.com/gramflux/gramflux\")",
+      "notes": "Both strings must be nonempty. This helper does not visit the URL or create callback events for the click."
+    },
+    "buttons.inline": {
+      "summary": "Group supported native inline buttons into rows and produce reply markup.",
+      "returns": "types.ReplyInlineMarkup.",
+      "example": "keyboard = buttons.inline([[buttons.callback(\"Confirm\", \"yes\"), buttons.url(\"Project\", \"https://github.com/gramflux/gramflux\")]])\nawait client.send_message(\"me\", \"Choose\", reply_markup=keyboard)",
+      "notes": "Rows and the outer sequence must be nonempty. Supported kinds are Callback, URL, SwitchInline, InputKeyboardButtonUserProfile, Game and Buy; other keyboard variants fail explicitly."
+    },
+    "buttons.article": {
+      "summary": "Build a native inline article whose selected result sends literal text.",
+      "returns": "types.InputBotInlineResult with InputBotInlineMessageText.",
+      "example": "article = buttons.article(\"intro\", \"Introduction\", \"Hello\", description=\"Read the introduction\")\nawait client.answer_inline_query(event.query_id, [article])",
+      "notes": "A result ID must be 1–64 UTF-8 bytes. Title/listing description and sent text are separate. Telegram enforces account, result and formatting rules."
+    },
+    "Session.open": {
+      "summary": "Select an existing GramFlux session, normally requiring completed account authorization.",
+      "returns": "Session intent object; the file is opened at Client.connect, not at factory call time.",
+      "example": "session = Session.open(\"account\", require_authorized=False)\nasync with Client(session, api_id=api_id, api_hash=api_hash) as client:\n    await client.login()",
+      "notes": "False permits pending login reuse; it does not bypass Telegram authentication. Missing files and foreign session formats fail explicitly."
+    },
+    "Session.create": {
+      "summary": "Select exclusive creation of a new named persistent session.",
+      "returns": "Session intent object; creation/locking happens during Client.connect.",
+      "example": "session = Session.create(\"account\")\nasync with Client(session, api_id=api_id, api_hash=api_hash) as client:\n    await client.login()",
+      "notes": "An existing file raises SessionAlreadyExists. Do not delete an authenticated or partially authorized session just to bypass that error."
+    },
+    "Session.temporary": {
+      "summary": "Select in-memory storage with no session file.",
+      "returns": "Session intent object for process-local MemoryStorage.",
+      "example": "async with Client(Session.temporary(), api_id=api_id, api_hash=api_hash) as client:\n    await client.login()",
+      "notes": "Process exit loses local state, including pending login. Disconnect does not automatically revoke the remote Telegram authorization."
+    }
+  },
+  "event_fields": {
+    "message": "Native Message or MessageService associated with the event. Payload repr is redacted; reading text/media is still sensitive application data.",
+    "edited": "False for new-message events; True for edits. It reflects event routing, not whether every field has changed.",
+    "client": "Bound Client used by event reply/edit/delete/download/answer helpers. Detached events can have None; helpers then raise LifecycleError.",
+    "chat_type": "private, group or channel when the message peer can be classified; None when unavailable. Basic groups and supergroups are not collapsed into an invented wire type.",
+    "update": "Actual accepted native Update object. Counter/gap validation happens before dispatch; this is not a fabricated wrapper around every recovered Message.",
+    "message_ids": "Tuple of deleted message IDs. Global non-channel IDs may arrive without an identifiable chat.",
+    "chat_id": "Marked chat identity when known. Non-channel deletion and inline callback events may have None; never guess the peer from a global message ID.",
+    "max_id": "Read-history cursor reported by Telegram. It does not mean the application processed every callback up to this ID.",
+    "outbox": "True for an outgoing-history read update; False for inbox read state.",
+    "sender_id": "Account ID associated with the author/query/status update when available. This is not automatically a complete User object.",
+    "status": "Native UserStatus variant. Last-seen visibility and online state are governed by Telegram privacy rules.",
+    "query_id": "Query identity to use when answering the callback/inline event. It is distinct from message_id and from an MTProto message ID.",
+    "data": "Optional callback payload bytes; can be None for game/other callback shapes. No automatic UTF-8/JSON decoding is performed.",
+    "message_id": "Ordinary message ID for a chat callback, when present. For inline callbacks, inspect inline_message_id instead.",
+    "inline_message_id": "Native inline-message identifier for inline callbacks. It is separate from chat_id/message_id and may be None for ordinary callbacks.",
+    "game_short_name": "Optional game identifier when the callback is game-related; it is not a URL or a replacement for callback data.",
+    "query": "Literal inline search query submitted by the user. Do not log it without an application privacy decision.",
+    "offset": "Opaque inline-query pagination cursor. It is not a byte offset or a numeric page index."
+  },
+  "config_fields": {
+    "request_timeout": "Finite positive request deadline in seconds, including time waiting for request admission. Also bounds complete initial connection/auth-key setup. It is not a limit on the lifetime of the Client or all pagination pages together.",
+    "max_concurrent_requests": "Positive integer application RPC admission bound. It does not spawn this many event workers. Native liveness traffic has reserved bounded capacity.",
+    "event_queue_size": "Positive integer count setting for event/native receive queues. Slow handlers can trigger bounded backpressure/overflow; the receiver does not silently discard updates.",
+    "reconnect_attempts": "Nonnegative integer bound for initial TCP establishment retries. It does not replay pending application writes or provide transparent in-flight reconnection.",
+    "peer_cache_size": "Integer from 1 through 4096. Bounds account-local entity/access-hash metadata; default 2048. A cache entry is not permanent proof of username ownership.",
+    "transport": "One of full, intermediate or abridged. All use the same native MTProto 2.0 encryption. Proxy/HTTP/WebSocket/obfuscated transports are not exposed by this setting.",
+    "update_queue_bytes": "Positive queued-update budget measured by uncompressed TL body byte sizes; default 16 MiB. It is not a cap on Python object heap size or total RSS."
+  },
+  "event_examples": {
+    "MessageEvent": "@client.on_message(filters.incoming & filters.text)\nasync def handler(event):\n    await event.reply(\"Received\")",
+    "RawUpdateEvent": "@client.on_raw_update(filters.update_type(types.UpdateUserTyping))\nasync def handler(event):\n    print(event.update.definition.name)",
+    "DeletedMessagesEvent": "@client.on_deleted_messages()\nasync def handler(event):\n    print(event.chat_id, event.message_ids)",
+    "ReadHistoryEvent": "@client.on_read_history()\nasync def handler(event):\n    print(event.chat_id, event.max_id, event.outbox)",
+    "UserStatusEvent": "@client.on_user_status()\nasync def handler(event):\n    print(event.sender_id, event.online)",
+    "ChatActionEvent": "@client.on_chat_action()\nasync def handler(event):\n    print(event.action.definition.name, event.user_ids)",
+    "CallbackQueryEvent": "@client.on_callback_query(filters.data(\"confirm\"))\nasync def handler(event):\n    await event.answer(\"Confirmed\", alert=False)",
+    "InlineQueryEvent": "@client.on_inline_query()\nasync def handler(event):\n    await event.answer([buttons.article(\"one\", \"Title\", \"Body\")], cache_time=30)"
+  }
+}

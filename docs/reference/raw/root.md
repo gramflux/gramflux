@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## init_connection
 
+[Detailed method page: every parameter, native variants, flags and errors](root/init_connection.md)
+
 **Call:** `client.api.init_connection(...)`
 
 **Official method:** `initConnection` · **ID:** `0xc1cd5ea9`
@@ -39,6 +41,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## invoke_after_msg
 
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_after_msg.md)
+
 **Call:** `client.api.invoke_after_msg(...)`
 
 **Official method:** `invokeAfterMsg` · **ID:** `0xcb9f372d`
@@ -56,6 +60,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## invoke_after_msgs
 
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_after_msgs.md)
+
 **Call:** `client.api.invoke_after_msgs(...)`
 
 **Official method:** `invokeAfterMsgs` · **ID:** `0x3dc4b4f0`
@@ -72,6 +78,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/invokeAfterMsgs)
 
 ## invoke_with_apns_secret
+
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_apns_secret.md)
 
 **Call:** `client.api.invoke_with_apns_secret(...)`
 
@@ -91,6 +99,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## invoke_with_business_connection
 
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_business_connection.md)
+
 **Call:** `client.api.invoke_with_business_connection(...)`
 
 **Official method:** `invokeWithBusinessConnection` · **ID:** `0xdd289f8e`
@@ -107,6 +117,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/invokeWithBusinessConnection)
 
 ## invoke_with_google_play_integrity
+
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_google_play_integrity.md)
 
 **Call:** `client.api.invoke_with_google_play_integrity(...)`
 
@@ -126,6 +138,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## invoke_with_layer
 
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_layer.md)
+
 **Call:** `client.api.invoke_with_layer(...)`
 
 **Official method:** `invokeWithLayer` · **ID:** `0xda9b0d0d`
@@ -142,6 +156,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/invokeWithLayer)
 
 ## invoke_with_messages_range
+
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_messages_range.md)
 
 **Call:** `client.api.invoke_with_messages_range(...)`
 
@@ -160,6 +176,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## invoke_with_re_captcha
 
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_re_captcha.md)
+
 **Call:** `client.api.invoke_with_re_captcha(...)`
 
 **Official method:** `invokeWithReCaptcha` · **ID:** `0xadbb0f94`
@@ -177,6 +195,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## invoke_with_takeout
 
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_with_takeout.md)
+
 **Call:** `client.api.invoke_with_takeout(...)`
 
 **Official method:** `invokeWithTakeout` · **ID:** `0xaca9fd2e`
@@ -193,6 +213,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/invokeWithTakeout)
 
 ## invoke_without_updates
+
+[Detailed method page: every parameter, native variants, flags and errors](root/invoke_without_updates.md)
 
 **Call:** `client.api.invoke_without_updates(...)`
 

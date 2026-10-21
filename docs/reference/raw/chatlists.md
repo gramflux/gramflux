@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_chatlist_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/check_chatlist_invite.md)
+
 **Call:** `client.api.chatlists.check_chatlist_invite(...)`
 
 **Official method:** `chatlists.checkChatlistInvite` · **ID:** `0x41c10fff`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/chatlists.checkChatlistInvite)
 
 ## delete_exported_invite
+
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/delete_exported_invite.md)
 
 **Call:** `client.api.chatlists.delete_exported_invite(...)`
 
@@ -46,6 +50,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/chatlists.deleteExportedInvite)
 
 ## edit_exported_invite
+
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/edit_exported_invite.md)
 
 **Call:** `client.api.chatlists.edit_exported_invite(...)`
 
@@ -66,6 +72,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## export_chatlist_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/export_chatlist_invite.md)
+
 **Call:** `client.api.chatlists.export_chatlist_invite(...)`
 
 **Official method:** `chatlists.exportChatlistInvite` · **ID:** `0x8472478e`
@@ -84,6 +92,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_chatlist_updates
 
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/get_chatlist_updates.md)
+
 **Call:** `client.api.chatlists.get_chatlist_updates(...)`
 
 **Official method:** `chatlists.getChatlistUpdates` · **ID:** `0x89419521`
@@ -99,6 +109,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/chatlists.getChatlistUpdates)
 
 ## get_exported_invites
+
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/get_exported_invites.md)
 
 **Call:** `client.api.chatlists.get_exported_invites(...)`
 
@@ -116,6 +128,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_leave_chatlist_suggestions
 
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/get_leave_chatlist_suggestions.md)
+
 **Call:** `client.api.chatlists.get_leave_chatlist_suggestions(...)`
 
 **Official method:** `chatlists.getLeaveChatlistSuggestions` · **ID:** `0xfdbcd714`
@@ -132,6 +146,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## hide_chatlist_updates
 
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/hide_chatlist_updates.md)
+
 **Call:** `client.api.chatlists.hide_chatlist_updates(...)`
 
 **Official method:** `chatlists.hideChatlistUpdates` · **ID:** `0x66e486fb`
@@ -147,6 +163,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/chatlists.hideChatlistUpdates)
 
 ## join_chatlist_invite
+
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/join_chatlist_invite.md)
 
 **Call:** `client.api.chatlists.join_chatlist_invite(...)`
 
@@ -165,6 +183,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## join_chatlist_updates
 
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/join_chatlist_updates.md)
+
 **Call:** `client.api.chatlists.join_chatlist_updates(...)`
 
 **Official method:** `chatlists.joinChatlistUpdates` · **ID:** `0xe089f8f5`
@@ -181,6 +201,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/chatlists.joinChatlistUpdates)
 
 ## leave_chatlist
+
+[Detailed method page: every parameter, native variants, flags and errors](chatlists/leave_chatlist.md)
 
 **Call:** `client.api.chatlists.leave_chatlist(...)`
 

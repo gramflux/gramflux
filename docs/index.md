@@ -25,6 +25,7 @@ No competing Telegram client is a runtime dependency or fallback.
 | Upload documents or stream downloads | [File transfers](guides/files.md) |
 | Call an official method directly | [Typed raw API](guides/async-api.md) |
 | Check a signature or parameter | [Client reference](reference/client.md) |
+| Understand defaults, variants and optional arguments | [Parameter guide](guides/parameters.md) |
 
 ## Know the current boundaries
 

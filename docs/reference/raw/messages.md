@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## accept_encryption
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/accept_encryption.md)
+
 **Call:** `client.api.messages.accept_encryption(...)`
 
 **Official method:** `messages.acceptEncryption` · **ID:** `0x3dbc0415`
@@ -31,6 +33,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.acceptEncryption)
 
 ## accept_url_auth
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/accept_url_auth.md)
 
 **Call:** `client.api.messages.accept_url_auth(...)`
 
@@ -54,6 +58,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## add_chat_user
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/add_chat_user.md)
+
 **Call:** `client.api.messages.add_chat_user(...)`
 
 **Official method:** `messages.addChatUser` · **ID:** `0xcbc6d107`
@@ -71,6 +77,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.addChatUser)
 
 ## add_poll_answer
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/add_poll_answer.md)
 
 **Call:** `client.api.messages.add_poll_answer(...)`
 
@@ -90,6 +98,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## append_todo_list
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/append_todo_list.md)
+
 **Call:** `client.api.messages.append_todo_list(...)`
 
 **Official method:** `messages.appendTodoList` · **ID:** `0x21a61057`
@@ -108,6 +118,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_chat_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/check_chat_invite.md)
+
 **Call:** `client.api.messages.check_chat_invite(...)`
 
 **Official method:** `messages.checkChatInvite` · **ID:** `0x3eadb1bb`
@@ -123,6 +135,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.checkChatInvite)
 
 ## check_history_import
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/check_history_import.md)
 
 **Call:** `client.api.messages.check_history_import(...)`
 
@@ -140,6 +154,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_history_import_peer
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/check_history_import_peer.md)
+
 **Call:** `client.api.messages.check_history_import_peer(...)`
 
 **Official method:** `messages.checkHistoryImportPeer` · **ID:** `0x5dc60f03`
@@ -156,6 +172,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_quick_reply_shortcut
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/check_quick_reply_shortcut.md)
+
 **Call:** `client.api.messages.check_quick_reply_shortcut(...)`
 
 **Official method:** `messages.checkQuickReplyShortcut` · **ID:** `0xf1d0fbd3`
@@ -171,6 +189,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.checkQuickReplyShortcut)
 
 ## check_url_auth_match_code
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/check_url_auth_match_code.md)
 
 **Call:** `client.api.messages.check_url_auth_match_code(...)`
 
@@ -189,6 +209,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## clear_all_drafts
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/clear_all_drafts.md)
+
 **Call:** `client.api.messages.clear_all_drafts(...)`
 
 **Official method:** `messages.clearAllDrafts` · **ID:** `0x7e58ee9c`
@@ -203,6 +225,8 @@ No parameters.
 
 ## clear_recent_reactions
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/clear_recent_reactions.md)
+
 **Call:** `client.api.messages.clear_recent_reactions(...)`
 
 **Official method:** `messages.clearRecentReactions` · **ID:** `0x9dfeefb4`
@@ -216,6 +240,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.clearRecentReactions)
 
 ## clear_recent_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/clear_recent_stickers.md)
 
 **Call:** `client.api.messages.clear_recent_stickers(...)`
 
@@ -232,6 +258,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.clearRecentStickers)
 
 ## click_sponsored_message
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/click_sponsored_message.md)
 
 **Call:** `client.api.messages.click_sponsored_message(...)`
 
@@ -250,6 +278,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.clickSponsoredMessage)
 
 ## compose_message_with_ai
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/compose_message_with_ai.md)
 
 **Call:** `client.api.messages.compose_message_with_ai(...)`
 
@@ -271,6 +301,8 @@ No parameters.
 
 ## create_chat
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/create_chat.md)
+
 **Call:** `client.api.messages.create_chat(...)`
 
 **Official method:** `messages.createChat` · **ID:** `0x92ceddd4`
@@ -288,6 +320,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.createChat)
 
 ## create_forum_topic
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/create_forum_topic.md)
 
 **Call:** `client.api.messages.create_forum_topic(...)`
 
@@ -311,6 +345,8 @@ No parameters.
 
 ## decline_url_auth
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/decline_url_auth.md)
+
 **Call:** `client.api.messages.decline_url_auth(...)`
 
 **Official method:** `messages.declineUrlAuth` · **ID:** `0x35436bbc`
@@ -327,6 +363,8 @@ No parameters.
 
 ## delete_chat
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_chat.md)
+
 **Call:** `client.api.messages.delete_chat(...)`
 
 **Official method:** `messages.deleteChat` · **ID:** `0x5bd0ee50`
@@ -342,6 +380,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deleteChat)
 
 ## delete_chat_user
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_chat_user.md)
 
 **Call:** `client.api.messages.delete_chat_user(...)`
 
@@ -361,6 +401,8 @@ No parameters.
 
 ## delete_exported_chat_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_exported_chat_invite.md)
+
 **Call:** `client.api.messages.delete_exported_chat_invite(...)`
 
 **Official method:** `messages.deleteExportedChatInvite` · **ID:** `0xd464a42b`
@@ -378,6 +420,8 @@ No parameters.
 
 ## delete_fact_check
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_fact_check.md)
+
 **Call:** `client.api.messages.delete_fact_check(...)`
 
 **Official method:** `messages.deleteFactCheck` · **ID:** `0xd1da940c`
@@ -394,6 +438,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deleteFactCheck)
 
 ## delete_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_history.md)
 
 **Call:** `client.api.messages.delete_history(...)`
 
@@ -416,6 +462,8 @@ No parameters.
 
 ## delete_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_messages.md)
+
 **Call:** `client.api.messages.delete_messages(...)`
 
 **Official method:** `messages.deleteMessages` · **ID:** `0xe58e95d2`
@@ -432,6 +480,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deleteMessages)
 
 ## delete_participant_reaction
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_participant_reaction.md)
 
 **Call:** `client.api.messages.delete_participant_reaction(...)`
 
@@ -451,6 +501,8 @@ No parameters.
 
 ## delete_participant_reactions
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_participant_reactions.md)
+
 **Call:** `client.api.messages.delete_participant_reactions(...)`
 
 **Official method:** `messages.deleteParticipantReactions` · **ID:** `0xa0b80cf8`
@@ -468,6 +520,8 @@ No parameters.
 
 ## delete_phone_call_history
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_phone_call_history.md)
+
 **Call:** `client.api.messages.delete_phone_call_history(...)`
 
 **Official method:** `messages.deletePhoneCallHistory` · **ID:** `0xf9cbe409`
@@ -483,6 +537,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deletePhoneCallHistory)
 
 ## delete_poll_answer
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_poll_answer.md)
 
 **Call:** `client.api.messages.delete_poll_answer(...)`
 
@@ -502,6 +558,8 @@ No parameters.
 
 ## delete_quick_reply_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_quick_reply_messages.md)
+
 **Call:** `client.api.messages.delete_quick_reply_messages(...)`
 
 **Official method:** `messages.deleteQuickReplyMessages` · **ID:** `0xe105e910`
@@ -519,6 +577,8 @@ No parameters.
 
 ## delete_quick_reply_shortcut
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_quick_reply_shortcut.md)
+
 **Call:** `client.api.messages.delete_quick_reply_shortcut(...)`
 
 **Official method:** `messages.deleteQuickReplyShortcut` · **ID:** `0x3cc04740`
@@ -534,6 +594,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deleteQuickReplyShortcut)
 
 ## delete_revoked_exported_chat_invites
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_revoked_exported_chat_invites.md)
 
 **Call:** `client.api.messages.delete_revoked_exported_chat_invites(...)`
 
@@ -551,6 +613,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deleteRevokedExportedChatInvites)
 
 ## delete_saved_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_saved_history.md)
 
 **Call:** `client.api.messages.delete_saved_history(...)`
 
@@ -572,6 +636,8 @@ No parameters.
 
 ## delete_scheduled_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_scheduled_messages.md)
+
 **Call:** `client.api.messages.delete_scheduled_messages(...)`
 
 **Official method:** `messages.deleteScheduledMessages` · **ID:** `0x59ae2b16`
@@ -588,6 +654,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.deleteScheduledMessages)
 
 ## delete_topic_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/delete_topic_history.md)
 
 **Call:** `client.api.messages.delete_topic_history(...)`
 
@@ -606,6 +674,8 @@ No parameters.
 
 ## discard_encryption
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/discard_encryption.md)
+
 **Call:** `client.api.messages.discard_encryption(...)`
 
 **Official method:** `messages.discardEncryption` · **ID:** `0xf393aea0`
@@ -623,6 +693,8 @@ No parameters.
 
 ## edit_chat_about
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_about.md)
+
 **Call:** `client.api.messages.edit_chat_about(...)`
 
 **Official method:** `messages.editChatAbout` · **ID:** `0xdef60797`
@@ -639,6 +711,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.editChatAbout)
 
 ## edit_chat_admin
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_admin.md)
 
 **Call:** `client.api.messages.edit_chat_admin(...)`
 
@@ -658,6 +732,8 @@ No parameters.
 
 ## edit_chat_creator
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_creator.md)
+
 **Call:** `client.api.messages.edit_chat_creator(...)`
 
 **Official method:** `messages.editChatCreator` · **ID:** `0xf743b857`
@@ -676,6 +752,8 @@ No parameters.
 
 ## edit_chat_default_banned_rights
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_default_banned_rights.md)
+
 **Call:** `client.api.messages.edit_chat_default_banned_rights(...)`
 
 **Official method:** `messages.editChatDefaultBannedRights` · **ID:** `0xa5866b41`
@@ -692,6 +770,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.editChatDefaultBannedRights)
 
 ## edit_chat_participant_rank
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_participant_rank.md)
 
 **Call:** `client.api.messages.edit_chat_participant_rank(...)`
 
@@ -711,6 +791,8 @@ No parameters.
 
 ## edit_chat_photo
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_photo.md)
+
 **Call:** `client.api.messages.edit_chat_photo(...)`
 
 **Official method:** `messages.editChatPhoto` · **ID:** `0x35ddd674`
@@ -728,6 +810,8 @@ No parameters.
 
 ## edit_chat_title
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_chat_title.md)
+
 **Call:** `client.api.messages.edit_chat_title(...)`
 
 **Official method:** `messages.editChatTitle` · **ID:** `0x73783ffd`
@@ -744,6 +828,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.editChatTitle)
 
 ## edit_exported_chat_invite
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_exported_chat_invite.md)
 
 **Call:** `client.api.messages.edit_exported_chat_invite(...)`
 
@@ -767,6 +853,8 @@ No parameters.
 
 ## edit_fact_check
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_fact_check.md)
+
 **Call:** `client.api.messages.edit_fact_check(...)`
 
 **Official method:** `messages.editFactCheck` · **ID:** `0x0589ee75`
@@ -784,6 +872,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.editFactCheck)
 
 ## edit_forum_topic
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_forum_topic.md)
 
 **Call:** `client.api.messages.edit_forum_topic(...)`
 
@@ -806,6 +896,8 @@ No parameters.
 
 ## edit_inline_bot_message
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_inline_bot_message.md)
+
 **Call:** `client.api.messages.edit_inline_bot_message(...)`
 
 **Official method:** `messages.editInlineBotMessage` · **ID:** `0x83557dba`
@@ -827,6 +919,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.editInlineBotMessage)
 
 ## edit_message
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_message.md)
 
 **Call:** `client.api.messages.edit_message(...)`
 
@@ -854,6 +948,8 @@ No parameters.
 
 ## edit_quick_reply_shortcut
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/edit_quick_reply_shortcut.md)
+
 **Call:** `client.api.messages.edit_quick_reply_shortcut(...)`
 
 **Official method:** `messages.editQuickReplyShortcut` · **ID:** `0x5c003cef`
@@ -870,6 +966,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.editQuickReplyShortcut)
 
 ## export_chat_invite
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/export_chat_invite.md)
 
 **Call:** `client.api.messages.export_chat_invite(...)`
 
@@ -893,6 +991,8 @@ No parameters.
 
 ## fave_sticker
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/fave_sticker.md)
+
 **Call:** `client.api.messages.fave_sticker(...)`
 
 **Official method:** `messages.faveSticker` · **ID:** `0xb9ffc55b`
@@ -909,6 +1009,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.faveSticker)
 
 ## forward_messages
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/forward_messages.md)
 
 **Call:** `client.api.messages.forward_messages(...)`
 
@@ -946,6 +1048,8 @@ No parameters.
 
 ## get_admins_with_invites
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_admins_with_invites.md)
+
 **Call:** `client.api.messages.get_admins_with_invites(...)`
 
 **Official method:** `messages.getAdminsWithInvites` · **ID:** `0x3920e6ef`
@@ -962,6 +1066,8 @@ No parameters.
 
 ## get_all_drafts
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_all_drafts.md)
+
 **Call:** `client.api.messages.get_all_drafts(...)`
 
 **Official method:** `messages.getAllDrafts` · **ID:** `0x6a3f8d65`
@@ -975,6 +1081,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getAllDrafts)
 
 ## get_all_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_all_stickers.md)
 
 **Call:** `client.api.messages.get_all_stickers(...)`
 
@@ -991,6 +1099,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getAllStickers)
 
 ## get_archived_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_archived_stickers.md)
 
 **Call:** `client.api.messages.get_archived_stickers(...)`
 
@@ -1011,6 +1121,8 @@ No parameters.
 
 ## get_attach_menu_bot
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_attach_menu_bot.md)
+
 **Call:** `client.api.messages.get_attach_menu_bot(...)`
 
 **Official method:** `messages.getAttachMenuBot` · **ID:** `0x77216192`
@@ -1026,6 +1138,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getAttachMenuBot)
 
 ## get_attach_menu_bots
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_attach_menu_bots.md)
 
 **Call:** `client.api.messages.get_attach_menu_bots(...)`
 
@@ -1043,6 +1157,8 @@ No parameters.
 
 ## get_attached_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_attached_stickers.md)
+
 **Call:** `client.api.messages.get_attached_stickers(...)`
 
 **Official method:** `messages.getAttachedStickers` · **ID:** `0xcc5b67cc`
@@ -1058,6 +1174,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getAttachedStickers)
 
 ## get_available_effects
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_available_effects.md)
 
 **Call:** `client.api.messages.get_available_effects(...)`
 
@@ -1075,6 +1193,8 @@ No parameters.
 
 ## get_available_reactions
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_available_reactions.md)
+
 **Call:** `client.api.messages.get_available_reactions(...)`
 
 **Official method:** `messages.getAvailableReactions` · **ID:** `0x18dea0ac`
@@ -1090,6 +1210,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getAvailableReactions)
 
 ## get_bot_app
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_bot_app.md)
 
 **Call:** `client.api.messages.get_bot_app(...)`
 
@@ -1107,6 +1229,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getBotApp)
 
 ## get_bot_callback_answer
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_bot_callback_answer.md)
 
 **Call:** `client.api.messages.get_bot_callback_answer(...)`
 
@@ -1127,6 +1251,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getBotCallbackAnswer)
 
 ## get_chat_invite_importers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_chat_invite_importers.md)
 
 **Call:** `client.api.messages.get_chat_invite_importers(...)`
 
@@ -1151,6 +1277,8 @@ No parameters.
 
 ## get_chats
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_chats.md)
+
 **Call:** `client.api.messages.get_chats(...)`
 
 **Official method:** `messages.getChats` · **ID:** `0x49e9528f`
@@ -1166,6 +1294,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getChats)
 
 ## get_common_chats
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_common_chats.md)
 
 **Call:** `client.api.messages.get_common_chats(...)`
 
@@ -1185,6 +1315,8 @@ No parameters.
 
 ## get_custom_emoji_documents
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_custom_emoji_documents.md)
+
 **Call:** `client.api.messages.get_custom_emoji_documents(...)`
 
 **Official method:** `messages.getCustomEmojiDocuments` · **ID:** `0xd9ab0f54`
@@ -1201,6 +1333,8 @@ No parameters.
 
 ## get_default_history_ttl
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_default_history_ttl.md)
+
 **Call:** `client.api.messages.get_default_history_ttl(...)`
 
 **Official method:** `messages.getDefaultHistoryTTL` · **ID:** `0x658b7188`
@@ -1214,6 +1348,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getDefaultHistoryTTL)
 
 ## get_default_tag_reactions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_default_tag_reactions.md)
 
 **Call:** `client.api.messages.get_default_tag_reactions(...)`
 
@@ -1230,6 +1366,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getDefaultTagReactions)
 
 ## get_dh_config
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_dh_config.md)
 
 **Call:** `client.api.messages.get_dh_config(...)`
 
@@ -1248,6 +1386,8 @@ No parameters.
 
 ## get_dialog_filters
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_dialog_filters.md)
+
 **Call:** `client.api.messages.get_dialog_filters(...)`
 
 **Official method:** `messages.getDialogFilters` · **ID:** `0xefd48c89`
@@ -1261,6 +1401,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getDialogFilters)
 
 ## get_dialog_unread_marks
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_dialog_unread_marks.md)
 
 **Call:** `client.api.messages.get_dialog_unread_marks(...)`
 
@@ -1277,6 +1419,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getDialogUnreadMarks)
 
 ## get_dialogs
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_dialogs.md)
 
 **Call:** `client.api.messages.get_dialogs(...)`
 
@@ -1300,6 +1444,8 @@ No parameters.
 
 ## get_discussion_message
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_discussion_message.md)
+
 **Call:** `client.api.messages.get_discussion_message(...)`
 
 **Official method:** `messages.getDiscussionMessage` · **ID:** `0x446972fd`
@@ -1316,6 +1462,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getDiscussionMessage)
 
 ## get_document_by_hash
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_document_by_hash.md)
 
 **Call:** `client.api.messages.get_document_by_hash(...)`
 
@@ -1335,6 +1483,8 @@ No parameters.
 
 ## get_emoji_game_info
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_game_info.md)
+
 **Call:** `client.api.messages.get_emoji_game_info(...)`
 
 **Official method:** `messages.getEmojiGameInfo` · **ID:** `0xfb7e8ca7`
@@ -1348,6 +1498,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getEmojiGameInfo)
 
 ## get_emoji_groups
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_groups.md)
 
 **Call:** `client.api.messages.get_emoji_groups(...)`
 
@@ -1365,6 +1517,8 @@ No parameters.
 
 ## get_emoji_keywords
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_keywords.md)
+
 **Call:** `client.api.messages.get_emoji_keywords(...)`
 
 **Official method:** `messages.getEmojiKeywords` · **ID:** `0x35a0e062`
@@ -1380,6 +1534,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getEmojiKeywords)
 
 ## get_emoji_keywords_difference
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_keywords_difference.md)
 
 **Call:** `client.api.messages.get_emoji_keywords_difference(...)`
 
@@ -1398,6 +1554,8 @@ No parameters.
 
 ## get_emoji_keywords_languages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_keywords_languages.md)
+
 **Call:** `client.api.messages.get_emoji_keywords_languages(...)`
 
 **Official method:** `messages.getEmojiKeywordsLanguages` · **ID:** `0x4e9963b2`
@@ -1413,6 +1571,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getEmojiKeywordsLanguages)
 
 ## get_emoji_profile_photo_groups
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_profile_photo_groups.md)
 
 **Call:** `client.api.messages.get_emoji_profile_photo_groups(...)`
 
@@ -1430,6 +1590,8 @@ No parameters.
 
 ## get_emoji_status_groups
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_status_groups.md)
+
 **Call:** `client.api.messages.get_emoji_status_groups(...)`
 
 **Official method:** `messages.getEmojiStatusGroups` · **ID:** `0x2ecd56cd`
@@ -1445,6 +1607,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getEmojiStatusGroups)
 
 ## get_emoji_sticker_groups
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_sticker_groups.md)
 
 **Call:** `client.api.messages.get_emoji_sticker_groups(...)`
 
@@ -1462,6 +1626,8 @@ No parameters.
 
 ## get_emoji_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_stickers.md)
+
 **Call:** `client.api.messages.get_emoji_stickers(...)`
 
 **Official method:** `messages.getEmojiStickers` · **ID:** `0xfbfca18f`
@@ -1477,6 +1643,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getEmojiStickers)
 
 ## get_emoji_url
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_emoji_url.md)
 
 **Call:** `client.api.messages.get_emoji_url(...)`
 
@@ -1494,6 +1662,8 @@ No parameters.
 
 ## get_exported_chat_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_exported_chat_invite.md)
+
 **Call:** `client.api.messages.get_exported_chat_invite(...)`
 
 **Official method:** `messages.getExportedChatInvite` · **ID:** `0x73746f5c`
@@ -1510,6 +1680,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getExportedChatInvite)
 
 ## get_exported_chat_invites
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_exported_chat_invites.md)
 
 **Call:** `client.api.messages.get_exported_chat_invites(...)`
 
@@ -1532,6 +1704,8 @@ No parameters.
 
 ## get_extended_media
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_extended_media.md)
+
 **Call:** `client.api.messages.get_extended_media(...)`
 
 **Official method:** `messages.getExtendedMedia` · **ID:** `0x84f80814`
@@ -1548,6 +1722,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getExtendedMedia)
 
 ## get_fact_check
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_fact_check.md)
 
 **Call:** `client.api.messages.get_fact_check(...)`
 
@@ -1566,6 +1742,8 @@ No parameters.
 
 ## get_faved_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_faved_stickers.md)
+
 **Call:** `client.api.messages.get_faved_stickers(...)`
 
 **Official method:** `messages.getFavedStickers` · **ID:** `0x04f1aaa9`
@@ -1581,6 +1759,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getFavedStickers)
 
 ## get_featured_emoji_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_featured_emoji_stickers.md)
 
 **Call:** `client.api.messages.get_featured_emoji_stickers(...)`
 
@@ -1598,6 +1778,8 @@ No parameters.
 
 ## get_featured_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_featured_stickers.md)
+
 **Call:** `client.api.messages.get_featured_stickers(...)`
 
 **Official method:** `messages.getFeaturedStickers` · **ID:** `0x64780b14`
@@ -1613,6 +1795,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getFeaturedStickers)
 
 ## get_forum_topics
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_forum_topics.md)
 
 **Call:** `client.api.messages.get_forum_topics(...)`
 
@@ -1635,6 +1819,8 @@ No parameters.
 
 ## get_forum_topics_by_id
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_forum_topics_by_id.md)
+
 **Call:** `client.api.messages.get_forum_topics_by_id(...)`
 
 **Official method:** `messages.getForumTopicsByID` · **ID:** `0xaf0a4a08`
@@ -1652,6 +1838,8 @@ No parameters.
 
 ## get_full_chat
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_full_chat.md)
+
 **Call:** `client.api.messages.get_full_chat(...)`
 
 **Official method:** `messages.getFullChat` · **ID:** `0xaeb00b34`
@@ -1668,6 +1856,8 @@ No parameters.
 
 ## get_future_chat_creator_after_leave
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_future_chat_creator_after_leave.md)
+
 **Call:** `client.api.messages.get_future_chat_creator_after_leave(...)`
 
 **Official method:** `messages.getFutureChatCreatorAfterLeave` · **ID:** `0x3b7d0ea6`
@@ -1683,6 +1873,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getFutureChatCreatorAfterLeave)
 
 ## get_game_high_scores
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_game_high_scores.md)
 
 **Call:** `client.api.messages.get_game_high_scores(...)`
 
@@ -1701,6 +1893,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getGameHighScores)
 
 ## get_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_history.md)
 
 **Call:** `client.api.messages.get_history(...)`
 
@@ -1725,6 +1919,8 @@ No parameters.
 
 ## get_inline_bot_results
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_inline_bot_results.md)
+
 **Call:** `client.api.messages.get_inline_bot_results(...)`
 
 **Official method:** `messages.getInlineBotResults` · **ID:** `0x514e999d`
@@ -1745,6 +1941,8 @@ No parameters.
 
 ## get_inline_game_high_scores
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_inline_game_high_scores.md)
+
 **Call:** `client.api.messages.get_inline_game_high_scores(...)`
 
 **Official method:** `messages.getInlineGameHighScores` · **ID:** `0x0f635e1b`
@@ -1762,6 +1960,8 @@ No parameters.
 
 ## get_mask_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_mask_stickers.md)
+
 **Call:** `client.api.messages.get_mask_stickers(...)`
 
 **Official method:** `messages.getMaskStickers` · **ID:** `0x640f82b8`
@@ -1777,6 +1977,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getMaskStickers)
 
 ## get_message_edit_data
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_message_edit_data.md)
 
 **Call:** `client.api.messages.get_message_edit_data(...)`
 
@@ -1794,6 +1996,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getMessageEditData)
 
 ## get_message_reactions_list
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_message_reactions_list.md)
 
 **Call:** `client.api.messages.get_message_reactions_list(...)`
 
@@ -1815,6 +2019,8 @@ No parameters.
 
 ## get_message_read_participants
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_message_read_participants.md)
+
 **Call:** `client.api.messages.get_message_read_participants(...)`
 
 **Official method:** `messages.getMessageReadParticipants` · **ID:** `0x31c1c44f`
@@ -1832,6 +2038,8 @@ No parameters.
 
 ## get_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_messages.md)
+
 **Call:** `client.api.messages.get_messages(...)`
 
 **Official method:** `messages.getMessages` · **ID:** `0x63c66506`
@@ -1847,6 +2055,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getMessages)
 
 ## get_messages_reactions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_messages_reactions.md)
 
 **Call:** `client.api.messages.get_messages_reactions(...)`
 
@@ -1864,6 +2074,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getMessagesReactions)
 
 ## get_messages_views
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_messages_views.md)
 
 **Call:** `client.api.messages.get_messages_views(...)`
 
@@ -1883,6 +2095,8 @@ No parameters.
 
 ## get_my_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_my_stickers.md)
+
 **Call:** `client.api.messages.get_my_stickers(...)`
 
 **Official method:** `messages.getMyStickers` · **ID:** `0xd0b5e1fc`
@@ -1899,6 +2113,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getMyStickers)
 
 ## get_old_featured_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_old_featured_stickers.md)
 
 **Call:** `client.api.messages.get_old_featured_stickers(...)`
 
@@ -1918,6 +2134,8 @@ No parameters.
 
 ## get_onlines
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_onlines.md)
+
 **Call:** `client.api.messages.get_onlines(...)`
 
 **Official method:** `messages.getOnlines` · **ID:** `0x6e2be050`
@@ -1933,6 +2151,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getOnlines)
 
 ## get_outbox_read_date
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_outbox_read_date.md)
 
 **Call:** `client.api.messages.get_outbox_read_date(...)`
 
@@ -1951,6 +2171,8 @@ No parameters.
 
 ## get_paid_reaction_privacy
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_paid_reaction_privacy.md)
+
 **Call:** `client.api.messages.get_paid_reaction_privacy(...)`
 
 **Official method:** `messages.getPaidReactionPrivacy` · **ID:** `0x472455aa`
@@ -1964,6 +2186,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getPaidReactionPrivacy)
 
 ## get_peer_dialogs
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_peer_dialogs.md)
 
 **Call:** `client.api.messages.get_peer_dialogs(...)`
 
@@ -1981,6 +2205,8 @@ No parameters.
 
 ## get_peer_settings
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_peer_settings.md)
+
 **Call:** `client.api.messages.get_peer_settings(...)`
 
 **Official method:** `messages.getPeerSettings` · **ID:** `0xefd9a6a2`
@@ -1996,6 +2222,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getPeerSettings)
 
 ## get_personal_channel_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_personal_channel_history.md)
 
 **Call:** `client.api.messages.get_personal_channel_history(...)`
 
@@ -2017,6 +2245,8 @@ No parameters.
 
 ## get_pinned_dialogs
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_pinned_dialogs.md)
+
 **Call:** `client.api.messages.get_pinned_dialogs(...)`
 
 **Official method:** `messages.getPinnedDialogs` · **ID:** `0xd6b94df2`
@@ -2033,6 +2263,8 @@ No parameters.
 
 ## get_pinned_saved_dialogs
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_pinned_saved_dialogs.md)
+
 **Call:** `client.api.messages.get_pinned_saved_dialogs(...)`
 
 **Official method:** `messages.getPinnedSavedDialogs` · **ID:** `0xd63d94e0`
@@ -2046,6 +2278,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getPinnedSavedDialogs)
 
 ## get_poll_results
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_poll_results.md)
 
 **Call:** `client.api.messages.get_poll_results(...)`
 
@@ -2064,6 +2298,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getPollResults)
 
 ## get_poll_votes
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_poll_votes.md)
 
 **Call:** `client.api.messages.get_poll_votes(...)`
 
@@ -2085,6 +2321,8 @@ No parameters.
 
 ## get_prepared_inline_message
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_prepared_inline_message.md)
+
 **Call:** `client.api.messages.get_prepared_inline_message(...)`
 
 **Official method:** `messages.getPreparedInlineMessage` · **ID:** `0x857ebdb8`
@@ -2102,6 +2340,8 @@ No parameters.
 
 ## get_quick_replies
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_quick_replies.md)
+
 **Call:** `client.api.messages.get_quick_replies(...)`
 
 **Official method:** `messages.getQuickReplies` · **ID:** `0xd483f2a8`
@@ -2117,6 +2357,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getQuickReplies)
 
 ## get_quick_reply_messages
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_quick_reply_messages.md)
 
 **Call:** `client.api.messages.get_quick_reply_messages(...)`
 
@@ -2136,6 +2378,8 @@ No parameters.
 
 ## get_recent_locations
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_recent_locations.md)
+
 **Call:** `client.api.messages.get_recent_locations(...)`
 
 **Official method:** `messages.getRecentLocations` · **ID:** `0x702a40e0`
@@ -2154,6 +2398,8 @@ No parameters.
 
 ## get_recent_reactions
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_recent_reactions.md)
+
 **Call:** `client.api.messages.get_recent_reactions(...)`
 
 **Official method:** `messages.getRecentReactions` · **ID:** `0x39461db2`
@@ -2171,6 +2417,8 @@ No parameters.
 
 ## get_recent_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_recent_stickers.md)
+
 **Call:** `client.api.messages.get_recent_stickers(...)`
 
 **Official method:** `messages.getRecentStickers` · **ID:** `0x9da9403b`
@@ -2187,6 +2435,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getRecentStickers)
 
 ## get_replies
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_replies.md)
 
 **Call:** `client.api.messages.get_replies(...)`
 
@@ -2212,6 +2462,8 @@ No parameters.
 
 ## get_saved_dialogs
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_saved_dialogs.md)
+
 **Call:** `client.api.messages.get_saved_dialogs(...)`
 
 **Official method:** `messages.getSavedDialogs` · **ID:** `0x1e91fc99`
@@ -2234,6 +2486,8 @@ No parameters.
 
 ## get_saved_dialogs_by_id
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_saved_dialogs_by_id.md)
+
 **Call:** `client.api.messages.get_saved_dialogs_by_id(...)`
 
 **Official method:** `messages.getSavedDialogsByID` · **ID:** `0x6f6f9c96`
@@ -2251,6 +2505,8 @@ No parameters.
 
 ## get_saved_gifs
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_saved_gifs.md)
+
 **Call:** `client.api.messages.get_saved_gifs(...)`
 
 **Official method:** `messages.getSavedGifs` · **ID:** `0x5cf09635`
@@ -2266,6 +2522,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getSavedGifs)
 
 ## get_saved_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_saved_history.md)
 
 **Call:** `client.api.messages.get_saved_history(...)`
 
@@ -2291,6 +2549,8 @@ No parameters.
 
 ## get_saved_reaction_tags
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_saved_reaction_tags.md)
+
 **Call:** `client.api.messages.get_saved_reaction_tags(...)`
 
 **Official method:** `messages.getSavedReactionTags` · **ID:** `0x3637e05b`
@@ -2307,6 +2567,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getSavedReactionTags)
 
 ## get_scheduled_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_scheduled_history.md)
 
 **Call:** `client.api.messages.get_scheduled_history(...)`
 
@@ -2325,6 +2587,8 @@ No parameters.
 
 ## get_scheduled_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_scheduled_messages.md)
+
 **Call:** `client.api.messages.get_scheduled_messages(...)`
 
 **Official method:** `messages.getScheduledMessages` · **ID:** `0xbdbb0464`
@@ -2341,6 +2605,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getScheduledMessages)
 
 ## get_search_counters
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_search_counters.md)
 
 **Call:** `client.api.messages.get_search_counters(...)`
 
@@ -2360,6 +2626,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getSearchCounters)
 
 ## get_search_results_calendar
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_search_results_calendar.md)
 
 **Call:** `client.api.messages.get_search_results_calendar(...)`
 
@@ -2381,6 +2649,8 @@ No parameters.
 
 ## get_search_results_positions
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_search_results_positions.md)
+
 **Call:** `client.api.messages.get_search_results_positions(...)`
 
 **Official method:** `messages.getSearchResultsPositions` · **ID:** `0x9c7f2f10`
@@ -2401,6 +2671,8 @@ No parameters.
 
 ## get_split_ranges
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_split_ranges.md)
+
 **Call:** `client.api.messages.get_split_ranges(...)`
 
 **Official method:** `messages.getSplitRanges` · **ID:** `0x1cff7e08`
@@ -2414,6 +2686,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getSplitRanges)
 
 ## get_sponsored_messages
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_sponsored_messages.md)
 
 **Call:** `client.api.messages.get_sponsored_messages(...)`
 
@@ -2432,6 +2706,8 @@ No parameters.
 
 ## get_sticker_set
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_sticker_set.md)
+
 **Call:** `client.api.messages.get_sticker_set(...)`
 
 **Official method:** `messages.getStickerSet` · **ID:** `0xc8a0ec74`
@@ -2448,6 +2724,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getStickerSet)
 
 ## get_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_stickers.md)
 
 **Call:** `client.api.messages.get_stickers(...)`
 
@@ -2466,6 +2744,8 @@ No parameters.
 
 ## get_suggested_dialog_filters
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_suggested_dialog_filters.md)
+
 **Call:** `client.api.messages.get_suggested_dialog_filters(...)`
 
 **Official method:** `messages.getSuggestedDialogFilters` · **ID:** `0xa29cd42c`
@@ -2479,6 +2759,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getSuggestedDialogFilters)
 
 ## get_top_reactions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_top_reactions.md)
 
 **Call:** `client.api.messages.get_top_reactions(...)`
 
@@ -2496,6 +2778,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getTopReactions)
 
 ## get_unread_mentions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_unread_mentions.md)
 
 **Call:** `client.api.messages.get_unread_mentions(...)`
 
@@ -2519,6 +2803,8 @@ No parameters.
 
 ## get_unread_poll_votes
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_unread_poll_votes.md)
+
 **Call:** `client.api.messages.get_unread_poll_votes(...)`
 
 **Official method:** `messages.getUnreadPollVotes` · **ID:** `0x43286cf2`
@@ -2540,6 +2826,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getUnreadPollVotes)
 
 ## get_unread_reactions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_unread_reactions.md)
 
 **Call:** `client.api.messages.get_unread_reactions(...)`
 
@@ -2564,6 +2852,8 @@ No parameters.
 
 ## get_web_page
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_web_page.md)
+
 **Call:** `client.api.messages.get_web_page(...)`
 
 **Official method:** `messages.getWebPage` · **ID:** `0x8d9692a3`
@@ -2581,6 +2871,8 @@ No parameters.
 
 ## get_web_page_preview
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/get_web_page_preview.md)
+
 **Call:** `client.api.messages.get_web_page_preview(...)`
 
 **Official method:** `messages.getWebPagePreview` · **ID:** `0x570d6f6f`
@@ -2597,6 +2889,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.getWebPagePreview)
 
 ## hide_all_chat_join_requests
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/hide_all_chat_join_requests.md)
 
 **Call:** `client.api.messages.hide_all_chat_join_requests(...)`
 
@@ -2616,6 +2910,8 @@ No parameters.
 
 ## hide_chat_join_request
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/hide_chat_join_request.md)
+
 **Call:** `client.api.messages.hide_chat_join_request(...)`
 
 **Official method:** `messages.hideChatJoinRequest` · **ID:** `0x7fe7e815`
@@ -2634,6 +2930,8 @@ No parameters.
 
 ## hide_peer_settings_bar
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/hide_peer_settings_bar.md)
+
 **Call:** `client.api.messages.hide_peer_settings_bar(...)`
 
 **Official method:** `messages.hidePeerSettingsBar` · **ID:** `0x4facb138`
@@ -2650,6 +2948,8 @@ No parameters.
 
 ## import_chat_invite
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/import_chat_invite.md)
+
 **Call:** `client.api.messages.import_chat_invite(...)`
 
 **Official method:** `messages.importChatInvite` · **ID:** `0x6c50051c`
@@ -2665,6 +2965,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.importChatInvite)
 
 ## init_history_import
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/init_history_import.md)
 
 **Call:** `client.api.messages.init_history_import(...)`
 
@@ -2684,6 +2986,8 @@ No parameters.
 
 ## install_sticker_set
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/install_sticker_set.md)
+
 **Call:** `client.api.messages.install_sticker_set(...)`
 
 **Official method:** `messages.installStickerSet` · **ID:** `0xc78fe460`
@@ -2700,6 +3004,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.installStickerSet)
 
 ## mark_dialog_unread
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/mark_dialog_unread.md)
 
 **Call:** `client.api.messages.mark_dialog_unread(...)`
 
@@ -2719,6 +3025,8 @@ No parameters.
 
 ## migrate_chat
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/migrate_chat.md)
+
 **Call:** `client.api.messages.migrate_chat(...)`
 
 **Official method:** `messages.migrateChat` · **ID:** `0xa2875319`
@@ -2734,6 +3042,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.migrateChat)
 
 ## prolong_web_view
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/prolong_web_view.md)
 
 **Call:** `client.api.messages.prolong_web_view(...)`
 
@@ -2756,6 +3066,8 @@ No parameters.
 
 ## rate_transcribed_audio
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/rate_transcribed_audio.md)
+
 **Call:** `client.api.messages.rate_transcribed_audio(...)`
 
 **Official method:** `messages.rateTranscribedAudio` · **ID:** `0x7f1d072f`
@@ -2775,6 +3087,8 @@ No parameters.
 
 ## read_discussion
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_discussion.md)
+
 **Call:** `client.api.messages.read_discussion(...)`
 
 **Official method:** `messages.readDiscussion` · **ID:** `0xf731a9f4`
@@ -2793,6 +3107,8 @@ No parameters.
 
 ## read_encrypted_history
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_encrypted_history.md)
+
 **Call:** `client.api.messages.read_encrypted_history(...)`
 
 **Official method:** `messages.readEncryptedHistory` · **ID:** `0x7f4b690a`
@@ -2810,6 +3126,8 @@ No parameters.
 
 ## read_featured_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_featured_stickers.md)
+
 **Call:** `client.api.messages.read_featured_stickers(...)`
 
 **Official method:** `messages.readFeaturedStickers` · **ID:** `0x5b118126`
@@ -2825,6 +3143,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.readFeaturedStickers)
 
 ## read_history
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_history.md)
 
 **Call:** `client.api.messages.read_history(...)`
 
@@ -2843,6 +3163,8 @@ No parameters.
 
 ## read_mentions
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_mentions.md)
+
 **Call:** `client.api.messages.read_mentions(...)`
 
 **Official method:** `messages.readMentions` · **ID:** `0x36e5bf4d`
@@ -2860,6 +3182,8 @@ No parameters.
 
 ## read_message_contents
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_message_contents.md)
+
 **Call:** `client.api.messages.read_message_contents(...)`
 
 **Official method:** `messages.readMessageContents` · **ID:** `0x36a73f77`
@@ -2875,6 +3199,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.readMessageContents)
 
 ## read_poll_votes
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_poll_votes.md)
 
 **Call:** `client.api.messages.read_poll_votes(...)`
 
@@ -2892,6 +3218,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.readPollVotes)
 
 ## read_reactions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_reactions.md)
 
 **Call:** `client.api.messages.read_reactions(...)`
 
@@ -2911,6 +3239,8 @@ No parameters.
 
 ## read_saved_history
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/read_saved_history.md)
+
 **Call:** `client.api.messages.read_saved_history(...)`
 
 **Official method:** `messages.readSavedHistory` · **ID:** `0xba4a3b5b`
@@ -2929,6 +3259,8 @@ No parameters.
 
 ## received_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/received_messages.md)
+
 **Call:** `client.api.messages.received_messages(...)`
 
 **Official method:** `messages.receivedMessages` · **ID:** `0x05a954c0`
@@ -2945,6 +3277,8 @@ No parameters.
 
 ## received_queue
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/received_queue.md)
+
 **Call:** `client.api.messages.received_queue(...)`
 
 **Official method:** `messages.receivedQueue` · **ID:** `0x55a5bb66`
@@ -2960,6 +3294,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.receivedQueue)
 
 ## reorder_pinned_dialogs
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/reorder_pinned_dialogs.md)
 
 **Call:** `client.api.messages.reorder_pinned_dialogs(...)`
 
@@ -2979,6 +3315,8 @@ No parameters.
 
 ## reorder_pinned_forum_topics
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/reorder_pinned_forum_topics.md)
+
 **Call:** `client.api.messages.reorder_pinned_forum_topics(...)`
 
 **Official method:** `messages.reorderPinnedForumTopics` · **ID:** `0x0e7841f0`
@@ -2997,6 +3335,8 @@ No parameters.
 
 ## reorder_pinned_saved_dialogs
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/reorder_pinned_saved_dialogs.md)
+
 **Call:** `client.api.messages.reorder_pinned_saved_dialogs(...)`
 
 **Official method:** `messages.reorderPinnedSavedDialogs` · **ID:** `0x8b716587`
@@ -3014,6 +3354,8 @@ No parameters.
 
 ## reorder_quick_replies
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/reorder_quick_replies.md)
+
 **Call:** `client.api.messages.reorder_quick_replies(...)`
 
 **Official method:** `messages.reorderQuickReplies` · **ID:** `0x60331907`
@@ -3029,6 +3371,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.reorderQuickReplies)
 
 ## reorder_sticker_sets
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/reorder_sticker_sets.md)
 
 **Call:** `client.api.messages.reorder_sticker_sets(...)`
 
@@ -3047,6 +3391,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.reorderStickerSets)
 
 ## report
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/report.md)
 
 **Call:** `client.api.messages.report(...)`
 
@@ -3067,6 +3413,8 @@ No parameters.
 
 ## report_encrypted_spam
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_encrypted_spam.md)
+
 **Call:** `client.api.messages.report_encrypted_spam(...)`
 
 **Official method:** `messages.reportEncryptedSpam` · **ID:** `0x4b0c8c0f`
@@ -3082,6 +3430,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.reportEncryptedSpam)
 
 ## report_messages_delivery
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_messages_delivery.md)
 
 **Call:** `client.api.messages.report_messages_delivery(...)`
 
@@ -3101,6 +3451,8 @@ No parameters.
 
 ## report_music_listen
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_music_listen.md)
+
 **Call:** `client.api.messages.report_music_listen(...)`
 
 **Official method:** `messages.reportMusicListen` · **ID:** `0xddbcd819`
@@ -3117,6 +3469,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.reportMusicListen)
 
 ## report_reaction
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_reaction.md)
 
 **Call:** `client.api.messages.report_reaction(...)`
 
@@ -3136,6 +3490,8 @@ No parameters.
 
 ## report_read_metrics
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_read_metrics.md)
+
 **Call:** `client.api.messages.report_read_metrics(...)`
 
 **Official method:** `messages.reportReadMetrics` · **ID:** `0x4067c5e6`
@@ -3153,6 +3509,8 @@ No parameters.
 
 ## report_spam
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_spam.md)
+
 **Call:** `client.api.messages.report_spam(...)`
 
 **Official method:** `messages.reportSpam` · **ID:** `0xcf1592db`
@@ -3168,6 +3526,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.reportSpam)
 
 ## report_sponsored_message
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/report_sponsored_message.md)
 
 **Call:** `client.api.messages.report_sponsored_message(...)`
 
@@ -3185,6 +3545,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.reportSponsoredMessage)
 
 ## request_app_web_view
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/request_app_web_view.md)
 
 **Call:** `client.api.messages.request_app_web_view(...)`
 
@@ -3209,6 +3571,8 @@ No parameters.
 
 ## request_encryption
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/request_encryption.md)
+
 **Call:** `client.api.messages.request_encryption(...)`
 
 **Official method:** `messages.requestEncryption` · **ID:** `0xf64daf43`
@@ -3226,6 +3590,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.requestEncryption)
 
 ## request_main_web_view
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/request_main_web_view.md)
 
 **Call:** `client.api.messages.request_main_web_view(...)`
 
@@ -3248,6 +3614,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.requestMainWebView)
 
 ## request_simple_web_view
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/request_simple_web_view.md)
 
 **Call:** `client.api.messages.request_simple_web_view(...)`
 
@@ -3273,6 +3641,8 @@ No parameters.
 
 ## request_url_auth
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/request_url_auth.md)
+
 **Call:** `client.api.messages.request_url_auth(...)`
 
 **Official method:** `messages.requestUrlAuth` · **ID:** `0x894cc99c`
@@ -3292,6 +3662,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.requestUrlAuth)
 
 ## request_web_view
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/request_web_view.md)
 
 **Call:** `client.api.messages.request_web_view(...)`
 
@@ -3320,6 +3692,8 @@ No parameters.
 
 ## save_default_send_as
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/save_default_send_as.md)
+
 **Call:** `client.api.messages.save_default_send_as(...)`
 
 **Official method:** `messages.saveDefaultSendAs` · **ID:** `0xccfddf96`
@@ -3336,6 +3710,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.saveDefaultSendAs)
 
 ## save_draft
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/save_draft.md)
 
 **Call:** `client.api.messages.save_draft(...)`
 
@@ -3361,6 +3737,8 @@ No parameters.
 
 ## save_gif
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/save_gif.md)
+
 **Call:** `client.api.messages.save_gif(...)`
 
 **Official method:** `messages.saveGif` · **ID:** `0x327a30cb`
@@ -3377,6 +3755,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.saveGif)
 
 ## save_prepared_inline_message
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/save_prepared_inline_message.md)
 
 **Call:** `client.api.messages.save_prepared_inline_message(...)`
 
@@ -3396,6 +3776,8 @@ No parameters.
 
 ## save_recent_sticker
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/save_recent_sticker.md)
+
 **Call:** `client.api.messages.save_recent_sticker(...)`
 
 **Official method:** `messages.saveRecentSticker` · **ID:** `0x392718f8`
@@ -3413,6 +3795,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.saveRecentSticker)
 
 ## search
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/search.md)
 
 **Call:** `client.api.messages.search(...)`
 
@@ -3444,6 +3828,8 @@ No parameters.
 
 ## search_custom_emoji
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/search_custom_emoji.md)
+
 **Call:** `client.api.messages.search_custom_emoji(...)`
 
 **Official method:** `messages.searchCustomEmoji` · **ID:** `0x2c11c0d7`
@@ -3460,6 +3846,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.searchCustomEmoji)
 
 ## search_emoji_sticker_sets
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/search_emoji_sticker_sets.md)
 
 **Call:** `client.api.messages.search_emoji_sticker_sets(...)`
 
@@ -3478,6 +3866,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.searchEmojiStickerSets)
 
 ## search_global
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/search_global.md)
 
 **Call:** `client.api.messages.search_global(...)`
 
@@ -3506,6 +3896,8 @@ No parameters.
 
 ## search_sent_media
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/search_sent_media.md)
+
 **Call:** `client.api.messages.search_sent_media(...)`
 
 **Official method:** `messages.searchSentMedia` · **ID:** `0x107e31a0`
@@ -3524,6 +3916,8 @@ No parameters.
 
 ## search_sticker_sets
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/search_sticker_sets.md)
+
 **Call:** `client.api.messages.search_sticker_sets(...)`
 
 **Official method:** `messages.searchStickerSets` · **ID:** `0x35705b8a`
@@ -3541,6 +3935,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.searchStickerSets)
 
 ## search_stickers
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/search_stickers.md)
 
 **Call:** `client.api.messages.search_stickers(...)`
 
@@ -3564,6 +3960,8 @@ No parameters.
 
 ## send_bot_requested_peer
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_bot_requested_peer.md)
+
 **Call:** `client.api.messages.send_bot_requested_peer(...)`
 
 **Official method:** `messages.sendBotRequestedPeer` · **ID:** `0x6c5cf2a7`
@@ -3584,6 +3982,8 @@ No parameters.
 
 ## send_encrypted
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_encrypted.md)
+
 **Call:** `client.api.messages.send_encrypted(...)`
 
 **Official method:** `messages.sendEncrypted` · **ID:** `0x44fa7a15`
@@ -3602,6 +4002,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendEncrypted)
 
 ## send_encrypted_file
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_encrypted_file.md)
 
 **Call:** `client.api.messages.send_encrypted_file(...)`
 
@@ -3623,6 +4025,8 @@ No parameters.
 
 ## send_encrypted_service
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_encrypted_service.md)
+
 **Call:** `client.api.messages.send_encrypted_service(...)`
 
 **Official method:** `messages.sendEncryptedService` · **ID:** `0x32d439a4`
@@ -3640,6 +4044,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendEncryptedService)
 
 ## send_inline_bot_result
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_inline_bot_result.md)
 
 **Call:** `client.api.messages.send_inline_bot_result(...)`
 
@@ -3668,6 +4074,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendInlineBotResult)
 
 ## send_media
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_media.md)
 
 **Call:** `client.api.messages.send_media(...)`
 
@@ -3705,6 +4113,8 @@ No parameters.
 
 ## send_message
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_message.md)
+
 **Call:** `client.api.messages.send_message(...)`
 
 **Official method:** `messages.sendMessage` · **ID:** `0x545cd15a`
@@ -3741,6 +4151,8 @@ No parameters.
 
 ## send_multi_media
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_multi_media.md)
+
 **Call:** `client.api.messages.send_multi_media(...)`
 
 **Official method:** `messages.sendMultiMedia` · **ID:** `0x1bf89d74`
@@ -3771,6 +4183,8 @@ No parameters.
 
 ## send_paid_reaction
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_paid_reaction.md)
+
 **Call:** `client.api.messages.send_paid_reaction(...)`
 
 **Official method:** `messages.sendPaidReaction` · **ID:** `0x58bbcb50`
@@ -3791,6 +4205,8 @@ No parameters.
 
 ## send_quick_reply_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_quick_reply_messages.md)
+
 **Call:** `client.api.messages.send_quick_reply_messages(...)`
 
 **Official method:** `messages.sendQuickReplyMessages` · **ID:** `0x6c750de1`
@@ -3809,6 +4225,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendQuickReplyMessages)
 
 ## send_reaction
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_reaction.md)
 
 **Call:** `client.api.messages.send_reaction(...)`
 
@@ -3830,6 +4248,8 @@ No parameters.
 
 ## send_scheduled_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_scheduled_messages.md)
+
 **Call:** `client.api.messages.send_scheduled_messages(...)`
 
 **Official method:** `messages.sendScheduledMessages` · **ID:** `0xbd38850a`
@@ -3846,6 +4266,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendScheduledMessages)
 
 ## send_screenshot_notification
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_screenshot_notification.md)
 
 **Call:** `client.api.messages.send_screenshot_notification(...)`
 
@@ -3865,6 +4287,8 @@ No parameters.
 
 ## send_vote
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_vote.md)
+
 **Call:** `client.api.messages.send_vote(...)`
 
 **Official method:** `messages.sendVote` · **ID:** `0x10ea6184`
@@ -3882,6 +4306,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendVote)
 
 ## send_web_view_data
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_web_view_data.md)
 
 **Call:** `client.api.messages.send_web_view_data(...)`
 
@@ -3902,6 +4328,8 @@ No parameters.
 
 ## send_web_view_result_message
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/send_web_view_result_message.md)
+
 **Call:** `client.api.messages.send_web_view_result_message(...)`
 
 **Official method:** `messages.sendWebViewResultMessage` · **ID:** `0x0a4314f5`
@@ -3918,6 +4346,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.sendWebViewResultMessage)
 
 ## set_bot_callback_answer
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_bot_callback_answer.md)
 
 **Call:** `client.api.messages.set_bot_callback_answer(...)`
 
@@ -3939,6 +4369,8 @@ No parameters.
 
 ## set_bot_guest_chat_result
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_bot_guest_chat_result.md)
+
 **Call:** `client.api.messages.set_bot_guest_chat_result(...)`
 
 **Official method:** `messages.setBotGuestChatResult` · **ID:** `0xb8f106e3`
@@ -3955,6 +4387,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setBotGuestChatResult)
 
 ## set_bot_precheckout_results
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_bot_precheckout_results.md)
 
 **Call:** `client.api.messages.set_bot_precheckout_results(...)`
 
@@ -3974,6 +4408,8 @@ No parameters.
 
 ## set_bot_shipping_results
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_bot_shipping_results.md)
+
 **Call:** `client.api.messages.set_bot_shipping_results(...)`
 
 **Official method:** `messages.setBotShippingResults` · **ID:** `0xe5f672fa`
@@ -3991,6 +4427,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setBotShippingResults)
 
 ## set_chat_available_reactions
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_chat_available_reactions.md)
 
 **Call:** `client.api.messages.set_chat_available_reactions(...)`
 
@@ -4011,6 +4449,8 @@ No parameters.
 
 ## set_chat_theme
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_chat_theme.md)
+
 **Call:** `client.api.messages.set_chat_theme(...)`
 
 **Official method:** `messages.setChatTheme` · **ID:** `0x081202c9`
@@ -4027,6 +4467,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setChatTheme)
 
 ## set_chat_wall_paper
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_chat_wall_paper.md)
 
 **Call:** `client.api.messages.set_chat_wall_paper(...)`
 
@@ -4049,6 +4491,8 @@ No parameters.
 
 ## set_default_history_ttl
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_default_history_ttl.md)
+
 **Call:** `client.api.messages.set_default_history_ttl(...)`
 
 **Official method:** `messages.setDefaultHistoryTTL` · **ID:** `0x9eb51445`
@@ -4064,6 +4508,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setDefaultHistoryTTL)
 
 ## set_default_reaction
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_default_reaction.md)
 
 **Call:** `client.api.messages.set_default_reaction(...)`
 
@@ -4081,6 +4527,8 @@ No parameters.
 
 ## set_encrypted_typing
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_encrypted_typing.md)
+
 **Call:** `client.api.messages.set_encrypted_typing(...)`
 
 **Official method:** `messages.setEncryptedTyping` · **ID:** `0x791451ed`
@@ -4097,6 +4545,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setEncryptedTyping)
 
 ## set_game_score
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_game_score.md)
 
 **Call:** `client.api.messages.set_game_score(...)`
 
@@ -4119,6 +4569,8 @@ No parameters.
 
 ## set_history_ttl
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_history_ttl.md)
+
 **Call:** `client.api.messages.set_history_ttl(...)`
 
 **Official method:** `messages.setHistoryTTL` · **ID:** `0xb80e5fe4`
@@ -4135,6 +4587,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setHistoryTTL)
 
 ## set_inline_bot_results
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_inline_bot_results.md)
 
 **Call:** `client.api.messages.set_inline_bot_results(...)`
 
@@ -4159,6 +4613,8 @@ No parameters.
 
 ## set_inline_game_score
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_inline_game_score.md)
+
 **Call:** `client.api.messages.set_inline_game_score(...)`
 
 **Official method:** `messages.setInlineGameScore` · **ID:** `0x15ad9f64`
@@ -4179,6 +4635,8 @@ No parameters.
 
 ## set_typing
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/set_typing.md)
+
 **Call:** `client.api.messages.set_typing(...)`
 
 **Official method:** `messages.setTyping` · **ID:** `0x58943ee2`
@@ -4196,6 +4654,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.setTyping)
 
 ## start_bot
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/start_bot.md)
 
 **Call:** `client.api.messages.start_bot(...)`
 
@@ -4216,6 +4676,8 @@ No parameters.
 
 ## start_history_import
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/start_history_import.md)
+
 **Call:** `client.api.messages.start_history_import(...)`
 
 **Official method:** `messages.startHistoryImport` · **ID:** `0xb43df344`
@@ -4232,6 +4694,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.startHistoryImport)
 
 ## summarize_text
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/summarize_text.md)
 
 **Call:** `client.api.messages.summarize_text(...)`
 
@@ -4252,6 +4716,8 @@ No parameters.
 
 ## toggle_bot_in_attach_menu
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_bot_in_attach_menu.md)
+
 **Call:** `client.api.messages.toggle_bot_in_attach_menu(...)`
 
 **Official method:** `messages.toggleBotInAttachMenu` · **ID:** `0x69f59d69`
@@ -4270,6 +4736,8 @@ No parameters.
 
 ## toggle_dialog_filter_tags
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_dialog_filter_tags.md)
+
 **Call:** `client.api.messages.toggle_dialog_filter_tags(...)`
 
 **Official method:** `messages.toggleDialogFilterTags` · **ID:** `0xfd2dda49`
@@ -4285,6 +4753,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.toggleDialogFilterTags)
 
 ## toggle_dialog_pin
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_dialog_pin.md)
 
 **Call:** `client.api.messages.toggle_dialog_pin(...)`
 
@@ -4302,6 +4772,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.toggleDialogPin)
 
 ## toggle_no_forwards
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_no_forwards.md)
 
 **Call:** `client.api.messages.toggle_no_forwards(...)`
 
@@ -4321,6 +4793,8 @@ No parameters.
 
 ## toggle_paid_reaction_privacy
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_paid_reaction_privacy.md)
+
 **Call:** `client.api.messages.toggle_paid_reaction_privacy(...)`
 
 **Official method:** `messages.togglePaidReactionPrivacy` · **ID:** `0x435885b5`
@@ -4339,6 +4813,8 @@ No parameters.
 
 ## toggle_peer_translations
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_peer_translations.md)
+
 **Call:** `client.api.messages.toggle_peer_translations(...)`
 
 **Official method:** `messages.togglePeerTranslations` · **ID:** `0xe47cb579`
@@ -4356,6 +4832,8 @@ No parameters.
 
 ## toggle_saved_dialog_pin
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_saved_dialog_pin.md)
+
 **Call:** `client.api.messages.toggle_saved_dialog_pin(...)`
 
 **Official method:** `messages.toggleSavedDialogPin` · **ID:** `0xac81bbde`
@@ -4372,6 +4850,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.toggleSavedDialogPin)
 
 ## toggle_sticker_sets
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_sticker_sets.md)
 
 **Call:** `client.api.messages.toggle_sticker_sets(...)`
 
@@ -4391,6 +4871,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.toggleStickerSets)
 
 ## toggle_suggested_post_approval
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_suggested_post_approval.md)
 
 **Call:** `client.api.messages.toggle_suggested_post_approval(...)`
 
@@ -4412,6 +4894,8 @@ No parameters.
 
 ## toggle_todo_completed
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/toggle_todo_completed.md)
+
 **Call:** `client.api.messages.toggle_todo_completed(...)`
 
 **Official method:** `messages.toggleTodoCompleted` · **ID:** `0xd3e03124`
@@ -4431,6 +4915,8 @@ No parameters.
 
 ## transcribe_audio
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/transcribe_audio.md)
+
 **Call:** `client.api.messages.transcribe_audio(...)`
 
 **Official method:** `messages.transcribeAudio` · **ID:** `0x269e9a49`
@@ -4447,6 +4933,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.transcribeAudio)
 
 ## translate_text
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/translate_text.md)
 
 **Call:** `client.api.messages.translate_text(...)`
 
@@ -4468,6 +4956,8 @@ No parameters.
 
 ## uninstall_sticker_set
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/uninstall_sticker_set.md)
+
 **Call:** `client.api.messages.uninstall_sticker_set(...)`
 
 **Official method:** `messages.uninstallStickerSet` · **ID:** `0xf96e55de`
@@ -4483,6 +4973,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.uninstallStickerSet)
 
 ## unpin_all_messages
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/unpin_all_messages.md)
 
 **Call:** `client.api.messages.unpin_all_messages(...)`
 
@@ -4502,6 +4994,8 @@ No parameters.
 
 ## update_dialog_filter
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/update_dialog_filter.md)
+
 **Call:** `client.api.messages.update_dialog_filter(...)`
 
 **Official method:** `messages.updateDialogFilter` · **ID:** `0x1ad4a04a`
@@ -4519,6 +5013,8 @@ No parameters.
 
 ## update_dialog_filters_order
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/update_dialog_filters_order.md)
+
 **Call:** `client.api.messages.update_dialog_filters_order(...)`
 
 **Official method:** `messages.updateDialogFiltersOrder` · **ID:** `0xc563c1e4`
@@ -4534,6 +5030,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.updateDialogFiltersOrder)
 
 ## update_pinned_forum_topic
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/update_pinned_forum_topic.md)
 
 **Call:** `client.api.messages.update_pinned_forum_topic(...)`
 
@@ -4552,6 +5050,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.updatePinnedForumTopic)
 
 ## update_pinned_message
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/update_pinned_message.md)
 
 **Call:** `client.api.messages.update_pinned_message(...)`
 
@@ -4573,6 +5073,8 @@ No parameters.
 
 ## update_saved_reaction_tag
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/update_saved_reaction_tag.md)
+
 **Call:** `client.api.messages.update_saved_reaction_tag(...)`
 
 **Official method:** `messages.updateSavedReactionTag` · **ID:** `0x60297dec`
@@ -4590,6 +5092,8 @@ No parameters.
 
 ## upload_encrypted_file
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/upload_encrypted_file.md)
+
 **Call:** `client.api.messages.upload_encrypted_file(...)`
 
 **Official method:** `messages.uploadEncryptedFile` · **ID:** `0x5057c497`
@@ -4606,6 +5110,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.uploadEncryptedFile)
 
 ## upload_imported_media
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/upload_imported_media.md)
 
 **Call:** `client.api.messages.upload_imported_media(...)`
 
@@ -4626,6 +5132,8 @@ No parameters.
 
 ## upload_media
 
+[Detailed method page: every parameter, native variants, flags and errors](messages/upload_media.md)
+
 **Call:** `client.api.messages.upload_media(...)`
 
 **Official method:** `messages.uploadMedia` · **ID:** `0x14967978`
@@ -4643,6 +5151,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/messages.uploadMedia)
 
 ## view_sponsored_message
+
+[Detailed method page: every parameter, native variants, flags and errors](messages/view_sponsored_message.md)
 
 **Call:** `client.api.messages.view_sponsored_message(...)`
 

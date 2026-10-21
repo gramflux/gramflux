@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_peer_folders
 
+[Detailed method page: every parameter, native variants, flags and errors](folders/edit_peer_folders.md)
+
 **Call:** `client.api.folders.edit_peer_folders(...)`
 
 **Official method:** `folders.editPeerFolders` · **ID:** `0x6847d0ab`

@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_full_user
 
+[Detailed method page: every parameter, native variants, flags and errors](users/get_full_user.md)
+
 **Call:** `client.api.users.get_full_user(...)`
 
 **Official method:** `users.getFullUser` · **ID:** `0xb60f5918`
@@ -30,6 +32,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_requirements_to_contact
 
+[Detailed method page: every parameter, native variants, flags and errors](users/get_requirements_to_contact.md)
+
 **Call:** `client.api.users.get_requirements_to_contact(...)`
 
 **Official method:** `users.getRequirementsToContact` · **ID:** `0xd89a83a3`
@@ -45,6 +49,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/users.getRequirementsToContact)
 
 ## get_saved_music
+
+[Detailed method page: every parameter, native variants, flags and errors](users/get_saved_music.md)
 
 **Call:** `client.api.users.get_saved_music(...)`
 
@@ -65,6 +71,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_saved_music_by_id
 
+[Detailed method page: every parameter, native variants, flags and errors](users/get_saved_music_by_id.md)
+
 **Call:** `client.api.users.get_saved_music_by_id(...)`
 
 **Official method:** `users.getSavedMusicByID` · **ID:** `0x7573a4e9`
@@ -82,6 +90,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_users
 
+[Detailed method page: every parameter, native variants, flags and errors](users/get_users.md)
+
 **Call:** `client.api.users.get_users(...)`
 
 **Official method:** `users.getUsers` · **ID:** `0x0d91a548`
@@ -97,6 +107,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/users.getUsers)
 
 ## set_secure_value_errors
+
+[Detailed method page: every parameter, native variants, flags and errors](users/set_secure_value_errors.md)
 
 **Call:** `client.api.users.set_secure_value_errors(...)`
 
@@ -114,6 +126,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/users.setSecureValueErrors)
 
 ## suggest_birthday
+
+[Detailed method page: every parameter, native variants, flags and errors](users/suggest_birthday.md)
 
 **Call:** `client.api.users.suggest_birthday(...)`
 

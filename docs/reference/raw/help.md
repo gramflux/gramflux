@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## accept_terms_of_service
 
+[Detailed method page: every parameter, native variants, flags and errors](help/accept_terms_of_service.md)
+
 **Call:** `client.api.help.accept_terms_of_service(...)`
 
 **Official method:** `help.acceptTermsOfService` · **ID:** `0xee72f79a`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/help.acceptTermsOfService)
 
 ## dismiss_suggestion
+
+[Detailed method page: every parameter, native variants, flags and errors](help/dismiss_suggestion.md)
 
 **Call:** `client.api.help.dismiss_suggestion(...)`
 
@@ -46,6 +50,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/help.dismissSuggestion)
 
 ## edit_user_info
+
+[Detailed method page: every parameter, native variants, flags and errors](help/edit_user_info.md)
 
 **Call:** `client.api.help.edit_user_info(...)`
 
@@ -65,6 +71,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_app_config
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_app_config.md)
+
 **Call:** `client.api.help.get_app_config(...)`
 
 **Official method:** `help.getAppConfig` · **ID:** `0x61e3f854`
@@ -80,6 +88,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getAppConfig)
 
 ## get_app_update
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_app_update.md)
 
 **Call:** `client.api.help.get_app_update(...)`
 
@@ -97,6 +107,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_cdn_config
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_cdn_config.md)
+
 **Call:** `client.api.help.get_cdn_config(...)`
 
 **Official method:** `help.getCdnConfig` · **ID:** `0x52029342`
@@ -111,6 +123,8 @@ No parameters.
 
 ## get_config
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_config.md)
+
 **Call:** `client.api.help.get_config(...)`
 
 **Official method:** `help.getConfig` · **ID:** `0xc4f9186b`
@@ -124,6 +138,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getConfig)
 
 ## get_countries_list
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_countries_list.md)
 
 **Call:** `client.api.help.get_countries_list(...)`
 
@@ -142,6 +158,8 @@ No parameters.
 
 ## get_deep_link_info
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_deep_link_info.md)
+
 **Call:** `client.api.help.get_deep_link_info(...)`
 
 **Official method:** `help.getDeepLinkInfo` · **ID:** `0x3fedc75f`
@@ -158,6 +176,8 @@ No parameters.
 
 ## get_invite_text
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_invite_text.md)
+
 **Call:** `client.api.help.get_invite_text(...)`
 
 **Official method:** `help.getInviteText` · **ID:** `0x4d392343`
@@ -172,6 +192,8 @@ No parameters.
 
 ## get_nearest_dc
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_nearest_dc.md)
+
 **Call:** `client.api.help.get_nearest_dc(...)`
 
 **Official method:** `help.getNearestDc` · **ID:** `0x1fb33026`
@@ -185,6 +207,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getNearestDc)
 
 ## get_passport_config
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_passport_config.md)
 
 **Call:** `client.api.help.get_passport_config(...)`
 
@@ -202,6 +226,8 @@ No parameters.
 
 ## get_peer_colors
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_peer_colors.md)
+
 **Call:** `client.api.help.get_peer_colors(...)`
 
 **Official method:** `help.getPeerColors` · **ID:** `0xda80f42f`
@@ -217,6 +243,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getPeerColors)
 
 ## get_peer_profile_colors
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_peer_profile_colors.md)
 
 **Call:** `client.api.help.get_peer_profile_colors(...)`
 
@@ -234,6 +262,8 @@ No parameters.
 
 ## get_premium_promo
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_premium_promo.md)
+
 **Call:** `client.api.help.get_premium_promo(...)`
 
 **Official method:** `help.getPremiumPromo` · **ID:** `0xb81b93d4`
@@ -248,6 +278,8 @@ No parameters.
 
 ## get_promo_data
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_promo_data.md)
+
 **Call:** `client.api.help.get_promo_data(...)`
 
 **Official method:** `help.getPromoData` · **ID:** `0xc0977421`
@@ -261,6 +293,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getPromoData)
 
 ## get_recent_me_urls
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_recent_me_urls.md)
 
 **Call:** `client.api.help.get_recent_me_urls(...)`
 
@@ -278,6 +312,8 @@ No parameters.
 
 ## get_support
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_support.md)
+
 **Call:** `client.api.help.get_support(...)`
 
 **Official method:** `help.getSupport` · **ID:** `0x9cdf08cd`
@@ -291,6 +327,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getSupport)
 
 ## get_support_name
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_support_name.md)
 
 **Call:** `client.api.help.get_support_name(...)`
 
@@ -306,6 +344,8 @@ No parameters.
 
 ## get_terms_of_service_update
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_terms_of_service_update.md)
+
 **Call:** `client.api.help.get_terms_of_service_update(...)`
 
 **Official method:** `help.getTermsOfServiceUpdate` · **ID:** `0x2ca51fd1`
@@ -319,6 +359,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getTermsOfServiceUpdate)
 
 ## get_timezones_list
+
+[Detailed method page: every parameter, native variants, flags and errors](help/get_timezones_list.md)
 
 **Call:** `client.api.help.get_timezones_list(...)`
 
@@ -336,6 +378,8 @@ No parameters.
 
 ## get_user_info
 
+[Detailed method page: every parameter, native variants, flags and errors](help/get_user_info.md)
+
 **Call:** `client.api.help.get_user_info(...)`
 
 **Official method:** `help.getUserInfo` · **ID:** `0x038a08d3`
@@ -351,6 +395,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.getUserInfo)
 
 ## hide_promo_data
+
+[Detailed method page: every parameter, native variants, flags and errors](help/hide_promo_data.md)
 
 **Call:** `client.api.help.hide_promo_data(...)`
 
@@ -368,6 +414,8 @@ No parameters.
 
 ## save_app_log
 
+[Detailed method page: every parameter, native variants, flags and errors](help/save_app_log.md)
+
 **Call:** `client.api.help.save_app_log(...)`
 
 **Official method:** `help.saveAppLog` · **ID:** `0x6f02f748`
@@ -383,6 +431,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/help.saveAppLog)
 
 ## set_bot_updates_status
+
+[Detailed method page: every parameter, native variants, flags and errors](help/set_bot_updates_status.md)
 
 **Call:** `client.api.help.set_bot_updates_status(...)`
 

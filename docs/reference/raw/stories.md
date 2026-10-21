@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## activate_stealth_mode
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/activate_stealth_mode.md)
+
 **Call:** `client.api.stories.activate_stealth_mode(...)`
 
 **Official method:** `stories.activateStealthMode` · **ID:** `0x57bbd166`
@@ -31,6 +33,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## can_send_story
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/can_send_story.md)
+
 **Call:** `client.api.stories.can_send_story(...)`
 
 **Official method:** `stories.canSendStory` · **ID:** `0x30eb63f0`
@@ -46,6 +50,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.canSendStory)
 
 ## create_album
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/create_album.md)
 
 **Call:** `client.api.stories.create_album(...)`
 
@@ -65,6 +71,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_album
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/delete_album.md)
+
 **Call:** `client.api.stories.delete_album(...)`
 
 **Official method:** `stories.deleteAlbum` · **ID:** `0x8d3456d0`
@@ -82,6 +90,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_stories
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/delete_stories.md)
+
 **Call:** `client.api.stories.delete_stories(...)`
 
 **Official method:** `stories.deleteStories` · **ID:** `0xae59db5f`
@@ -98,6 +108,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.deleteStories)
 
 ## edit_story
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/edit_story.md)
 
 **Call:** `client.api.stories.edit_story(...)`
 
@@ -122,6 +134,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## export_story_link
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/export_story_link.md)
+
 **Call:** `client.api.stories.export_story_link(...)`
 
 **Official method:** `stories.exportStoryLink` · **ID:** `0x7b8def20`
@@ -138,6 +152,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.exportStoryLink)
 
 ## get_album_stories
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_album_stories.md)
 
 **Call:** `client.api.stories.get_album_stories(...)`
 
@@ -158,6 +174,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_albums
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_albums.md)
+
 **Call:** `client.api.stories.get_albums(...)`
 
 **Official method:** `stories.getAlbums` · **ID:** `0x25b3eac7`
@@ -175,6 +193,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_all_read_peer_stories
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_all_read_peer_stories.md)
+
 **Call:** `client.api.stories.get_all_read_peer_stories(...)`
 
 **Official method:** `stories.getAllReadPeerStories` · **ID:** `0x9b5ae7f9`
@@ -188,6 +208,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.getAllReadPeerStories)
 
 ## get_all_stories
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_all_stories.md)
 
 **Call:** `client.api.stories.get_all_stories(...)`
 
@@ -207,6 +229,8 @@ No parameters.
 
 ## get_chats_to_send
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_chats_to_send.md)
+
 **Call:** `client.api.stories.get_chats_to_send(...)`
 
 **Official method:** `stories.getChatsToSend` · **ID:** `0xa56a8b60`
@@ -220,6 +244,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.getChatsToSend)
 
 ## get_peer_max_i_ds
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_peer_max_i_ds.md)
 
 **Call:** `client.api.stories.get_peer_max_i_ds(...)`
 
@@ -237,6 +263,8 @@ No parameters.
 
 ## get_peer_stories
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_peer_stories.md)
+
 **Call:** `client.api.stories.get_peer_stories(...)`
 
 **Official method:** `stories.getPeerStories` · **ID:** `0x2c4ada50`
@@ -252,6 +280,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.getPeerStories)
 
 ## get_pinned_stories
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_pinned_stories.md)
 
 **Call:** `client.api.stories.get_pinned_stories(...)`
 
@@ -271,6 +301,8 @@ No parameters.
 
 ## get_stories_archive
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_stories_archive.md)
+
 **Call:** `client.api.stories.get_stories_archive(...)`
 
 **Official method:** `stories.getStoriesArchive` · **ID:** `0xb4352016`
@@ -289,6 +321,8 @@ No parameters.
 
 ## get_stories_by_id
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_stories_by_id.md)
+
 **Call:** `client.api.stories.get_stories_by_id(...)`
 
 **Official method:** `stories.getStoriesByID` · **ID:** `0x5774ca74`
@@ -306,6 +340,8 @@ No parameters.
 
 ## get_stories_views
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_stories_views.md)
+
 **Call:** `client.api.stories.get_stories_views(...)`
 
 **Official method:** `stories.getStoriesViews` · **ID:** `0x28e16cc8`
@@ -322,6 +358,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.getStoriesViews)
 
 ## get_story_reactions_list
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_story_reactions_list.md)
 
 **Call:** `client.api.stories.get_story_reactions_list(...)`
 
@@ -343,6 +381,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.getStoryReactionsList)
 
 ## get_story_views_list
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/get_story_views_list.md)
 
 **Call:** `client.api.stories.get_story_views_list(...)`
 
@@ -367,6 +407,8 @@ No parameters.
 
 ## increment_story_views
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/increment_story_views.md)
+
 **Call:** `client.api.stories.increment_story_views(...)`
 
 **Official method:** `stories.incrementStoryViews` · **ID:** `0xb2028afb`
@@ -383,6 +425,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.incrementStoryViews)
 
 ## read_stories
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/read_stories.md)
 
 **Call:** `client.api.stories.read_stories(...)`
 
@@ -401,6 +445,8 @@ No parameters.
 
 ## reorder_albums
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/reorder_albums.md)
+
 **Call:** `client.api.stories.reorder_albums(...)`
 
 **Official method:** `stories.reorderAlbums` · **ID:** `0x8535fbd9`
@@ -417,6 +463,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.reorderAlbums)
 
 ## report
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/report.md)
 
 **Call:** `client.api.stories.report(...)`
 
@@ -436,6 +484,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.report)
 
 ## search_posts
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/search_posts.md)
 
 **Call:** `client.api.stories.search_posts(...)`
 
@@ -457,6 +507,8 @@ No parameters.
 
 ## send_reaction
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/send_reaction.md)
+
 **Call:** `client.api.stories.send_reaction(...)`
 
 **Official method:** `stories.sendReaction` · **ID:** `0x7fd736b2`
@@ -475,6 +527,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.sendReaction)
 
 ## send_story
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/send_story.md)
 
 **Call:** `client.api.stories.send_story(...)`
 
@@ -506,6 +560,8 @@ No parameters.
 
 ## start_live
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/start_live.md)
+
 **Call:** `client.api.stories.start_live(...)`
 
 **Official method:** `stories.startLive` · **ID:** `0xd069ccde`
@@ -531,6 +587,8 @@ No parameters.
 
 ## toggle_all_stories_hidden
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/toggle_all_stories_hidden.md)
+
 **Call:** `client.api.stories.toggle_all_stories_hidden(...)`
 
 **Official method:** `stories.toggleAllStoriesHidden` · **ID:** `0x7c2557c4`
@@ -546,6 +604,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.toggleAllStoriesHidden)
 
 ## toggle_peer_stories_hidden
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/toggle_peer_stories_hidden.md)
 
 **Call:** `client.api.stories.toggle_peer_stories_hidden(...)`
 
@@ -563,6 +623,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.togglePeerStoriesHidden)
 
 ## toggle_pinned
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/toggle_pinned.md)
 
 **Call:** `client.api.stories.toggle_pinned(...)`
 
@@ -582,6 +644,8 @@ No parameters.
 
 ## toggle_pinned_to_top
 
+[Detailed method page: every parameter, native variants, flags and errors](stories/toggle_pinned_to_top.md)
+
 **Call:** `client.api.stories.toggle_pinned_to_top(...)`
 
 **Official method:** `stories.togglePinnedToTop` · **ID:** `0x0b297e9b`
@@ -598,6 +662,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/stories.togglePinnedToTop)
 
 ## update_album
+
+[Detailed method page: every parameter, native variants, flags and errors](stories/update_album.md)
 
 **Call:** `client.api.stories.update_album(...)`
 

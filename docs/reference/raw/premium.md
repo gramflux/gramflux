@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## apply_boost
 
+[Detailed method page: every parameter, native variants, flags and errors](premium/apply_boost.md)
+
 **Call:** `client.api.premium.apply_boost(...)`
 
 **Official method:** `premium.applyBoost` · **ID:** `0x6b7da746`
@@ -30,6 +32,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/premium.applyBoost)
 
 ## get_boosts_list
+
+[Detailed method page: every parameter, native variants, flags and errors](premium/get_boosts_list.md)
 
 **Call:** `client.api.premium.get_boosts_list(...)`
 
@@ -50,6 +54,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_boosts_status
 
+[Detailed method page: every parameter, native variants, flags and errors](premium/get_boosts_status.md)
+
 **Call:** `client.api.premium.get_boosts_status(...)`
 
 **Official method:** `premium.getBoostsStatus` · **ID:** `0x042f1f61`
@@ -66,6 +72,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_my_boosts
 
+[Detailed method page: every parameter, native variants, flags and errors](premium/get_my_boosts.md)
+
 **Call:** `client.api.premium.get_my_boosts(...)`
 
 **Official method:** `premium.getMyBoosts` · **ID:** `0x0be77b4a`
@@ -79,6 +87,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/premium.getMyBoosts)
 
 ## get_user_boosts
+
+[Detailed method page: every parameter, native variants, flags and errors](premium/get_user_boosts.md)
 
 **Call:** `client.api.premium.get_user_boosts(...)`
 

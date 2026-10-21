@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## check_search_posts_flood
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/check_search_posts_flood.md)
+
 **Call:** `client.api.channels.check_search_posts_flood(...)`
 
 **Official method:** `channels.checkSearchPostsFlood` · **ID:** `0x22567115`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.checkSearchPostsFlood)
 
 ## check_username
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/check_username.md)
 
 **Call:** `client.api.channels.check_username(...)`
 
@@ -47,6 +51,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## convert_to_gigagroup
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/convert_to_gigagroup.md)
+
 **Call:** `client.api.channels.convert_to_gigagroup(...)`
 
 **Official method:** `channels.convertToGigagroup` · **ID:** `0x0b290c69`
@@ -62,6 +68,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.convertToGigagroup)
 
 ## create_channel
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/create_channel.md)
 
 **Call:** `client.api.channels.create_channel(...)`
 
@@ -87,6 +95,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## deactivate_all_usernames
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/deactivate_all_usernames.md)
+
 **Call:** `client.api.channels.deactivate_all_usernames(...)`
 
 **Official method:** `channels.deactivateAllUsernames` · **ID:** `0x0a245dd3`
@@ -103,6 +113,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_channel
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/delete_channel.md)
+
 **Call:** `client.api.channels.delete_channel(...)`
 
 **Official method:** `channels.deleteChannel` · **ID:** `0xc0111fe3`
@@ -118,6 +130,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.deleteChannel)
 
 ## delete_history
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/delete_history.md)
 
 **Call:** `client.api.channels.delete_history(...)`
 
@@ -137,6 +151,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/delete_messages.md)
+
 **Call:** `client.api.channels.delete_messages(...)`
 
 **Official method:** `channels.deleteMessages` · **ID:** `0x84c1fd4e`
@@ -154,6 +170,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_participant_history
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/delete_participant_history.md)
+
 **Call:** `client.api.channels.delete_participant_history(...)`
 
 **Official method:** `channels.deleteParticipantHistory` · **ID:** `0x367544db`
@@ -170,6 +188,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.deleteParticipantHistory)
 
 ## edit_admin
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/edit_admin.md)
 
 **Call:** `client.api.channels.edit_admin(...)`
 
@@ -190,6 +210,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_banned
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/edit_banned.md)
+
 **Call:** `client.api.channels.edit_banned(...)`
 
 **Official method:** `channels.editBanned` · **ID:** `0x96e6cd81`
@@ -207,6 +229,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.editBanned)
 
 ## edit_location
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/edit_location.md)
 
 **Call:** `client.api.channels.edit_location(...)`
 
@@ -226,6 +250,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_photo
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/edit_photo.md)
+
 **Call:** `client.api.channels.edit_photo(...)`
 
 **Official method:** `channels.editPhoto` · **ID:** `0xf12e57c9`
@@ -243,6 +269,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_title
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/edit_title.md)
+
 **Call:** `client.api.channels.edit_title(...)`
 
 **Official method:** `channels.editTitle` · **ID:** `0x566decd0`
@@ -259,6 +287,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.editTitle)
 
 ## export_message_link
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/export_message_link.md)
 
 **Call:** `client.api.channels.export_message_link(...)`
 
@@ -278,6 +308,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.exportMessageLink)
 
 ## get_admin_log
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_admin_log.md)
 
 **Call:** `client.api.channels.get_admin_log(...)`
 
@@ -301,6 +333,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_admined_public_channels
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_admined_public_channels.md)
+
 **Call:** `client.api.channels.get_admined_public_channels(...)`
 
 **Official method:** `channels.getAdminedPublicChannels` · **ID:** `0xf8b036af`
@@ -319,6 +353,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_channel_recommendations
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_channel_recommendations.md)
+
 **Call:** `client.api.channels.get_channel_recommendations(...)`
 
 **Official method:** `channels.getChannelRecommendations` · **ID:** `0x25a71742`
@@ -334,6 +370,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.getChannelRecommendations)
 
 ## get_channels
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_channels.md)
 
 **Call:** `client.api.channels.get_channels(...)`
 
@@ -351,6 +389,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_full_channel
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_full_channel.md)
+
 **Call:** `client.api.channels.get_full_channel(...)`
 
 **Official method:** `channels.getFullChannel` · **ID:** `0x08736a09`
@@ -367,6 +407,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## get_groups_for_discussion
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_groups_for_discussion.md)
+
 **Call:** `client.api.channels.get_groups_for_discussion(...)`
 
 **Official method:** `channels.getGroupsForDiscussion` · **ID:** `0xf5dad378`
@@ -381,6 +423,8 @@ No parameters.
 
 ## get_inactive_channels
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_inactive_channels.md)
+
 **Call:** `client.api.channels.get_inactive_channels(...)`
 
 **Official method:** `channels.getInactiveChannels` · **ID:** `0x11e831ee`
@@ -394,6 +438,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.getInactiveChannels)
 
 ## get_left_channels
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_left_channels.md)
 
 **Call:** `client.api.channels.get_left_channels(...)`
 
@@ -410,6 +456,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.getLeftChannels)
 
 ## get_message_author
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_message_author.md)
 
 **Call:** `client.api.channels.get_message_author(...)`
 
@@ -428,6 +476,8 @@ No parameters.
 
 ## get_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_messages.md)
+
 **Call:** `client.api.channels.get_messages(...)`
 
 **Official method:** `channels.getMessages` · **ID:** `0xad8c9a23`
@@ -445,6 +495,8 @@ No parameters.
 
 ## get_participant
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_participant.md)
+
 **Call:** `client.api.channels.get_participant(...)`
 
 **Official method:** `channels.getParticipant` · **ID:** `0xa0ab6cc6`
@@ -461,6 +513,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.getParticipant)
 
 ## get_participants
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_participants.md)
 
 **Call:** `client.api.channels.get_participants(...)`
 
@@ -482,6 +536,8 @@ No parameters.
 
 ## get_send_as
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/get_send_as.md)
+
 **Call:** `client.api.channels.get_send_as(...)`
 
 **Official method:** `channels.getSendAs` · **ID:** `0xe785a43f`
@@ -500,6 +556,8 @@ No parameters.
 
 ## invite_to_channel
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/invite_to_channel.md)
+
 **Call:** `client.api.channels.invite_to_channel(...)`
 
 **Official method:** `channels.inviteToChannel` · **ID:** `0xc9e33d54`
@@ -517,6 +575,8 @@ No parameters.
 
 ## join_channel
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/join_channel.md)
+
 **Call:** `client.api.channels.join_channel(...)`
 
 **Official method:** `channels.joinChannel` · **ID:** `0x24b524c5`
@@ -533,6 +593,8 @@ No parameters.
 
 ## leave_channel
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/leave_channel.md)
+
 **Call:** `client.api.channels.leave_channel(...)`
 
 **Official method:** `channels.leaveChannel` · **ID:** `0xf836aa95`
@@ -548,6 +610,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.leaveChannel)
 
 ## read_history
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/read_history.md)
 
 **Call:** `client.api.channels.read_history(...)`
 
@@ -566,6 +630,8 @@ No parameters.
 
 ## read_message_contents
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/read_message_contents.md)
+
 **Call:** `client.api.channels.read_message_contents(...)`
 
 **Official method:** `channels.readMessageContents` · **ID:** `0xeab5dc38`
@@ -582,6 +648,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.readMessageContents)
 
 ## reorder_usernames
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/reorder_usernames.md)
 
 **Call:** `client.api.channels.reorder_usernames(...)`
 
@@ -600,6 +668,8 @@ No parameters.
 
 ## report_anti_spam_false_positive
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/report_anti_spam_false_positive.md)
+
 **Call:** `client.api.channels.report_anti_spam_false_positive(...)`
 
 **Official method:** `channels.reportAntiSpamFalsePositive` · **ID:** `0xa850a693`
@@ -616,6 +686,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.reportAntiSpamFalsePositive)
 
 ## report_spam
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/report_spam.md)
 
 **Call:** `client.api.channels.report_spam(...)`
 
@@ -635,6 +707,8 @@ No parameters.
 
 ## restrict_sponsored_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/restrict_sponsored_messages.md)
+
 **Call:** `client.api.channels.restrict_sponsored_messages(...)`
 
 **Official method:** `channels.restrictSponsoredMessages` · **ID:** `0x9ae91519`
@@ -651,6 +725,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.restrictSponsoredMessages)
 
 ## search_posts
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/search_posts.md)
 
 **Call:** `client.api.channels.search_posts(...)`
 
@@ -674,6 +750,8 @@ No parameters.
 
 ## set_boosts_to_unblock_restrictions
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/set_boosts_to_unblock_restrictions.md)
+
 **Call:** `client.api.channels.set_boosts_to_unblock_restrictions(...)`
 
 **Official method:** `channels.setBoostsToUnblockRestrictions` · **ID:** `0xad399cee`
@@ -690,6 +768,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.setBoostsToUnblockRestrictions)
 
 ## set_discussion_group
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/set_discussion_group.md)
 
 **Call:** `client.api.channels.set_discussion_group(...)`
 
@@ -708,6 +788,8 @@ No parameters.
 
 ## set_emoji_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/set_emoji_stickers.md)
+
 **Call:** `client.api.channels.set_emoji_stickers(...)`
 
 **Official method:** `channels.setEmojiStickers` · **ID:** `0x3cd930b7`
@@ -724,6 +806,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.setEmojiStickers)
 
 ## set_main_profile_tab
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/set_main_profile_tab.md)
 
 **Call:** `client.api.channels.set_main_profile_tab(...)`
 
@@ -742,6 +826,8 @@ No parameters.
 
 ## set_stickers
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/set_stickers.md)
+
 **Call:** `client.api.channels.set_stickers(...)`
 
 **Official method:** `channels.setStickers` · **ID:** `0xea8ca4f9`
@@ -758,6 +844,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.setStickers)
 
 ## toggle_anti_spam
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_anti_spam.md)
 
 **Call:** `client.api.channels.toggle_anti_spam(...)`
 
@@ -776,6 +864,8 @@ No parameters.
 
 ## toggle_autotranslation
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_autotranslation.md)
+
 **Call:** `client.api.channels.toggle_autotranslation(...)`
 
 **Official method:** `channels.toggleAutotranslation` · **ID:** `0x167fc0a1`
@@ -792,6 +882,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.toggleAutotranslation)
 
 ## toggle_forum
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_forum.md)
 
 **Call:** `client.api.channels.toggle_forum(...)`
 
@@ -811,6 +903,8 @@ No parameters.
 
 ## toggle_join_request
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_join_request.md)
+
 **Call:** `client.api.channels.toggle_join_request(...)`
 
 **Official method:** `channels.toggleJoinRequest` · **ID:** `0x4c2985b6`
@@ -827,6 +921,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.toggleJoinRequest)
 
 ## toggle_join_to_send
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_join_to_send.md)
 
 **Call:** `client.api.channels.toggle_join_to_send(...)`
 
@@ -845,6 +941,8 @@ No parameters.
 
 ## toggle_participants_hidden
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_participants_hidden.md)
+
 **Call:** `client.api.channels.toggle_participants_hidden(...)`
 
 **Official method:** `channels.toggleParticipantsHidden` · **ID:** `0x6a6e7854`
@@ -862,6 +960,8 @@ No parameters.
 
 ## toggle_pre_history_hidden
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_pre_history_hidden.md)
+
 **Call:** `client.api.channels.toggle_pre_history_hidden(...)`
 
 **Official method:** `channels.togglePreHistoryHidden` · **ID:** `0xeabbb94c`
@@ -878,6 +978,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.togglePreHistoryHidden)
 
 ## toggle_signatures
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_signatures.md)
 
 **Call:** `client.api.channels.toggle_signatures(...)`
 
@@ -897,6 +999,8 @@ No parameters.
 
 ## toggle_slow_mode
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_slow_mode.md)
+
 **Call:** `client.api.channels.toggle_slow_mode(...)`
 
 **Official method:** `channels.toggleSlowMode` · **ID:** `0xedd49ef0`
@@ -913,6 +1017,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.toggleSlowMode)
 
 ## toggle_username
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_username.md)
 
 **Call:** `client.api.channels.toggle_username(...)`
 
@@ -932,6 +1038,8 @@ No parameters.
 
 ## toggle_view_forum_as_messages
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/toggle_view_forum_as_messages.md)
+
 **Call:** `client.api.channels.toggle_view_forum_as_messages(...)`
 
 **Official method:** `channels.toggleViewForumAsMessages` · **ID:** `0x9738bb15`
@@ -948,6 +1056,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.toggleViewForumAsMessages)
 
 ## update_color
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/update_color.md)
 
 **Call:** `client.api.channels.update_color(...)`
 
@@ -968,6 +1078,8 @@ No parameters.
 
 ## update_emoji_status
 
+[Detailed method page: every parameter, native variants, flags and errors](channels/update_emoji_status.md)
+
 **Call:** `client.api.channels.update_emoji_status(...)`
 
 **Official method:** `channels.updateEmojiStatus` · **ID:** `0xf0d3e6a8`
@@ -984,6 +1096,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.updateEmojiStatus)
 
 ## update_paid_messages_price
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/update_paid_messages_price.md)
 
 **Call:** `client.api.channels.update_paid_messages_price(...)`
 
@@ -1002,6 +1116,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/channels.updatePaidMessagesPrice)
 
 ## update_username
+
+[Detailed method page: every parameter, native variants, flags and errors](channels/update_username.md)
 
 **Call:** `client.api.channels.update_username(...)`
 

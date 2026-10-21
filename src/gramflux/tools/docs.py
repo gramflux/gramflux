@@ -300,7 +300,9 @@ def render() -> dict[str, str]:
         output[f"raw/{namespace}.md"] = "\n".join(section)
     lines += ["", "[Exact machine-readable API inventory](../../api-surface.json).", ""]
     output["raw/index.md"] = "\n".join(lines)
-    return output
+    from .docs_reference import expand
+
+    return expand(output)
 
 
 def main() -> None:

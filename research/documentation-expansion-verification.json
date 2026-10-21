@@ -1,0 +1,116 @@
+{
+  "scope": "English documentation expansion; no runtime Telegram capabilities added",
+  "verified_at": "2026-10-21T17:07:08.923934+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux x86_64",
+    "node": "22.23.3",
+    "docusaurus": "3.10.2",
+    "playwright": "1.64.1"
+  },
+  "coverage": {
+    "reference_pages": 918,
+    "total_markdown_documents": 955,
+    "public_client_methods": 82,
+    "client_constructor_pages": 1,
+    "raw_functions": 783,
+    "raw_parameters": 1992,
+    "individual_event_pages": 8,
+    "individual_builder_filter_session_pages": 13,
+    "schema_layer": 225
+  },
+  "source_snapshot": {
+    "official_method_ids_matched": 783,
+    "parameter_table_coverage": 1992,
+    "maximum_quoted_prose_words_per_official_page": 25,
+    "normal_generation_requires_network": false,
+    "metadata_path": "src/gramflux/tools/data/official_reference.json"
+  },
+  "checks": [
+    {
+      "command": ".venv/bin/python -m gramflux.tools.docs",
+      "result": "Generated 918 reference pages"
+    },
+    {
+      "command": ".venv/bin/python -m gramflux.tools.docs --check",
+      "result": "Verified 918 reference pages; 783 official async functions"
+    },
+    {
+      "command": ".venv/bin/python -m gramflux.tools.docs_sources verify",
+      "result": {
+        "methods": 783,
+        "parameters": 1992,
+        "retained_prose_words": 14687
+      }
+    },
+    {
+      "command": ".venv/bin/pytest -q",
+      "result": {
+        "passed": 1420,
+        "skipped": 6,
+        "warnings": 4,
+        "seconds": 66.8
+      }
+    },
+    {
+      "command": ".venv/bin/pytest tests/unit/test_detailed_reference.py tests/unit/test_docs_reference.py -q",
+      "result": "7 passed in 6.46s"
+    },
+    {
+      "command": ".venv/bin/ruff check .",
+      "result": "passed"
+    },
+    {
+      "command": ".venv/bin/ruff format --check .",
+      "result": "144 files already formatted"
+    },
+    {
+      "command": ".venv/bin/mypy src",
+      "result": "Success: no issues found in 55 source files"
+    },
+    {
+      "command": ".venv/bin/python -m build",
+      "result": "wheel and sdist built"
+    },
+    {
+      "command": ".venv/bin/python -m venv /tmp/gramflux-detailed-docs-wheel",
+      "result": "clean environment created"
+    },
+    {
+      "command": "/tmp/gramflux-detailed-docs-wheel/bin/pip install --disable-pip-version-check dist/gramflux-0.5.0a2-py3-none-any.whl",
+      "result": "passed"
+    },
+    {
+      "command": "/tmp/gramflux-detailed-docs-wheel/bin/python -m gramflux.tools.docs --check",
+      "result": "Verified 918 reference pages; 783 official async functions"
+    },
+    {
+      "command": "/tmp/gramflux-detailed-docs-wheel/bin/python -m gramflux.tools.docs_sources verify",
+      "result": "783 methods / 1992 parameters verified from packaged snapshot"
+    },
+    {
+      "command": "npm --prefix website run build",
+      "environment": "Node 22.23.3 on PATH",
+      "result": "production static build passed; 10347 local-search documents"
+    },
+    {
+      "command": "npm --prefix website test",
+      "environment": "Node 22.23.3 on PATH",
+      "result": "8 passed in 20.7s"
+    },
+    {
+      "command": "git diff --cached --check",
+      "result": "passed"
+    }
+  ],
+  "static_build_bytes": 97202053,
+  "browser_regression_notes": "Initial new heading selectors included an exact accessible-name assumption. Docusaurus includes permalink labels in heading names; selectors now use the actual stable parameter anchors. Final full browser run passes.",
+  "limitations": [
+    "Reference coverage is separate from live Telegram feature coverage.",
+    "Raw examples are explicitly labelled argument templates requiring actual application/server data.",
+    "Endpoint-specific multi-step workflows remain subject to the compatibility matrix.",
+    "Authenticated live Telegram tests were not performed for this documentation change.",
+    "Existing website dependency advisories remain documented in website/README.md; no clean dependency audit is claimed."
+  ],
+  "publishing": "The existing GitHub Pages workflow deploys verified pushes on v0.x-dev. Deployment success must be checked separately from local build results."
+}

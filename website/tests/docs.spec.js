@@ -75,3 +75,31 @@ test('mobile navigation opens without page overflow', async ({page}) => {
   await expect(page.locator('article')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('individual Client reference explains defaults, entities and return behavior', async ({page}) => {
+  const errors = runtimeErrors(page);
+  await page.goto('docs/reference/client/send_message/');
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Client.send_message');
+  for (const parameter of ['peer', 'text', 'reply_to', 'silent', 'link_preview', 'reply_markup', 'entities']) {
+    await expect(page.locator(`article h3#${parameter}`)).toBeVisible();
+  }
+  await expect(page.locator('article')).toContainText('UTF-16');
+  await expect(page.locator('article')).toContainText('Keyword-only');
+  await expect(page.locator('article')).toContainText('None');
+  expect(errors).toEqual([]);
+});
+
+test('individual raw reference distinguishes native inputs and ordinary flags', async ({page}) => {
+  const errors = runtimeErrors(page);
+  await page.goto('docs/reference/raw/messages/get_history/');
+  await expect(page.locator('article')).toContainText('InputPeerSelf');
+  await expect(page.locator('article')).toContainText('access_hash');
+  await expect(page.locator('article h3#offset_date')).toBeVisible();
+  await page.setViewportSize({width: 390, height: 844});
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.goto('docs/reference/raw/auth/import_bot_authorization/');
+  await expect(page.locator('article h3#flags')).toBeVisible();
+  const flags = page.locator('article table').first().getByRole('row').filter({hasText: 'flags'});
+  await expect(flags).toContainText('Required');
+  expect(errors).toEqual([]);
+});

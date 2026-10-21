@@ -23,7 +23,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: website
@@ -37,6 +37,9 @@ jobs:
         working-directory: .
       - name: Verify generated reference
         run: python -m gramflux.tools.docs --check
+        working-directory: .
+      - name: Verify official documentation snapshot
+        run: python -m gramflux.tools.docs_sources verify
         working-directory: .
       - uses: actions/setup-node@v4
         with:

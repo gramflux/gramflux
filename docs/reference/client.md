@@ -17,6 +17,8 @@ manager; register handlers before entering.
 def Client(session: sessions.Session | str | pathlib.Path | storage.Storage | None = None, *, api_id: int, api_hash: str, config: config.Config | None = None, on_handler_error: collections.abc.Callable[[events.MessageEvent | events.RawUpdateEvent | events.DeletedMessagesEvent | events.ReadHistoryEvent | events.UserStatusEvent | events.ChatActionEvent | events.CallbackQueryEvent | events.InlineQueryEvent, Exception], collections.abc.Awaitable[None]] | None = None) -> None
 ```
 
+[Constructor parameters and examples](client/constructor.md)
+
 ## Properties
 
 | Property | Meaning |
@@ -33,11 +35,19 @@ This is not a count of Telegram RPC endpoints.
 
 ### add_contact
 
+Add a resolved user to contacts with explicit name and phone-sharing choices.
+
+[Full parameter reference and examples](client/add_contact.md)
+
 ```python
 async def add_contact(peer: str | int | Any, first_name: str, *, last_name: str = '', phone: str = '', share_phone: bool = False) -> Any
 ```
 
 ### answer_callback_query
+
+Answer an incoming bot callback query with notification text, an alert, or a permitted URL.
+
+[Full parameter reference and examples](client/answer_callback_query.md)
 
 ```python
 async def answer_callback_query(query_id: int, *, text: str = '', alert: bool = False, url: str | None = None, cache_time: int = 0) -> bool
@@ -45,11 +55,19 @@ async def answer_callback_query(query_id: int, *, text: str = '', alert: bool = 
 
 ### answer_inline_query
 
+Publish at most 50 native inline results with explicit caching and pagination choices.
+
+[Full parameter reference and examples](client/answer_inline_query.md)
+
 ```python
 async def answer_inline_query(query_id: int, results: collections.abc.Sequence[Any], *, cache_time: int = 300, next_offset: str = '', private: bool = False, gallery: bool = False) -> bool
 ```
 
 ### block_user
+
+Block a resolved user through the contacts API.
+
+[Full parameter reference and examples](client/block_user.md)
 
 ```python
 async def block_user(peer: str | int | Any) -> bool
@@ -57,11 +75,19 @@ async def block_user(peer: str | int | Any) -> bool
 
 ### check_invite
 
+Inspect an invite hash without calling the join endpoint.
+
+[Full parameter reference and examples](client/check_invite.md)
+
 ```python
 async def check_invite(invite_hash: str) -> Any
 ```
 
 ### check_password
+
+Fetch fresh SRP parameters, compute the proof off-loop and finish two-step account authorization.
+
+[Full parameter reference and examples](client/check_password.md)
 
 ```python
 async def check_password(password: str) -> User
@@ -69,11 +95,19 @@ async def check_password(password: str) -> User
 
 ### connect
 
+Open storage, restore native session metadata, establish the MTProto connection and start update dispatch. Does not prompt for account login.
+
+[Full parameter reference and examples](client/connect.md)
+
 ```python
 async def connect() -> None
 ```
 
 ### delete_contacts
+
+Remove the selected user contacts from the account.
+
+[Full parameter reference and examples](client/delete_contacts.md)
 
 ```python
 async def delete_contacts(peers: collections.abc.Sequence[str | int | Any]) -> Any
@@ -81,11 +115,19 @@ async def delete_contacts(peers: collections.abc.Sequence[str | int | Any]) -> A
 
 ### delete_messages
 
+Delete validated IDs from an explicitly selected conversation.
+
+[Full parameter reference and examples](client/delete_messages.md)
+
 ```python
 async def delete_messages(peer: str | int | Any, ids: int | collections.abc.Sequence[int], *, revoke: bool = False) -> list[MessagesAffectedMessages]
 ```
 
 ### disconnect
+
+Cancel and join outstanding requests and callbacks, stop native update production, close the transport and save the session snapshot.
+
+[Full parameter reference and examples](client/disconnect.md)
 
 ```python
 async def disconnect() -> None
@@ -98,6 +140,10 @@ to shut down, rather than await disconnect from inside the dispatcher.
 
 ### download_file
 
+Stream an exact range to a new path or caller-owned binary output stream.
+
+[Full parameter reference and examples](client/download_file.md)
+
 ```python
 async def download_file(location: Any, destination: str | pathlib.Path | BinaryIO, *, size: int, on_progress: collections.abc.Callable[[int, int], collections.abc.Awaitable[None] | None] | None = None, offset: int = 0, length: int | None = None, request_size: int = 524288) -> pathlib.Path | None
 ```
@@ -105,6 +151,10 @@ async def download_file(location: Any, destination: str | pathlib.Path | BinaryI
 Write an exact range; path targets never overwrite existing files.
 
 ### download_media
+
+Resolve a supported message's media location and size, then stream an exact range.
+
+[Full parameter reference and examples](client/download_media.md)
 
 ```python
 async def download_media(message: Message, destination: str | pathlib.Path | BinaryIO, *, on_progress: collections.abc.Callable[[int, int], collections.abc.Awaitable[None] | None] | None = None, offset: int = 0, length: int | None = None, request_size: int = 524288) -> pathlib.Path | None
@@ -114,11 +164,19 @@ Resolve document/photo metadata and stream an exact range to the destination.
 
 ### edit_inline_message
 
+Edit the text/markup of an inline bot message by its native inline identifier.
+
+[Full parameter reference and examples](client/edit_inline_message.md)
+
 ```python
 async def edit_inline_message(message_id: Any, text: str, *, reply_markup: Any | None = None, link_preview: bool = True) -> bool
 ```
 
 ### edit_message
+
+Edit nonempty literal message text in a known peer.
+
+[Full parameter reference and examples](client/edit_message.md)
 
 ```python
 async def edit_message(peer: str | int | Any, message_id: int, text: str, *, link_preview: bool = True) -> Any
@@ -126,11 +184,19 @@ async def edit_message(peer: str | int | Any, message_id: int, text: str, *, lin
 
 ### export_invite_link
 
+Create/export a chat invite with explicit expiry, usage and approval choices.
+
+[Full parameter reference and examples](client/export_invite_link.md)
+
 ```python
 async def export_invite_link(peer: str | int | Any, *, title: str | None = None, expire_date: int | None = None, usage_limit: int | None = None, request_needed: bool = False) -> Any
 ```
 
 ### forward_messages
+
+Forward messages from an explicit source peer into a destination peer with independent secure random IDs.
+
+[Full parameter reference and examples](client/forward_messages.md)
 
 ```python
 async def forward_messages(peer: str | int | Any, from_peer: str | int | Any, ids: int | collections.abc.Sequence[int], *, silent: bool = False, drop_author: bool = False) -> list[Any]
@@ -140,11 +206,19 @@ Return Telegram Updates per batch; partial success is possible across batches.
 
 ### get_active_sessions
 
+List Telegram authorizations attached to the current account.
+
+[Full parameter reference and examples](client/get_active_sessions.md)
+
 ```python
 async def get_active_sessions() -> list[Authorization]
 ```
 
 ### get_bot_commands
+
+Read the command list for a selected scope/language pair.
+
+[Full parameter reference and examples](client/get_bot_commands.md)
 
 ```python
 async def get_bot_commands(*, lang_code: str = '', scope: Any | None = None) -> list[BotCommand]
@@ -152,11 +226,19 @@ async def get_bot_commands(*, lang_code: str = '', scope: Any | None = None) -> 
 
 ### get_callback_answer
 
+Invoke a message's supported callback payload and receive the bot answer.
+
+[Full parameter reference and examples](client/get_callback_answer.md)
+
 ```python
 async def get_callback_answer(peer: str | int | Any, message_id: int, *, data: bytes | None = None, game: bool = False) -> MessagesBotCallbackAnswer
 ```
 
 ### get_chat
+
+Fetch the current basic entity for a supported peer and update peer metadata.
+
+[Full parameter reference and examples](client/get_chat.md)
 
 ```python
 async def get_chat(peer: str | int | Any) -> User | Chat | Channel | ChatForbidden | ChannelForbidden
@@ -166,11 +248,19 @@ Fetch the current basic entity, refreshing the peer cache.
 
 ### get_chat_full
 
+Request full basic-group or channel/supergroup metadata using the appropriate endpoint.
+
+[Full parameter reference and examples](client/get_chat_full.md)
+
 ```python
 async def get_chat_full(peer: str | int | Any) -> MessagesChatFull
 ```
 
 ### get_contacts
+
+Fetch the current complete contacts response with a zero cache hash.
+
+[Full parameter reference and examples](client/get_contacts.md)
 
 ```python
 async def get_contacts() -> list[User]
@@ -178,11 +268,19 @@ async def get_contacts() -> list[User]
 
 ### get_dialogs
 
+Materialize a finite collection of dialogs using the lazy iterator.
+
+[Full parameter reference and examples](client/get_dialogs.md)
+
 ```python
 async def get_dialogs(*, limit: int = 100, folder_id: int = 0) -> list[dialogs.Dialog]
 ```
 
 ### get_history
+
+Collect a finite newest-first message history.
+
+[Full parameter reference and examples](client/get_history.md)
 
 ```python
 async def get_history(peer: str | int | Any, *, limit: int = 100, offset_id: int = 0) -> list[Message | MessageService]
@@ -190,11 +288,19 @@ async def get_history(peer: str | int | Any, *, limit: int = 100, offset_id: int
 
 ### get_inline_results
 
+Request inline results from a bot for a query and target peer context.
+
+[Full parameter reference and examples](client/get_inline_results.md)
+
 ```python
 async def get_inline_results(bot: str | int | Any, query: str, *, peer: str | int | Any = 'me', offset: str = '') -> MessagesBotResults
 ```
 
 ### get_me
+
+Fetch the current authorized account identity.
+
+[Full parameter reference and examples](client/get_me.md)
 
 ```python
 async def get_me() -> User
@@ -202,11 +308,19 @@ async def get_me() -> User
 
 ### get_members
 
+Materialize a finite list of accessible participant records.
+
+[Full parameter reference and examples](client/get_members.md)
+
 ```python
 async def get_members(peer: str | int | Any, *, limit: int = 100, query: str = '') -> list[chats.ChatMember]
 ```
 
 ### get_messages
+
+Retrieve explicit IDs while preserving requested order and duplicate IDs.
+
+[Full parameter reference and examples](client/get_messages.md)
 
 ```python
 async def get_messages(peer: str | int | Any, ids: int | collections.abc.Sequence[int]) -> list[Message | MessageService | None]
@@ -216,11 +330,19 @@ Preserve ID order/duplicates; unavailable or other-chat messages are None.
 
 ### get_user
 
+Fetch a basic entity and require it to be a user.
+
+[Full parameter reference and examples](client/get_user.md)
+
 ```python
 async def get_user(peer: str | int | Any = 'me') -> User
 ```
 
 ### get_user_full
+
+Request the full Telegram user profile for a user peer.
+
+[Full parameter reference and examples](client/get_user_full.md)
 
 ```python
 async def get_user_full(peer: str | int | Any = 'me') -> UsersUserFull
@@ -228,11 +350,19 @@ async def get_user_full(peer: str | int | Any = 'me') -> UsersUserFull
 
 ### import_invite
 
+Attempt to join through a private invite hash.
+
+[Full parameter reference and examples](client/import_invite.md)
+
 ```python
 async def import_invite(invite_hash: str) -> Any
 ```
 
 ### invoke
+
+Execute a native GramFlux-generated TL function object through the shared request engine.
+
+[Full parameter reference and examples](client/invoke.md)
 
 ```python
 async def invoke(request: Any) -> Any
@@ -242,11 +372,19 @@ Invoke an independently generated official API method on the native runtime.
 
 ### is_authorized
 
+Ask Telegram whether this authorization key is attached to an authorized account.
+
+[Full parameter reference and examples](client/is_authorized.md)
+
 ```python
 async def is_authorized() -> bool
 ```
 
 ### iter_dialogs
+
+Create a lazy iterator over pinned dialogs followed by regular dialogs in one folder.
+
+[Full parameter reference and examples](client/iter_dialogs.md)
 
 ```python
 def iter_dialogs(*, limit: int | None = None, folder_id: int = 0, page_size: int = 100) -> collections.abc.AsyncIterator[dialogs.Dialog]
@@ -256,6 +394,10 @@ Yield pinned then regular dialogs lazily; folder 0 is the main folder.
 
 ### iter_download
 
+Create a lazy iterator yielding exactly the requested byte range from a native remote location.
+
+[Full parameter reference and examples](client/iter_download.md)
+
 ```python
 def iter_download(location: Any, *, size: int, offset: int = 0, length: int | None = None, request_size: int = 524288) -> collections.abc.AsyncIterator[bytes]
 ```
@@ -263,6 +405,10 @@ def iter_download(location: Any, *, size: int, offset: int = 0, length: int | No
 Read an exact byte range lazily; no prefetch, implicit retry or resume.
 
 ### iter_download_media
+
+Resolve supported document/photo metadata from a message and yield its requested byte range.
+
+[Full parameter reference and examples](client/iter_download_media.md)
 
 ```python
 async def iter_download_media(message: Message, *, offset: int = 0, length: int | None = None, request_size: int = 524288) -> collections.abc.AsyncIterator[bytes]
@@ -272,6 +418,10 @@ Yield document/photo bytes on demand, including arbitrary range edges.
 
 ### iter_history
 
+Lazily traverse accessible messages newest first, starting before offset_id when supplied.
+
+[Full parameter reference and examples](client/iter_history.md)
+
 ```python
 def iter_history(peer: str | int | Any, *, limit: int | None = None, offset_id: int = 0, page_size: int = 100) -> collections.abc.AsyncIterator[Message | MessageService]
 ```
@@ -280,11 +430,19 @@ Newest first; each network page is fetched only when needed.
 
 ### iter_members
 
+Lazily enumerate accessible basic-group or channel/supergroup participants.
+
+[Full parameter reference and examples](client/iter_members.md)
+
 ```python
 def iter_members(peer: str | int | Any, *, limit: int | None = None, query: str = '', page_size: int = 100) -> collections.abc.AsyncIterator[chats.ChatMember]
 ```
 
 ### iter_search
+
+Lazily search one conversation through Telegram, optionally restricting the author.
+
+[Full parameter reference and examples](client/iter_search.md)
 
 ```python
 def iter_search(peer: str | int | Any, query: str, *, limit: int | None = None, sender: str | int | Any | None = None, page_size: int = 100) -> collections.abc.AsyncIterator[Message | MessageService]
@@ -292,17 +450,29 @@ def iter_search(peer: str | int | Any, query: str, *, limit: int | None = None, 
 
 ### join_chat
 
+Join a resolved public channel/supergroup through its channel endpoint.
+
+[Full parameter reference and examples](client/join_chat.md)
+
 ```python
 async def join_chat(peer: str | int | Any) -> Any
 ```
 
 ### leave_chat
 
+Leave a basic group or a channel/supergroup using the corresponding endpoint.
+
+[Full parameter reference and examples](client/leave_chat.md)
+
 ```python
 async def leave_chat(peer: str | int | Any) -> Any
 ```
 
 ### log_out
+
+Explicitly revoke the current remote authorization, clear local key/cache metadata and disconnect.
+
+[Full parameter reference and examples](client/log_out.md)
 
 ```python
 async def log_out() -> None
@@ -314,6 +484,10 @@ Not an implicit temporary-session action. A timeout has an ambiguous
 remote outcome; it is not automatically retried. Use from the main task.
 
 ### login
+
+Explicitly run bounded interactive user login, authorize a bot token, or return the already authorized user.
+
+[Full parameter reference and examples](client/login.md)
 
 ```python
 async def login(*, phone: str | None = None, bot_token: str | None = None, max_attempts: int = 3, prompts: LoginPrompts | None = None) -> User
@@ -327,11 +501,19 @@ Context entry only connects; it never calls this method implicitly.
 
 ### off_event
 
+Remove all registrations associated with the same callback object.
+
+[Full parameter reference and examples](client/off_event.md)
+
 ```python
 def off_event(callback: collections.abc.Callable[..., collections.abc.Awaitable[None]]) -> int
 ```
 
 ### off_message
+
+Remove all registrations associated with the same callback object.
+
+[Full parameter reference and examples](client/off_message.md)
 
 ```python
 def off_message(callback: collections.abc.Callable[[events.MessageEvent], collections.abc.Awaitable[None]]) -> int
@@ -341,6 +523,10 @@ Remove registrations for this callback; affects subsequent events.
 
 ### on
 
+Register an async callback for instances of the selected supported high-level event type.
+
+[Full parameter reference and examples](client/on.md)
+
 ```python
 def on(event_type: type[~T], predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[~T], collections.abc.Awaitable[None]]], collections.abc.Callable[[~T], collections.abc.Awaitable[None]]]
 ```
@@ -349,11 +535,19 @@ Subscribe to a typed event with bounded, ordered callback execution.
 
 ### on_callback_query
 
+Register an async callback for bot callback queries; inline identifiers are distinct from ordinary message IDs.
+
+[Full parameter reference and examples](client/on_callback_query.md)
+
 ```python
 def on_callback_query(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.CallbackQueryEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.CallbackQueryEvent], collections.abc.Awaitable[None]]]
 ```
 
 ### on_chat_action
+
+Register an async callback for native service messages describing supported chat actions.
+
+[Full parameter reference and examples](client/on_chat_action.md)
 
 ```python
 def on_chat_action(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.ChatActionEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.ChatActionEvent], collections.abc.Awaitable[None]]]
@@ -361,11 +555,19 @@ def on_chat_action(predicate: Filter = filters.all_messages, *, priority: int = 
 
 ### on_deleted_messages
 
+Register an async callback for message deletions; global non-channel deletions may not identify a chat.
+
+[Full parameter reference and examples](client/on_deleted_messages.md)
+
 ```python
 def on_deleted_messages(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.DeletedMessagesEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.DeletedMessagesEvent], collections.abc.Awaitable[None]]]
 ```
 
 ### on_edited_message
+
+Register an async callback for edited messages only.
+
+[Full parameter reference and examples](client/on_edited_message.md)
 
 ```python
 def on_edited_message(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.MessageEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.MessageEvent], collections.abc.Awaitable[None]]]
@@ -373,11 +575,19 @@ def on_edited_message(predicate: Filter = filters.all_messages, *, priority: int
 
 ### on_inline_query
 
+Register an async callback for bot inline queries carrying query text and pagination offset.
+
+[Full parameter reference and examples](client/on_inline_query.md)
+
 ```python
 def on_inline_query(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.InlineQueryEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.InlineQueryEvent], collections.abc.Awaitable[None]]]
 ```
 
 ### on_message
+
+Register an async callback for new messages; edited=True selects edits.
+
+[Full parameter reference and examples](client/on_message.md)
 
 ```python
 def on_message(predicate: Filter = filters.all_messages, *, edited: bool = False, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.MessageEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.MessageEvent], collections.abc.Awaitable[None]]]
@@ -385,11 +595,19 @@ def on_message(predicate: Filter = filters.all_messages, *, edited: bool = False
 
 ### on_raw_update
 
+Register an async callback for accepted native Update objects, without fabricated wrappers for difference.new_messages.
+
+[Full parameter reference and examples](client/on_raw_update.md)
+
 ```python
 def on_raw_update(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.RawUpdateEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.RawUpdateEvent], collections.abc.Awaitable[None]]]
 ```
 
 ### on_read_history
+
+Register an async callback for read-history changes with max_id and inbox/outbox direction.
+
+[Full parameter reference and examples](client/on_read_history.md)
 
 ```python
 def on_read_history(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.ReadHistoryEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.ReadHistoryEvent], collections.abc.Awaitable[None]]]
@@ -397,11 +615,19 @@ def on_read_history(predicate: Filter = filters.all_messages, *, priority: int =
 
 ### on_user_status
 
+Register an async callback for user status changes, subject to Telegram privacy and visibility.
+
+[Full parameter reference and examples](client/on_user_status.md)
+
 ```python
 def on_user_status(predicate: Filter = filters.all_messages, *, priority: int = 0) -> collections.abc.Callable[[collections.abc.Callable[[events.UserStatusEvent], collections.abc.Awaitable[None]]], collections.abc.Callable[[events.UserStatusEvent], collections.abc.Awaitable[None]]]
 ```
 
 ### pin_message
+
+Pin a message in the selected conversation.
+
+[Full parameter reference and examples](client/pin_message.md)
 
 ```python
 async def pin_message(peer: str | int | Any, message_id: int, *, silent: bool = True) -> Any
@@ -409,11 +635,19 @@ async def pin_message(peer: str | int | Any, message_id: int, *, silent: bool = 
 
 ### read_history
 
+Mark history as read using the user/group or channel endpoint.
+
+[Full parameter reference and examples](client/read_history.md)
+
 ```python
 async def read_history(peer: str | int | Any, *, max_id: int = 0) -> Any
 ```
 
 ### request_login_code
+
+Request a Telegram login code and commit its phone/code-hash checkpoint before returning.
+
+[Full parameter reference and examples](client/request_login_code.md)
 
 ```python
 async def request_login_code(phone: str) -> LoginChallenge
@@ -423,6 +657,10 @@ Send a code and commit its challenge for sign_in across process restarts.
 
 ### resolve_peer
 
+Resolve a supported peer representation into a native input peer without inventing access hashes.
+
+[Full parameter reference and examples](client/resolve_peer.md)
+
 ```python
 async def resolve_peer(peer: str | int | Any, *, refresh: bool = False) -> Any
 ```
@@ -431,11 +669,19 @@ Resolve usernames/marked IDs without inventing access hashes.
 
 ### run_until_disconnected
 
+Wait for backend disconnection while allowing other asyncio tasks to run.
+
+[Full parameter reference and examples](client/run_until_disconnected.md)
+
 ```python
 async def run_until_disconnected() -> None
 ```
 
 ### save_draft
+
+Set or clear a literal draft in one conversation with optional reply context.
+
+[Full parameter reference and examples](client/save_draft.md)
 
 ```python
 async def save_draft(peer: str | int | Any, text: str, *, reply_to: int | None = None, link_preview: bool = True) -> bool
@@ -443,11 +689,19 @@ async def save_draft(peer: str | int | Any, text: str, *, reply_to: int | None =
 
 ### search_messages
 
+Collect a finite set of server-side search results in one peer.
+
+[Full parameter reference and examples](client/search_messages.md)
+
 ```python
 async def search_messages(peer: str | int | Any, query: str, *, limit: int = 100, sender: str | int | Any | None = None) -> list[Message | MessageService]
 ```
 
 ### send_contact
+
+Send a contact card built from literal phone/name/vCard fields.
+
+[Full parameter reference and examples](client/send_contact.md)
 
 ```python
 async def send_contact(peer: str | int | Any, phone: str, first_name: str, *, last_name: str = '', vcard: str = '') -> Message
@@ -455,17 +709,29 @@ async def send_contact(peer: str | int | Any, phone: str, first_name: str, *, la
 
 ### send_dice
 
+Send a Telegram-generated dice/game media object.
+
+[Full parameter reference and examples](client/send_dice.md)
+
 ```python
 async def send_dice(peer: str | int | Any, *, emoji: str = '🎲') -> Message
 ```
 
 ### send_document
 
+Upload a source, then send the uploaded result as a document.
+
+[Full parameter reference and examples](client/send_document.md)
+
 ```python
 async def send_document(peer: str | int | Any, source: str | pathlib.Path | BinaryIO, *, name: str | None = None, caption: str = '', mime_type: str | None = None, reply_to: int | None = None, on_progress: collections.abc.Callable[[int, int], collections.abc.Awaitable[None] | None] | None = None, part_size: int = 524288, concurrency: int = 1) -> Message
 ```
 
 ### send_file
+
+Send an uploaded handle or native supported InputMedia using the selected peer and caption.
+
+[Full parameter reference and examples](client/send_file.md)
 
 ```python
 async def send_file(peer: str | int | Any, file: InputFile | InputFileBig | Any, *, caption: str = '', reply_to: int | None = None, as_document: bool = False, mime_type: str | None = None) -> Message
@@ -475,11 +741,19 @@ Send uploaded media using the client's result correlation.
 
 ### send_location
 
+Send a static geographic point with validated finite coordinates.
+
+[Full parameter reference and examples](client/send_location.md)
+
 ```python
 async def send_location(peer: str | int | Any, latitude: float, longitude: float) -> Message
 ```
 
 ### send_message
+
+Send nonempty literal text, optionally with a reply, explicit entities and native keyboard markup.
+
+[Full parameter reference and examples](client/send_message.md)
 
 ```python
 async def send_message(peer: str | int | Any, text: str, *, reply_to: int | None = None, silent: bool = False, link_preview: bool = True, reply_markup: Any | None = None, entities: list[Any] | None = None) -> Message
@@ -489,11 +763,19 @@ Send literal text; no new request is created to retry ambiguous failures.
 
 ### send_photo
 
+Upload a source, explicitly wrap it as photo media, then send it.
+
+[Full parameter reference and examples](client/send_photo.md)
+
 ```python
 async def send_photo(peer: str | int | Any, source: str | pathlib.Path | BinaryIO, *, caption: str = '', reply_to: int | None = None, on_progress: collections.abc.Callable[[int, int], collections.abc.Awaitable[None] | None] | None = None, part_size: int = 524288, concurrency: int = 1) -> Message
 ```
 
 ### send_reaction
+
+Set, replace or remove the current account's reaction on a message.
+
+[Full parameter reference and examples](client/send_reaction.md)
 
 ```python
 async def send_reaction(peer: str | int | Any, message_id: int, reactions: str | collections.abc.Sequence[Any] | None, *, big: bool = False, add_to_recent: bool = True) -> Any
@@ -501,11 +783,19 @@ async def send_reaction(peer: str | int | Any, message_id: int, reactions: str |
 
 ### set_bot_commands
 
+Replace a bot command list for a selected native scope and language.
+
+[Full parameter reference and examples](client/set_bot_commands.md)
+
 ```python
 async def set_bot_commands(commands: collections.abc.Sequence[BotCommand], *, lang_code: str = '', scope: Any | None = None) -> bool
 ```
 
 ### set_chat_description
+
+Set or clear a chat about/description field.
+
+[Full parameter reference and examples](client/set_chat_description.md)
 
 ```python
 async def set_chat_description(peer: str | int | Any, description: str) -> bool
@@ -513,17 +803,29 @@ async def set_chat_description(peer: str | int | Any, description: str) -> bool
 
 ### set_chat_title
 
+Change a basic group or channel/supergroup title using the appropriate endpoint.
+
+[Full parameter reference and examples](client/set_chat_title.md)
+
 ```python
 async def set_chat_title(peer: str | int | Any, title: str) -> Any
 ```
 
 ### set_typing
 
+Send a native typing or other SendMessageAction notification, optionally in a topic.
+
+[Full parameter reference and examples](client/set_typing.md)
+
 ```python
 async def set_typing(peer: str | int | Any, *, action: Any | None = None, top_message_id: int | None = None) -> bool
 ```
 
 ### sign_in
+
+Submit a login code using an explicit or saved challenge and persist completed authorization.
+
+[Full parameter reference and examples](client/sign_in.md)
 
 ```python
 async def sign_in(challenge: client.LoginChallenge | None = None, code: str | None = None) -> User
@@ -533,11 +835,19 @@ Submit a code using an explicit challenge or the saved pending challenge.
 
 ### sign_in_bot
 
+Authorize a bot account once with its token and persist the resulting authorization.
+
+[Full parameter reference and examples](client/sign_in_bot.md)
+
 ```python
 async def sign_in_bot(token: str) -> User
 ```
 
 ### start_bot
+
+Start a bot with an explicit target peer and start payload.
+
+[Full parameter reference and examples](client/start_bot.md)
 
 ```python
 async def start_bot(bot: str | int | Any, *, peer: str | int | Any = 'me', start_param: str = '') -> Any
@@ -545,11 +855,19 @@ async def start_bot(bot: str | int | Any, *, peer: str | int | Any = 'me', start
 
 ### terminate_session
 
+Revoke the specific remote authorization identified by its hash.
+
+[Full parameter reference and examples](client/terminate_session.md)
+
 ```python
 async def terminate_session(authorization_hash: int) -> bool
 ```
 
 ### unblock_user
+
+Remove a block on a resolved user.
+
+[Full parameter reference and examples](client/unblock_user.md)
 
 ```python
 async def unblock_user(peer: str | int | Any) -> bool
@@ -557,17 +875,29 @@ async def unblock_user(peer: str | int | Any) -> bool
 
 ### unpin_message
 
+Unpin the selected message in its conversation.
+
+[Full parameter reference and examples](client/unpin_message.md)
+
 ```python
 async def unpin_message(peer: str | int | Any, message_id: int) -> Any
 ```
 
 ### update_profile
 
+Update only explicitly supplied name/biography fields for the current user.
+
+[Full parameter reference and examples](client/update_profile.md)
+
 ```python
 async def update_profile(*, first_name: str | None = None, last_name: str | None = None, about: str | None = None) -> User
 ```
 
 ### upload_file
+
+Read a local binary source in order and submit a bounded number of upload parts.
+
+[Full parameter reference and examples](client/upload_file.md)
 
 ```python
 async def upload_file(source: str | pathlib.Path | BinaryIO, *, name: str | None = None, on_progress: collections.abc.Callable[[int, int], collections.abc.Awaitable[None] | None] | None = None, part_size: int = 524288, concurrency: int = 1) -> InputFile | InputFileBig

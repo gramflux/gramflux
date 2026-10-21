@@ -10,6 +10,10 @@ facade. Every operation goes through the same native execution policy.
 
 ## Public imports
 
+Every Client method and every raw function has its own detailed reference page.
+Start with the [parameter guide](guides/parameters.md) for omission rules, native
+input variants, pagination and transfer settings.
+
 ```python
 from gramflux import Client, Config, LoginPrompts, Session, buttons, events, filters
 from gramflux.raw import functions, types

@@ -13,6 +13,8 @@ are listed separately from these high-level event classes.
 
 ## MessageEvent
 
+[Full field and helper reference](events/MessageEvent.md)
+
 | Field | Type |
 | --- | --- |
 | `message` | `Any` |
@@ -47,6 +49,8 @@ async def reply(text: str, *, silent: bool = False) -> Message
 
 ## RawUpdateEvent
 
+[Full field and helper reference](events/RawUpdateEvent.md)
+
 | Field | Type |
 | --- | --- |
 | `update` | `TLObject` |
@@ -54,6 +58,8 @@ async def reply(text: str, *, silent: bool = False) -> Message
 
 
 ## DeletedMessagesEvent
+
+[Full field and helper reference](events/DeletedMessagesEvent.md)
 
 | Field | Type |
 | --- | --- |
@@ -63,6 +69,8 @@ async def reply(text: str, *, silent: bool = False) -> Message
 
 
 ## ReadHistoryEvent
+
+[Full field and helper reference](events/ReadHistoryEvent.md)
 
 | Field | Type |
 | --- | --- |
@@ -74,6 +82,8 @@ async def reply(text: str, *, silent: bool = False) -> Message
 
 ## UserStatusEvent
 
+[Full field and helper reference](events/UserStatusEvent.md)
+
 | Field | Type |
 | --- | --- |
 | `sender_id` | `int` |
@@ -83,6 +93,8 @@ async def reply(text: str, *, silent: bool = False) -> Message
 - `online`: `bool`
 
 ## ChatActionEvent
+
+[Full field and helper reference](events/ChatActionEvent.md)
 
 | Field | Type |
 | --- | --- |
@@ -95,6 +107,8 @@ async def reply(text: str, *, silent: bool = False) -> Message
 - `user_ids`: `tuple[int, ...]`
 
 ## CallbackQueryEvent
+
+[Full field and helper reference](events/CallbackQueryEvent.md)
 
 | Field | Type |
 | --- | --- |
@@ -114,6 +128,8 @@ async def answer(text: str = '', *, alert: bool = False, cache_time: int = 0) ->
 
 
 ## InlineQueryEvent
+
+[Full field and helper reference](events/InlineQueryEvent.md)
 
 | Field | Type |
 | --- | --- |

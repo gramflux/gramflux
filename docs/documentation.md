@@ -61,6 +61,30 @@ overwritten silently.
 Generated reference code blocks are excluded from Ruff formatting so generation
 is deterministic. Handwritten Markdown Python blocks remain format checked.
 
+The reference contains 918 pages: individual pages for the 82 public Client methods
+and its constructor, 783 raw functions, eight event classes and 13 builder/filter/
+session helpers, plus indexes. Curated parameter explanations live in
+`src/gramflux/tools/data/client_reference.json`. Edit that source rather than
+generated pages; the renderer reads actual signatures and schema fields.
+
+The official-reference snapshot records URLs, retrieval times, content hashes,
+method-ID checks, parameter coverage and documented RPC error identifiers. It
+retains at most 25 prose words from each official method page. This documentation
+snapshot does not establish live interoperability for those methods.
+
+Refresh it explicitly when internet access is available:
+
+```bash
+python -m gramflux.tools.docs_sources update --workers 4
+python -m gramflux.tools.docs_sources verify
+python -m gramflux.tools.docs
+python -m gramflux.tools.docs --check
+```
+
+Normal generation and verification use committed data offline. Review source and
+generated diffs before committing. Building hundreds of static routes can take
+several minutes.
+
 ## Browser checks
 
 ```bash

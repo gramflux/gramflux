@@ -14,6 +14,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## accept_contact
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/accept_contact.md)
+
 **Call:** `client.api.contacts.accept_contact(...)`
 
 **Official method:** `contacts.acceptContact` · **ID:** `0xf831a20f`
@@ -29,6 +31,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.acceptContact)
 
 ## add_contact
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/add_contact.md)
 
 **Call:** `client.api.contacts.add_contact(...)`
 
@@ -51,6 +55,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## block
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/block.md)
+
 **Call:** `client.api.contacts.block(...)`
 
 **Official method:** `contacts.block` · **ID:** `0x2e2e8734`
@@ -67,6 +73,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.block)
 
 ## block_from_replies
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/block_from_replies.md)
 
 **Call:** `client.api.contacts.block_from_replies(...)`
 
@@ -87,6 +95,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## delete_by_phones
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/delete_by_phones.md)
+
 **Call:** `client.api.contacts.delete_by_phones(...)`
 
 **Official method:** `contacts.deleteByPhones` · **ID:** `0x1013fd9e`
@@ -102,6 +112,8 @@ No implicit peer resolution or application-request retries are added.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.deleteByPhones)
 
 ## delete_contacts
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/delete_contacts.md)
 
 **Call:** `client.api.contacts.delete_contacts(...)`
 
@@ -119,6 +131,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## edit_close_friends
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/edit_close_friends.md)
+
 **Call:** `client.api.contacts.edit_close_friends(...)`
 
 **Official method:** `contacts.editCloseFriends` · **ID:** `0xba6705f0`
@@ -135,6 +149,8 @@ No implicit peer resolution or application-request retries are added.
 
 ## export_contact_token
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/export_contact_token.md)
+
 **Call:** `client.api.contacts.export_contact_token(...)`
 
 **Official method:** `contacts.exportContactToken` · **ID:** `0xf8654027`
@@ -149,6 +165,8 @@ No parameters.
 
 ## get_birthdays
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_birthdays.md)
+
 **Call:** `client.api.contacts.get_birthdays(...)`
 
 **Official method:** `contacts.getBirthdays` · **ID:** `0xdaeda864`
@@ -162,6 +180,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.getBirthdays)
 
 ## get_blocked
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_blocked.md)
 
 **Call:** `client.api.contacts.get_blocked(...)`
 
@@ -181,6 +201,8 @@ No parameters.
 
 ## get_contact_i_ds
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_contact_i_ds.md)
+
 **Call:** `client.api.contacts.get_contact_i_ds(...)`
 
 **Official method:** `contacts.getContactIDs` · **ID:** `0x7adc669d`
@@ -197,6 +219,8 @@ No parameters.
 
 ## get_contacts
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_contacts.md)
+
 **Call:** `client.api.contacts.get_contacts(...)`
 
 **Official method:** `contacts.getContacts` · **ID:** `0x5dd69e12`
@@ -212,6 +236,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.getContacts)
 
 ## get_located
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_located.md)
 
 **Call:** `client.api.contacts.get_located(...)`
 
@@ -231,6 +257,8 @@ No parameters.
 
 ## get_saved
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_saved.md)
+
 **Call:** `client.api.contacts.get_saved(...)`
 
 **Official method:** `contacts.getSaved` · **ID:** `0x82f1e39f`
@@ -244,6 +272,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.getSaved)
 
 ## get_sponsored_peers
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_sponsored_peers.md)
 
 **Call:** `client.api.contacts.get_sponsored_peers(...)`
 
@@ -261,6 +291,8 @@ No parameters.
 
 ## get_statuses
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_statuses.md)
+
 **Call:** `client.api.contacts.get_statuses(...)`
 
 **Official method:** `contacts.getStatuses` · **ID:** `0xc4a353ee`
@@ -274,6 +306,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.getStatuses)
 
 ## get_top_peers
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/get_top_peers.md)
 
 **Call:** `client.api.contacts.get_top_peers(...)`
 
@@ -303,6 +337,8 @@ No parameters.
 
 ## import_contact_token
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/import_contact_token.md)
+
 **Call:** `client.api.contacts.import_contact_token(...)`
 
 **Official method:** `contacts.importContactToken` · **ID:** `0x13005788`
@@ -318,6 +354,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.importContactToken)
 
 ## import_contacts
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/import_contacts.md)
 
 **Call:** `client.api.contacts.import_contacts(...)`
 
@@ -335,6 +373,8 @@ No parameters.
 
 ## reset_saved
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/reset_saved.md)
+
 **Call:** `client.api.contacts.reset_saved(...)`
 
 **Official method:** `contacts.resetSaved` · **ID:** `0x879537f1`
@@ -348,6 +388,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.resetSaved)
 
 ## reset_top_peer_rating
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/reset_top_peer_rating.md)
 
 **Call:** `client.api.contacts.reset_top_peer_rating(...)`
 
@@ -366,6 +408,8 @@ No parameters.
 
 ## resolve_phone
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/resolve_phone.md)
+
 **Call:** `client.api.contacts.resolve_phone(...)`
 
 **Official method:** `contacts.resolvePhone` · **ID:** `0x8af94344`
@@ -381,6 +425,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.resolvePhone)
 
 ## resolve_username
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/resolve_username.md)
 
 **Call:** `client.api.contacts.resolve_username(...)`
 
@@ -399,6 +445,8 @@ No parameters.
 
 ## search
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/search.md)
+
 **Call:** `client.api.contacts.search(...)`
 
 **Official method:** `contacts.search` · **ID:** `0x11f812d8`
@@ -415,6 +463,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.search)
 
 ## set_blocked
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/set_blocked.md)
 
 **Call:** `client.api.contacts.set_blocked(...)`
 
@@ -434,6 +484,8 @@ No parameters.
 
 ## toggle_top_peers
 
+[Detailed method page: every parameter, native variants, flags and errors](contacts/toggle_top_peers.md)
+
 **Call:** `client.api.contacts.toggle_top_peers(...)`
 
 **Official method:** `contacts.toggleTopPeers` · **ID:** `0x8514bdda`
@@ -449,6 +501,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.toggleTopPeers)
 
 ## unblock
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/unblock.md)
 
 **Call:** `client.api.contacts.unblock(...)`
 
@@ -466,6 +520,8 @@ No parameters.
 [Official Telegram method documentation](https://core.telegram.org/method/contacts.unblock)
 
 ## update_contact_note
+
+[Detailed method page: every parameter, native variants, flags and errors](contacts/update_contact_note.md)
 
 **Call:** `client.api.contacts.update_contact_note(...)`
 
