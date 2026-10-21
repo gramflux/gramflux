@@ -1,6 +1,6 @@
 # Roadmap after the native engine transition
 
-0.3.0a1 removes the competing-client runtime. Native key creation, encryption, framing,
+The native runtime removes the competing-client runtime. Native key creation, encryption, framing,
 request correlation, auth RPCs, SRP and update synchronization are implemented with
 focused tests. Real Telegram evidence covers key exchange and encrypted ping/pong over
 three TCP modes. This is an engineering alpha; the original production definition is
@@ -18,13 +18,13 @@ Priorities based on current evidence:
 3. Profile the native hot paths. Python IGE remains costly despite a measured XOR
    improvement. Measure real RPC/transfer/RSS before selecting optional acceleration;
    no Rust/C rewrite merely for marketing, no competitor performance claim yet.
-4. Durable application acknowledgment/cursor journal, byte-budgeted queues and
+4. Durable application acknowledgment/cursor journal and
    controlled reconnect recovery with explicit write-outcome rules. Current queues
    fail closed on overflow and do not replay ambiguous application writes.
 5. Media DC authorization, authenticated CDN/file-hash verification, reference refresh
    and safe resumability. Current native file pipeline supports bounded concurrent
    upload parts and lazy byte ranges, not automatic interruption recovery.
-6. Precise generated sum/result types, schema-change review and broader administrative/
+6. Continue refining generated field typing, schema-change review and broader administrative/
    bot convenience APIs. Raw declarations are not proof every method works end to end.
 7. Verify OS/provider/Python matrix and configure hosted security/maintainer channels
    before any production release or stable-API promise.

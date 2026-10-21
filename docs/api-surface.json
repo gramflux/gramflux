@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0a1",
+  "version": "0.5.0a2",
   "public_client_methods": {
     "add_contact": "async",
     "answer_callback_query": "async",

@@ -1,3 +1,7 @@
+---
+sidebar_label: Typed raw API
+---
+
 # Typed asynchronous API
 
 `client.api` exposes **all 783 functions** in the pinned official layer 225 as

@@ -1,0 +1,56 @@
+{
+  "version": "0.5.0a2",
+  "date": "2026-10-21",
+  "production_ready": false,
+  "new_tests": 11,
+  "source_suite": {
+    "passed": 1413,
+    "skipped": 6,
+    "warnings": 4,
+    "log": "/tmp/gramflux-login-resume-final.txt"
+  },
+  "installed_wheel_login_lifecycle_suites": [
+    {
+      "python": "3.11.17",
+      "passed": 44,
+      "log": "/tmp/gramflux-resume-311.txt"
+    },
+    {
+      "python": "3.12.3",
+      "passed": 44,
+      "log": "/tmp/gramflux-resume-312.txt"
+    },
+    {
+      "python": "3.13.16",
+      "passed": 44,
+      "log": "/tmp/gramflux-resume-313.txt"
+    },
+    {
+      "python": "3.14.8",
+      "passed": 44,
+      "log": "/tmp/gramflux-resume-314.txt"
+    }
+  ],
+  "commands": [
+    "ruff check .",
+    "ruff format --check .",
+    "mypy src",
+    "python -m gramflux.tools.schema verify",
+    "python -m gramflux.tools.api_inventory --check",
+    "pytest -q",
+    "python -m build",
+    "python -m compileall -q examples",
+    "python examples/resumable_login.py --help"
+  ],
+  "checkpoint_semantics": "SQLite commit before send-code returns or PasswordRequired propagates; success and expired code cleanup; no code/password storage",
+  "process_boundary_tests": "Fresh subprocess calls os._exit(0) without disconnect; fresh client restores auth key and code/password stage",
+  "compatibility": "Optional additive version-1 snapshot field; old files accepted; persistent storage requires POSIX locks",
+  "live_telegram_restart_test": "Not run: no account credentials. Controlled backend responses only.",
+  "security": "Phone, server code hash and auth key are sensitive plaintext session metadata; permissions 0600, transactional writes; code/password never stored. No independent security audit.",
+  "limitations": [
+    "Temporary sessions do not survive process death",
+    "Telegram can expire codes or revoke keys",
+    "An interrupted operation before checkpoint commit may have an ambiguous result",
+    "Parallel login flows on one Client unsupported"
+  ]
+}

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0a2
+
+- Persist pending code challenges and two-step password checkpoints transactionally.
+- Resume explicit sign_in(code=...) or interactive login after a process restart.
+- Clear completed/expired challenges and retain retryable failures without saving secrets.
+- Test SQLite checkpoints across abrupt subprocess exit and fresh Client creation.
+
+
 ## 0.5.0a1
 
 - Generate all 783 typed asynchronous raw function methods under Client.api.

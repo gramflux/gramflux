@@ -1,3 +1,7 @@
+---
+sidebar_label: Bots and callbacks
+---
+
 # Bot operations and typed events
 
 Register handlers before connecting. All handlers use the same bounded, ordered
@@ -88,7 +92,7 @@ None (unchanged) from an empty optional field (clear). Chat title changes route 
 groups and channels to the appropriate official method. Telegram permissions and
 server errors apply; mutations are never blindly retried.
 
-The complete executable [bot example](../../examples/bot_events.py) uses these APIs.
+The complete executable [bot example](https://github.com/gramflux/gramflux/blob/main/examples/bot_events.py) uses these APIs.
 The [surface inventory](../api-surface.json) is generated from the actual Client and
 checked in CI. It separates lifecycle/subscription/iterator methods from generated
 raw requests. It is a surface report, not live-account feature certification.

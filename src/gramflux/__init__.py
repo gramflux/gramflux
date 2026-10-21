@@ -9,7 +9,7 @@ from .dialogs import Dialog
 from .events import MessageEvent
 from .sessions import Session
 
-__version__ = "0.5.0a1"
+__version__ = "0.5.0a2"
 __all__ = [
     "Client",
     "events",

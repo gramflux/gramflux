@@ -11,7 +11,7 @@ High-level messaging, history, contacts and chat operations now include typed bo
 inline queries, read/deletion/status events, reactions, drafts and native keyboards.
 See [bot operations and events](docs/guides/bots-and-events.md) for a working API example.
 
-**0.5.0a1 is a native MTProto engineering alpha, not production ready.** GramFlux
+**0.5.0a2 is a native MTProto engineering alpha, not production ready.** GramFlux
 now owns TCP framing, RSA_PAD/DH key creation, MTProto 2.0 envelopes, request correlation,
 service messages, SRP, update counters and difference recovery. **No Telethon,
 Pyrogram or other Telegram client is a runtime dependency or fallback.** The sole
@@ -21,7 +21,7 @@ Real Telegram RSA/DH and encrypted ping/pong have been verified over full,
 intermediate and abridged TCP. Account login, messaging, media and live gap recovery
 remain unverified with personal/bot credentials. Deterministic tests exercise those
 native API boundaries. Independent cryptographic review and fault/soak testing remain
-release blockers. See the [hardening and production assessment](docs/releases/0.5.0a1.md).
+release blockers. See the [hardening and production assessment](docs/releases/0.5.0a2.md).
 
 The design principle is: Simple by default. Powerful when needed. Correct by design.
 Fast when measured. Maintainable by architecture.
@@ -51,6 +51,10 @@ Choose the session's intent explicitly:
 | Open a saved session | `Session.open("example")` | File must exist and be authorized; never creates or prompts |
 | Register a new named session | `Session.create("example")` | Creates `example.session` exclusively; call `await client.login()` |
 | Temporary session | `Session.temporary()` | Memory only; call `await client.login()`; nothing persisted across processes |
+
+Unfinished logins now persist their code challenge or password stage; reopening with
+`Session.open("example", require_authorized=False)` resumes without resending the code.
+See [authentication and restart examples](docs/guides/authentication.md).
 
 For your first login, run `python examples/login.py --create example`. Incorrect codes
 and passwords can be corrected up to three times per stage. If you interrupted an
@@ -175,3 +179,15 @@ The older comparative codec file is historical. Current runtime independence and
 a measured local IGE optimization do not establish end-to-end performance superiority.
 
 Typed callback/inline queries, deletion/read/status/chat-action events and bot UI builders are documented in [bot operations and events](docs/guides/bots-and-events.md). The [checked API inventory](docs/api-surface.json) separates actual Client methods from generated TL declarations.
+
+## Documentation website
+
+The English Docusaurus site includes tutorials, guides, generated API reference and
+search across the pinned raw API. See [documentation development](docs/documentation.md)
+for setup, production builds and browser checks.
+
+```bash
+cd website
+npm ci
+npm start
+```

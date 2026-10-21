@@ -1,3 +1,7 @@
+---
+sidebar_label: Sessions
+---
+
 # Sessions: open, create, temporary
 
 These operations have distinct meanings; connecting is not signing in:

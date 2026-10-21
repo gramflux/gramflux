@@ -1,42 +1,63 @@
-# Documentation
+---
+title: Introduction
+description: Build Telegram clients with an independent, typed, asyncio-first Python library.
+sidebar_label: Introduction
+---
 
-- [Installation and usage](../README.md)
-- [Core operations](guides/core-operations.md)
-- [Authentication](guides/authentication.md)
-- [Sessions](guides/sessions.md)
-- [Events and filters](guides/events.md)
-- [File transfers](guides/files.md)
-- [Errors, transport and troubleshooting](guides/operations.md)
-- [Migration from other libraries](guides/migration.md)
-- [Public API reference](api.md)
-- [Schema workflow](../CONTRIBUTING.md)
-- [Architecture](design/architecture.md)
-- [Competitive research](design/competitive-analysis.md)
-- [Security model](design/security-model.md)
-- [Performance methodology](design/performance-plan.md)
-- [Compatibility and coverage](design/compatibility.md)
-- [Roadmap](roadmap.md)
-- [Initial release assessment (historical)](release-report.md)
-- [0.1.0a2 session/login fix report](releases/0.1.0a2.md)
+# Build with GramFlux
 
-For a searchable Python signature/docstring reference, run `python -m pydoc gramflux.client`
-or use your editor. `py.typed` ships in the package. Generated dataclass fields carry
-primitive/list annotations; named object unions currently use `TLObject`, so constructor
-union narrowing is a known typing limitation. Native raw dataclasses share the wire
-codec, but complex sum/result types are not yet fully narrowed by the generator.
+GramFlux is an asyncio-first Python client for the official Telegram MTProto API.
+Use a consistent high-level API for everyday messaging, then access the pinned
+Telegram schema through typed raw methods when you need more control.
 
-- [0.2.0a1 development report](releases/0.2.0a1.md)
+The runtime belongs to GramFlux: connection framing, authorization-key exchange,
+encrypted envelopes, request correlation, SRP, update recovery and file pipelines.
+No competing Telegram client is a runtime dependency or fallback.
 
-- [0.2.0a2 transfer pipeline report](releases/0.2.0a2.md)
+## Choose your next step
 
-- [0.3.0a1 independent runtime report](releases/0.3.0a1.md)
+| You want to… | Read |
+| --- | --- |
+| Install and send your first message | [Quick start](getting-started/quickstart.md) |
+| Register, reopen or temporarily authorize an account | [Authentication](guides/authentication.md) |
+| Stop login now and resume in another process | [Resumable login](guides/authentication.md#resume-login-after-stopping-the-process) |
+| React to messages, callbacks and inline queries | [Events and filters](guides/events.md) |
+| Upload documents or stream downloads | [File transfers](guides/files.md) |
+| Call an official method directly | [Typed raw API](guides/async-api.md) |
+| Check a signature or parameter | [Client reference](reference/client.md) |
 
-- [Native update ordering and recovery](design/update-state.md)
+## Know the current boundaries
 
-- [0.3.0a2 production assessment](releases/0.3.0a2.md)
-- [Dedicated live validation](guides/live-validation.md)
+GramFlux **0.5.0a2 is an engineering alpha**. Generated coverage, local correctness
+tests and live account interoperability are different things.
 
-- [Bot operations and typed events](guides/bots-and-events.md)
-- [Public API inventory](api-surface.json)
+| Area | Current evidence |
+| --- | --- |
+| 783 raw API functions, layer 225 | Generated signatures, request serialization and controlled forwarding tests |
+| 1573 TL data constructors | Pinned official schema; IDs and fields verified against official JSON |
+| Eight high-level event classes | Controlled native update/dispatcher tests |
+| 156 raw Update constructors | Registry-validated selection through the raw event interface |
+| TCP key exchange and encrypted ping | Verified against Telegram on full, intermediate and abridged TCP |
+| Account login, messaging, media and live recovery | Implemented; controlled tests only in this environment |
+| Resumable login | SQLite/process-boundary tests, including abrupt process termination |
+| Production certification | Outstanding: authenticated live verification, independent security review and soak testing |
 
-- [0.4.0a1 operations and events](releases/0.4.0a1.md)
+Secret chats/qts synchronization, automatic application-RPC replay, proxy support,
+CDN downloads, cross-library session conversion and resumable file transfers are
+unsupported. See [compatibility](design/compatibility.md) and the
+[release assessment](releases/0.5.0a2.md) before adopting GramFlux.
+
+## Working principles
+
+**Explicit lifecycle.** Connecting does not silently prompt or log in. A session's
+intent—new, saved or temporary—is visible in your code.
+
+**Predictable failure.** Requests have deadlines, admission is bounded, cancellation
+is isolated, and ambiguous writes are not automatically repeated.
+
+**A shared native path.** High-level operations, `client.api` and `client.invoke`
+all use the same native protocol implementation.
+
+**Verifiable maintenance.** Schema snapshots, reproducible reference generation,
+quality checks and measured evidence stay in the repository. No comparative speed
+claim is made without a fair benchmark.

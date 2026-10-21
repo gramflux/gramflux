@@ -110,8 +110,14 @@ async def login(
         return await client.sign_in_bot(bot_token)
 
     ui = prompts or LoginPrompts()
+    if client.login_stage == "password" and phone is None:
+        return await _password_login(client, ui, max_attempts)
     try:
-        number, challenge = await _challenge(client, phone, ui, max_attempts)
+        saved = client.login_challenge
+        if saved is not None and (phone is None or phone.strip() == saved.phone):
+            number, challenge = saved.phone, saved
+        else:
+            number, challenge = await _challenge(client, phone, ui, max_attempts)
     except PasswordRequired:
         # Telegram may issue a password challenge without sending a code.
         return await _password_login(client, ui, max_attempts)

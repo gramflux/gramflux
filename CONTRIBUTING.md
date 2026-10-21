@@ -77,3 +77,7 @@ python -m gramflux.tools.native_benchmark --size 524288 --rounds 5
 The first two commands contact Telegram and create anonymous auth keys. The probe
 reports remote key cleanup as uncertain if no confirmation is parsed. These are not
 account login/media/update-recovery tests. Do not set their opt-in flag in default CI.
+
+The English documentation uses Docusaurus. Read [the documentation workflow](docs/documentation.md).
+Run `python -m gramflux.tools.docs --check` for generated references and
+`cd website && npm ci && npm run build` to check the site.

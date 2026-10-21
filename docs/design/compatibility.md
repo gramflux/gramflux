@@ -1,7 +1,7 @@
 # Native compatibility and coverage
 
-0.3.0a1 uses Python >=3.11. Local Python/platform results are recorded in the
-[current report](../releases/0.3.0a1.md); CI targets Python 3.11–3.14 on Ubuntu.
+0.5.0a2 uses Python >=3.11. Local Python/platform results are recorded in the
+[current report](../releases/0.5.0a2.md); CI targets Python 3.11–3.14 on Ubuntu.
 Configured jobs are not evidence of hosted CI execution. Persistent storage requires
 POSIX flock; Windows/macOS storage/transfer behavior remains unverified.
 
@@ -24,7 +24,7 @@ This is an intentional 0.3 alpha compatibility break. No drop-in API/session pro
 | Native RPC/auth/user/bot/SRP | Serialization and controlled response tests; SRP proof checked against server algebra; real account authorization unverified |
 | Peers/messages/dialogs/members/media | Native objects and RPC path, existing deterministic suites; real account/media exchange unverified |
 | Update differences/counters | Controlled global/channel gap, cancellation/commit, duplicate and short-update tests; live recovery unverified |
-| Session format | Own version-1 snapshots with additive salt/time metadata; deterministic old-own-format restore tests, not foreign conversion/live migration |
+| Session format | Own version-1 snapshots with additive salt/time and pending-login metadata; deterministic old-own-format restore tests, not foreign conversion/live migration |
 | Failure policy | Bounded in-flight work, explicit overflow/disconnect, no ambiguous write replay; automatic in-flight reconnect recovery unsupported |
 | Unsupported | Secret chats/PFS, signup/QR/passkeys, CDN, cross-DC media recovery/resume, proxies, durable callback journal |
 

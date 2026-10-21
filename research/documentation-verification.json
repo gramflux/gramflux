@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-21",
+  "scope": "English Docusaurus documentation; no hosted deployment performed",
+  "framework": {
+    "docusaurus": "3.10.2",
+    "node": "22.23.3",
+    "react": "19.3.1",
+    "local_search": "@cmfcmf/docusaurus-search-local 2.0.1"
+  },
+  "content": {
+    "markdown_pages": 67,
+    "generated_reference_pages": 31,
+    "raw_functions": 783,
+    "language": "en"
+  },
+  "verification": {
+    "python_tests": {
+      "passed": 1415,
+      "skipped": 6,
+      "warnings": 4,
+      "log": "/tmp/gramflux-docs-python-tests.txt"
+    },
+    "mypy": "53 source files passed",
+    "ruff": "lint and format passed",
+    "reference_generation": "31 deterministic source-derived pages verified",
+    "production_build": "passed with strict broken-link, anchor, image and duplicate-route checks",
+    "browser_tests": "6 passed (navigation, raw method anchor, local search, theme persistence, code clipboard, mobile layout)",
+    "screenshots_reviewed": [
+      "/tmp/gramflux-docs-desktop.png",
+      "/tmp/gramflux-docs-mobile.png",
+      "/tmp/gramflux-docs-guide.png",
+      "/tmp/gramflux-docs-dark.png"
+    ],
+    "npm_ci": "passed against committed lockfile",
+    "production_build_log": "/tmp/gramflux-docs-verified-build.txt",
+    "browser_test_log": "/tmp/gramflux-docs-verified-browser.txt",
+    "installed_wheel_reference_generator": "passed with two reference-generation tests on Python 3.12.3"
+  },
+  "commands": [
+    "python -m gramflux.tools.docs",
+    "python -m gramflux.tools.docs --check",
+    "python -m gramflux.tools.schema verify",
+    "python -m gramflux.tools.api_inventory --check",
+    "ruff check .",
+    "ruff format --check .",
+    "mypy src",
+    "pytest -q",
+    "npm ci --no-fund",
+    "npm run build",
+    "npx playwright install chromium",
+    "npx playwright install-deps chromium",
+    "npm test",
+    "python -m build"
+  ],
+  "dependency_audit": {
+    "critical": 0,
+    "high": 29,
+    "moderate": 0,
+    "note": "29 dependency entries propagate the unpatched braces stack-exhaustion advisory; Node build/development tooling, not the Python runtime. Not a clean security audit.",
+    "advisory": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+    "patched_overrides": {
+      "tinypool": "2.2.0",
+      "serialize-javascript": "7.1.2",
+      "postcss-selector-parser": "7.1.6",
+      "uuid": "11.1.1"
+    }
+  },
+  "deployment": {
+    "default_url": "https://gramflux.github.io/gramflux/",
+    "workflow": ".github/workflows/docs.yml",
+    "publishing": "manual deploy input only; workflow and GitHub Pages not executed remotely"
+  },
+  "limitations": [
+    "Existing library alpha limitations unchanged",
+    "Real-account Telegram workflows remain unverified",
+    "Outstanding upstream build-tool advisory remains open"
+  ]
+}

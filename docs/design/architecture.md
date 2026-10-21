@@ -1,4 +1,4 @@
-# Native runtime architecture (0.3)
+# Native runtime architecture
 
 The production path is Client → own generated raw method → Codec → Sender →
 MTProto 2.0 encryption → Connection/Framing → asyncio TCP. No external Telegram client,
@@ -7,7 +7,8 @@ cryptography supplies OpenSSL AES and finite-field DH primitives, not Telegram l
 
 | Component | Implemented responsibility |
 | --- | --- |
-| client/auth/sessions/config | Explicit lifecycle, login retries, high-level facade, deadlines and configuration |
+| client/auth/login_state/sessions/config | Explicit lifecycle, durable login checkpoints/retries, high-level facade, deadlines and configuration |
+| client.api / tl/generated/methods | 783 typed async functions routed through Client.invoke; no separate connection |
 | raw/tl/generated | Deterministic aliases and dataclasses for the pinned official layer 225; same objects used on wire |
 | tl/codec/parser/generator/namespaces | Bounded schema-verified encoding/decoding and auditable generation |
 | mtproto/connection/framing | Async sockets, serialized framed writes, full/intermediate/abridged TCP |

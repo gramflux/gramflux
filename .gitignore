@@ -11,3 +11,10 @@ build/
 *.session*
 .env
 .coverage
+
+# Docusaurus and browser test output
+website/node_modules/
+website/.docusaurus/
+website/build/
+website/playwright-report/
+website/test-results/

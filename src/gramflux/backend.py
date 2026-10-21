@@ -25,6 +25,7 @@ from .errors import (
     TransportError,
     UnsupportedFeature,
 )
+from .login_state import PendingLogin
 from .mtproto.auth_key import create_key
 from .mtproto.connection import Connection
 from .mtproto.crypto import TRUST
@@ -578,7 +579,11 @@ async def is_authorized(backend: Any) -> bool:
 
 
 def snapshot(
-    session: Any, *, peers: list[dict[str, object]] | None = None, clear_authorization: bool = False
+    session: Any,
+    *,
+    peers: list[dict[str, object]] | None = None,
+    clear_authorization: bool = False,
+    pending_login: PendingLogin | None = None,
 ) -> SessionData:
     key = session.auth_key.key if session.auth_key and not clear_authorization else None
     states = [
@@ -602,6 +607,9 @@ def snapshot(
                 "key": base64.b64encode(key).decode() if key else None,
                 "states": [] if clear_authorization else states,
                 "peers": [] if clear_authorization else peers or [],
+                "pending_login": pending_login.dump()
+                if pending_login and not clear_authorization
+                else None,
                 "native_salt": getattr(session, "salt", 0),
                 "native_time_offset": float(getattr(session, "time_offset", 0)),
             },
@@ -610,12 +618,13 @@ def snapshot(
     )
 
 
-def restore(session: Any, data: SessionData) -> None:
+def restore(session: Any, data: SessionData) -> PendingLogin | None:
     """Validate the entire snapshot before committing any runtime state."""
     try:
         obj = json.loads(data.payload)
         if isinstance(obj["version"], bool) or obj["version"] != 1:
             raise ValueError("version")
+        pending_login = PendingLogin.load(obj.get("pending_login"))
         key = base64.b64decode(obj["key"], validate=True) if obj["key"] else None
         if key is not None and len(key) != 256:
             raise ValueError("key length")
@@ -675,5 +684,6 @@ def restore(session: Any, data: SessionData) -> None:
             session.set_update_state(ident, state)
         if isinstance(session, NativeSession):
             session.salt, session.time_offset = salt, float(offset)
+        return pending_login
     except (ValueError, TypeError, KeyError, OverflowError, OSError, AttributeError) as error:
         raise SessionError("invalid GramFlux session snapshot") from error

@@ -14,10 +14,12 @@ from . import chats, dialogs, messages
 from .auth import LoginPrompts
 from .config import Config
 from .errors import (
+    AuthenticationError,
     AuthenticationRequired,
     ConfigurationError,
     LifecycleError,
     MigrationRequired,
+    PasswordRequired,
     SerializationError,
     TransportError,
     UnsupportedFeature,
@@ -39,6 +41,7 @@ from .events import (
 from .files import CHUNK, Progress, disk, download, media_location, upload
 from .files import iter_download as stream_download
 from .filters import Filter, all_messages
+from .login_state import PendingLogin
 from .mtproto.srp import compute_check
 from .operations import TelegramMethods
 from .pagination import MessageIDs, count, message_ids
@@ -111,6 +114,7 @@ class Client(TelegramMethods):
         self._connected = False
         self._closing = False
         self._logged_out = False
+        self._pending_login: PendingLogin | None = None
         adapter.bind_updates(self._backend, self._receive)
         bind_raw = getattr(self._backend, "add_raw_handler", None)
         if bind_raw is not None:
@@ -150,7 +154,7 @@ class Client(TelegramMethods):
             try:
                 data = await self._storage.load()
                 if data is not None:
-                    adapter.restore(self._backend.session, data)
+                    self._pending_login = adapter.restore(self._backend.session, data)
                     self._peers.cache.restore(data)
                 if self._require_authorized and (
                     data is None or self._backend.session.auth_key is None
@@ -230,6 +234,7 @@ class Client(TelegramMethods):
                 self._backend.session,
                 peers=self._peers.cache.dump(),
                 clear_authorization=self._logged_out,
+                pending_login=self._pending_login,
             )
         )
 
@@ -267,7 +272,11 @@ class Client(TelegramMethods):
                     self._pending.discard(task)
 
     async def is_authorized(self) -> bool:
-        return await self._run(lambda: adapter.is_authorized(self._backend))
+        authorized = await self._run(lambda: adapter.is_authorized(self._backend))
+        if authorized and self._pending_login is not None:
+            self._pending_login = None
+            await self._save()
+        return authorized
 
     async def login(
         self,
@@ -291,29 +300,80 @@ class Client(TelegramMethods):
             )
 
     async def request_login_code(self, phone: str) -> LoginChallenge:
-        """Send a code; use the returned challenge with sign_in. Never logs phone."""
+        """Send a code and commit its challenge for sign_in across process restarts."""
         if not isinstance(phone, str) or not phone.strip():
             raise ConfigurationError("phone number must not be empty")
         if await self.is_authorized():
             raise LifecycleError("session is already authorized")
-        result = await self._run(
-            lambda: self._backend.send_code_request(phone), migration_retries=2
-        )
+        if len(phone) > 128:
+            raise ConfigurationError("phone number is too long")
+        try:
+            result = await self._run(
+                lambda: self._backend.send_code_request(phone), migration_retries=2
+            )
+        except PasswordRequired:
+            self._pending_login = PendingLogin("password")
+            await self._save()
+            raise
         if not hasattr(result, "phone_code_hash"):
             raise UnsupportedFeature("this account requires an alternative authorization flow")
+        self._pending_login = PendingLogin.load(
+            {
+                "stage": "code",
+                "phone": phone,
+                "code_hash": result.phone_code_hash,
+            }
+        )
         await self._save()
         return LoginChallenge(phone, result.phone_code_hash)
 
-    async def sign_in(self, challenge: LoginChallenge, code: str) -> types.User:
+    @property
+    def login_stage(self) -> Literal["code", "password"] | None:
+        """Saved login step, available after connect; None means no pending flow."""
+        return self._pending_login.stage if self._pending_login else None
+
+    @property
+    def login_challenge(self) -> LoginChallenge | None:
+        """Restore the pending code challenge without requesting another code."""
+        pending = self._pending_login
+        if pending is None or pending.stage != "code":
+            return None
+        assert pending.phone is not None and pending.code_hash is not None
+        return LoginChallenge(pending.phone, pending.code_hash)
+
+    async def sign_in(
+        self,
+        challenge: LoginChallenge | None = None,
+        code: str | None = None,
+    ) -> types.User:
+        """Submit a code using an explicit challenge or the saved pending challenge."""
         if not isinstance(code, str) or not code.strip():
             raise ConfigurationError("login code must not be empty")
         if await self.is_authorized():
             raise LifecycleError("session is already authorized")
-        user: types.User = await self._run(
-            lambda: self._backend.sign_in(
-                phone=challenge.phone, code=code, phone_code_hash=challenge.code_hash
+        challenge = challenge if challenge is not None else self.login_challenge
+        if not isinstance(challenge, LoginChallenge):
+            raise LifecycleError("no pending code challenge; request a login code first")
+        try:
+            user: types.User = await self._run(
+                lambda: self._backend.sign_in(
+                    phone=challenge.phone, code=code, phone_code_hash=challenge.code_hash
+                )
             )
-        )
+        except PasswordRequired:
+            self._pending_login = PendingLogin("password")
+            await self._save()
+            raise
+        except AuthenticationError as error:
+            if error.name in {
+                "PHONE_CODE_EXPIRED",
+                "PHONE_CODE_HASH_EMPTY",
+                "PHONE_CODE_HASH_INVALID",
+            }:
+                self._pending_login = None
+                await self._save()
+            raise
+        self._pending_login = None
         await self._save()
         return user
 
@@ -332,6 +392,7 @@ class Client(TelegramMethods):
             return user
 
         user = await self._run(verify, migration_retries=2)
+        self._pending_login = None
         await self._save()
         return user
 
@@ -345,6 +406,7 @@ class Client(TelegramMethods):
         user: types.User = await self._run(
             lambda: self._backend.sign_in(bot_token=token), migration_retries=2
         )
+        self._pending_login = None
         await self._save()
         return user
 
@@ -360,6 +422,7 @@ class Client(TelegramMethods):
         if not isinstance(result, types.auth.LoggedOut):
             raise SerializationError("unexpected logout response; local authorization retained")
         self._logged_out = True
+        self._pending_login = None
         self._peers.cache.clear()
         await self.disconnect()
         self._backend.session.auth_key = None
