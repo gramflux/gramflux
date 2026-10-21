@@ -24,7 +24,7 @@ const config = {
     docs: {
       path: '../docs',
       sidebarPath: require.resolve('./sidebars.js'),
-      editUrl: ({docPath}) => `https://github.com/gramflux/gramflux/edit/main/docs/${docPath}`,
+      editUrl: ({docPath}) => `https://github.com/gramflux/gramflux/edit/v0.x-dev/docs/${docPath}`,
       showLastUpdateAuthor: false,
       showLastUpdateTime: false,
     },
@@ -64,8 +64,8 @@ const config = {
         ]},
         {title: 'Project', items: [
           {label: 'Contributing', to: '/docs/contributing'},
-          {label: 'Security', href: 'https://github.com/gramflux/gramflux/blob/main/SECURITY.md'},
-          {label: 'License', href: 'https://github.com/gramflux/gramflux/blob/main/LICENSE'},
+          {label: 'Security', href: 'https://github.com/gramflux/gramflux/blob/v0.x-dev/SECURITY.md'},
+          {label: 'License', href: 'https://github.com/gramflux/gramflux/blob/v0.x-dev/LICENSE'},
         ]},
       ],
       copyright: 'GramFlux contributors · MIT licensed · Engineering alpha',

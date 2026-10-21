@@ -191,3 +191,7 @@ cd website
 npm ci
 npm start
 ```
+
+GitHub Pages target: [gramflux.github.io/gramflux](https://gramflux.github.io/gramflux/).
+After an administrator enables **Settings → Pages → Source → GitHub Actions**,
+verified pushes to `v0.x-dev` publish automatically through the Documentation workflow.

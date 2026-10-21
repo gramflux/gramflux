@@ -85,9 +85,28 @@ DOCS_URL=https://docs.example.com DOCS_BASE_URL=/ npm run build
 ```
 
 Keep `DOCS_BASE_URL` rooted with a trailing slash. The GitHub Actions documentation
-workflow builds and checks the site on relevant changes. Deployment, when requested
-through its manual input, uses the `github-pages` environment and requires Pages
-configured to use GitHub Actions. No publish action is executed by a local build.
+workflow builds and checks relevant pushes to the repository's default branch,
+`v0.x-dev`, then deploys to the `github-pages` environment. Pull requests only build
+and test; they never publish. You can also run the workflow manually and leave
+`deploy` enabled to publish the verified site. Local builds never publish.
+
+### Enable GitHub Pages once
+
+A repository administrator must enable the hosting source at
+[Repository Settings → Pages](https://github.com/gramflux/gramflux/settings/pages):
+under **Build and deployment**, set **Source** to **GitHub Actions**.
+This is separate from pushing files with Git. The workflow's GITHUB_TOKEN can
+publish after Pages is enabled, but cannot perform initial enablement itself.
+No PyPI token or Trusted Publisher configuration is involved.
+
+Once enabled, push a documentation change to `v0.x-dev`, or open
+[Actions → Documentation](https://github.com/gramflux/gramflux/actions/workflows/docs.yml)
+and run the workflow on `v0.x-dev` with `deploy` enabled. The deployment job reports
+the final `page_url`. The expected project URL is
+[gramflux.github.io/gramflux](https://gramflux.github.io/gramflux/).
+
+If a first run failed because Pages was disabled, enable the source and rerun that
+workflow. A configured deployment URL is not proof of a successful live deployment.
 
 See [Docusaurus deployment](https://docusaurus.io/docs/deployment) for supported
 static hosts and base-path configuration.

@@ -4,14 +4,14 @@ on:
   pull_request:
     paths: ['docs/**', 'website/**', 'src/gramflux/**', 'pyproject.toml', '.github/workflows/docs.yml']
   push:
-    branches: [main]
+    branches: [v0.x-dev]
     paths: ['docs/**', 'website/**', 'src/gramflux/**', 'pyproject.toml', '.github/workflows/docs.yml']
   workflow_dispatch:
     inputs:
       deploy:
         description: Publish the verified site to GitHub Pages
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: read
@@ -52,7 +52,10 @@ jobs:
           path: website/build
 
   deploy:
-    if: github.event_name == 'workflow_dispatch' && inputs.deploy && github.ref == 'refs/heads/main'
+    if: >-
+      github.ref_name == github.event.repository.default_branch &&
+      (github.event_name == 'push' ||
+       (github.event_name == 'workflow_dispatch' && inputs.deploy))
     needs: build
     runs-on: ubuntu-latest
     permissions:

@@ -6,9 +6,9 @@ description: Set up a reproducible development environment, update the schema an
 # Contributing
 
 Keep changes small, typed and explicit about what has been verified. Read
-[CONTRIBUTING.md](https://github.com/gramflux/gramflux/blob/main/CONTRIBUTING.md),
-the [code of conduct](https://github.com/gramflux/gramflux/blob/main/CODE_OF_CONDUCT.md)
-and [security policy](https://github.com/gramflux/gramflux/blob/main/SECURITY.md).
+[CONTRIBUTING.md](https://github.com/gramflux/gramflux/blob/v0.x-dev/CONTRIBUTING.md),
+the [code of conduct](https://github.com/gramflux/gramflux/blob/v0.x-dev/CODE_OF_CONDUCT.md)
+and [security policy](https://github.com/gramflux/gramflux/blob/v0.x-dev/SECURITY.md).
 
 ## Set up the checkout
 

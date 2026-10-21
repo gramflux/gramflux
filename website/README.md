@@ -27,8 +27,11 @@ internal links, anchors or images. No external search keys, fonts or analytics a
 required.
 
 See [documentation development](../docs/documentation.md) for regeneration, hosting,
-base-path overrides and the manually triggered Pages deployment job. Merely building
-or adding the workflow does not publish a site.
+base-path overrides and GitHub Pages setup. The workflow publishes verified changes
+pushed to `v0.x-dev`; pull requests never publish. Initial hosting activation requires
+an administrator to choose **Settings → Pages → Source → GitHub Actions**.
+The expected URL is `https://gramflux.github.io/gramflux/`. Manual workflow runs
+can publish too. A local build does not publish anything.
 
 ## Dependency maintenance
 

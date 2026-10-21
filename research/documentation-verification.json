@@ -68,7 +68,10 @@
   "deployment": {
     "default_url": "https://gramflux.github.io/gramflux/",
     "workflow": ".github/workflows/docs.yml",
-    "publishing": "manual deploy input only; workflow and GitHub Pages not executed remotely"
+    "publishing": "verified pushes to v0.x-dev deploy automatically; pull requests never deploy; manual dispatch deploy defaults true",
+    "default_branch": "v0.x-dev",
+    "initial_enablement": "Repository Settings > Pages > Source > GitHub Actions; requires repository administrator, unavailable through this environment's SSH-only Git credential",
+    "live_check": "GitHub repository reports has_pages=false; intended site returned HTTP 404 before activation"
   },
   "limitations": [
     "Existing library alpha limitations unchanged",

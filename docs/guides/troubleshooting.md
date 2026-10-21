@@ -94,4 +94,4 @@ Provider support and independent cryptographic review remain release blockers.
 Include the GramFlux/Python versions, platform, transport, exception class and a
 minimal reproduction without credentials or message bodies. Never upload a session
 file, login code, phone-code hash, password, API hash or bot token. Report security
-issues through [SECURITY.md](https://github.com/gramflux/gramflux/blob/main/SECURITY.md).
+issues through [SECURITY.md](https://github.com/gramflux/gramflux/blob/v0.x-dev/SECURITY.md).
