@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Any, BinaryIO, Literal, TypeVar
 
 from . import backend as adapter
 from . import chats, dialogs, messages
+from . import dialogs as dialog_records
 from .auth import LoginPrompts
 from .config import Config
 from .errors import (
@@ -52,6 +53,9 @@ from .storage import MemoryStorage, SQLiteStorage, Storage
 from .tl.model import TLObject
 
 if TYPE_CHECKING:
+    from . import resources as resource_views
+    from ._raw_view import Raw
+    from .routing import EventManager
     from .tl.generated.methods import API
 
 T = TypeVar("T")
@@ -119,6 +123,90 @@ class Client(TelegramMethods):
         bind_raw = getattr(self._backend, "add_raw_handler", None)
         if bind_raw is not None:
             bind_raw(self._receive_raw)
+
+    @cached_property
+    def auth(self) -> "resource_views.Auth":
+        """Local auth view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Auth(self)
+
+    @cached_property
+    def account(self) -> "resource_views.Account":
+        """Local account view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Account(self)
+
+    @cached_property
+    def peers(self) -> "resource_views.Peers":
+        """Local peers view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Peers(self)
+
+    @cached_property
+    def files(self) -> "resource_views.Files":
+        """Local files view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Files(self)
+
+    @cached_property
+    def contacts(self) -> "resource_views.Contacts":
+        """Local contacts view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Contacts(self)
+
+    @cached_property
+    def dialogs(self) -> "resource_views.Dialogs":
+        """Local dialogs view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Dialogs(self)
+
+    @cached_property
+    def bot(self) -> "resource_views.Bot":
+        """Local bot view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Bot(self)
+
+    @cached_property
+    def invites(self) -> "resource_views.Invites":
+        """Local invites view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Invites(self)
+
+    @cached_property
+    def membership(self) -> "resource_views.Membership":
+        """Local membership view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.Membership(self)
+
+    @cached_property
+    def chat(self) -> "resource_views.ChatFactory":
+        """Local chat view; shares this Client and never connects on construction."""
+        from . import resources
+
+        return resources.ChatFactory(self)
+
+    @cached_property
+    def raw(self) -> "Raw":
+        """Existing typed namespaces plus invoke; no independent connection."""
+        from ._raw_view import Raw
+
+        return Raw(self)
+
+    @cached_property
+    def events(self) -> "EventManager":
+        """Manage routers and subscriptions on the existing dispatcher."""
+        from .routing import EventManager
+
+        return EventManager(self)
 
     @property
     def connected(self) -> bool:
@@ -523,11 +611,13 @@ class Client(TelegramMethods):
         limit: int | None = None,
         folder_id: int = 0,
         page_size: int = 100,
-    ) -> AsyncIterator[dialogs.Dialog]:
+    ) -> AsyncIterator[dialog_records.Dialog]:
         """Yield pinned then regular dialogs lazily; folder 0 is the main folder."""
         return dialogs.dialogs(self, limit=limit, folder_id=folder_id, batch_size=page_size)
 
-    async def get_dialogs(self, *, limit: int = 100, folder_id: int = 0) -> list[dialogs.Dialog]:
+    async def get_dialogs(
+        self, *, limit: int = 100, folder_id: int = 0
+    ) -> list[dialog_records.Dialog]:
         count(limit, allow_none=False)
         return [dialog async for dialog in self.iter_dialogs(limit=limit, folder_id=folder_id)]
 

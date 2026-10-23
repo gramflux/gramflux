@@ -49,6 +49,23 @@ def inventory() -> dict[str, Any]:
         "raw_update_constructors": sorted(
             cls.definition.name for cls in REGISTRY.values() if cls.definition.result == "Update"
         ),
+        "next_generation_views": [
+            "auth",
+            "account",
+            "peers",
+            "chat",
+            "files",
+            "contacts",
+            "dialogs",
+            "bot",
+            "invites",
+            "membership",
+            "events",
+            "raw",
+        ],
+        "next_generation_scope": (
+            "Additive local resources and routing; original Client method count unchanged"
+        ),
         "scope": "Surface inventory; raw declarations separate; live interoperability unverified",
     }
 

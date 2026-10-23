@@ -38,6 +38,9 @@ jobs:
       - name: Verify generated reference
         run: python -m gramflux.tools.docs --check
         working-directory: .
+      - name: Verify Next-Generation reference
+        run: python -m gramflux.tools.next_reference --check
+        working-directory: .
       - name: Verify official documentation snapshot
         run: python -m gramflux.tools.docs_sources verify
         working-directory: .

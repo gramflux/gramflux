@@ -132,3 +132,30 @@ test('complete tutorial and documentation map expose separate learning sections'
   await page.setViewportSize({width: 390, height: 844});
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
+
+test('Next-Generation guides expose real command contracts and domain signatures', async ({page}) => {
+  const errors = runtimeErrors(page);
+  await page.goto('docs/next-api/');
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Next-Generation API');
+  await expect(page.locator('article')).toContainText('Development availability');
+  await page.locator('article').getByRole('link', {name: 'Commands', exact: true}).click();
+  await expect(page.locator('article')).toContainText('CommandContext');
+  await expect(page.locator('article')).toContainText('raw_args');
+  await expect(page.locator('article')).toContainText('parse_args');
+  await page.goto('docs/next-api/reference/');
+  await expect(page.locator('article')).toContainText('client.files.upload');
+  await expect(page.locator('article')).toContainText('client.auth.login');
+  await expect(page.locator('article')).toContainText('concurrency');
+  await page.setViewportSize({width: 390, height: 844});
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+});
+
+test('quick start recommends modular API while retaining the legacy example', async ({page}) => {
+  await page.goto('docs/getting-started/quickstart/');
+  await expect(page.locator('article')).toContainText('Recommended organization for new projects');
+  await expect(page.locator('article')).toContainText('client.events.include(router)');
+  await expect(page.locator('article')).toContainText('client.account.me()');
+  await expect(page.locator('article')).toContainText('Existing Client style');
+  await expect(page.locator('article')).toContainText('client.send_message');
+});

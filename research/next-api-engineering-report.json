@@ -1,0 +1,313 @@
+{
+  "scope": "Additive Next-Generation public API over the original Client; no protocol, session-format or generated-TL changes",
+  "verified_at": "2026-10-23T19:48:26.883415+00:00",
+  "base_revision": "056a99806cdcadfa8cbdc3a70d5a7d30ade8592a",
+  "architecture": {
+    "client_views": [
+      "auth",
+      "account",
+      "peers",
+      "chat",
+      "files",
+      "contacts",
+      "dialogs",
+      "bot",
+      "invites",
+      "membership",
+      "events",
+      "raw"
+    ],
+    "delegated_operations": 73,
+    "distinct_existing_operations": 66,
+    "router_dispatchers": "Zero new dispatchers, tasks, loops or queues; public Client registration/removal only",
+    "mount_contract": "Ordered snapshots; immutable after first inclusion; root idempotence; overlap/cycle rejection; per-client removal",
+    "command_contract": "Message-only; default incoming; whitespace tuple parsing; opt-out args=None; raw suffix retained; no shell grammar; args/event excluded from repr",
+    "chat_contract": "Cached callable ChatFactory returns local peer views; resolution and RPCs only through original Client operations",
+    "raw_contract": "Typed existing API inheritance with invoke; identical generated requests and native Client path"
+  },
+  "files_added": [
+    "docs/next-api/authentication.md",
+    "docs/next-api/chats.md",
+    "docs/next-api/commands.md",
+    "docs/next-api/compatibility.md",
+    "docs/next-api/domains.md",
+    "docs/next-api/examples.md",
+    "docs/next-api/files.md",
+    "docs/next-api/index.md",
+    "docs/next-api/iterators.md",
+    "docs/next-api/migration.md",
+    "docs/next-api/raw.md",
+    "docs/next-api/reference.md",
+    "docs/next-api/routing.md",
+    "examples/legacy_equivalent.py",
+    "examples/next_app/__init__.py",
+    "examples/next_app/__main__.py",
+    "examples/next_app/handlers.py",
+    "research/legacy-api-contract.json",
+    "research/next-api-mapping.json",
+    "src/gramflux/_raw_view.py",
+    "src/gramflux/resources.py",
+    "src/gramflux/routing.py",
+    "src/gramflux/tools/data/next_api_mapping.json",
+    "src/gramflux/tools/next_reference.py",
+    "tests/integration/test_next_api.py",
+    "tests/unit/test_next_documentation.py",
+    "tests/unit/test_next_resources.py",
+    "tests/unit/test_routing.py",
+    "research/next-api-engineering-report.json"
+  ],
+  "files_modified": [
+    ".github/workflows/docs.yml",
+    "CHANGELOG.md",
+    "README.md",
+    "docs/api-surface.json",
+    "docs/documentation.md",
+    "docs/getting-started/quickstart.md",
+    "docs/index.md",
+    "docs/reference/client.md",
+    "pyproject.toml",
+    "src/gramflux/__init__.py",
+    "src/gramflux/client.py",
+    "src/gramflux/tools/api_inventory.py",
+    "src/gramflux/tools/docs.py",
+    "website/sidebars.js",
+    "website/tests/docs.spec.js"
+  ],
+  "mapping": {
+    "Auth": {
+      "login": "login",
+      "is_authorized": "is_authorized",
+      "request_login_code": "request_login_code",
+      "sign_in": "sign_in",
+      "check_password": "check_password",
+      "sign_in_bot": "sign_in_bot",
+      "log_out": "log_out"
+    },
+    "Account": {
+      "me": "get_me",
+      "update_profile": "update_profile",
+      "sessions": "get_active_sessions",
+      "terminate_session": "terminate_session"
+    },
+    "Peers": {
+      "resolve": "resolve_peer",
+      "user": "get_user",
+      "user_full": "get_user_full",
+      "chat": "get_chat",
+      "chat_full": "get_chat_full"
+    },
+    "Files": {
+      "upload": "upload_file",
+      "download": "download_file",
+      "download_media": "download_media",
+      "iter_download": "iter_download",
+      "iter_download_media": "iter_download_media"
+    },
+    "Contacts": {
+      "list": "get_contacts",
+      "add": "add_contact",
+      "delete": "delete_contacts",
+      "block": "block_user",
+      "unblock": "unblock_user"
+    },
+    "Dialogs": {
+      "list": "get_dialogs",
+      "iter": "iter_dialogs"
+    },
+    "Bot": {
+      "commands": "get_bot_commands",
+      "set_commands": "set_bot_commands",
+      "answer_callback": "answer_callback_query",
+      "answer_inline": "answer_inline_query",
+      "inline_results": "get_inline_results",
+      "callback_answer": "get_callback_answer",
+      "edit_inline": "edit_inline_message",
+      "start": "start_bot"
+    },
+    "Invites": {
+      "check": "check_invite",
+      "accept": "import_invite",
+      "export": "export_invite_link"
+    },
+    "Membership": {
+      "join": "join_chat",
+      "leave": "leave_chat",
+      "members": "get_members",
+      "iter_members": "iter_members"
+    },
+    "History": {
+      "fetch": "get_history",
+      "iter": "iter_history",
+      "get": "get_messages"
+    },
+    "Search": {
+      "fetch": "search_messages",
+      "iter": "iter_search"
+    },
+    "Members": {
+      "fetch": "get_members",
+      "iter": "iter_members"
+    },
+    "ChatResource": {
+      "send": "send_message",
+      "edit": "edit_message",
+      "delete": "delete_messages",
+      "forward": "forward_messages",
+      "mark_read": "read_history",
+      "pin": "pin_message",
+      "unpin": "unpin_message",
+      "react": "send_reaction",
+      "draft": "save_draft",
+      "typing": "set_typing",
+      "info": "get_chat",
+      "full_info": "get_chat_full",
+      "set_title": "set_chat_title",
+      "set_description": "set_chat_description",
+      "send_file": "send_file",
+      "send_document": "send_document",
+      "send_photo": "send_photo",
+      "send_contact": "send_contact",
+      "send_location": "send_location",
+      "send_dice": "send_dice",
+      "export_invite": "export_invite_link",
+      "join": "join_chat",
+      "leave": "leave_chat"
+    }
+  },
+  "legacy_compatibility": {
+    "existing_public_methods_unchanged": 82,
+    "constructor_unchanged": true,
+    "old_tests_modified": false,
+    "original_examples_modified": false,
+    "snapshot": "research/legacy-api-contract.json",
+    "defaults_results_exceptions": "Parameterized forwarding/default tests plus actual codec/storage/file integration boundaries",
+    "module_name_collision": "The dialogs view required a module alias in two existing return annotations. The annotation objects and callable signatures are unchanged."
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux x86_64",
+    "node": "22.23.3"
+  },
+  "verification": [
+    {
+      "command": ".venv/bin/pytest -q",
+      "result": {
+        "passed": 1700,
+        "skipped": 6,
+        "warnings": 4,
+        "seconds": 71.08
+      }
+    },
+    {
+      "command": "/tmp/gramflux-next-wheel/bin/python -I -m pytest /root/gramjet/tests",
+      "result": {
+        "passed": 1700,
+        "skipped": 6,
+        "warnings": 4,
+        "seconds": 71.47
+      }
+    },
+    {
+      "command": ".venv/bin/ruff check .",
+      "result": "passed"
+    },
+    {
+      "command": ".venv/bin/ruff format --check .",
+      "result": "182 files already formatted"
+    },
+    {
+      "command": ".venv/bin/mypy src",
+      "result": "Success: no issues found in 59 source files"
+    },
+    {
+      "command": ".venv/bin/python -m gramflux.tools.schema verify",
+      "result": "layer 225; 2356 declarations and official JSON IDs matched; 783 typed functions unchanged"
+    },
+    {
+      "command": ".venv/bin/python -m gramflux.tools.api_inventory --check",
+      "result": "passed"
+    },
+    {
+      "command": ".venv/bin/python -m gramflux.tools.docs --check",
+      "result": "918 existing reference pages verified"
+    },
+    {
+      "command": ".venv/bin/python -m gramflux.tools.next_reference --check",
+      "result": "new reference verified from real signatures and packaged mapping"
+    },
+    {
+      "command": ".venv/bin/python -m compileall -q examples",
+      "result": "passed for existing and new examples"
+    },
+    {
+      "command": ".venv/bin/python -m build",
+      "result": "wheel and sdist built"
+    },
+    {
+      "command": ".venv/bin/python -m venv /tmp/gramflux-next-wheel",
+      "result": "clean environment created; built wheel and test dependencies installed"
+    },
+    {
+      "command": "/tmp/gramflux-next-wheel/bin/python -I -m gramflux.tools.next_reference --check",
+      "result": "installed-wheel generation verified"
+    },
+    {
+      "command": "/tmp/gramflux-next-wheel/bin/python -I -m gramflux.tools.docs --check",
+      "result": "installed-wheel existing reference verified"
+    },
+    {
+      "command": "npm --prefix website run build",
+      "environment": "Node 22.23.3 on PATH",
+      "result": "production build passed; local search index has 10622 documents"
+    },
+    {
+      "command": "npm --prefix website test",
+      "environment": "Node 22.23.3 on PATH",
+      "result": "12 passed in 51.6s"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "development_failures_resolved": [
+    "Forward resource annotations initially evaluated TYPE_CHECKING-only names at import. Explicit forward annotations fixed the new getters.",
+    "A new test incorrectly asserted LoginChallenge object identity; the existing property constructs a fresh immutable value, so the test now verifies the existing value contract.",
+    "The two new equivalence-example test fixtures initially omitted the existing updates.getState authorization probe. Fixtures now respond to that real request; production auth behavior was unchanged.",
+    "Strict typing caught a reused generator loop-variable type; renamed the documentation variable.",
+    "Review found fresh bound-method references must use callback equality, as the existing dispatcher does; routed duplicate/removal tests now cover this.",
+    "Enum defaults initially rendered as repr instead of a valid Python expression; the formatter and syntax regression test now use Direction.INCOMING."
+  ],
+  "documentation": [
+    "docs/next-api/authentication.md",
+    "docs/next-api/chats.md",
+    "docs/next-api/commands.md",
+    "docs/next-api/compatibility.md",
+    "docs/next-api/domains.md",
+    "docs/next-api/examples.md",
+    "docs/next-api/files.md",
+    "docs/next-api/index.md",
+    "docs/next-api/iterators.md",
+    "docs/next-api/migration.md",
+    "docs/next-api/raw.md",
+    "docs/next-api/reference.md",
+    "docs/next-api/routing.md"
+  ],
+  "examples": {
+    "legacy": "examples/legacy_equivalent.py",
+    "next": [
+      "examples/next_app/__main__.py",
+      "examples/next_app/handlers.py"
+    ],
+    "execution": "Both serve functions ran against the actual Client/dispatcher with a controlled backend and verified identical reply text and ID; live credentials were not available."
+  },
+  "limitations": [
+    "No authenticated live Telegram verification; six opt-in live tests skipped.",
+    "Router definitions intentionally freeze at first mounting. Dynamic post-mount editing and router-specific workers are not provided.",
+    "TransferOptions deliberately omitted: upload windows and download ranges retain distinct explicit keyword contracts.",
+    "No proxy, secret-chat/qts, general write replay/DC migration, CDN, session conversion or resumable-transfer workflow was added.",
+    "This is development-branch functionality; no PyPI release or new tag was published. Older artifacts may not include the new API.",
+    "Four existing finite-field DH deprecation warnings remain; cryptography/protocol behavior was not changed."
+  ],
+  "publishing": "Commit/push and GitHub Pages/CI results are checked separately after this local verification."
+}

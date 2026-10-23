@@ -1052,5 +1052,20 @@
     "updateWebPage",
     "updateWebViewResultSent"
   ],
+  "next_generation_views": [
+    "auth",
+    "account",
+    "peers",
+    "chat",
+    "files",
+    "contacts",
+    "dialogs",
+    "bot",
+    "invites",
+    "membership",
+    "events",
+    "raw"
+  ],
+  "next_generation_scope": "Additive local resources and routing; original Client method count unchanged",
   "scope": "Surface inventory; raw declarations separate; live interoperability unverified"
 }

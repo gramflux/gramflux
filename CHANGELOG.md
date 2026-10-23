@@ -1,5 +1,14 @@
 # Changelog
 
+
+## Unreleased — additive Next-Generation API
+
+- Typed domains and local chat/history/search/member resources delegate to existing Client methods.
+- Standalone nested Routers compile to the original dispatcher, with explicit mount/removal contracts.
+- CommandContext adds optional whitespace argument parsing without changing filters.command.
+- Existing public methods, session/auth flows, TL declarations and runtime policies remain supported.
+- New documentation, equivalence examples and controlled compatibility tests accompany the API.
+
 ## 0.5.0a2
 
 - Persist pending code challenges and two-step password checkpoints transactionally.

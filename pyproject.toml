@@ -31,7 +31,7 @@ markers = ["live: opt-in Telegram network test"]
 [tool.ruff]
 target-version = "py311"
 line-length = 100
-extend-exclude = ["src/gramflux/tl/generated/objects.py", "src/gramflux/tl/generated/methods.py", "src/gramflux/raw.py", "research", "docs/reference"]
+extend-exclude = ["src/gramflux/tl/generated/objects.py", "src/gramflux/tl/generated/methods.py", "src/gramflux/raw.py", "research", "docs/reference", "docs/next-api/reference.md"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "ASYNC"]

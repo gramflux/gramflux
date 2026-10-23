@@ -21,6 +21,11 @@ module.exports = {
     {type: 'category', label: 'Getting started', collapsed: false, items: [
       'getting-started/installation', 'getting-started/quickstart', 'getting-started/next-steps',
     ]},
+    {type: 'category', label: 'Next-Generation API', link: {type: 'doc', id: 'next-api/index'}, items: [
+      'next-api/authentication', 'next-api/routing', 'next-api/commands', 'next-api/chats',
+      'next-api/iterators', 'next-api/files', 'next-api/domains', 'next-api/raw',
+      'next-api/migration', 'next-api/examples', 'next-api/compatibility', 'next-api/reference',
+    ]},
     {type: 'category', label: 'Tutorials', items: [
       'tutorials/reply-bot',
     ]},

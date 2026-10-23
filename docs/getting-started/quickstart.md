@@ -60,7 +60,48 @@ If you stop before finishing, reopen with
 The saved login stage is resumed without sending another code. Read
 [resumable login](../guides/authentication.md#resume-login-after-stopping-the-process).
 
-## 3. Send and receive
+## 3a. Recommended organization for new projects
+
+The [Next-Generation API](../next-api/index.md) is available in the development checkout.
+After the authorization step above, save this as `modular_client.py`. Handler definitions
+remain independent of the client, and domain/resource calls use the same native engine:
+
+```python
+import asyncio
+import os
+
+from gramflux import Client, Session, filters
+from gramflux.routing import Router
+
+
+async def main() -> None:
+    router = Router("incoming")
+
+    @router.message(filters.incoming & filters.text)
+    async def receive(event):
+        print(f"Incoming text in chat {event.chat_id}")
+
+    client = Client(
+        Session.open("account"),
+        api_id=int(os.environ["GRAMFLUX_API_ID"]),
+        api_hash=os.environ["GRAMFLUX_API_HASH"],
+    )
+    client.events.include(router)
+    async with client:
+        me = await client.account.me()
+        print(f"Connected as user ID: {me.id}")
+        await client.chat("me").send("Hello from GramFlux")
+        await client.run_until_disconnected()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+See [the complete modular bot example](../next-api/examples.md) for handlers in a
+separate module and [migration](../next-api/migration.md) for gradual adoption.
+
+## 3b. Existing Client style — still supported
 
 Save this as `client.py`, then run it with the same credentials:
 

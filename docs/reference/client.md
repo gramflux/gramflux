@@ -28,6 +28,14 @@ def Client(session: sessions.Session | str | pathlib.Path | storage.Storage | No
 | `login_stage` | Saved `code`, `password` or None; available after connect. |
 | `login_challenge` | Saved LoginChallenge for explicit sign_in, or None. |
 
+## Next-Generation views
+
+Local cached views: `auth`, `account`, `peers`, `files`, `contacts`, `dialogs`,
+`bot`, `invites`, `membership`, `events`, `raw` and callable `chat(peer)`.
+They share the existing Client. See the [new API guide](../next-api/index.md)
+and [complete signatures](../next-api/reference.md).
+Existing methods below remain supported.
+
 ## Methods
 
 82 public methods, including lifecycle, subscriptions and stream factories.

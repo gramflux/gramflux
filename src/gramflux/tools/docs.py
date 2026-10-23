@@ -7,6 +7,7 @@ import argparse
 import inspect
 import json
 from dataclasses import fields, is_dataclass
+from enum import Enum
 from pathlib import Path
 from typing import Any, get_args
 
@@ -76,7 +77,11 @@ def signature(name: str, value: Any) -> str:
         if parameter.default is not parameter.empty:
             default = parameter.default
             rendered = (
-                "filters.all_messages" if isinstance(default, filters.Filter) else repr(default)
+                "filters.all_messages"
+                if isinstance(default, filters.Filter)
+                else f"{type(default).__name__}.{default.name}"
+                if isinstance(default, Enum)
+                else repr(default)
             )
             if " at 0x" in rendered:
                 raise ValueError(f"unstable default representation for {name}.{parameter.name}")
@@ -112,6 +117,14 @@ def render() -> dict[str, str]:
         "| `api` | Cached typed raw API facade; see [all raw methods](raw/index.md). |",
         "| `login_stage` | Saved `code`, `password` or None; available after connect. |",
         "| `login_challenge` | Saved LoginChallenge for explicit sign_in, or None. |",
+        "",
+        "## Next-Generation views",
+        "",
+        "Local cached views: `auth`, `account`, `peers`, `files`, `contacts`, `dialogs`,",
+        "`bot`, `invites`, `membership`, `events`, `raw` and callable `chat(peer)`.",
+        "They share the existing Client. See the [new API guide](../next-api/index.md)",
+        "and [complete signatures](../next-api/reference.md).",
+        "Existing methods below remain supported.",
         "",
         "## Methods",
         "",

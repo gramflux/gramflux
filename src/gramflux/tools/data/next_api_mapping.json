@@ -1,0 +1,101 @@
+{
+  "Auth": {
+    "login": "login",
+    "is_authorized": "is_authorized",
+    "request_login_code": "request_login_code",
+    "sign_in": "sign_in",
+    "check_password": "check_password",
+    "sign_in_bot": "sign_in_bot",
+    "log_out": "log_out"
+  },
+  "Account": {
+    "me": "get_me",
+    "update_profile": "update_profile",
+    "sessions": "get_active_sessions",
+    "terminate_session": "terminate_session"
+  },
+  "Peers": {
+    "resolve": "resolve_peer",
+    "user": "get_user",
+    "user_full": "get_user_full",
+    "chat": "get_chat",
+    "chat_full": "get_chat_full"
+  },
+  "Files": {
+    "upload": "upload_file",
+    "download": "download_file",
+    "download_media": "download_media",
+    "iter_download": "iter_download",
+    "iter_download_media": "iter_download_media"
+  },
+  "Contacts": {
+    "list": "get_contacts",
+    "add": "add_contact",
+    "delete": "delete_contacts",
+    "block": "block_user",
+    "unblock": "unblock_user"
+  },
+  "Dialogs": {
+    "list": "get_dialogs",
+    "iter": "iter_dialogs"
+  },
+  "Bot": {
+    "commands": "get_bot_commands",
+    "set_commands": "set_bot_commands",
+    "answer_callback": "answer_callback_query",
+    "answer_inline": "answer_inline_query",
+    "inline_results": "get_inline_results",
+    "callback_answer": "get_callback_answer",
+    "edit_inline": "edit_inline_message",
+    "start": "start_bot"
+  },
+  "Invites": {
+    "check": "check_invite",
+    "accept": "import_invite",
+    "export": "export_invite_link"
+  },
+  "Membership": {
+    "join": "join_chat",
+    "leave": "leave_chat",
+    "members": "get_members",
+    "iter_members": "iter_members"
+  },
+  "History": {
+    "fetch": "get_history",
+    "iter": "iter_history",
+    "get": "get_messages"
+  },
+  "Search": {
+    "fetch": "search_messages",
+    "iter": "iter_search"
+  },
+  "Members": {
+    "fetch": "get_members",
+    "iter": "iter_members"
+  },
+  "ChatResource": {
+    "send": "send_message",
+    "edit": "edit_message",
+    "delete": "delete_messages",
+    "forward": "forward_messages",
+    "mark_read": "read_history",
+    "pin": "pin_message",
+    "unpin": "unpin_message",
+    "react": "send_reaction",
+    "draft": "save_draft",
+    "typing": "set_typing",
+    "info": "get_chat",
+    "full_info": "get_chat_full",
+    "set_title": "set_chat_title",
+    "set_description": "set_chat_description",
+    "send_file": "send_file",
+    "send_document": "send_document",
+    "send_photo": "send_photo",
+    "send_contact": "send_contact",
+    "send_location": "send_location",
+    "send_dice": "send_dice",
+    "export_invite": "export_invite_link",
+    "join": "join_chat",
+    "leave": "leave_chat"
+  }
+}

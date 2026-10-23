@@ -158,3 +158,11 @@ The learning-documentation tests parse Python snippets, bind direct Client calls
 against real signatures and verify local Markdown targets. Browser tests check the
 quick-start Next link, conceptual chapters, quick-reference coverage and tutorial
 navigation. These checks do not substitute for authenticated Telegram integration.
+
+## Next-Generation API reference
+
+Run `python -m gramflux.tools.next_reference` and its `--check` mode for the separate
+Next-Generation reference. This generator reads actual view signatures and the
+packaged `tools/data/next_api_mapping.json`, linking each operation to its legacy
+contract. Generated reference Markdown is excluded from handwritten code formatting.
+Router and command behavior belong in the handwritten next-api chapters and tests.

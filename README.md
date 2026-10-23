@@ -180,6 +180,17 @@ a measured local IGE optimization do not establish end-to-end performance superi
 
 Typed callback/inline queries, deletion/read/status/chat-action events and bot UI builders are documented in [bot operations and events](docs/guides/bots-and-events.md). The [checked API inventory](docs/api-surface.json) separates actual Client methods from generated TL declarations.
 
+## Next-Generation API (development checkout)
+
+New projects can organize handlers with `gramflux.routing.Router`, mount them through
+`client.events.include(router)`, and use `client.chat(peer).send(...)` and typed domains
+such as `client.auth`, `client.account` and `client.files`. The existing Client API
+remains supported. These views use the same native runtime, dispatcher and sessions.
+
+Read the [Next-Generation guide](docs/next-api/index.md), [exact reference](docs/next-api/reference.md)
+and [complete equivalent examples](docs/next-api/examples.md). Install this checkout
+with `python -m pip install -e .`; older published artifacts may not include these additions.
+
 ## Documentation website
 
 The English Docusaurus site includes tutorials, guides, generated API reference and

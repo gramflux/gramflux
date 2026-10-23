@@ -14,6 +14,13 @@ The runtime belongs to GramFlux: connection framing, authorization-key exchange,
 encrypted envelopes, request correlation, SRP, update recovery and file pipelines.
 No competing Telegram client is a runtime dependency or fallback.
 
+## Recommended organization for new projects
+
+Use the [Next-Generation API](next-api/index.md): independent Routers, typed command
+contexts, local chat resources and domains sharing the existing Client implementation.
+Existing Client methods and decorators remain supported. Read its development-install
+notice before using these additions with a previously published wheel.
+
 ## Start here
 
 New to GramFlux? Follow [Installation](getting-started/installation.md), then run the
