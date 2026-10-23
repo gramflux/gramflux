@@ -21,6 +21,7 @@ module.exports = {
     {type: 'category', label: 'Getting started', collapsed: false, items: [
       'getting-started/installation', 'getting-started/quickstart', 'getting-started/next-steps',
     ]},
+    {type: 'category', label: 'Client Methods — High-Level API', link: {type: 'doc', id: 'client-methods/index'}, items: ['client-methods/messages', 'client-methods/media', 'client-methods/administration', 'client-methods/coverage']},
     {type: 'category', label: 'Next-Generation API', link: {type: 'doc', id: 'next-api/index'}, items: [
       'next-api/authentication', 'next-api/routing', 'next-api/commands', 'next-api/chats',
       'next-api/iterators', 'next-api/files', 'next-api/domains', 'next-api/raw',

@@ -112,3 +112,9 @@ all use the same native protocol implementation.
 **Verifiable maintenance.** Schema snapshots, reproducible reference generation,
 quality checks and measured evidence stay in the repository. No comparative speed
 claim is made without a fair benchmark.
+
+## Direct high-level Client API
+
+Use direct Client methods for everyday operations; optional resources and Routers
+organize larger applications. See [Client Methods — High-Level API](client-methods/index.md)
+for media, albums, administration, entities, exact contracts and current limits.

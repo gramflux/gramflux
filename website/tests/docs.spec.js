@@ -116,7 +116,7 @@ test('learning path leads from quick start to conceptual chapters', async ({page
   await expect(page.locator('article')).toContainText('TaskGroup');
   await expect(page.locator('article')).toContainText('Cancellation is not a rollback');
   await page.goto('docs/quick-references/client/');
-  await expect(page.locator('article table a[href*="/reference/client/"]')).toHaveCount(82);
+  await expect(page.locator('article table a[href*="/reference/client/"]')).toHaveCount(139);
   expect(errors).toEqual([]);
 });
 
@@ -155,7 +155,23 @@ test('quick start recommends modular API while retaining the legacy example', as
   await page.goto('docs/getting-started/quickstart/');
   await expect(page.locator('article')).toContainText('Recommended organization for new projects');
   await expect(page.locator('article')).toContainText('client.events.include(router)');
-  await expect(page.locator('article')).toContainText('client.account.me()');
+  await expect(page.locator('article')).toContainText('client.get_me()');
   await expect(page.locator('article')).toContainText('Existing Client style');
   await expect(page.locator('article')).toContainText('client.send_message');
+});
+
+test('direct high-level API guides link to complete media method contracts', async ({page}) => {
+  const errors = runtimeErrors(page);
+  await page.goto('docs/client-methods/');
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Client Methods — High-Level API');
+  await expect(page.locator('article')).toContainText('client.send_message');
+  await expect(page.locator('article')).toContainText('client.send_file');
+  await page.goto('docs/reference/client/send_video/');
+  await expect(page.locator('article')).toContainText('supports_streaming');
+  await expect(page.locator('article')).toContainText('duration');
+  await expect(page.locator('article')).toContainText('width');
+  await expect(page.locator('article')).toContainText('No transcoding');
+  await page.setViewportSize({width: 390, height: 844});
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
 });

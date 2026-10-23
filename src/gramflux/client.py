@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from functools import cached_property
 from pathlib import Path
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, BinaryIO, Literal, TypeVar
+from typing import TYPE_CHECKING, Any, BinaryIO, Literal, TypeVar, cast, overload
 
 from . import backend as adapter
 from . import chats, dialogs, messages
@@ -42,7 +42,9 @@ from .events import (
 from .files import CHUNK, Progress, disk, download, media_location, upload
 from .files import iter_download as stream_download
 from .filters import Filter, all_messages
+from .highlevel import HighLevelMethods
 from .login_state import PendingLogin
+from .management import ManagementMethods
 from .mtproto.srp import compute_check
 from .operations import TelegramMethods
 from .pagination import MessageIDs, count, message_ids
@@ -67,7 +69,7 @@ class LoginChallenge:
     code_hash: str = field(repr=False)
 
 
-class Client(TelegramMethods):
+class Client(HighLevelMethods, ManagementMethods, TelegramMethods):
     """Connect without prompting or implicitly logging in.
 
     Prefer ``Session.open(name)``, ``Session.create(name)`` or ``Session.temporary()``.
@@ -963,6 +965,30 @@ class Client(TelegramMethods):
             concurrency=concurrency,
         )
 
+    @overload
+    async def send_file(
+        self,
+        peer: PeerLike,
+        file: str | Path | BinaryIO,
+        *,
+        caption: str = "",
+        reply_to: int | None = None,
+        as_document: bool = False,
+        mime_type: str | None = None,
+    ) -> types.Message: ...
+
+    @overload
+    async def send_file(
+        self,
+        peer: PeerLike,
+        file: types.InputFile | types.InputFileBig | types.TypeInputMedia,
+        *,
+        caption: str = "",
+        reply_to: int | None = None,
+        as_document: bool = False,
+        mime_type: str | None = None,
+    ) -> types.Message: ...
+
     async def send_file(
         self,
         peer: PeerLike,
@@ -975,7 +1001,22 @@ class Client(TelegramMethods):
     ) -> types.Message:
         if reply_to is not None:
             message_ids(reply_to)
+        if isinstance(file, (str, Path)) or callable(getattr(file, "read", None)):
+            from .operations import require_booleans, validate_text
+
+            validate_text(caption, "caption")
+            require_booleans(as_document=as_document)
+            if mime_type is not None:
+                validate_text(mime_type, "mime_type", empty=False)
         target = await self.resolve_peer(peer)
+        if isinstance(file, (str, Path)) or callable(getattr(file, "read", None)):
+            file = await self.upload_file(cast("str | Path | BinaryIO", file))
+            if (
+                not as_document
+                and mime_type is None
+                and Path(file.name).suffix.casefold() in {".jpg", ".jpeg", ".png"}
+            ):
+                file = types.InputMediaUploadedPhoto(file=file)
         message: types.Message = await self._run(
             lambda: self._backend.send_file(
                 target,

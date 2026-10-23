@@ -64,7 +64,7 @@ def inventory() -> dict[str, Any]:
             "raw",
         ],
         "next_generation_scope": (
-            "Additive local resources and routing; original Client method count unchanged"
+            "Additive direct Client methods, local resources and routing; legacy contracts retained"
         ),
         "scope": "Surface inventory; raw declarations separate; live interoperability unverified",
     }

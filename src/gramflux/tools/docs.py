@@ -114,6 +114,7 @@ def render() -> dict[str, str]:
         "| Property | Meaning |",
         "| --- | --- |",
         "| `connected` | Native connection state; does not imply authorization. |",
+        "| `is_connected` | Additive alias of connected; a local bool, not an authorization RPC. |",
         "| `api` | Cached typed raw API facade; see [all raw methods](raw/index.md). |",
         "| `login_stage` | Saved `code`, `password` or None; available after connect. |",
         "| `login_challenge` | Saved LoginChallenge for explicit sign_in, or None. |",

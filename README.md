@@ -210,3 +210,9 @@ npm start
 GitHub Pages target: [gramflux.github.io/gramflux](https://gramflux.github.io/gramflux/).
 After an administrator enables **Settings → Pages → Source → GitHub Actions**,
 verified pushes to `v0.x-dev` publish automatically through the Documentation workflow.
+
+## Direct high-level Client API
+
+Use direct Client methods for everyday operations; optional resources and Routers
+organize larger applications. See [Client Methods — High-Level API](docs/client-methods/index.md)
+for media, albums, administration, entities, exact contracts and current limits.

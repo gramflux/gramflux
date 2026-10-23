@@ -64,7 +64,7 @@ The saved login stage is resumed without sending another code. Read
 
 The [Next-Generation API](../next-api/index.md) is available in the development checkout.
 After the authorization step above, save this as `modular_client.py`. Handler definitions
-remain independent of the client, and domain/resource calls use the same native engine:
+remain independent of the client, and direct Client calls use the same native engine:
 
 ```python
 import asyncio
@@ -88,9 +88,9 @@ async def main() -> None:
     )
     client.events.include(router)
     async with client:
-        me = await client.account.me()
+        me = await client.get_me()
         print(f"Connected as user ID: {me.id}")
-        await client.chat("me").send("Hello from GramFlux")
+        await client.send_message("me", "Hello from GramFlux")
         await client.run_until_disconnected()
 
 

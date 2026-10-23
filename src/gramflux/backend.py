@@ -377,55 +377,14 @@ class NativeBackend:
         return await self._on_login(result.user)
 
     def _target_peer(self, peer: Any) -> Any:
-        if isinstance(peer, types.InputPeerSelf):
-            if self._user is None:
-                raise SerializationError("self identity is required for sent-message normalization")
-            return types.PeerUser(user_id=self._user.id)
-        if isinstance(peer, (types.InputPeerUser, types.InputPeerUserFromMessage)):
-            return types.PeerUser(user_id=peer.user_id)
-        if isinstance(peer, types.InputPeerChat):
-            return types.PeerChat(chat_id=peer.chat_id)
-        if isinstance(peer, (types.InputPeerChannel, types.InputPeerChannelFromMessage)):
-            return types.PeerChannel(channel_id=peer.channel_id)
-        raise UnsupportedFeature("unsupported sent-message target")
+        from .sending import output_peer
+
+        return output_peer(peer, self._user.id if self._user is not None else None)
 
     def _sent_message(self, result: Any, peer: Any, text: str, random_id: int) -> Any:
-        from .peer_utils import get_peer_id
+        from .sending import sent_message
 
-        target = self._target_peer(peer)
-        if isinstance(result, types.UpdateShortSentMessage):
-            return types.Message(
-                id=result.id,
-                peer_id=target,
-                date=result.date,
-                message=text,
-                out=bool(result.out),
-                media=result.media,
-                entities=result.entities,
-                ttl_period=result.ttl_period,
-            )
-        updates = (
-            [result.update]
-            if isinstance(result, types.UpdateShort)
-            else getattr(result, "updates", [])
-        )
-        mapped = [
-            update.id
-            for update in updates
-            if isinstance(update, types.UpdateMessageID) and update.random_id == random_id
-        ]
-        matches = [
-            update.message
-            for update in updates
-            if isinstance(update, (types.UpdateNewMessage, types.UpdateNewChannelMessage))
-            and get_peer_id(update.message.peer_id) == get_peer_id(target)
-            and (not mapped or update.message.id == mapped[0])
-        ]
-        if len(matches) == 1:
-            return matches[0]
-        raise SerializationError(
-            "send response cannot be correlated uniquely; remote write may have completed"
-        )
+        return sent_message(result, self._target_peer(peer), text, random_id)
 
     async def send_message(
         self,

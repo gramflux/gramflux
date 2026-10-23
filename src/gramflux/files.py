@@ -322,25 +322,31 @@ def media_location(message: Any) -> tuple[Any, int]:
             document.size,
         )
     if photo is not None:
-        choices = []
-        for item in photo.sizes:
-            if isinstance(item, types.PhotoSize):
-                size = item.size
-            elif isinstance(item, types.PhotoSizeProgressive) and item.sizes:
-                size = max(item.sizes)
-            else:
-                continue
-            download_range(size, 0, None)
-            choices.append((size, item.type))
-        if choices:
-            size, kind = max(choices)
-            return (
-                types.InputPhotoFileLocation(
-                    id=photo.id,
-                    access_hash=photo.access_hash,
-                    file_reference=photo.file_reference,
-                    thumb_size=kind,
-                ),
-                size,
-            )
+        return photo_location(photo)
+    raise UnsupportedFeature("message must contain a document or downloadable photo")
+
+
+def photo_location(photo: Any) -> tuple[Any, int]:
+    """Choose downloadable server photo metadata, shared by message/profile helpers."""
+    choices = []
+    for item in photo.sizes:
+        if isinstance(item, types.PhotoSize):
+            size = item.size
+        elif isinstance(item, types.PhotoSizeProgressive) and item.sizes:
+            size = max(item.sizes)
+        else:
+            continue
+        download_range(size, 0, None)
+        choices.append((size, item.type))
+    if choices:
+        size, kind = max(choices)
+        return (
+            types.InputPhotoFileLocation(
+                id=photo.id,
+                access_hash=photo.access_hash,
+                file_reference=photo.file_reference,
+                thumb_size=kind,
+            ),
+            size,
+        )
     raise UnsupportedFeature("message must contain a document or downloadable photo")

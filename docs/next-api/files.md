@@ -35,8 +35,8 @@ message = await client.chat("me").send_file(handle, caption="Report", as_documen
 ```
 
 For the combined local-source workflow, chat.send_document and chat.send_photo retain
-their original progress/chunk/window parameters. A local path is not automatically
-accepted as an uploaded handle by send_file.
+their original progress/chunk/window parameters. `client.send_file` also accepts local paths/streams in this checkout;
+`client.chat(peer).send_file` delegates to the same implementation.
 
 ## Preserve transfer parameters
 

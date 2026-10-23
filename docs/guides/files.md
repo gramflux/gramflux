@@ -47,8 +47,9 @@ bypassing them. Start conservatively and measure your own conditions.
 `send_document` and `send_photo` combine streaming upload with an explicit media send.
 Document name/MIME type may be supplied; photos must already satisfy Telegram's
 format/size rules. No image resizing is performed. Captions are literal text; reply_to
-is optional. `send_file` takes an uploaded handle or raw InputMedia, not a path to read
-implicitly. A successful upload followed by a failed send is not retried or rolled back.
+is optional. `send_file` accepts local paths/streams as well as uploaded handles and raw InputMedia.
+Local JPG/JPEG/PNG sources infer photo mode unless document mode or MIME is explicit;
+previously accepted uploaded handles keep their original document behavior. A successful upload followed by a failed send is not retried or rolled back.
 
 ## Lazy streams and exact byte ranges
 

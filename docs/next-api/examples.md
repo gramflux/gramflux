@@ -9,6 +9,10 @@ The repository includes two complete applications with equivalent behavior. Both
 answer /hello in a private incoming bot conversation, use the same lifecycle and
 return the same reply through the original Client execution path.
 
+Direct Client methods remain the primary operations API; this example compares optional
+handler organization. Domain and chat views are not required. See the
+[direct high-level guide](../client-methods/index.md) for ordinary operations.
+
 ## Configuration
 
 Install this checkout, then provide your own credentials and a bot username without @:
@@ -32,7 +36,7 @@ The source is [examples/legacy_equivalent.py](https://github.com/gramflux/gramfl
 It uses client.on_message, existing filters.command, event.reply and client.login.
 No changes to an old application are required to keep using that pattern.
 
-## Next-Generation API — recommended for new projects
+## Router organization — recommended for modular handlers
 
 ```bash
 python -m examples.next_app

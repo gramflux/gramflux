@@ -164,7 +164,7 @@ These arguments belong to different stages:
 | Argument | Meaning | Example |
 | --- | --- | --- |
 | `source` | Local path or seekable binary input stream | `upload_file("report.pdf")` |
-| `file` | Uploaded InputFile/InputFileBig or supported InputMedia | `send_file("me", handle)` |
+| `file` | Local path/stream, uploaded InputFile/InputFileBig or supported InputMedia | `send_file("me", handle)` |
 | `message` | Native message carrying document/photo metadata | `download_media(message, "copy.pdf")` |
 | `location` | Native remote InputFileLocation | `download_file(location, "copy.bin", size=size)` |
 | `destination` | New path or writable binary output stream | A new trusted filename, not an untrusted media path |

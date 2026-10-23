@@ -101,7 +101,37 @@
     "rows": "Nonempty sequence of nonempty keyboard rows. Each row contains supported native inline KeyboardButton variants; reply-only phone/contact request buttons are rejected.",
     "id": "Inline result identifier string containing 1–64 UTF-8 bytes. Distinct results in one answer must have unique IDs. It is not a message ID.",
     "value": "Exact callback-data value as bytes or str. A string is encoded as UTF-8; this filter does not perform prefix, regex or JSON matching.",
-    "require_authorized": "True requires the existing session to contain completed account authorization when connected. False allows an unfinished login file to be opened and resumed; it does not create a missing file."
+    "require_authorized": "True requires the existing session to contain completed account authorization when connected. False allows an unfinished login file to be opened and resumed; it does not create a missing file.",
+    "address": "Nonempty human-readable venue address. This is geographic display data, not a local filesystem output path or an account identifier.",
+    "anonymous": "Whether poll votes should be anonymous. True omits public_voters; False requests public voter visibility subject to Telegram rules.",
+    "approve": "True approves exactly the supplied pending join request; False dismisses it. This does not bulk-invite or join unrelated users.",
+    "correct_option": "Optional zero-based index of the single correct quiz answer. None creates a normal poll; booleans/out-of-range indices and multiple-choice quizzes are rejected.",
+    "duration": "Media duration in seconds supplied by the application. Video accepts finite nonnegative numeric seconds; audio/voice require nonnegative signed-32-bit integer seconds. No metadata is guessed.",
+    "forum": "Whether the new megagroup should enable forum mode. Must be bool and is only exposed on supergroup creation, not automatic migration.",
+    "height": "Actual frame height in pixels, supplied by the application. Must be a positive signed-32-bit integer; the helper does not decode video dimensions.",
+    "width": "Actual frame width in pixels, supplied by the application. Must be a positive signed-32-bit integer; inaccurate encoded-file metadata remains a server/application error.",
+    "items": "Sequence of 2–10 AlbumItem values. Use all photos or all documents; each item owns its source, literal caption, optional entities and document-mode flag.",
+    "link": "Actual exported https://t.me/ invite URL. This is not a username, a guessed hash, or proof that your account may revoke it.",
+    "media": "Native Photo, Document or ordinary Message carrying reusable server metadata. Protected Message inputs are rejected; opaque cross-library file-ID strings are not decoded.",
+    "multiple_choice": "Whether a normal poll allows several answers. Must be bool; this helper rejects combining it with a single-answer correct_option quiz.",
+    "options": "Sequence of 2–10 distinct nonempty option strings. Options become literal TextWithEntities values with client-generated option tokens, not shell or markup input.",
+    "performer": "Optional literal audio performer metadata. None omits the field; it does not inspect tags in the source file or fetch an artist profile.",
+    "permissions": "ChatPermissions describing allowed member actions. False becomes the corresponding forbidden Telegram right; this object never grants administrator privileges.",
+    "photos": "Sequence of 1–100 native Photo/InputPhoto values with real server IDs, access hashes and file references. Integer IDs alone are not sufficient.",
+    "privileges": "AdminPrivileges describing explicit administrator grants. All defaults are False; an all-false value removes admin grants rather than requesting every permission.",
+    "provider": "Optional venue provider label supplied by the application. Empty means no provider metadata; it does not trigger a third-party place lookup.",
+    "question": "Nonempty literal poll question. This helper creates TextWithEntities with an empty entity list rather than parsing Markdown or HTML implicitly.",
+    "rank": "Optional literal administrator rank. Empty omits the field; Telegram enforces rank length, character constraints and the caller's grant authority.",
+    "result_id": "Nonempty opaque inline-result ID from a real get_inline_bot_results response, at most 64 UTF-8 bytes. It is not an ordinary message ID.",
+    "short_name": "Registered bot game short name. Supply it with an accessible bot reference; the helper neither registers games nor invents game identifiers.",
+    "solution": "Optional quiz explanation, at most 200 Python characters and two newline characters. Requires correct_option; matching empty solution_entities is encoded with the shared flag.",
+    "supports_streaming": "Whether the supplied MP4 is suitable for streaming. Must be bool; setting the flag does not convert the file or move its metadata atoms.",
+    "until_date": "Nonnegative signed-32-bit Unix timestamp for restrictions. Zero is the permanent sentinel. This is not a relative seconds duration; Telegram determines expiry/permanent interpretation.",
+    "user": "User/member reference resolved through the existing account-local peer policy. No access hash is invented; default menu scope uses None only where explicitly documented.",
+    "users": "Sequence of 1–200 accessible user references for basic-group creation. Resolution does not override invite/privacy restrictions or prove every invitee can be admitted.",
+    "venue_id": "Optional provider-specific place identifier. Empty leaves provider identification unspecified; this does not resolve an external location database automatically.",
+    "venue_type": "Optional provider-specific category/type string for the venue. It is independent from the geographic coordinates and destination conversation.",
+    "waveform": "Optional server-format waveform bytes for a voice note. A string is rejected; no waveform generation, audio decoding or file transcoding is performed."
   },
   "overrides": {
     "iter_members.query": "Participant-name search passed to the channel participant search filter. Empty string lists accessible members. Basic-group participants are obtained from full-chat metadata, so the same server search semantics are not promised.",
@@ -125,7 +155,53 @@
     "buttons.article.title": "Visible article-result title. The sent text comes from the separate text argument.",
     "buttons.article.text": "Literal text that will be sent when the article is chosen. It is not a description label; supply explicit native MessageEntity objects for formatting.",
     "Session.open.name": "Existing GramFlux session name or path. A name without a suffix gets .session. The parent/file must exist; creation is not implied.",
-    "Session.create.name": "New GramFlux filename or name, with .session added when no suffix exists. The parent directory must exist. An existing path is never replaced."
+    "Session.create.name": "New GramFlux filename or name, with .session added when no suffix exists. The parent directory must exist. An existing path is never replaced.",
+    "set_chat_photo.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "set_profile_photo.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "edit_message_media.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_media.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_video.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_video_note.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_audio.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_voice.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_animation.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "send_sticker.source": "Local path, caller-owned seekable binary stream, or an already uploaded native InputFile/InputFileBig handle. Existing upload validation and ownership rules apply; remote HTTP URLs are not downloaded automatically.",
+    "get_users.peers": "Sequence of up to 10000 accessible user references. Empty input makes no request; values are resolved first and fetched in batches of at most 100, retaining actual UserEmpty responses.",
+    "edit_folder.peers": "Sequence of 1–100 conversation references to move between main and archive. Each is resolved through the existing peer policy; this is not a custom dialog-filter definition.",
+    "edit_folder.folder_id": "Integer 0 selects the main conversation list and 1 selects archive. Booleans, floats and other folder IDs are rejected; custom filters are a separate workflow.",
+    "send_video_note.length": "Actual square video-note frame side in pixels. Must be a positive signed-32-bit integer; this field is unrelated to a download byte-range length.",
+    "send_audio.title": "Optional literal audio track title. None omits the audio attribute field; it is not a chat title update or metadata extracted from the source.",
+    "edit_message_media.caption": "Optional new literal caption. None omits text editing; an explicit string edits the caption and clears explicit entities. It is not an implicit Markdown input.",
+    "set_chat_menu_button.commands": "True selects Telegram's bot commands menu; False with no Web App fields selects the default menu. Cannot be combined with text or URL.",
+    "set_chat_menu_button.text": "Nonempty Web App menu button label, paired with a HTTPS URL. None selects a commands/default button according to the commands flag.",
+    "set_chat_menu_button.url": "HTTPS Web App destination paired with nonempty text. Both fields must be supplied together; no redirect fetching or external HTTP download occurs.",
+    "set_chat_menu_button.user": "Optional accessible user reference for a per-user bot menu. None deliberately uses InputUserEmpty for the default user scope, not the current user.",
+    "get_chat_menu_button.user": "Optional accessible user reference whose bot menu should be read. None selects the server default user scope and does not guess an account ID.",
+    "send_cached_media.media": "Native Photo, Document or ordinary Message carrying reusable server metadata. Protected Message inputs are rejected; opaque cross-library file-ID strings are not decoded.",
+    "send_file.file": "Local path, supported binary stream, uploaded InputFile/InputFileBig, or native InputMedia. New local JPG/JPEG/PNG paths use photo mode unless as_document=True or an explicit MIME type selects document mode. Previously accepted uploaded handles retain their original document behavior.",
+    "send_cached_media.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_media.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_video.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_video_note.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_audio.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_voice.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_animation.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "send_sticker.caption": "Literal media caption; empty is permitted. No markup is parsed automatically. Explicit native entities may be supplied separately, with UTF-16 offsets within this caption.",
+    "set_username.username": "Ordinary account username, 5–32 ASCII letters/digits/underscores starting with a letter. An empty string requests clearing. This is unrelated to command-address filtering; Telegram determines availability.",
+    "iter_admin_log.max_id": "Exclusive upper admin-log event ID, a nonnegative signed-64-bit integer. Zero starts at the newest accessible event; this is not a message-read cursor.",
+    "send_sticker.emoji": "Literal alternative sticker emoji metadata, empty by default. This does not select a dice outcome, create a sticker pack, or convert the source file format.",
+    "send_sticker.mime_type": "Sticker encoding metadata: image/webp by default, application/x-tgsticker or video/webm explicitly. Other MIME values and None are rejected; source content must already match.",
+    "send_animation.mime_type": "Animation encoding metadata: image/gif by default or video/mp4 explicitly. Other MIME values and None are rejected; the helper performs no transcoding.",
+    "send_media.as_document": "False sends photo media; True sends a document with filename metadata. This selects the input-media constructor without converting encoded file content.",
+    "edit_message_media.as_document": "False replaces with photo media; True replaces with generic document media. This chooses the input constructor and does not inspect or convert the file.",
+    "send_venue.title": "Nonempty literal venue name shown beside the geographic address. It is not a chat rename or an invite administrative label.",
+    "send_inline_bot_result.query_id": "Signed-64-bit query identity from the real BotResults returned by get_inline_bot_results. Use its associated result ID, not an incoming inline-event ID or a message identifier.",
+    "get_participants.query": "Member-name search text passed to the existing get_members service. Channel search and basic-group filtering retain their existing behavior; no history message search is performed.",
+    "create_channel.about": "Literal description for the newly created channel/supergroup. Empty creates it without description; None is not accepted and there is no existing description to preserve.",
+    "create_supergroup.about": "Literal description for the newly created channel/supergroup. Empty creates it without description; None is not accepted and there is no existing description to preserve.",
+    "get_admin_log.query": "Literal server-side administrative log search query. Empty requests unfiltered visible events; it is not a message-history search or local regular expression.",
+    "iter_admin_log.query": "Literal server-side administrative log search query. Empty requests unfiltered visible events; it is not a message-history search or local regular expression.",
+    "search_messages_count.sender": "Optional author reference resolved to an InputPeer for Telegram message search. None omits this restriction; user/channel access metadata follows the existing resolver policy."
   },
   "methods": {
     "connect": {
@@ -571,11 +647,11 @@
     },
     "send_file": {
       "category": "Files",
-      "summary": "Send an uploaded handle or native supported InputMedia using the selected peer and caption.",
+      "summary": "Send a local path/stream, uploaded handle or supported native media through the existing upload and send pipeline.",
       "returns": "Native Message.",
-      "example": "handle = await client.upload_file(\"report.pdf\")\nmessage = await client.send_file(\"me\", handle, caption=\"Report\", as_document=True)",
+      "example": "message = await client.send_file(\"me\", \"photo.jpg\", caption=\"Photo\")",
       "notes": [
-        "A local path is not accepted here. Uploaded handles are temporary server resources. Raw media kinds may require a workflow not implemented by the high-level helper."
+        "Local sources are uploaded with existing default chunk/window settings. JPG/JPEG/PNG paths infer photo mode unless document mode/MIME is explicit. Uploaded handles retain their previous behavior; uploads and sends are not an atomic transaction."
       ]
     },
     "send_document": {
@@ -873,6 +949,576 @@
       "example": "client = Client(Session.open(\"account\"), api_id=api_id, api_hash=api_hash, config=Config(request_timeout=30))",
       "notes": [
         "Use Session.create only once for a new filename. For an unfinished login use Session.open(..., require_authorized=False). A bare path means open an existing authorized session. Unknown constructor keywords are rejected."
+      ]
+    },
+    "approve_chat_join_request": {
+      "category": "Membership",
+      "summary": "Approve or dismiss one pending join request without bulk admission.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.approve_chat_join_request(group_peer, user_peer, approve=True)",
+      "notes": [
+        "The account needs Telegram permission to manage join requests. This does not invite arbitrary users.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "ban_chat_member": {
+      "category": "Membership",
+      "summary": "Ban a peer from viewing a supergroup/channel until an explicit server timestamp.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.ban_chat_member(channel_peer, user_peer, until_date=0)",
+      "notes": [
+        "Channel/supergroup only. Zero is the permanent-ban sentinel; timestamps are Unix seconds, not relative durations.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "unban_chat_member": {
+      "category": "Membership",
+      "summary": "Clear a supergroup/channel member ban and restriction flags.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.unban_chat_member(channel_peer, user_peer)",
+      "notes": [
+        "Clearing flags does not re-add the user. This also clears individual restrictions, not only the view ban.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "restrict_chat_member": {
+      "category": "Membership",
+      "summary": "Apply explicit allowed-action settings to a supergroup/channel member.",
+      "returns": "Native UpdateResult.",
+      "example": "from gramflux import ChatPermissions\nawait client.restrict_chat_member(channel_peer, user_peer, ChatPermissions(send_messages=False))",
+      "notes": [
+        "ChatPermissions uses positive allowed actions and translates them to forbidden Telegram flags. Basic groups are not silently upgraded.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "promote_chat_member": {
+      "category": "Membership",
+      "summary": "Set explicit administrator grants and an optional rank for a channel member.",
+      "returns": "Native UpdateResult.",
+      "example": "from gramflux import AdminPrivileges\nawait client.promote_chat_member(channel_peer, user_peer, AdminPrivileges(delete_messages=True), rank=\"Moderator\")",
+      "notes": [
+        "All-false AdminPrivileges demotes. Ownership, grant restrictions and account eligibility are server enforced.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "set_chat_permissions": {
+      "category": "Membership",
+      "summary": "Set default group member permissions using a positive high-level settings object.",
+      "returns": "Native UpdateResult.",
+      "example": "from gramflux import ChatPermissions\nawait client.set_chat_permissions(group_peer, ChatPermissions(send_media=False))",
+      "notes": [
+        "These are default member restrictions, not admin grants. True means allowed; no rights are inferred from local membership.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "copy_message": {
+      "category": "Messages",
+      "summary": "Copy accessible ordinary text or cached photo/document content without a forward header.",
+      "returns": "Native Message for the newly sent copy.",
+      "example": "copied = await client.copy_message(\"me\", source_peer, source_message_id)",
+      "notes": [
+        "Protected content is rejected. Service messages, polls, games and other unsupported copy shapes fail explicitly. File references are not refreshed automatically.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "create_channel": {
+      "category": "Membership",
+      "summary": "Create a broadcast channel and return its uniquely identified server entity.",
+      "returns": "Native Channel.",
+      "example": "channel = await client.create_channel(\"Announcements\", about=\"Project updates\")",
+      "notes": [
+        "Not retried on uncertain outcome. Bot/account restrictions and ownership rules remain Telegram decisions.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "create_supergroup": {
+      "category": "Membership",
+      "summary": "Create a megagroup, optionally with forum topics enabled.",
+      "returns": "Native Channel with the server megagroup fields.",
+      "example": "group = await client.create_supergroup(\"Discussion\", about=\"Project chat\", forum=True)",
+      "notes": [
+        "Forum is a creation flag, not an automatic migration of an existing basic group. Creation ambiguity raises SerializationError.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "create_group": {
+      "category": "Membership",
+      "summary": "Resolve user references and create a basic group with explicit invitees.",
+      "returns": "Native Chat from the actual creation result.",
+      "example": "group = await client.create_group(\"Discussion\", [user_peer])",
+      "notes": [
+        "Requires 1–200 user references. Returned creation does not guarantee that privacy-restricted invitees were admitted; inspect the raw result if missing-invitee details are needed.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "create_chat_invite_link": {
+      "category": "Membership",
+      "summary": "Create an invite using the existing export_invite_link implementation.",
+      "returns": "ChatInviteExported or ChatInvitePublicJoinRequests.",
+      "example": "invite = await client.create_chat_invite_link(group_peer, title=\"Event\", usage_limit=10)",
+      "notes": [
+        "A familiar creation name over the existing supported operation, with the same expiry, approval and usage constraints.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "revoke_chat_invite_link": {
+      "category": "Membership",
+      "summary": "Revoke a supplied real Telegram invite URL without removing current members.",
+      "returns": "Native messages.ExportedChatInvite or replacement result.",
+      "example": "result = await client.revoke_chat_invite_link(group_peer, invite.link)",
+      "notes": [
+        "Requires a https://t.me/ invite URL and server permission. Permanent-link revocation may return replacement metadata.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_chat_invite_link": {
+      "category": "Membership",
+      "summary": "Read the exported link available in full-chat metadata without creating one.",
+      "returns": "str or None when no exported link is exposed.",
+      "example": "link = await client.get_chat_invite_link(group_peer)",
+      "notes": [
+        "None represents absent/unavailable metadata, not successful link creation. Server admin/privacy restrictions still apply.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "delete_bot_commands": {
+      "category": "Bots",
+      "summary": "Reset commands in one bot-command scope and language.",
+      "returns": "bool from Telegram.",
+      "example": "await client.delete_bot_commands(lang_code=\"\")",
+      "notes": [
+        "Does not erase other languages/scopes automatically. None scope uses BotCommandScopeDefault.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_chat_menu_button": {
+      "category": "Bots",
+      "summary": "Fetch the bot menu for a user or the default user scope.",
+      "returns": "Native BotMenuButton, BotMenuButtonDefault or BotMenuButtonCommands.",
+      "example": "menu = await client.get_chat_menu_button()",
+      "notes": [
+        "None user means the default menu scope, not an unknown account. This is a bot-only server capability.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "set_chat_menu_button": {
+      "category": "Bots",
+      "summary": "Set a default/user bot menu to a Web App, commands menu or Telegram default.",
+      "returns": "bool from Telegram.",
+      "example": "await client.set_chat_menu_button(text=\"Open\", url=\"https://example.com/app\")",
+      "notes": [
+        "Supply both text and HTTPS URL for a Web App. commands=True is mutually exclusive with Web App fields; no fields selects BotMenuButtonDefault.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_inline_bot_results": {
+      "category": "Bots",
+      "summary": "Resolve a bot and destination and retrieve server inline results.",
+      "returns": "Native messages.BotResults.",
+      "example": "results = await client.get_inline_bot_results(bot_peer, \"query\", peer=\"me\")",
+      "notes": [
+        "Familiar direct entry point for get_inline_results; pagination offset is an opaque server string.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_inline_bot_result": {
+      "category": "Bots",
+      "summary": "Send a real inline result using its server query identity and result ID.",
+      "returns": "Native Message correlated to the send response.",
+      "example": "message = await client.send_inline_bot_result(\"me\", results.query_id, results.results[0].id)",
+      "notes": [
+        "Use a nonempty result set and real server-provided query/result IDs. No access hash, result ID or inline payload is fabricated.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "delete_chat_photo": {
+      "category": "Membership",
+      "summary": "Remove a basic-group/channel photo through its appropriate endpoint.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.delete_chat_photo(group_peer)",
+      "notes": [
+        "Sends InputChatPhotoEmpty explicitly and does not upload a zero-byte file. Server permissions remain mandatory.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "set_chat_photo": {
+      "category": "Membership",
+      "summary": "Upload and set a basic-group/channel photo without manual TL construction.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.set_chat_photo(group_peer, \"group.jpg\", concurrency=2)",
+      "notes": [
+        "User peers are rejected before upload. Existing transfer ownership, validation and cancellation rules apply.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "set_profile_photo": {
+      "category": "Account",
+      "summary": "Upload and set a still account profile photo.",
+      "returns": "Native photos.Photo containing server photo/user metadata.",
+      "example": "result = await client.set_profile_photo(\"profile.jpg\")",
+      "notes": [
+        "Does not add profile videos or configure another bot profile. Server account restrictions and file/DC limits apply.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_profile_photos": {
+      "category": "Users and peers",
+      "summary": "Collect visible user profile photos with bounded server paging.",
+      "returns": "list[Photo].",
+      "example": "photos = await client.get_profile_photos(user_peer, limit=20)",
+      "notes": [
+        "Limit is finite, 0–10000; pages are at most 100. Zero makes no request. User photo history is distinct from a channel photo.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "delete_profile_photos": {
+      "category": "Account",
+      "summary": "Delete explicit native account photo references using their actual hashes.",
+      "returns": "list[int] returned by Telegram.",
+      "example": "await client.delete_profile_photos(photos[:1])",
+      "notes": [
+        "Accepts 1–100 Photo/InputPhoto values from real metadata. Integer IDs alone cannot manufacture required access/file references.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "download_profile_photo": {
+      "category": "Files",
+      "summary": "Fetch visible full profile metadata and download the largest supported photo size.",
+      "returns": "Path for path output; None for a caller stream or no exposed photo.",
+      "example": "path = await client.download_profile_photo(user_peer, \"profile-copy.jpg\")",
+      "notes": [
+        "User history and group/channel full metadata use their appropriate endpoints. Missing photo returns None without creating output; unsupported DC/CDN paths still fail explicitly.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "edit_folder": {
+      "category": "Pagination",
+      "summary": "Move explicit conversations between the main list and archive.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.edit_folder([user_peer], folder_id=1)",
+      "notes": [
+        "Supports folder IDs 0 and 1 only, with 1–100 references. Custom dialog filters are a different workflow.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "edit_message_caption": {
+      "category": "Messages",
+      "summary": "Edit literal caption/text with explicit entities and optional keyboard markup.",
+      "returns": "Native UpdateResult, not necessarily a Message.",
+      "example": "await client.edit_message_caption(\"me\", message_id, \"Updated caption\", entities=[])",
+      "notes": [
+        "None entities sends an empty vector, clearing explicit formatting. None markup omits that field; it is not a universal removal instruction.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "edit_message_reply_markup": {
+      "category": "Messages",
+      "summary": "Replace message keyboard markup without editing text.",
+      "returns": "Native UpdateResult.",
+      "example": "from gramflux import buttons\nawait client.edit_message_reply_markup(\"me\", message_id, buttons.inline([[buttons.callback(\"OK\", \"ok\")]]))",
+      "notes": [
+        "Pass explicit ReplyInlineMarkup(rows=[]) to clear an inline keyboard. None is rejected rather than pretending to clear markup.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "edit_message_media": {
+      "category": "Messages",
+      "summary": "Upload replacement photo/document media and optionally replace the literal caption.",
+      "returns": "Native UpdateResult.",
+      "example": "await client.edit_message_media(\"me\", message_id, \"replacement.jpg\", caption=\"Updated\")",
+      "notes": [
+        "Default is photo; as_document=True chooses document. None caption leaves the caption field omitted. Upload success is not atomic with the edit.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_admin_log": {
+      "category": "Membership",
+      "summary": "Collect a finite supergroup/channel administration log.",
+      "returns": "list[ChannelAdminLogEvent].",
+      "example": "events = await client.get_admin_log(channel_peer, query=\"\", limit=20)",
+      "notes": [
+        "Requires server eligibility; actor/action data stays native. Zero limit does not resolve the peer or request log pages.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "iter_admin_log": {
+      "category": "Membership",
+      "summary": "Stream admin-log pages backwards with bounded overlap and cursor validation.",
+      "returns": "AsyncIterator[ChannelAdminLogEvent].",
+      "example": "async for entry in client.iter_admin_log(channel_peer, limit=100, page_size=50):\n    print(entry.id)",
+      "notes": [
+        "Lazy initial resolution/request; page size 1–100. Nonprogressing/invalid IDs raise PaginationError rather than looping or silently skipping state.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_chat_history_count": {
+      "category": "Pagination",
+      "summary": "Request a minimal history page and read its actual server count.",
+      "returns": "int.",
+      "example": "total = await client.get_chat_history_count(\"me\")",
+      "notes": [
+        "Does not download the whole history. A response without valid count/full-collection semantics raises SerializationError.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "search_messages_count": {
+      "category": "Pagination",
+      "summary": "Count a conversation search using Telegram search semantics.",
+      "returns": "int.",
+      "example": "total = await client.search_messages_count(\"me\", \"meeting\", sender=user_peer)",
+      "notes": [
+        "Query is not a local regex. Sender and target are resolved normally; no global search cursor is implied.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_chat_member": {
+      "category": "Membership",
+      "summary": "Retrieve one exposed member through channel lookup or basic-group participants.",
+      "returns": "ChatMember with native participant and optional user metadata.",
+      "example": "member = await client.get_chat_member(group_peer, user_peer)",
+      "notes": [
+        "Forbidden/hidden lists and missing participants fail explicitly. Basic-group lookup may inspect the full visible participant list.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_chat_members_count": {
+      "category": "Membership",
+      "summary": "Read an exposed channel/group participant count without guessing a hidden list size.",
+      "returns": "int.",
+      "example": "total = await client.get_chat_members_count(group_peer)",
+      "notes": [
+        "Falls back to the full exposed basic-group participant list only when that list is actually available. Missing count/list raises UnsupportedFeature.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_participants": {
+      "category": "Membership",
+      "summary": "Collect visible members through the existing get_members implementation.",
+      "returns": "list[ChatMember].",
+      "example": "members = await client.get_participants(group_peer, limit=20, query=\"alice\")",
+      "notes": [
+        "This is the familiar participant-name entry point for an existing capability, not a new permission or retrieval engine.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_drafts": {
+      "category": "Account",
+      "summary": "Fetch actual nonempty cloud drafts in one server snapshot.",
+      "returns": "list[Draft], preserving native peer and DraftMessage objects.",
+      "example": "drafts = await client.get_drafts()",
+      "notes": [
+        "Not paginated and not a fake Message list. Draft repr hides text; no draft journal or local editing transaction is added.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "iter_drafts": {
+      "category": "Account",
+      "summary": "Delay fetching the cloud-draft snapshot until iteration begins.",
+      "returns": "AsyncIterator[Draft].",
+      "example": "async for draft in client.iter_drafts():\n    print(type(draft.peer).__name__)",
+      "notes": [
+        "The server operation returns the entire snapshot once; this iterator does not claim bounded paginated fetching or transaction isolation.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_entity": {
+      "category": "Users and peers",
+      "summary": "Fetch an accessible full user/chat/channel from common references, including public username links.",
+      "returns": "Entity: User, Chat, Channel or supported forbidden entity.",
+      "example": "entity = await client.get_entity(\"https://t.me/public_username\")",
+      "notes": [
+        "Only public username links are normalized. Invite/post/external URLs are not implicitly joined or fetched.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_input_entity": {
+      "category": "Users and peers",
+      "summary": "Resolve an input peer suitable for requests without constructing TL objects manually.",
+      "returns": "InputPeer.",
+      "example": "peer = await client.get_input_entity(\"@public_username\", refresh=True)",
+      "notes": [
+        "Does not fetch a full profile or guess an access hash. Refresh follows the existing cache invalidation rules.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_peer_id": {
+      "category": "Users and peers",
+      "summary": "Return a marked identity without confusing identity knowledge with access rights.",
+      "returns": "int using the existing user/group/channel marking convention.",
+      "example": "ident = await client.get_peer_id(entity)",
+      "notes": [
+        "Known numeric/native Peer IDs need no access hash; strings require resolution and self references need the authorized identity. No new identity scheme is introduced.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_users": {
+      "category": "Users and peers",
+      "summary": "Resolve multiple user references and fetch native user batches.",
+      "returns": "list[User | UserEmpty] in the server response order.",
+      "example": "users = await client.get_users([user_peer])",
+      "notes": [
+        "Accepts up to 10000 references; fetch batches are at most 100. Empty input returns no rows without RPC. Native UserEmpty is retained instead of inventing profile data.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "get_message": {
+      "category": "Messages",
+      "summary": "Fetch one peer-scoped message while preserving get_messages list semantics.",
+      "returns": "Message, MessageService or None.",
+      "example": "message = await client.get_message(\"me\", message_id)",
+      "notes": [
+        "A single-ID convenience; missing/deleted/other-chat results remain None. The existing get_messages method always keeps its original list contract.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "iter_messages": {
+      "category": "Pagination",
+      "summary": "Use the familiar message iterator name for the existing lazy history traversal.",
+      "returns": "AsyncIterator[Message | MessageService].",
+      "example": "async for message in client.iter_messages(\"me\", limit=100, page_size=50):\n    print(message.id)",
+      "notes": [
+        "Same history order, exclusive offset, overlap bounds and lazy failures as iter_history. Searching remains explicit through iter_search.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "is_bot": {
+      "category": "Authentication",
+      "summary": "Inspect the authorized server identity to determine whether it is a bot.",
+      "returns": "bool.",
+      "example": "bot_account = await client.is_bot()",
+      "notes": [
+        "Requires connection and completed authorization. This is not inferred from session filenames or token-shaped strings.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_cached_media": {
+      "category": "Media messages",
+      "summary": "Reuse server photo/document metadata without reupload or foreign file-ID decoding.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_cached_media(\"me\", source_message, caption=\"Copy\")",
+      "notes": [
+        "Message inputs with noforwards are rejected. File references can expire; no reference refresh, download/reupload or unsupported media conversion is hidden.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_media": {
+      "category": "Media messages",
+      "summary": "Upload/send a photo or document with explicit caption, entities, keyboard and transfer controls.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_media(\"me\", \"photo.jpg\", caption=\"Photo\", silent=True)",
+      "notes": [
+        "Default is photo; as_document=True chooses a document. MIME applies only to document mode. This complements send_file without changing its existing optional parameters.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_media_group": {
+      "category": "Media messages",
+      "summary": "Upload and send a real photo/document album with per-item captions and response correlation.",
+      "returns": "list[Message] in requested item order.",
+      "example": "from gramflux import AlbumItem\nmessages = await client.send_media_group(\"me\", [AlbumItem(\"one.jpg\", \"First\"), AlbumItem(\"two.jpg\", \"Second\")])",
+      "notes": [
+        "Requires 2–10 AlbumItem values of the same photo/document family. Each upload is normalized through uploadMedia before sendMultiMedia. Progress is per upload, not aggregate. Video/audio/mixed-family album workflows are not exposed.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_video": {
+      "category": "Media messages",
+      "summary": "Upload/send MP4 video with explicit duration, dimensions and streaming metadata.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_video(\"me\", \"clip.mp4\", duration=3.5, width=640, height=360)",
+      "notes": [
+        "Metadata is required, not guessed or extracted by an undeclared dependency. No transcoding is performed; Telegram validates actual file compatibility.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_video_note": {
+      "category": "Media messages",
+      "summary": "Upload/send a round MP4 video note with explicit square dimensions.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_video_note(\"me\", \"note.mp4\", duration=3, length=240)",
+      "notes": [
+        "Length is the square frame side in pixels, not download byte length. round_message is set in the real video attribute.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_audio": {
+      "category": "Media messages",
+      "summary": "Upload/send MPEG audio with duration and optional track metadata.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_audio(\"me\", \"track.mp3\", duration=120, title=\"Track\", performer=\"Artist\")",
+      "notes": [
+        "Audio duration is an integer number of seconds. The helper supplies real audio attributes; it does not send text or inspect/transcode encoded audio.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_voice": {
+      "category": "Media messages",
+      "summary": "Upload/send an OGG voice note with explicit duration and optional waveform bytes.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_voice(\"me\", \"voice.ogg\", duration=8)",
+      "notes": [
+        "The voice attribute is set explicitly. Waveform is optional native bytes, not an audio-decoding or waveform-extraction promise.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_animation": {
+      "category": "Media messages",
+      "summary": "Upload/send GIF or MP4 animation using the animated-document attribute.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_animation(\"me\", \"animation.gif\")",
+      "notes": [
+        "MIME is image/gif by default; video/mp4 is also accepted explicitly. No conversion, frame extraction or automatic media probing occurs.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_sticker": {
+      "category": "Media messages",
+      "summary": "Upload/send sticker-format content with a sticker document attribute.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_sticker(\"me\", \"sticker.webp\", emoji=\"🙂\")",
+      "notes": [
+        "Default MIME is image/webp; explicit TGS/WebM MIME is accepted. Telegram validates format, dimensions and limits; no pack creation or file conversion is implied.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_venue": {
+      "category": "Media messages",
+      "summary": "Build and send a geographic venue with title, address and optional provider metadata.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_venue(\"me\", 52.52, 13.405, \"Meeting\", \"Berlin\")",
+      "notes": [
+        "Coordinates are finite degrees in latitude/longitude ranges. Empty provider fields describe a venue without an external place identifier.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_game": {
+      "category": "Bots",
+      "summary": "Send a registered bot game using an actual bot reference and short name.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_game(target_peer, bot_peer, \"game_name\")",
+      "notes": [
+        "Does not create/register a game or bypass bot eligibility. Game registration and destination permissions remain server controlled.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "send_poll": {
+      "category": "Media messages",
+      "summary": "Send a text poll or single-answer quiz through the real layer-225 poll media schema.",
+      "returns": "Native Message.",
+      "example": "message = await client.send_poll(group_peer, \"Lunch?\", [\"Pizza\", \"Salad\"], anonymous=True)",
+      "notes": [
+        "Supports 2–10 distinct nonempty options. correct_option is a zero-based integer index. Quiz solution fields share the proper TL flag. Rich attachments, country/subscriber restrictions and open-answer editing are not exposed.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
+      ]
+    },
+    "set_username": {
+      "category": "Account",
+      "summary": "Set or clear the current account ordinary username with local syntax validation.",
+      "returns": "Native User with the updated server account data.",
+      "example": "await client.set_username(name)",
+      "notes": [
+        "Accepts ordinary 5–32 character ASCII usernames or an empty string to clear. Collectible names and ownership rules remain separate server capabilities.",
+        "Requires a connected authorized account unless only a known identity is handled locally. Server RPC errors, deadlines and cancellation propagate; ambiguous writes are not automatically retried."
       ]
     }
   },

@@ -24,6 +24,7 @@ def Client(session: sessions.Session | str | pathlib.Path | storage.Storage | No
 | Property | Meaning |
 | --- | --- |
 | `connected` | Native connection state; does not imply authorization. |
+| `is_connected` | Additive alias of connected; a local bool, not an authorization RPC. |
 | `api` | Cached typed raw API facade; see [all raw methods](raw/index.md). |
 | `login_stage` | Saved `code`, `password` or None; available after connect. |
 | `login_challenge` | Saved LoginChallenge for explicit sign_in, or None. |
@@ -38,7 +39,7 @@ Existing methods below remain supported.
 
 ## Methods
 
-82 public methods, including lifecycle, subscriptions and stream factories.
+139 public methods, including lifecycle, subscriptions and stream factories.
 This is not a count of Telegram RPC endpoints.
 
 ### add_contact
@@ -70,6 +71,30 @@ Publish at most 50 native inline results with explicit caching and pagination ch
 ```python
 async def answer_inline_query(query_id: int, results: collections.abc.Sequence[Any], *, cache_time: int = 300, next_offset: str = '', private: bool = False, gallery: bool = False) -> bool
 ```
+
+### approve_chat_join_request
+
+Approve or dismiss one pending join request without bulk admission.
+
+[Full parameter reference and examples](client/approve_chat_join_request.md)
+
+```python
+async def approve_chat_join_request(peer: PeerLike, user: PeerLike, *, approve: bool = True) -> UpdateResult
+```
+
+Approve or dismiss one server join request; no bulk or implicit approval.
+
+### ban_chat_member
+
+Ban a peer from viewing a supergroup/channel until an explicit server timestamp.
+
+[Full parameter reference and examples](client/ban_chat_member.md)
+
+```python
+async def ban_chat_member(peer: PeerLike, user: PeerLike, *, until_date: int = 0) -> UpdateResult
+```
+
+Ban viewing in a supergroup/channel; rights/ownership remain server enforced.
 
 ### block_user
 
@@ -111,6 +136,90 @@ Open storage, restore native session metadata, establish the MTProto connection 
 async def connect() -> None
 ```
 
+### copy_message
+
+Copy accessible ordinary text or cached photo/document content without a forward header.
+
+[Full parameter reference and examples](client/copy_message.md)
+
+```python
+async def copy_message(peer: PeerLike, from_peer: PeerLike, message_id: int, *, reply_to: int | None = None, silent: bool = False) -> types.Message
+```
+
+Copy accessible ordinary text/photo/document content, rejecting protected messages.
+
+### create_channel
+
+Create a broadcast channel and return its uniquely identified server entity.
+
+[Full parameter reference and examples](client/create_channel.md)
+
+```python
+async def create_channel(title: str, *, about: str = '') -> types.Channel
+```
+
+Create a broadcast channel; creation is not retried after ambiguous failure.
+
+### create_chat_invite_link
+
+Create an invite using the existing export_invite_link implementation.
+
+[Full parameter reference and examples](client/create_chat_invite_link.md)
+
+```python
+async def create_chat_invite_link(peer: PeerLike, *, title: str | None = None, expire_date: int | None = None, usage_limit: int | None = None, request_needed: bool = False) -> types.ChatInviteExported | types.ChatInvitePublicJoinRequests
+```
+
+Create an invite using the supported existing export_invite_link operation.
+
+### create_group
+
+Resolve user references and create a basic group with explicit invitees.
+
+[Full parameter reference and examples](client/create_group.md)
+
+```python
+async def create_group(title: str, users: Sequence[PeerLike]) -> types.Chat
+```
+
+Create a basic group; returned entity does not imply every invitee was admitted.
+
+### create_supergroup
+
+Create a megagroup, optionally with forum topics enabled.
+
+[Full parameter reference and examples](client/create_supergroup.md)
+
+```python
+async def create_supergroup(title: str, *, about: str = '', forum: bool = False) -> types.Channel
+```
+
+Create a megagroup, optionally a forum, with explicit title/description.
+
+### delete_bot_commands
+
+Reset commands in one bot-command scope and language.
+
+[Full parameter reference and examples](client/delete_bot_commands.md)
+
+```python
+async def delete_bot_commands(*, lang_code: str = '', scope: TLObject | None = None) -> bool
+```
+
+Reset commands in the explicit bot scope/language; does not modify other scopes.
+
+### delete_chat_photo
+
+Remove a basic-group/channel photo through its appropriate endpoint.
+
+[Full parameter reference and examples](client/delete_chat_photo.md)
+
+```python
+async def delete_chat_photo(peer: PeerLike) -> UpdateResult
+```
+
+Remove the group/channel photo without inventing an empty uploaded file.
+
 ### delete_contacts
 
 Remove the selected user contacts from the account.
@@ -130,6 +239,18 @@ Delete validated IDs from an explicitly selected conversation.
 ```python
 async def delete_messages(peer: str | int | Any, ids: int | collections.abc.Sequence[int], *, revoke: bool = False) -> list[MessagesAffectedMessages]
 ```
+
+### delete_profile_photos
+
+Delete explicit native account photo references using their actual hashes.
+
+[Full parameter reference and examples](client/delete_profile_photos.md)
+
+```python
+async def delete_profile_photos(photos: Sequence[types.Photo | types.InputPhoto]) -> list[int]
+```
+
+Delete explicit server photo references, preserving access hashes and file references.
 
 ### disconnect
 
@@ -170,6 +291,30 @@ async def download_media(message: Message, destination: str | pathlib.Path | Bin
 
 Resolve document/photo metadata and stream an exact range to the destination.
 
+### download_profile_photo
+
+Fetch visible full profile metadata and download the largest supported photo size.
+
+[Full parameter reference and examples](client/download_profile_photo.md)
+
+```python
+async def download_profile_photo(peer: PeerLike, destination: str | Path | BinaryIO, *, on_progress: Progress | None = None) -> Path | None
+```
+
+Download a visible profile photo through the existing ranged file pipeline.
+
+### edit_folder
+
+Move explicit conversations between the main list and archive.
+
+[Full parameter reference and examples](client/edit_folder.md)
+
+```python
+async def edit_folder(peers: Sequence[PeerLike], folder_id: int) -> UpdateResult
+```
+
+Move explicit peers to main (0) or archive (1); custom dialog filters are distinct.
+
 ### edit_inline_message
 
 Edit the text/markup of an inline bot message by its native inline identifier.
@@ -189,6 +334,42 @@ Edit nonempty literal message text in a known peer.
 ```python
 async def edit_message(peer: str | int | Any, message_id: int, text: str, *, link_preview: bool = True) -> Any
 ```
+
+### edit_message_caption
+
+Edit literal caption/text with explicit entities and optional keyboard markup.
+
+[Full parameter reference and examples](client/edit_message_caption.md)
+
+```python
+async def edit_message_caption(peer: PeerLike, message_id: int, caption: str, *, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None) -> UpdateResult
+```
+
+Edit literal message/caption text with explicit entities and optional native keyboard.
+
+### edit_message_media
+
+Upload replacement photo/document media and optionally replace the literal caption.
+
+[Full parameter reference and examples](client/edit_message_media.md)
+
+```python
+async def edit_message_media(peer: PeerLike, message_id: int, source: Source, *, as_document: bool = False, caption: str | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> UpdateResult
+```
+
+Upload replacement photo/document media; None caption omits the text edit.
+
+### edit_message_reply_markup
+
+Replace message keyboard markup without editing text.
+
+[Full parameter reference and examples](client/edit_message_reply_markup.md)
+
+```python
+async def edit_message_reply_markup(peer: PeerLike, message_id: int, reply_markup: TLObject) -> UpdateResult
+```
+
+Replace markup only; use ReplyInlineMarkup(rows=[]) for explicit empty markup.
 
 ### export_invite_link
 
@@ -221,6 +402,18 @@ List Telegram authorizations attached to the current account.
 ```python
 async def get_active_sessions() -> list[Authorization]
 ```
+
+### get_admin_log
+
+Collect a finite supergroup/channel administration log.
+
+[Full parameter reference and examples](client/get_admin_log.md)
+
+```python
+async def get_admin_log(peer: PeerLike, *, query: str = '', limit: int = 100) -> list[types.ChannelAdminLogEvent]
+```
+
+Collect a finite channel/supergroup admin log; server admin eligibility still applies.
 
 ### get_bot_commands
 
@@ -264,6 +457,66 @@ Request full basic-group or channel/supergroup metadata using the appropriate en
 async def get_chat_full(peer: str | int | Any) -> MessagesChatFull
 ```
 
+### get_chat_history_count
+
+Request a minimal history page and read its actual server count.
+
+[Full parameter reference and examples](client/get_chat_history_count.md)
+
+```python
+async def get_chat_history_count(peer: PeerLike) -> int
+```
+
+Ask for a single history page and use its actual server count.
+
+### get_chat_invite_link
+
+Read the exported link available in full-chat metadata without creating one.
+
+[Full parameter reference and examples](client/get_chat_invite_link.md)
+
+```python
+async def get_chat_invite_link(peer: PeerLike) -> str | None
+```
+
+Read the exported link exposed by full-chat metadata; never creates one implicitly.
+
+### get_chat_member
+
+Retrieve one exposed member through channel lookup or basic-group participants.
+
+[Full parameter reference and examples](client/get_chat_member.md)
+
+```python
+async def get_chat_member(peer: PeerLike, user: PeerLike) -> ChatMember
+```
+
+Fetch one channel participant or inspect exposed basic-group participants.
+
+### get_chat_members_count
+
+Read an exposed channel/group participant count without guessing a hidden list size.
+
+[Full parameter reference and examples](client/get_chat_members_count.md)
+
+```python
+async def get_chat_members_count(peer: PeerLike) -> int
+```
+
+Read server member counts; never infer hidden counts from a truncated list.
+
+### get_chat_menu_button
+
+Fetch the bot menu for a user or the default user scope.
+
+[Full parameter reference and examples](client/get_chat_menu_button.md)
+
+```python
+async def get_chat_menu_button(user: PeerLike | None = None) -> TLObject
+```
+
+Fetch the bot menu for a user; None selects Telegram's default user scope.
+
 ### get_contacts
 
 Fetch the current complete contacts response with a zero cache hash.
@@ -284,6 +537,30 @@ Materialize a finite collection of dialogs using the lazy iterator.
 async def get_dialogs(*, limit: int = 100, folder_id: int = 0) -> list[dialogs.Dialog]
 ```
 
+### get_drafts
+
+Fetch actual nonempty cloud drafts in one server snapshot.
+
+[Full parameter reference and examples](client/get_drafts.md)
+
+```python
+async def get_drafts() -> list[Draft]
+```
+
+Fetch the account's nonempty cloud drafts in one server snapshot.
+
+### get_entity
+
+Fetch an accessible full user/chat/channel from common references, including public username links.
+
+[Full parameter reference and examples](client/get_entity.md)
+
+```python
+async def get_entity(peer: PeerLike) -> Entity
+```
+
+Fetch an accessible full entity; public username links are accepted.
+
 ### get_history
 
 Collect a finite newest-first message history.
@@ -294,6 +571,18 @@ Collect a finite newest-first message history.
 async def get_history(peer: str | int | Any, *, limit: int = 100, offset_id: int = 0) -> list[Message | MessageService]
 ```
 
+### get_inline_bot_results
+
+Resolve a bot and destination and retrieve server inline results.
+
+[Full parameter reference and examples](client/get_inline_bot_results.md)
+
+```python
+async def get_inline_bot_results(bot: PeerLike, query: str, *, peer: PeerLike = 'me', offset: str = '') -> types.messages.BotResults
+```
+
+Familiar direct entry point for the existing get_inline_results implementation.
+
 ### get_inline_results
 
 Request inline results from a bot for a query and target peer context.
@@ -303,6 +592,18 @@ Request inline results from a bot for a query and target peer context.
 ```python
 async def get_inline_results(bot: str | int | Any, query: str, *, peer: str | int | Any = 'me', offset: str = '') -> MessagesBotResults
 ```
+
+### get_input_entity
+
+Resolve an input peer suitable for requests without constructing TL objects manually.
+
+[Full parameter reference and examples](client/get_input_entity.md)
+
+```python
+async def get_input_entity(peer: PeerLike, *, refresh: bool = False) -> InputPeer
+```
+
+Resolve an input peer without guessing access hashes or joining invites.
 
 ### get_me
 
@@ -324,6 +625,18 @@ Materialize a finite list of accessible participant records.
 async def get_members(peer: str | int | Any, *, limit: int = 100, query: str = '') -> list[chats.ChatMember]
 ```
 
+### get_message
+
+Fetch one peer-scoped message while preserving get_messages list semantics.
+
+[Full parameter reference and examples](client/get_message.md)
+
+```python
+async def get_message(peer: PeerLike, message_id: int) -> Message | None
+```
+
+Get one scoped message without changing the legacy get_messages list contract.
+
 ### get_messages
 
 Retrieve explicit IDs while preserving requested order and duplicate IDs.
@@ -335,6 +648,42 @@ async def get_messages(peer: str | int | Any, ids: int | collections.abc.Sequenc
 ```
 
 Preserve ID order/duplicates; unavailable or other-chat messages are None.
+
+### get_participants
+
+Collect visible members through the existing get_members implementation.
+
+[Full parameter reference and examples](client/get_participants.md)
+
+```python
+async def get_participants(peer: PeerLike, *, limit: int = 100, query: str = '') -> list[ChatMember]
+```
+
+Collect visible members through the existing group/channel service.
+
+### get_peer_id
+
+Return a marked identity without confusing identity knowledge with access rights.
+
+[Full parameter reference and examples](client/get_peer_id.md)
+
+```python
+async def get_peer_id(peer: PeerLike) -> int
+```
+
+Return a marked identity; knowing an ID does not manufacture access rights.
+
+### get_profile_photos
+
+Collect visible user profile photos with bounded server paging.
+
+[Full parameter reference and examples](client/get_profile_photos.md)
+
+```python
+async def get_profile_photos(peer: PeerLike = 'me', *, limit: int = 100) -> list[types.Photo]
+```
+
+Fetch visible user profile photos in bounded 100-photo pages.
 
 ### get_user
 
@@ -355,6 +704,18 @@ Request the full Telegram user profile for a user peer.
 ```python
 async def get_user_full(peer: str | int | Any = 'me') -> UsersUserFull
 ```
+
+### get_users
+
+Resolve multiple user references and fetch native user batches.
+
+[Full parameter reference and examples](client/get_users.md)
+
+```python
+async def get_users(peers: Sequence[PeerLike]) -> list[types.User | types.UserEmpty]
+```
+
+Resolve users and fetch batches of at most 100; retain native empty-user results.
 
 ### import_invite
 
@@ -387,6 +748,30 @@ Ask Telegram whether this authorization key is attached to an authorized account
 ```python
 async def is_authorized() -> bool
 ```
+
+### is_bot
+
+Inspect the authorized server identity to determine whether it is a bot.
+
+[Full parameter reference and examples](client/is_bot.md)
+
+```python
+async def is_bot() -> bool
+```
+
+Fetch the authorized identity and inspect its server-provided bot flag.
+
+### iter_admin_log
+
+Stream admin-log pages backwards with bounded overlap and cursor validation.
+
+[Full parameter reference and examples](client/iter_admin_log.md)
+
+```python
+async def iter_admin_log(peer: PeerLike, *, query: str = '', limit: int | None = None, max_id: int = 0, page_size: int = 100) -> AsyncIterator[types.ChannelAdminLogEvent]
+```
+
+Traverse admin-log IDs backwards lazily with bounded overlap detection.
 
 ### iter_dialogs
 
@@ -424,6 +809,18 @@ async def iter_download_media(message: Message, *, offset: int = 0, length: int 
 
 Yield document/photo bytes on demand, including arbitrary range edges.
 
+### iter_drafts
+
+Delay fetching the cloud-draft snapshot until iteration begins.
+
+[Full parameter reference and examples](client/iter_drafts.md)
+
+```python
+async def iter_drafts() -> AsyncIterator[Draft]
+```
+
+Lazy initial request, then iterate one complete server snapshot (not paginated).
+
 ### iter_history
 
 Lazily traverse accessible messages newest first, starting before offset_id when supplied.
@@ -445,6 +842,18 @@ Lazily enumerate accessible basic-group or channel/supergroup participants.
 ```python
 def iter_members(peer: str | int | Any, *, limit: int | None = None, query: str = '', page_size: int = 100) -> collections.abc.AsyncIterator[chats.ChatMember]
 ```
+
+### iter_messages
+
+Use the familiar message iterator name for the existing lazy history traversal.
+
+[Full parameter reference and examples](client/iter_messages.md)
+
+```python
+def iter_messages(peer: PeerLike, *, limit: int | None = None, offset_id: int = 0, page_size: int = 100) -> AsyncIterator[Message]
+```
+
+Lazy history convenience; explicit searching remains iter_search.
 
 ### iter_search
 
@@ -641,6 +1050,18 @@ Pin a message in the selected conversation.
 async def pin_message(peer: str | int | Any, message_id: int, *, silent: bool = True) -> Any
 ```
 
+### promote_chat_member
+
+Set explicit administrator grants and an optional rank for a channel member.
+
+[Full parameter reference and examples](client/promote_chat_member.md)
+
+```python
+async def promote_chat_member(peer: PeerLike, user: PeerLike, privileges: AdminPrivileges, *, rank: str = '') -> UpdateResult
+```
+
+Set explicit admin grants; all-false privileges remove admin rights.
+
 ### read_history
 
 Mark history as read using the user/group or channel endpoint.
@@ -675,6 +1096,30 @@ async def resolve_peer(peer: str | int | Any, *, refresh: bool = False) -> Any
 
 Resolve usernames/marked IDs without inventing access hashes.
 
+### restrict_chat_member
+
+Apply explicit allowed-action settings to a supergroup/channel member.
+
+[Full parameter reference and examples](client/restrict_chat_member.md)
+
+```python
+async def restrict_chat_member(peer: PeerLike, user: PeerLike, permissions: ChatPermissions, *, until_date: int = 0) -> UpdateResult
+```
+
+Translate allowed actions into banned rights for a supergroup/channel member.
+
+### revoke_chat_invite_link
+
+Revoke a supplied real Telegram invite URL without removing current members.
+
+[Full parameter reference and examples](client/revoke_chat_invite_link.md)
+
+```python
+async def revoke_chat_invite_link(peer: PeerLike, link: str) -> types.messages.ExportedChatInvite | types.messages.ExportedChatInviteReplaced
+```
+
+Revoke the supplied real invite link; does not remove existing participants.
+
 ### run_until_disconnected
 
 Wait for backend disconnection while allowing other asyncio tasks to run.
@@ -704,6 +1149,54 @@ Collect a finite set of server-side search results in one peer.
 ```python
 async def search_messages(peer: str | int | Any, query: str, *, limit: int = 100, sender: str | int | Any | None = None) -> list[Message | MessageService]
 ```
+
+### search_messages_count
+
+Count a conversation search using Telegram search semantics.
+
+[Full parameter reference and examples](client/search_messages_count.md)
+
+```python
+async def search_messages_count(peer: PeerLike, query: str, *, sender: PeerLike | None = None) -> int
+```
+
+Count a server-side conversation search, optionally restricted to a sender.
+
+### send_animation
+
+Upload/send GIF or MP4 animation using the animated-document attribute.
+
+[Full parameter reference and examples](client/send_animation.md)
+
+```python
+async def send_animation(peer: PeerLike, source: Source, *, mime_type: str = 'image/gif', caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Upload/send animation with explicit server metadata and literal caption.
+
+### send_audio
+
+Upload/send MPEG audio with duration and optional track metadata.
+
+[Full parameter reference and examples](client/send_audio.md)
+
+```python
+async def send_audio(peer: PeerLike, source: Source, *, duration: int, title: str | None = None, performer: str | None = None, caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Upload/send audio with explicit server metadata and literal caption.
+
+### send_cached_media
+
+Reuse server photo/document metadata without reupload or foreign file-ID decoding.
+
+[Full parameter reference and examples](client/send_cached_media.md)
+
+```python
+async def send_cached_media(peer: PeerLike, media: types.Message | types.Photo | types.Document, *, caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None) -> types.Message
+```
+
+Reuse native photo/document metadata; opaque file-ID strings are unsupported.
 
 ### send_contact
 
@@ -737,7 +1230,7 @@ async def send_document(peer: str | int | Any, source: str | pathlib.Path | Bina
 
 ### send_file
 
-Send an uploaded handle or native supported InputMedia using the selected peer and caption.
+Send a local path/stream, uploaded handle or supported native media through the existing upload and send pipeline.
 
 [Full parameter reference and examples](client/send_file.md)
 
@@ -746,6 +1239,30 @@ async def send_file(peer: str | int | Any, file: InputFile | InputFileBig | Any,
 ```
 
 Send uploaded media using the client's result correlation.
+
+### send_game
+
+Send a registered bot game using an actual bot reference and short name.
+
+[Full parameter reference and examples](client/send_game.md)
+
+```python
+async def send_game(peer: PeerLike, bot: PeerLike, short_name: str, *, reply_to: int | None = None, silent: bool = False) -> types.Message
+```
+
+Send a registered bot game; eligibility and game permissions are server enforced.
+
+### send_inline_bot_result
+
+Send a real inline result using its server query identity and result ID.
+
+[Full parameter reference and examples](client/send_inline_bot_result.md)
+
+```python
+async def send_inline_bot_result(peer: PeerLike, query_id: int, result_id: str, *, reply_to: int | None = None, silent: bool = False) -> types.Message
+```
+
+Send one actual inline result using its query ID and opaque result ID.
 
 ### send_location
 
@@ -756,6 +1273,30 @@ Send a static geographic point with validated finite coordinates.
 ```python
 async def send_location(peer: str | int | Any, latitude: float, longitude: float) -> Message
 ```
+
+### send_media
+
+Upload/send a photo or document with explicit caption, entities, keyboard and transfer controls.
+
+[Full parameter reference and examples](client/send_media.md)
+
+```python
+async def send_media(peer: PeerLike, source: Source, *, as_document: bool = False, caption: str = '', mime_type: str | None = None, reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Send photo/document media with formatting, progress and delivery options.
+
+### send_media_group
+
+Upload and send a real photo/document album with per-item captions and response correlation.
+
+[Full parameter reference and examples](client/send_media_group.md)
+
+```python
+async def send_media_group(peer: PeerLike, items: Sequence[AlbumItem], *, reply_to: int | None = None, silent: bool = False, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> list[types.Message]
+```
+
+Send 2–10 photos or 2–10 documents as an album, with explicit per-item captions.
 
 ### send_message
 
@@ -779,6 +1320,18 @@ Upload a source, explicitly wrap it as photo media, then send it.
 async def send_photo(peer: str | int | Any, source: str | pathlib.Path | BinaryIO, *, caption: str = '', reply_to: int | None = None, on_progress: collections.abc.Callable[[int, int], collections.abc.Awaitable[None] | None] | None = None, part_size: int = 524288, concurrency: int = 1) -> Message
 ```
 
+### send_poll
+
+Send a text poll or single-answer quiz through the real layer-225 poll media schema.
+
+[Full parameter reference and examples](client/send_poll.md)
+
+```python
+async def send_poll(peer: PeerLike, question: str, options: Sequence[str], *, anonymous: bool = True, multiple_choice: bool = False, correct_option: int | None = None, solution: str | None = None, reply_to: int | None = None, silent: bool = False) -> types.Message
+```
+
+Create a 2–10-option text poll or single-answer quiz using layer-225 field types.
+
 ### send_reaction
 
 Set, replace or remove the current account's reaction on a message.
@@ -788,6 +1341,66 @@ Set, replace or remove the current account's reaction on a message.
 ```python
 async def send_reaction(peer: str | int | Any, message_id: int, reactions: str | collections.abc.Sequence[Any] | None, *, big: bool = False, add_to_recent: bool = True) -> Any
 ```
+
+### send_sticker
+
+Upload/send sticker-format content with a sticker document attribute.
+
+[Full parameter reference and examples](client/send_sticker.md)
+
+```python
+async def send_sticker(peer: PeerLike, source: Source, *, emoji: str = '', mime_type: str = 'image/webp', caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Upload/send sticker with explicit server metadata and literal caption.
+
+### send_venue
+
+Build and send a geographic venue with title, address and optional provider metadata.
+
+[Full parameter reference and examples](client/send_venue.md)
+
+```python
+async def send_venue(peer: PeerLike, latitude: float, longitude: float, title: str, address: str, *, provider: str = '', venue_id: str = '', venue_type: str = '', reply_to: int | None = None, silent: bool = False) -> types.Message
+```
+
+Send a geographic venue with explicit provider metadata, not plain text.
+
+### send_video
+
+Upload/send MP4 video with explicit duration, dimensions and streaming metadata.
+
+[Full parameter reference and examples](client/send_video.md)
+
+```python
+async def send_video(peer: PeerLike, source: Source, *, duration: float, width: int, height: int, supports_streaming: bool = False, caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Upload/send video with explicit server metadata and literal caption.
+
+### send_video_note
+
+Upload/send a round MP4 video note with explicit square dimensions.
+
+[Full parameter reference and examples](client/send_video_note.md)
+
+```python
+async def send_video_note(peer: PeerLike, source: Source, *, duration: float, length: int, caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Upload/send video note with explicit server metadata and literal caption.
+
+### send_voice
+
+Upload/send an OGG voice note with explicit duration and optional waveform bytes.
+
+[Full parameter reference and examples](client/send_voice.md)
+
+```python
+async def send_voice(peer: PeerLike, source: Source, *, duration: int, waveform: bytes | None = None, caption: str = '', reply_to: int | None = None, silent: bool = False, entities: Sequence[TLObject] | None = None, reply_markup: TLObject | None = None, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.Message
+```
+
+Upload/send voice with explicit server metadata and literal caption.
 
 ### set_bot_commands
 
@@ -809,6 +1422,42 @@ Set or clear a chat about/description field.
 async def set_chat_description(peer: str | int | Any, description: str) -> bool
 ```
 
+### set_chat_menu_button
+
+Set a default/user bot menu to a Web App, commands menu or Telegram default.
+
+[Full parameter reference and examples](client/set_chat_menu_button.md)
+
+```python
+async def set_chat_menu_button(user: PeerLike | None = None, *, text: str | None = None, url: str | None = None, commands: bool = False) -> bool
+```
+
+Set a bot's per-user/default Web App menu, commands menu or default menu.
+
+### set_chat_permissions
+
+Set default group member permissions using a positive high-level settings object.
+
+[Full parameter reference and examples](client/set_chat_permissions.md)
+
+```python
+async def set_chat_permissions(peer: PeerLike, permissions: ChatPermissions) -> UpdateResult
+```
+
+Set default group member rights; does not grant admin powers.
+
+### set_chat_photo
+
+Upload and set a basic-group/channel photo without manual TL construction.
+
+[Full parameter reference and examples](client/set_chat_photo.md)
+
+```python
+async def set_chat_photo(peer: PeerLike, source: Source, *, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> UpdateResult
+```
+
+Upload and set a basic-group/channel photo through its proper endpoint.
+
 ### set_chat_title
 
 Change a basic group or channel/supergroup title using the appropriate endpoint.
@@ -819,6 +1468,18 @@ Change a basic group or channel/supergroup title using the appropriate endpoint.
 async def set_chat_title(peer: str | int | Any, title: str) -> Any
 ```
 
+### set_profile_photo
+
+Upload and set a still account profile photo.
+
+[Full parameter reference and examples](client/set_profile_photo.md)
+
+```python
+async def set_profile_photo(source: Source, *, on_progress: Progress | None = None, part_size: int = 524288, concurrency: int = 1) -> types.photos.Photo
+```
+
+Upload and set a still profile photo, returning actual photo/user metadata.
+
 ### set_typing
 
 Send a native typing or other SendMessageAction notification, optionally in a topic.
@@ -828,6 +1489,18 @@ Send a native typing or other SendMessageAction notification, optionally in a to
 ```python
 async def set_typing(peer: str | int | Any, *, action: Any | None = None, top_message_id: int | None = None) -> bool
 ```
+
+### set_username
+
+Set or clear the current account ordinary username with local syntax validation.
+
+[Full parameter reference and examples](client/set_username.md)
+
+```python
+async def set_username(username: str) -> types.User
+```
+
+Set/clear an ordinary account username; availability is determined by Telegram.
 
 ### sign_in
 
@@ -870,6 +1543,18 @@ Revoke the specific remote authorization identified by its hash.
 ```python
 async def terminate_session(authorization_hash: int) -> bool
 ```
+
+### unban_chat_member
+
+Clear a supergroup/channel member ban and restriction flags.
+
+[Full parameter reference and examples](client/unban_chat_member.md)
+
+```python
+async def unban_chat_member(peer: PeerLike, user: PeerLike) -> UpdateResult
+```
+
+Clear ban/restriction flags; this does not add the user back to the chat.
 
 ### unblock_user
 

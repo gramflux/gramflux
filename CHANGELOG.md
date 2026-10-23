@@ -1,7 +1,12 @@
 # Changelog
 
 
-## Unreleased — additive Next-Generation API
+## Unreleased — direct high-level Client and optional organization API
+
+- Add 57 typed direct Client methods for media, entities, permissions, bots, photos and admin history.
+- Extend send_file to local paths/streams while preserving existing handle behavior and defaults.
+- Keep direct methods primary; document all 139 public Client methods and explicit deferred capabilities.
+- Share original peer resolution, upload and native request paths without competing dependencies.
 
 - Typed domains and local chat/history/search/member resources delegate to existing Client methods.
 - Standalone nested Routers compile to the original dispatcher, with explicit mount/removal contracts.

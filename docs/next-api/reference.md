@@ -2143,7 +2143,7 @@ Description text. For set_chat_description this is the chat's about field, and e
 async def send_file(file: types.InputFile | types.InputFileBig | types.TypeInputMedia, *, caption: str = '', reply_to: int | None = None, as_document: bool = False, mime_type: str | None = None) -> types.Message
 ```
 
-Send an uploaded handle or native supported InputMedia using the selected peer and caption.
+Send a local path/stream, uploaded handle or supported native media through the existing upload and send pipeline.
 
 Delegates to [Client.send_file](../reference/client/send_file.md).
 
@@ -2159,7 +2159,7 @@ Delegates to [Client.send_file](../reference/client/send_file.md).
 
 ##### file
 
-Already uploaded InputFile/InputFileBig handle or supported native InputMedia object. This method does not accept a local path in place of a handle; use send_document/send_photo or upload_file first.
+Local path, supported binary stream, uploaded InputFile/InputFileBig, or native InputMedia. New local JPG/JPEG/PNG paths use photo mode unless as_document=True or an explicit MIME type selects document mode. Previously accepted uploaded handles retain their original document behavior.
 
 ##### caption
 

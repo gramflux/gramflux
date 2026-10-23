@@ -61,7 +61,7 @@ overwritten silently.
 Generated reference code blocks are excluded from Ruff formatting so generation
 is deterministic. Handwritten Markdown Python blocks remain format checked.
 
-The reference contains 918 pages: individual pages for the 82 public Client methods
+The reference contains 975 pages: individual pages for the 139 public Client methods
 and its constructor, 783 raw functions, eight event classes and 13 builder/filter/
 session helpers, plus indexes. Curated parameter explanations live in
 `src/gramflux/tools/data/client_reference.json`. Edit that source rather than

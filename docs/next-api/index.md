@@ -14,8 +14,9 @@ may not contain Router or the new views.
 
 :::
 
-For new projects, organize operations by domain and define subscriptions in standalone
-Routers. The original Client methods remain supported with their existing signatures,
+For new projects, use [direct Client methods](../client-methods/index.md) for everyday
+operations and standalone Routers for modular handlers. Domain views and chat resources
+are optional contextual alternatives. The original Client methods remain supported with their existing signatures,
 defaults, results and exceptions. You can adopt one view without migrating everything.
 
 ## What owns what?
@@ -35,13 +36,13 @@ There is no additional connection, event loop, dispatcher, queue or write-retry 
 
 ## Start with one operation
 
-### Legacy API — supported
+### Direct Client API — primary and supported
 
 ```python
 await client.send_message(peer, "Hello")
 ```
 
-### Next-Generation API — recommended for new projects
+### Optional contextual resource API
 
 ```python
 chat = client.chat(peer)
