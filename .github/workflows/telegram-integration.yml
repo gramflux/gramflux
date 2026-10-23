@@ -24,8 +24,9 @@ jobs:
       GRAMFLUX_LIVE: ${{ inputs.scope != 'bot-login' && '1' || '0' }}
       GRAMFLUX_LIVE_BOT: ${{ inputs.scope == 'bot-login' && '1' || '0' }}
       GRAMFLUX_LIVE_WRITE: ${{ inputs.scope == 'self-roundtrip' && '1' || '0' }}
-      GRAMFLUX_SESSION: ${{ runner.temp }}/gramflux-test.session
     steps:
+      - name: Set dedicated session location
+        run: printf '%s\n' "GRAMFLUX_SESSION=$RUNNER_TEMP/gramflux-test.session" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           persist-credentials: false

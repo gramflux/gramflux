@@ -1,0 +1,65 @@
+{
+  "scope": "Separate follow-up for two pre-existing CI failures; no MTProto or public callable changes",
+  "verified_at": "2026-10-23T19:59:25.652725+00:00",
+  "feature_commit": "46a0af42769ecc05ff9137b612a96c4d2c250c7d",
+  "failures_reproduced": [
+    {
+      "issue": "Python 3.13 documentation renderer leaks pathlib._local.Path in generic/union annotations",
+      "baseline": "Confirmed the formatter from commit 056a998 on Python 3.13.16 emits str | pathlib._local.Path",
+      "failed_tests": [
+        "tests/unit/test_docs_reference.py::test_reference_preserves_resumable_login_and_safe_stable_signatures",
+        "tests/unit/test_next_resources.py::test_legacy_contract_and_imports_remain_intact"
+      ],
+      "fix": "Canonicalize the private pathlib._local module to its public pathlib spelling in documentation only",
+      "regression": "tests/unit/test_next_documentation.py::test_path_annotations_use_public_spelling_across_python_versions"
+    },
+    {
+      "issue": "runner context is invalid in job-level env for manual Telegram workflow",
+      "diagnostic": "actionlint v1.7.12 reported context runner is not allowed here at telegram-integration.yml:27",
+      "fix": "Set the dedicated session path through RUNNER_TEMP/GITHUB_ENV in the first run step; preserve manual-only trigger and cleanup semantics",
+      "validation": "actionlint passed across all workflows after the fix; no authenticated live workflow was triggered"
+    }
+  ],
+  "verification": [
+    {
+      "command": ".venv/bin/pytest -q",
+      "result": "1701 passed, 6 skipped, 4 warnings in 61.61s"
+    },
+    {
+      "command": "/tmp/gramflux-python313/bin/python -m pytest -q",
+      "python": "3.13.16",
+      "result": "1701 passed, 6 skipped, 4 warnings in 61.90s"
+    },
+    {
+      "command": "/tmp/gramflux-next-wheel/bin/python -I -m pytest /root/gramjet/tests",
+      "python": "3.12.3; installed rebuilt wheel",
+      "result": "1701 passed, 6 skipped, 4 warnings in 60.61s"
+    },
+    {
+      "command": "/tmp/gramflux-python313/bin/python -m pytest tests/unit/test_docs_reference.py tests/unit/test_next_documentation.py tests/unit/test_next_resources.py -q",
+      "result": "230 passed in 7.73s before the additional regression test was added"
+    },
+    {
+      "command": ".venv/bin/ruff check .",
+      "result": "passed"
+    },
+    {
+      "command": ".venv/bin/ruff format --check .",
+      "result": "182 files already formatted"
+    },
+    {
+      "command": ".venv/bin/mypy src",
+      "result": "59 source files passed"
+    },
+    {
+      "command": "/tmp/gramflux-next-actionlint-v1712/actionlint -color=false",
+      "result": "all workflows passed"
+    },
+    {
+      "command": ".venv/bin/python -m build",
+      "result": "wheel/sdist rebuilt and installed for isolated tests"
+    }
+  ],
+  "compatibility": "Original tests and API parameter/return contracts are unchanged. Existing 3.11/3.12/3.14 GitHub quality jobs already passed for the feature commit; the follow-up reruns the full matrix.",
+  "availability": "Feature remains unreleased on PyPI; use the development checkout or locally built distribution."
+}

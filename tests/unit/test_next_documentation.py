@@ -92,3 +92,11 @@ def test_command_signature_uses_a_valid_enum_expression_not_its_repr():
     text = signature("command", Router.command)
     assert "direction: Direction = Direction.INCOMING" in text
     ast.parse(text + ":\n    return None\n")
+
+
+def test_path_annotations_use_public_spelling_across_python_versions():
+    from gramflux.tools.docs import type_name
+
+    assert "pathlib.Path" in type_name(str | Path)
+    assert "pathlib._local" not in type_name(str | Path)
+    assert "pathlib.Path" in type_name(list[Path | None])

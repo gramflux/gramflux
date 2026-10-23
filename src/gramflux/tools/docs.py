@@ -44,7 +44,7 @@ def type_name(value: Any) -> str:
     if isinstance(value, type):
         return value.__name__
     text = str(value).replace("typing.", "").replace("gramflux.tl.generated.objects.", "")
-    return text.replace("gramflux.", "")
+    return text.replace("gramflux.", "").replace("pathlib._local.", "pathlib.")
 
 
 def table_type(value: Any) -> str:
