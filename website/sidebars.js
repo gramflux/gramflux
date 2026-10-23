@@ -19,14 +19,35 @@ module.exports = {
   documentation: [
     'index',
     {type: 'category', label: 'Getting started', collapsed: false, items: [
-      'getting-started/installation', 'getting-started/quickstart', 'getting-started/concepts',
+      'getting-started/installation', 'getting-started/quickstart', 'getting-started/next-steps',
     ]},
-    {type: 'category', label: 'Guides', collapsed: false, items: [
-      'guides/authentication', 'guides/sessions', 'guides/parameters', 'guides/core-operations',
-      'guides/events', 'guides/bots-and-events', 'guides/files', 'guides/async-api',
-      'guides/errors', 'guides/configuration', 'guides/troubleshooting',
-      'guides/migration', 'guides/live-validation',
-      {type: 'doc', id: 'guides/operations', label: 'Operational notes'},
+    {type: 'category', label: 'Tutorials', items: [
+      'tutorials/reply-bot',
+    ]},
+    {type: 'category', label: 'How-to guides', items: [
+      {type: 'category', label: 'Accounts and connections', items: [
+        'guides/authentication', 'guides/sessions', 'guides/lifecycle', 'guides/configuration',
+      ]},
+      {type: 'category', label: 'Messages and conversations', items: [
+        'guides/messaging', 'guides/history', 'guides/core-operations',
+      ]},
+      {type: 'category', label: 'Events, bots and files', items: [
+        'guides/events', 'guides/bots-and-events', 'guides/files',
+      ]},
+      {type: 'category', label: 'Advanced usage', items: [
+        'guides/async-api', 'guides/errors', 'guides/migration', 'guides/live-validation',
+        {type: 'doc', id: 'guides/operations', label: 'Operational notes'},
+      ]},
+    ]},
+    {type: 'category', label: 'Concepts', items: [
+      'getting-started/concepts', 'concepts/asyncio', 'concepts/entities',
+      'concepts/messages', 'concepts/updates', 'guides/parameters',
+    ]},
+    {type: 'category', label: 'Quick references', link: {type: 'doc', id: 'quick-references/index'}, items: [
+      'quick-references/client', 'quick-references/events',
+    ]},
+    {type: 'category', label: 'Help and troubleshooting', items: [
+      'guides/faq', 'guides/troubleshooting',
     ]},
     {type: 'category', label: 'API reference', items: [
       'api',

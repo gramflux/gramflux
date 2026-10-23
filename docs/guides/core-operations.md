@@ -1,6 +1,6 @@
 # Core operations
 
-These services use GramFlux's native layer-225 API types and MTProto runtime in 0.3.0a1.
+These services use GramFlux's pinned layer-225 types and native MTProto runtime.
 The native engine has no competing Telegram client dependency. The operations below
 have deterministic tests; personal-account end-to-end interoperability remains pending.
 Raw constructors are keyword-only and raw dates are Unix seconds.

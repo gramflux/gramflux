@@ -14,18 +14,61 @@ The runtime belongs to GramFlux: connection framing, authorization-key exchange,
 encrypted envelopes, request correlation, SRP, update recovery and file pipelines.
 No competing Telegram client is a runtime dependency or fallback.
 
-## Choose your next step
+## Start here
 
-| You want to… | Read |
-| --- | --- |
-| Install and send your first message | [Quick start](getting-started/quickstart.md) |
-| Register, reopen or temporarily authorize an account | [Authentication](guides/authentication.md) |
-| Stop login now and resume in another process | [Resumable login](guides/authentication.md#resume-login-after-stopping-the-process) |
-| React to messages, callbacks and inline queries | [Events and filters](guides/events.md) |
-| Upload documents or stream downloads | [File transfers](guides/files.md) |
-| Call an official method directly | [Typed raw API](guides/async-api.md) |
-| Check a signature or parameter | [Client reference](reference/client.md) |
-| Understand defaults, variants and optional arguments | [Parameter guide](guides/parameters.md) |
+New to GramFlux? Follow [Installation](getting-started/installation.md), then run the
+[complete quick start](getting-started/quickstart.md). Continue with
+[Where to go next](getting-started/next-steps.md) to choose a user-account, bot or
+existing-service learning path. The Next/Previous links follow the sidebar order.
+
+Already using the library? Open the [Client quick reference](quick-references/client.md)
+to find an operation by task, or the [event quick reference](quick-references/events.md)
+to choose a subscription. Every entry leads to a separate detailed API page.
+
+## Documentation map
+
+### Getting started and tutorials
+
+- [Installation](getting-started/installation.md): requirements, development installs and version checks.
+- [Your first client](getting-started/quickstart.md): authorize once, reopen a session, send and receive.
+- [Build a command bot](tutorials/reply-bot.md): a complete application with observable test steps.
+- [Learning paths](getting-started/next-steps.md): prerequisites and recommended chapter order.
+
+### Concepts
+
+- [Core concepts](getting-started/concepts.md): connection, authorization, sessions and API levels.
+- [Asyncio and concurrency](concepts/asyncio.md): await, async iterators, task ownership and cancellation.
+- [Entities and identifiers](concepts/entities.md): input peers, access hashes, marked IDs and username caching.
+- [Messages and results](concepts/messages.md): constructor variants, formatting, media and helper ownership.
+- [Updates and delivery](concepts/updates.md): ordering, filtering, recovery, backpressure and checkpoints.
+- [Parameter conventions](guides/parameters.md): required fields, omission, defaults and raw flags.
+
+### How-to guides
+
+- [Authenticate](guides/authentication.md), [resume a login](guides/authentication.md#resume-login-after-stopping-the-process)
+  and [choose session storage](guides/sessions.md).
+- [Own the client lifecycle](guides/lifecycle.md) and [configure its bounds](guides/configuration.md).
+- [Send and manage messages](guides/messaging.md) and [paginate history or dialogs](guides/history.md).
+- [Receive events](guides/events.md), [answer bot interactions](guides/bots-and-events.md)
+  and [transfer files](guides/files.md).
+- [Call the raw API](guides/async-api.md), [handle failures](guides/errors.md)
+  and [migrate an application](guides/migration.md).
+
+### References and help
+
+- [Client methods at a glance](quick-references/client.md) and [events at a glance](quick-references/events.md).
+- [Detailed Client reference](reference/client.md), [events](reference/events.md),
+  [filters](reference/filters.md), [buttons](reference/buttons.md) and [configuration](reference/configuration.md).
+- [Raw Telegram API](reference/raw/index.md): 783 pinned method declarations, native inputs and results.
+- [FAQ](guides/faq.md), [troubleshooting](guides/troubleshooting.md)
+  and [compatibility](design/compatibility.md).
+
+## How to read the examples
+
+Complete tutorials include imports, credentials, session intent and the entry point.
+Short guide snippets assume the prerequisites stated on their page. Reference examples
+show an individual operation; raw call templates require real application/server data.
+Read the linked return and error sections instead of assuming all calls return a Message.
 
 ## Know the current boundaries
 

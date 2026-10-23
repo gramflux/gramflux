@@ -103,3 +103,32 @@ test('individual raw reference distinguishes native inputs and ordinary flags', 
   await expect(flags).toContainText('Required');
   expect(errors).toEqual([]);
 });
+
+test('learning path leads from quick start to conceptual chapters', async ({page}) => {
+  const errors = runtimeErrors(page);
+  await page.goto('docs/getting-started/quickstart/');
+  const next = page.locator('.pagination-nav__link--next');
+  await expect(next).toContainText('Where to go next');
+  await next.click();
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Where to go next');
+  await page.locator('article').getByRole('link', {name: 'Asyncio', exact: true}).click();
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Asyncio and concurrency');
+  await expect(page.locator('article')).toContainText('TaskGroup');
+  await expect(page.locator('article')).toContainText('Cancellation is not a rollback');
+  await page.goto('docs/quick-references/client/');
+  await expect(page.locator('article table a[href*="/reference/client/"]')).toHaveCount(82);
+  expect(errors).toEqual([]);
+});
+
+test('complete tutorial and documentation map expose separate learning sections', async ({page}) => {
+  await page.goto('docs/');
+  for (const label of ['Getting started and tutorials', 'Concepts', 'How-to guides', 'References and help']) {
+    await expect(page.locator('article').getByRole('heading', {name: new RegExp(`^${label}`)})).toBeVisible();
+  }
+  await page.locator('article').getByRole('link', {name: 'Build a command bot', exact: true}).click();
+  await expect(page.getByRole('heading', {level: 1})).toHaveText('Build a command bot');
+  await expect(page.locator('article')).toContainText('Session.temporary()');
+  await expect(page.locator('article')).toContainText('Observe the behavior');
+  await page.setViewportSize({width: 390, height: 844});
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

@@ -184,7 +184,9 @@ Typed callback/inline queries, deletion/read/status/chat-action events and bot U
 
 The English Docusaurus site includes tutorials, guides, generated API reference and
 search across the pinned raw API. Individual method pages describe parameters,
-defaults, native input variants, results and errors. Start with the
+defaults, native input variants, results and errors. Follow the
+[learning paths](docs/getting-started/next-steps.md), browse the
+[Client quick reference](docs/quick-references/client.md), or read the
 [parameter guide](docs/guides/parameters.md). See [documentation development](docs/documentation.md)
 for setup, production builds and browser checks.
 

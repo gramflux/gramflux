@@ -134,3 +134,27 @@ workflow. A configured deployment URL is not proof of a successful live deployme
 
 See [Docusaurus deployment](https://docusaurus.io/docs/deployment) for supported
 static hosts and base-path configuration.
+
+## Organize explanations by reader intent
+
+The sidebar separates Getting started, Tutorials, How-to guides, Concepts, Quick
+references, API reference and Help. Keep existing document paths when reorganizing
+navigation so published links and bookmarks continue to work.
+
+- A tutorial supplies a complete application, prerequisites, observable test steps
+  and an explanation of the control flow. It must distinguish a manual live-test
+  procedure from a live test actually performed by maintainers.
+- A how-to guide solves one task with stated client/session prerequisites and links
+  to exact method contracts. It should explain meaningful parameter interactions.
+- A concept chapter explains a model shared by several operations, including its
+  failure/reliability boundaries. It should not become another signature dump.
+- A quick reference groups operations by purpose and links to individual pages.
+  Update the Client table when the public surface changes; a contract test checks
+  that every public method appears exactly once.
+- Generated API pages remain the detailed parameter reference. Handwritten learning
+  chapters do not silently add keywords or features absent from those signatures.
+
+The learning-documentation tests parse Python snippets, bind direct Client calls
+against real signatures and verify local Markdown targets. Browser tests check the
+quick-start Next link, conceptual chapters, quick-reference coverage and tutorial
+navigation. These checks do not substitute for authenticated Telegram integration.

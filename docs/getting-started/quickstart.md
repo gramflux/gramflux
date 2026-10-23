@@ -102,6 +102,8 @@ use `filters.text`. Message text is literal: Markdown parsing is not implicit.
 
 ## Next steps
 
+Continue with [Where to go next](next-steps.md) for the recommended learning paths.
+
 - [Core concepts](concepts.md): connection, authorization, native objects and peers.
 - [Bot workflows](../guides/bots-and-events.md): tokens, buttons and callbacks.
 - [Sessions](../guides/sessions.md): saved, new and temporary lifetimes.

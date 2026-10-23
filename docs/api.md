@@ -8,6 +8,11 @@ description: Navigate GramFlux's generated Client, event, filter, configuration 
 GramFlux exposes a high-level client, native TL data and a typed asynchronous raw
 facade. Every operation goes through the same native execution policy.
 
+Find an operation by task in the [Client quick reference](quick-references/client.md),
+or choose a delivery shape in [Events and subscriptions](quick-references/events.md).
+For the underlying model, read [Messages and results](concepts/messages.md) and
+[Entities and identifiers](concepts/entities.md).
+
 ## Public imports
 
 Every Client method and every raw function has its own detailed reference page.
